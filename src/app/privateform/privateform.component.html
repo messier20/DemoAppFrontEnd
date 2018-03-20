@@ -1,5 +1,42 @@
-<h3>Float Label</h3>
-<span class="ui-float-label">
-   <input id="float-input" type="text" size="40" pInputText>
-   <label for="float-input">Username</label>
-</span>
+<div class="container">
+  <h1>Private customer form</h1>
+  <form>
+    <div class="form-group">
+      <label for="assetPrice">Asset price</label>
+      <input type="text" class="form-control" id="assetPrice" name="assetPriceField" required [(ngModel)]="assetPrice">
+    </div>
+
+    <div class="form-group">
+      <label for="assetPrice">Advance payment percentage</label>
+      <input type="text" class="form-control" id="advancePaymentPercentage" name="advancePaymentPercentageField" required [(ngModel)]="advancePaymentPercentage">
+    </div>
+
+    <div>
+      calculate advance payment amount
+    </div>
+
+    <div class="form-group">
+      <label for="assetPrice">Lease period in months</label>
+      <input type="text" class="form-control" id="leasePeriodInMonths" name="leasePeriodInMonthsField" required [(ngModel)]="leasePeriodInMonths">
+    </div>
+
+    <div class="form-group">
+      <label for="assetPrice">Margin</label>
+      <input type="text" class="form-control" id="margin" name="marginField" required [(ngModel)]="margin">
+    </div>
+
+    <div>
+      write contract fee
+    </div>
+
+    <div class="form-group">
+      <label for="paymentDay">Payment day</label>
+      <select class="form-control" id="paymentDay" name="paymentDateField" [(ngModel)]="paymentDate" required>
+        <option *ngFor="let currentDay of availableDays" [value]="currentDay">{{currentDay}}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="submitForm()">Submit form</button>
+
+  </form>
+</div>
