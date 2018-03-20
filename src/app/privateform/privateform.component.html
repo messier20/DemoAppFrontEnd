@@ -1,6 +1,37 @@
 <div class="container">
   <h1>Private customer form</h1>
   <form>
+
+    <div class="form-group">
+      <label for="customerType">Customer Type</label>
+      <select class="form-control" id="customerType" required name="customerTypeField" [(ngModel)]="customerType">
+        <option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="assetType">AssetType</label>
+      <select class="form-control" id="assetType" required name="customerTypeField" [(ngModel)]="assetType">
+        <option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</option>
+      </select>
+    </div>
+
+    <div>
+      Car Brand
+    </div>
+
+    <hr>
+    <div>
+      Car Model
+    </div>
+    <hr>
+
+    <div class="form-group">
+      <label for="manufacturedDate">Manufactured Date</label>
+      <input type="text"  class="form-control" id="manufacturedDate"
+             [(ngModel)]="manufacturedDate" name="manufacturedDate">
+    </div>
+
     <div class="form-group">
       <label for="enginePower">Engine power</label>
       <input type="text" class="form-control" id="enginePower" name="enginePowerField" required [(ngModel)]="enginePower">
