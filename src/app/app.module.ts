@@ -7,13 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrivateCustomerLeasingFormComponent } from './private-customer-leasing-form/private-customer-leasing-form.component';
 import { ServicesComponent } from './services/services.component';
+import { PrivateformComponent } from './privateform/privateform.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PrivateCustomerLeasingFormComponent,
-    ServicesComponent
+    ServicesComponent,
+    PrivateformComponent
   ],
   imports: [
     BrowserModule,
