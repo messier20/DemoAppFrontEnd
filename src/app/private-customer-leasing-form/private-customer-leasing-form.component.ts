@@ -1,5 +1,8 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {LeasingModel} from "../models/LeasingModel";
+// import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms'
+// import {FormBuilder, Validators} from "@angular/forms";
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
 // import {Services} from "@angular/core/src/view";
 // import {Services} from "@angular/core/src/view";
 // import {Services} from "../services";
@@ -30,10 +33,15 @@ export class PrivateCustomerLeasingFormComponent implements OnInit {
   margin;
   contractFee;
   paymentDate;
+  userGroup;
 
   LeasingModel : LeasingModel;
 
 
+
+  constructor(private formBuilder : FormBuilder) {
+
+  }
 
   // constructor(private services : ServicesService) { }
 
@@ -42,6 +50,9 @@ export class PrivateCustomerLeasingFormComponent implements OnInit {
 
   ngOnInit() {
     this.LeasingModel = new LeasingModel();
+    this.userGroup = this.formBuilder.group({
+      assetPrice: ['', Validators.min(15)],
+    })
   }
 
 

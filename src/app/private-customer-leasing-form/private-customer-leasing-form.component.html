@@ -5,38 +5,42 @@
 <form>
   <div class="form-group">
     <label class='label'>Email address</label>
-    <input  (keypress)="createLeasingForm()"   type='text' [(ngModel)]="customerType" name="customerType" id='inputAuthor'>
+    <input (keypress)="createLeasingForm()" type='text' [(ngModel)]="customerType" name="customerType" id='inputAuthor'>
     <!--<input type="text" class="form-control" [(ngModel)]='customerType' placeholder="Enter email">-->
     <!--<input type="text" class="form-control" -->
 
-  {{customerType}}
-
+    {{customerType}}
 
 
   </div>
 
   <div class="form-check">
-    <input type="checkbox" class="form-check-input"   id="exampleCheck1">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>
-  <button type="submit"  [disabled]="validateAssetPrice()"  class="btn btn-primary">Submit</button>
+  <button type="submit" [disabled]="validateAssetPrice()" class="btn btn-primary">Submit</button>
 </form>
 <!--<div class="form-group">-->
-  <!--<label class='label' for="inputText">Your comment</label>-->
-  <!--<input type='text' [(ngModel)]='customerType' id='inputText'>-->
-  <!--<label class='label' for="inputAuthor">Author</label>-->
-  <!--<input type='text' [(ngModel)]="author" id='inputAuthor'>-->
+<!--<label class='label' for="inputText">Your comment</label>-->
+<!--<input type='text' [(ngModel)]='customerType' id='inputText'>-->
+<!--<label class='label' for="inputAuthor">Author</label>-->
+<!--<input type='text' [(ngModel)]="author" id='inputAuthor'>-->
 <!--</div>-->
 <!--<button type='button' (click)="createPost()" >Comment</button>-->
 <!--{{author}}-->
 
+<!--<form [formGroup]="userGroup">-->
 <form>
-<div class="form-group row">
-  <label for="example-text-input" class="col-2 col-form-label">Text</label>
-  <div class="col-10">
-    <input class="form-control" (keypress)="validateAssetPrice()" [(ngModel)]="assetPrice" name="assetPrice"type="text" value="Artisanal kale" id="example-text-input">
+  <div class="form-group row">
+    <label for="example-text-input" class="col-2 col-form-label">Text</label>
+    <div class="col-10">
+      <input class="form-control"  [(ngModel)]="assetPrice" name="assetPrice" type="text" value="Artisanal kale"
+             id="example-text-input">
+    </div>
+    <div>
+      <!--<input formControlName="assetPrice" >-->
+    </div>
   </div>
-</div>
 
 
 </form>

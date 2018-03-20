@@ -1,4 +1,7 @@
+import {FormGroup} from "@angular/forms";
+
 export class LeasingModel {
+
   customerType : string;
   assetType : string;
   carBrand : string;
@@ -13,6 +16,9 @@ export class LeasingModel {
   contractFee : number;
   paymentDate : number;
 
+  // heroForm = new FormGroup({
+  //
+  // })
   // constructor(customerType, assetType) {
   //   this.customerType = customerType;
   //   this.assetType = assetType;
