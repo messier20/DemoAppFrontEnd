@@ -6,14 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { PrivateCustomerLeasingFormComponent } from './private-customer-leasing-form/private-customer-leasing-form.component';
-import { ServicesComponent } from './services/services.component';
+// import { ServicesService } from './services/services.service.spec';
+// import {ServicesService} from "./services/services.service"
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PrivateCustomerLeasingFormComponent,
-    ServicesComponent
+    // ServicesService
   ],
   imports: [
     BrowserModule,
