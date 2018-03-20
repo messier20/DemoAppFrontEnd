@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {type} from 'os';
 
 @Component({
   selector: 'app-privateform',
@@ -7,48 +6,24 @@ import {type} from 'os';
   styleUrls: ['./privateform.component.css']
 })
 export class PrivateformComponent implements OnInit {
+  customerType;
+  assetType;
+  carBrand;
+  carModel;
+  manufacturedDate;
+
+  enginePower;
+  assetPrice;
+  advancePaymentPercentage;
+  advancePaymentAmount;
+  leasePeriodInMonths;
+  margin;
+  contractFee;
+  paymentDate;
+
   availableCustomerTypes = ['Private', 'Business'];
-  customerType;
   availableAssetTypes = ['Vehicle'];
-  assetType;
-  carBrand;
-  carModel;
-  manufacturedDate;
-  enginePower;
-  assetPrice;
-  advancePaymentPercentage;
-  advancePaymentAmount;
-  leasePeriodInMonths;
-  margin;
-  contractFee;
-  paymentDate;
-
-
-  submitted = false;
-
-  onSubmit() { this.submitted = true; }
-  formSubmitted(){
-    console.log(this.customerType);
-    console.log(this.assetType);
-    console.log(this.carModel);
-  }
-
-  customerType;
-  assetType;
-  carBrand;
-  carModel;
-  manufacturedDate;
-
-  enginePower;
-  assetPrice;
-  advancePaymentPercentage;
-  advancePaymentAmount;
-  leasePeriodInMonths;
-  margin;
-  contractFee;
-  paymentDate;
-
-  availableDays = [1, 30];
+  availableDays = [15, 30];
 
   constructor() { }
 
@@ -56,6 +31,8 @@ export class PrivateformComponent implements OnInit {
   }
 
   submitForm() {
+    console.log('Customer type: ' + this.customerType);
+    console.log('Asset type' + this.assetType);
     console.log('Engine power: ' + this.enginePower);
     console.log('Asset price: ' + this.assetPrice);
     console.log('Advance payment percentage: ' + this.advancePaymentPercentage);
