@@ -12,8 +12,8 @@ export class PrivateformComponent implements OnInit {
   carBrand;
   carModel;
   manufacturedDate;
-  enginePower;
 
+  enginePower;
   assetPrice;
   advancePaymentPercentage;
   advancePaymentAmount;
@@ -30,6 +30,7 @@ export class PrivateformComponent implements OnInit {
   }
 
   submitForm() {
+    console.log('Engine power: ' + this.enginePower);
     console.log('Asset price: ' + this.assetPrice);
     console.log('Advance payment percentage: ' + this.advancePaymentPercentage);
     console.log('Lease period in months: ' + this.leasePeriodInMonths);
