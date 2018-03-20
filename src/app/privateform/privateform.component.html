@@ -16,14 +16,18 @@
       </select>
     </div>
 
-    <div>
-      Car Brand
+    <div class="form-group">
+      <label for="carBrand">Car Brand</label>
+        <select class="form-control" id="carBrand" name="carBrandField" [(ngModel)]="carBrand" (change)="selectBrandHandler($event)" required>
+          <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
+        </select>
     </div>
-
-    <hr>
-    <div>
-      Car Model
-    </div>
+    <div class="form-group">
+        <label for="carModel">Car Model</label>
+          <select class="form-control" id="carModel" name="carModelField" [(ngModel)]="carModel" required>
+            <option *ngFor="let selectedModel of model" [value]="selectedModel">{{selectedModel}}</option>
+          </select>
+      </div>
     <hr>
 
     <div class="form-group">
