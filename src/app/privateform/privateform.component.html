@@ -24,7 +24,7 @@
       <div class="form-group col-md-4">
         <div>
          <label for="carBrand">Car Brand</label>
-          <select class="form-control" id="carBrand" name="carBrandField" [(ngModel)]="leasingModel.carBrand" (keyup)="selectBrandHandler()" required>
+          <select class="form-control" id="carBrand" name="carBrandField" [(ngModel)]="leasingModel.carBrand" (change)="selectBrandHandler()" required>
            <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
           </select>
         </div>
