@@ -14,6 +14,8 @@ import {MatDialogModule} from '@angular/material';
 import {DisplayFormComponent} from './display-form/display-form.component';
 // import {DisplayForm} from './display-form/display-form';
 
+import { DataStorageService } from './services/data-storage-service.service';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import {DisplayFormComponent} from './display-form/display-form.component';
     MatDialogModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
