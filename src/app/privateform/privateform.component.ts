@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LeasingModel } from '../models/LeasingModel';
 
 @Component({
   selector: 'app-privateform',
@@ -6,20 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./privateform.component.css']
 })
 export class PrivateformComponent implements OnInit {
-  customerType;
-  assetType;
-  carBrand;
-  carModel;
-  manufacturedDate;
 
-  enginePower;
-  assetPrice;
-  advancePaymentPercentage;
-  advancePaymentAmount;
-  leasePeriodInMonths;
-  margin;
-  contractFee;
-  paymentDate;
+  leasingModel: LeasingModel;
 
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
@@ -28,17 +17,18 @@ export class PrivateformComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.leasingModel = new LeasingModel();
   }
 
   submitForm() {
-    console.log('Customer type: ' + this.customerType);
-    console.log('Asset type' + this.assetType);
-    console.log('Engine power: ' + this.enginePower);
-    console.log('Asset price: ' + this.assetPrice);
-    console.log('Advance payment percentage: ' + this.advancePaymentPercentage);
-    console.log('Lease period in months: ' + this.leasePeriodInMonths);
-    console.log('Margin: ' + this.margin);
-    console.log('Payment date: ' + this.paymentDate);
+    console.log('Customer type: ' + this.leasingModel.customerType);
+    console.log('Asset type: ' + this.leasingModel.assetType);
+    console.log('Engine power: ' + this.leasingModel.enginePower);
+    console.log('Asset price: ' + this.leasingModel.assetPrice);
+    console.log('Advance payment percentage: ' + this.leasingModel.advancePaymentPercentage);
+    console.log('Lease period in months: ' + this.leasingModel.leasePeriodInMonths);
+    console.log('Margin: ' + this.leasingModel.margin);
+    console.log('Payment date: ' + this.leasingModel.paymentDate);
   }
 
 }
