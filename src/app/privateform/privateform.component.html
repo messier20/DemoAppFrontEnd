@@ -1,6 +1,7 @@
 <div class="container">
   <h1>Private customer form</h1>
-  <form #privateform="ngForm">
+
+  <form (ngSubmit)="submitForm()" #privateform="ngForm">
 
     <div class="form-group">
       <label for="customerType">Customer Type</label>
@@ -115,7 +116,7 @@
       </select>
     </div>
 
-    <button type="submit" class="btn btn-success" (click)="submitForm()">Submit form</button>
+    <button type="submit" class="btn btn-success" [disabled]="!privateform.form.valid">Submit form</button>
 
   </form>
 </div>
