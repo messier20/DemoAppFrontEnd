@@ -31,23 +31,22 @@ export class PrivateformComponent implements OnInit {
 
   selectBrandHandler() {
     for (let i = 0; i < this.cars.length; i++) {
-      if (this.cars[i].make === this.carBrand) {
+      if (this.cars[i].make === this.leasingModel.carBrand) {
         this.model = this.cars[i].model;
-        // document.getElementById("carModel").hidden = false;
         break;
       }
     }
   }
 
   calcContractFee() {
-    this.contractFee = (this.assetPrice * 0.01).toFixed(2);
-    if (this.contractFee < 200) {
-      this.contractFee = (200).toFixed(2);
+    this.leasingModel.contractFee = (this.leasingModel.assetPrice * 0.01).toFixed(2);
+    if (this.leasingModel.contractFee < 200) {
+      this.leasingModel.contractFee = (200).toFixed(2);
     }
   }
 
   calcAdvancePaymentAmount() {
-    this.advancePaymentAmount = (this.assetPrice * this.advancePaymentPercentage / 100).toFixed(2);
+    this.leasingModel.advancePaymentAmount = (this.leasingModel.assetPrice * this.leasingModel.advancePaymentPercentage / 100).toFixed(2);
   }
 
   submitForm() {
