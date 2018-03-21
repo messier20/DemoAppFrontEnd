@@ -40,7 +40,7 @@ export class PrivateformComponent implements OnInit {
 
   calcContractFee() {
     this.leasingModel.contractFee = (this.leasingModel.assetPrice * 0.01).toFixed(2);
-    if (this.leasingModel.contractFee < 200) {
+    if (Number.parseFloat(this.leasingModel.contractFee)< 200) {
       this.leasingModel.contractFee = (200).toFixed(2);
     }
   }

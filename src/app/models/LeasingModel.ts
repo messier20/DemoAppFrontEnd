@@ -10,10 +10,10 @@ export class LeasingModel {
   enginePower: number;
   assetPrice: number;
   advancePaymentPercentage: number;
-  advancePaymentAmount: number;
+  advancePaymentAmount: string;
   leasePeriodInMonths: number;
   margin: number;
-  contractFee: number;
+  contractFee: string;
   paymentDate: number;
 
   // heroForm = new FormGroup({
