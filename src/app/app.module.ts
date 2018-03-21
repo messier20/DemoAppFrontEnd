@@ -10,6 +10,8 @@ import { PrivateCustomerLeasingFormComponent } from './private-customer-leasing-
 import { PrivateformComponent } from './privateform/privateform.component';
 import {FormsModule} from "@angular/forms";
 
+import { DataStorageService } from './services/data-storage-service.service';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import {FormsModule} from "@angular/forms";
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

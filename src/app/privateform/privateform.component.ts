@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { LeasingModel } from '../models/LeasingModel';
+import {Component, OnInit} from '@angular/core';
+import {LeasingModel} from '../models/LeasingModel';
 import {CarList} from '../models/CarList';
+import {DataStorageService} from '../services/data-storage-service.service';
 
 
 @Component({
   selector: 'app-privateform',
   templateUrl: './privateform.component.html',
-  styleUrls: ['./privateform.component.css']
+  styleUrls: ['./privateform.component.css'],
+  providers: [DataStorageService]
 })
 export class PrivateformComponent implements OnInit {
 
@@ -21,7 +23,7 @@ export class PrivateformComponent implements OnInit {
   availableDays = [15, 30];
 
 
-  constructor() {
+  constructor(private dataService: DataStorageService) {
     this.cars = new CarList().cars;
   }
 
@@ -40,7 +42,7 @@ export class PrivateformComponent implements OnInit {
 
   calcContractFee() {
     this.leasingModel.contractFee = (this.leasingModel.assetPrice * 0.01).toFixed(2);
-    if (Number.parseFloat(this.leasingModel.contractFee)< 200) {
+    if (Number.parseFloat(this.leasingModel.contractFee) < 200) {
       this.leasingModel.contractFee = (200).toFixed(2);
     }
   }
@@ -58,6 +60,8 @@ export class PrivateformComponent implements OnInit {
     console.log('Lease period in months: ' + this.leasingModel.leasePeriodInMonths);
     console.log('Margin: ' + this.leasingModel.margin);
     console.log('Payment date: ' + this.leasingModel.paymentDate);
+
+    this.dataService.setLeasingModel(this.leasingModel);
   }
 
 }
