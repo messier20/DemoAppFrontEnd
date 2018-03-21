@@ -14,12 +14,12 @@ export class PrivateformComponent implements OnInit {
   carModel;
   manufacturedDate;
   enginePower;
-  assetPrice;
-  advancePaymentPercentage;
-  advancePaymentAmount;
+  assetPrice:number;
+  advancePaymentPercentage:number;
+  advancePaymentAmount:number;
   leasePeriodInMonths;
   margin;
-  contractFee;
+  contractFee:number;
   paymentDate;
 
   availableCustomerTypes = ['Private', 'Business'];
@@ -45,6 +45,17 @@ export class PrivateformComponent implements OnInit {
     }
   }
   
+  calcContractFee(event:any){
+    this.contractFee = this.assetPrice*0.01;
+    if(this.contractFee<200){
+      this.contractFee = 200;
+    }
+  }
+
+  calcAdvancePaymentAmount(event:any){
+      this.advancePaymentAmount = this.assetPrice*this.advancePaymentPercentage/100;
+  }
+
   submitForm() {
     console.log('Customer type: ' + this.customerType);
     console.log('Asset type: ' + this.assetType);

@@ -43,30 +43,32 @@
 
     <div class="form-group">
       <label for="assetPrice">Asset price</label>
-      <input type="text" class="form-control" id="assetPrice" name="assetPriceField" required [(ngModel)]="assetPrice">
+      <input type="text" class="form-control" id="assetPrice" name="assetPriceField" required [(ngModel)]="assetPrice" (change)=calcContractFee($event) (change)=calcAdvancePaymentAmount($event)>
     </div>
 
     <div class="form-group">
-      <label for="assetPrice">Advance payment percentage</label>
-      <input type="text" class="form-control" id="advancePaymentPercentage" name="advancePaymentPercentageField" required [(ngModel)]="advancePaymentPercentage">
-    </div>
-
-    <div>
-      calculate advance payment amount
+      <label for="advancePaymentPercentage">Advance payment percentage</label>
+      <input type="text" class="form-control" id="advancePaymentPercentage" name="advancePaymentPercentageField" required [(ngModel)]="advancePaymentPercentage" (change)=calcAdvancePaymentAmount($event)>
     </div>
 
     <div class="form-group">
-      <label for="assetPrice">Lease period in months</label>
+      <label for="advancePaymentAmount">Advance payment amount</label>
+      <input type="text" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField" required [(ngModel)]="advancePaymentAmount" disabled>
+    </div>
+
+    <div class="form-group">
+      <label for="leasePeriodInMonths">Lease period in months</label>
       <input type="text" class="form-control" id="leasePeriodInMonths" name="leasePeriodInMonthsField" required [(ngModel)]="leasePeriodInMonths">
     </div>
 
     <div class="form-group">
-      <label for="assetPrice">Margin</label>
+      <label for="margin">Margin</label>
       <input type="text" class="form-control" id="margin" name="marginField" required [(ngModel)]="margin">
     </div>
 
-    <div>
-      write contract fee
+    <div class="form-group">
+      <label for="contractFee">Contract Fee</label>
+      <input type="text" class="form-control" id="contractFee" name="contractFeeField" [(ngModel)]="contractFee" disabled>
     </div>
 
     <div class="form-group">
