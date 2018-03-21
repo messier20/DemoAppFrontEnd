@@ -11,6 +11,7 @@
         </select>
       </div>
 
+
       <div class="form-group col-md-4">
         <label for="assetType">Asset Type</label>
         <select class="form-control" id="assetType" required name="assetTypeField" [(ngModel)]="leasingModel.assetType">
@@ -22,12 +23,18 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <div>
-          Car Brand
+         <label for="carBrand">Car Brand</label>
+          <select class="form-control" id="carBrand" name="carBrandField" [(ngModel)]="leasingModel.carBrand" (change)="selectBrandHandler()" required>
+           <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
+          </select>
         </div>
       </div>
       <div class="form-group col-md-4">
         <div>
-          Car Model
+          <label for="carModel">Car Model</label>
+          <select class="form-control" id="carModel" name="carModelField" [(ngModel)]="leasingModel.carModel" required>
+            <option *ngFor="let selectedModel of model" [value]="selectedModel">{{selectedModel}}</option>
+          </select>
         </div>
       </div>
     </div>
@@ -64,7 +71,7 @@
         <label for="assetPrice">Asset price</label>
         <input type="number" class="form-control" id="assetPrice" required
                [(ngModel)]="leasingModel.assetPrice"
-               name="assetPriceField" #assetPriceField="ngModel">
+               name="assetPriceField" #assetPriceField="ngModel" (keyup)=calcContractFee() (keyup)=calcAdvancePaymentAmount()>
 
         <div [hidden]="assetPriceField.valid || assetPriceField.untouched"
              class="alert alert-danger">
@@ -76,7 +83,7 @@
         <label for="advancePaymentPercentage">Advance payment percentage</label>
         <input type="number" class="form-control" id="advancePaymentPercentage"
                required [(ngModel)]="leasingModel.advancePaymentPercentage"
-               name="advancePaymentPercentageField" #advancePaymentPercentageField="ngModel">
+               name="advancePaymentPercentageField" #advancePaymentPercentageField="ngModel" (keyup)=calcAdvancePaymentAmount()>
 
         <div [hidden]="advancePaymentPercentageField.valid || advancePaymentPercentageField.untouched"
              class="alert alert-danger">
@@ -87,7 +94,8 @@
 
     <div class="form-row">
       <div class="form-group col-md-4">
-        calculate advance payment amount
+         <label for="advancePaymentAmount">Advance payment amount</label>
+          <input type="text" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField" required [(ngModel)]="leasingModel.advancePaymentAmount" disabled>
       </div>
     </div>
 
@@ -119,7 +127,8 @@
 
     <div class="form-row">
       <div class="form-group col-md-3">
-        write contract fee
+        <label for="contractFee">Contract Fee</label>
+         <input type="text" class="form-control" id="contractFee" name="contractFeeField" [(ngModel)]="leasingModel.contractFee" disabled>
       </div>
     </div>
 
