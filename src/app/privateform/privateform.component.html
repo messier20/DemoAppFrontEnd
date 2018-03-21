@@ -1,84 +1,147 @@
 <div class="container">
   <h1>Private customer form</h1>
-  <form>
 
-    <div class="form-group">
-      <label for="customerType">Customer Type</label>
-      <select class="form-control" id="customerType" required name="customerTypeField" [(ngModel)]="customerType">
-        <option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>
-      </select>
-    </div>
+  <form (ngSubmit)="submitForm()" #privateform="ngForm">
 
-    <div class="form-group">
-      <label for="assetType">AssetType</label>
-      <select class="form-control" id="assetType" required name="customerTypeField" [(ngModel)]="assetType">
-        <option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="carBrand">Car Brand</label>
-        <select class="form-control" id="carBrand" name="carBrandField" [(ngModel)]="carBrand" (change)="selectBrandHandler($event)" required>
-          <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="customerType">Customer Type</label>
+        <select class="form-control" id="customerType" required name="customerTypeField" [(ngModel)]="leasingModel.customerType">
+          <option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>
         </select>
+      </div>
+
+
+      <div class="form-group col-md-4">
+        <label for="assetType">Asset Type</label>
+        <select class="form-control" id="assetType" required name="assetTypeField" [(ngModel)]="leasingModel.assetType">
+          <option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</option>
+        </select>
+      </div>
     </div>
-    <div class="form-group">
-        <label for="carModel">Car Model</label>
-          <select class="form-control" id="carModel" name="carModelField" [(ngModel)]="carModel" required>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <div>
+         <label for="carBrand">Car Brand</label>
+          <select class="form-control" id="carBrand" name="carBrandField" [(ngModel)]="leasingModel.carBrand" (keyup)="selectBrandHandler()" required>
+           <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <div>
+          <label for="carModel">Car Model</label>
+          <select class="form-control" id="carModel" name="carModelField" [(ngModel)]="leasingModel.carModel" required>
             <option *ngFor="let selectedModel of model" [value]="selectedModel">{{selectedModel}}</option>
           </select>
+        </div>
       </div>
-    <hr>
-
-    <div class="form-group">
-      <label for="manufacturedDate">Manufactured Date</label>
-      <input type="date"  class="form-control" id="manufacturedDate"
-             [(ngModel)]="manufacturedDate" name="manufacturedDate">
     </div>
 
-    <div class="form-group">
-      <label for="enginePower">Engine power</label>
-      <input type="text" class="form-control" id="enginePower" name="enginePowerField" required [(ngModel)]="enginePower">
+    <!--pattern="\d{4}" maxlength="4" required-->
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label for="manufacturedDate">Manufactured Date</label>
+        <input type="date"  class="form-control" id="manufacturedDate"
+               [(ngModel)]="leasingModel.manufacturedDate"
+               name="manufacturedDateForm" #manufacturedDateForm="ngModel">
+
+        <div [hidden]="manufacturedDateForm.valid || manufacturedDateForm.untouched"
+             class="alert alert-danger">
+          Manufactured date is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="enginePower">Engine power</label>
+        <input type="number" class="form-control" id="enginePower"
+               required [(ngModel)]="leasingModel.enginePower"
+               name="enginePowerForm" #enginePowerForm="ngModel">
+
+        <div [hidden]="enginePowerForm.valid || enginePowerForm.untouched"
+             class="alert alert-danger">
+          Engine power is required.
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="assetPrice">Asset price</label>
-      <input type="text" class="form-control" id="assetPrice" name="assetPriceField" required [(ngModel)]="assetPrice" (change)=calcContractFee($event) (change)=calcAdvancePaymentAmount($event)>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="assetPrice">Asset price</label>
+        <input type="number" class="form-control" id="assetPrice" required
+               [(ngModel)]="leasingModel.assetPrice"
+               name="assetPriceField" #assetPriceField="ngModel" (keyup)=calcContractFee() (keyup)=calcAdvancePaymentAmount()>
+
+        <div [hidden]="assetPriceField.valid || assetPriceField.untouched"
+             class="alert alert-danger">
+          Asset price is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="advancePaymentPercentage">Advance payment percentage</label>
+        <input type="number" class="form-control" id="advancePaymentPercentage"
+               required [(ngModel)]="leasingModel.advancePaymentPercentage"
+               name="advancePaymentPercentageField" #advancePaymentPercentageField="ngModel" (keyup)=calcAdvancePaymentAmount()>
+
+        <div [hidden]="advancePaymentPercentageField.valid || advancePaymentPercentageField.untouched"
+             class="alert alert-danger">
+          Advance payment percentage is required.
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="advancePaymentPercentage">Advance payment percentage</label>
-      <input type="text" class="form-control" id="advancePaymentPercentage" name="advancePaymentPercentageField" required [(ngModel)]="advancePaymentPercentage" (change)=calcAdvancePaymentAmount($event)>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+         <label for="advancePaymentAmount">Advance payment amount</label>
+          <input type="text" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField" required [(ngModel)]="leasingModel.advancePaymentAmount" disabled>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="advancePaymentAmount">Advance payment amount</label>
-      <input type="text" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField" required [(ngModel)]="advancePaymentAmount" disabled>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="leasePeriodInMonths">Lease period in months</label>
+        <input type="number" class="form-control" id="leasePeriodInMonths" required
+               [(ngModel)]="leasingModel.leasePeriodInMonths"
+               name="leasePeriodInMonthsField" #leasePeriodInMonthsField="ngModel">
+
+        <div [hidden]="leasePeriodInMonthsField.valid || leasePeriodInMonthsField.untouched"
+             class="alert alert-danger">
+          Lease period is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="margin">Margin</label>
+        <input type="number" class="form-control" id="margin" required
+               [(ngModel)]="leasingModel.margin"
+               name="marginField" #marginField="ngModel">
+
+        <div [hidden]="marginField.valid || marginField.untouched"
+             class="alert alert-danger">
+          Margin is required.
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="leasePeriodInMonths">Lease period in months</label>
-      <input type="number" class="form-control" id="leasePeriodInMonths" name="leasePeriodInMonthsField" required [(ngModel)]="leasePeriodInMonths" step="6" min="6" max="84">
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="contractFee">Contract Fee</label>
+         <input type="text" class="form-control" id="contractFee" name="contractFeeField" [(ngModel)]="leasingModel.contractFee" disabled>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="margin">Margin</label>
-      <input type="text" class="form-control" id="margin" name="marginField" required [(ngModel)]="margin">
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label for="paymentDay">Payment day</label>
+        <select class="form-control" id="paymentDay" name="paymentDateField" [(ngModel)]="leasingModel.paymentDate" required>
+          <option *ngFor="let currentDay of availableDays" [value]="currentDay">{{currentDay}}</option>
+        </select>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="contractFee">Contract Fee</label>
-      <input type="text" class="form-control" id="contractFee" name="contractFeeField" [(ngModel)]="contractFee" disabled>
-    </div>
-
-    <div class="form-group">
-      <label for="paymentDay">Payment day</label>
-      <select class="form-control" id="paymentDay" name="paymentDateField" [(ngModel)]="paymentDate" required>
-        <option *ngFor="let currentDay of availableDays" [value]="currentDay">{{currentDay}}</option>
-      </select>
-    </div>
-
-    <button type="submit" class="btn btn-success" (click)="submitForm()">Submit form</button>
+    <button type="submit" class="btn btn-success" [disabled]="!privateform.form.valid">Submit form</button>
 
   </form>
 </div>
