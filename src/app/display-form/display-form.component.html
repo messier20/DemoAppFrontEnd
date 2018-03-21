@@ -1,0 +1,17 @@
+<title>Bootstrap Example</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<h3 align="center">Sarasiukas</h3>
+<div *ngFor="let element of data" class="container">
+  <div class="panel panel panel-primary">
+    <div class="panel-heading">{{element.heading}}</div>
+    <div class="panel-body">{{element.value}}</div>
+  </div>
+</div>
+
+<div style="text-align: center; margin: 1em;">
+  <input type="button" class="btn btn-success" value="Confirm">
+</div>
