@@ -8,10 +8,12 @@ import { PrivateCustomerLeasingFormComponent } from './private-customer-leasing-
 import { PrivateformComponent } from './privateform/privateform.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material';
-import {DisplayFormComponent} from './display-form/display-form.component';
+import {DialogFormComponent, DisplayFormComponent} from './display-form/display-form.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import { DataStorageService } from './services/data-storage-service.service';
+import {BusinessCustomerPersonalFormComponent} from "./business-customer-personal-form/business-customer-personal-form.component";
+import {PrivateCustomerPersonalFormComponent} from "./private-customer-personal-form/private-customer-personal-form.component";
 
 
 @NgModule({
@@ -19,7 +21,11 @@ import { DataStorageService } from './services/data-storage-service.service';
     AppComponent,
     PrivateCustomerLeasingFormComponent,
     PrivateformComponent,
-    DisplayFormComponent
+    DisplayFormComponent,
+    PrivateCustomerPersonalFormComponent,
+    BusinessCustomerPersonalFormComponent,
+    DisplayFormComponent,
+    DialogFormComponent
   ],
   imports: [
     BrowserModule,
