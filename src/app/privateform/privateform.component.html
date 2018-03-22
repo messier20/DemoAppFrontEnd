@@ -95,25 +95,29 @@
     <!--<p>is numb valid: {{leasingForm.get('numb').valid}}</p>-->
 
     <button (click)="check()" class=" btn"> Check</button>
-    </form>
 
-    <!--<div class="form-row">-->
-      <!--<div class="form-group col-md-4">-->
-        <!--<label for="assetPrice">Asset price</label>-->
-        <!--<input type="number" class="form-control" id="assetPrice" required-->
-               <!--[(ngModel)]="leasingModel.assetPrice"-->
-               <!--formControlName="assetPrice"-->
-               <!--name="assetPriceField"  (keyup)=calcContractFee() (keyup)=calcAdvancePaymentAmount()>-->
 
-        <!--&lt;!&ndash;<div [hidden]="assetPriceField.valid || assetPriceField.untouched"&ndash;&gt;-->
-             <!--&lt;!&ndash;class="alert alert-danger">&ndash;&gt;-->
-          <!--&lt;!&ndash;Asset price is required.&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="assetPrice">Asset price</label>
+        <input type="number" class="form-control" id="assetPrice" required
 
-        <!--<div [hidden]="leasingForm.get('assetPrice').valid"-->
+               formControlName="assetPrice"
+               name="assetPriceField"  (keyup)=calcContractFee() (keyup)=calcAdvancePaymentAmount()>
+
+        <!--<div [hidden]="assetPriceField.valid || assetPriceField.untouched"-->
              <!--class="alert alert-danger">-->
-          <!--assetPrice must be at least 2000-->
+          <!--Asset price is required.-->
         <!--</div>-->
+
+        <div [hidden]="leasingForm.get('assetPrice').valid"
+             class="alert alert-danger">
+          assetPrice must be at least 2000
+        </div>
+      </div>
+    </div>
+
+    </form>
 
         <!--<p>is numb valid: {{leasingForm.get('assetPrice').valid}}</p>-->
         <!--<p>Form value: {{ leasingForm.value | json }}</p>-->

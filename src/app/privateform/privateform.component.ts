@@ -67,21 +67,29 @@ export class PrivateformComponent implements OnInit {
     console.log('Margin: ' + this.leasingModel.margin);
     console.log('Payment date: ' + this.leasingModel.paymentDate);
 
+    // this.leasingModel = new LeasingModel(this.leasingForm.value);
     this.dataService.setLeasingModel(this.leasingModel);
   }
 
   createValidForm() {
     this.leasingForm = this.formBuilder.group({
-      // assetPrice: [this.assetPrice, [Validators.required, Validators.min(2000)]],
+      assetPrice: ['', [Validators.required, Validators.min(2000)]],
       numb: [this.numb, [Validators.required, Validators.min(200)]]
     })
+    // this.leasingModel.assetPrice = this.assetPrice;
   }
-  // this.myGroup = new FormGroup({
-  //   firstName: new FormControl()
-  // });
+
+  createValidFormSetVars(){
+
+  }
+
 
   check() {
-    console.log("check function", this.leasingForm.value);
+    this.leasingModel.assetPrice = this.leasingForm.get('assetPrice').value;
+    console.log("asset price in class", this.leasingModel.assetPrice);
+
+    console.log("numb", this.leasingForm.value);
+    console.log("assetPrice", this.leasingForm.get('assetPrice'));
   }
 
 }
