@@ -38,6 +38,7 @@ export class PrivateformComponent implements OnInit {
   }
 
   selectBrandHandler() {
+    this.check();
     for (let i = 0; i < this.cars.length; i++) {
       if (this.cars[i].make === this.leasingModel.carBrand) {
         this.model = this.cars[i].model;
@@ -47,13 +48,22 @@ export class PrivateformComponent implements OnInit {
   }
 
   calcContractFee() {
+
+    this.check();
+    console.log(" in calcContract");
+
+    // console.log(this.leasingModel.con)
     this.leasingModel.contractFee = (this.leasingModel.assetPrice * 0.01).toFixed(2);
     if (Number.parseFloat(this.leasingModel.contractFee)< 200) {
       this.leasingModel.contractFee = (200).toFixed(2);
     }
+
+    console.log("contractFee", this.leasingModel.contractFee);
   }
 
   calcAdvancePaymentAmount() {
+    this.check();
+    console.log(" in advancePayment");
     this.leasingModel.advancePaymentAmount = (this.leasingModel.assetPrice * this.leasingModel.advancePaymentPercentage / 100).toFixed(2);
   }
 
