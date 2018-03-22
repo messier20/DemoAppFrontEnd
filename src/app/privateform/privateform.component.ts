@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {LeasingModel} from '../models/LeasingModel';
 import {CarList} from '../models/CarList';
+import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
-
 
 @Component({
   selector: 'app-privateform',
@@ -14,6 +14,7 @@ export class PrivateformComponent implements OnInit {
 
   leasingModel: LeasingModel;
 
+
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
   cars;
@@ -21,7 +22,8 @@ export class PrivateformComponent implements OnInit {
   availableDays = [15, 30];
 
 
-  constructor(private dataService: DataStorageService) {
+  constructor(private router: Router,
+              private dataService: DataStorageService) {
     this.cars = new CarList().cars;
   }
 
@@ -58,7 +60,11 @@ export class PrivateformComponent implements OnInit {
     console.log('Lease period in months: ' + this.leasingModel.leasePeriodInMonths);
     console.log('Margin: ' + this.leasingModel.margin);
     console.log('Payment date: ' + this.leasingModel.paymentDate);
-
+    if(this.leasingModel.customerType === this.availableCustomerTypes[1]){
+      this.router.navigate(['/businessPersonalForm']);
+    } else {
+      this.router.navigate(['/privatePersonalForm']);
+    }
     // this.fakeData = {
     //   customerType: 'private',
     //   assetType: 'vehicle',
@@ -76,6 +82,7 @@ export class PrivateformComponent implements OnInit {
     // };
 
     this.dataService.setLeasingModel(this.leasingModel);
+
   }
 
 }
