@@ -7,9 +7,9 @@ import {BusinessCustomerPersonalFormComponent} from './business-customer-persona
 import {DisplayFormComponent} from './display-form/display-form.component';
 
 const routes: Routes = [
-  {path: 'privateForm', component: PrivateformComponent}
+  {path: 'privateForm', component: PrivateformComponent},
   {path: 'privatePersonalForm', component: PrivateCustomerPersonalFormComponent},
-  {path: 'businessPersonalForm', component: BusinessCustomerPersonalFormComponent}
+  {path: 'businessPersonalForm', component: BusinessCustomerPersonalFormComponent},
   {path: 'displayForm', component: DisplayFormComponent}
 ];
 
