@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 
 @Component({
@@ -6,9 +6,28 @@ import {MatDialog} from '@angular/material';
   templateUrl: './display-form.component.html',
   styleUrls: ['./display-form.component.css']
 })
+export class DisplayFormComponent implements OnInit {
 
-export class DisplayFormComponent {
+  constructor(public dialog: MatDialog) { }
 
+  ngOnInit() {
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogFormComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+}
+
+@Component({
+  selector: 'app-dialog-form',
+  templateUrl: 'dialog-form.html',
+  styleUrls: ['./dialog-form.css']
+})
+export class DialogFormComponent {
   data = [
     {heading: 'Customer type', value: 'Private'},
     {heading: 'Asset type', value: 'Vehicle'},
@@ -24,28 +43,4 @@ export class DisplayFormComponent {
     {heading: 'Contract fee', value: '200EUR default min 3.2%'},
     {heading: 'Payment date', value: '15 or 30'}
   ];
-  // data[0].value
-  constructor() {
-  }
-
 }
-
-//   constructor(public dialog: MatDialog) {
-//   }
-//
-//   openDialog() {
-//     //document.getElementById('popup').hidden = false;
-//     const dialogRef = this.dialog.open(DialogFormComponent);
-//
-//     dialogRef.afterClosed().subscribe(result => {
-//       console.log(`Dialog result: ${result}`);
-//     });
-//   }
-// }
-//
-// @Component({
-//   selector: 'app-dialog-form',
-//   templateUrl: 'dialog-form.html',
-// })
-// export class DialogFormComponent {}
-//

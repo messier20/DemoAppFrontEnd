@@ -1,27 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { PrivateCustomerLeasingFormComponent } from './private-customer-leasing-form/private-customer-leasing-form.component';
-// import { ServicesComponent } from './services/services.component';
+
 import { PrivateformComponent } from './privateform/privateform.component';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material';
-import {DisplayFormComponent} from './display-form/display-form.component';
-// import {DisplayForm} from './display-form/display-form';
+import {DialogFormComponent, DisplayFormComponent} from './display-form/display-form.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PrivateCustomerLeasingFormComponent,
-    // ServicesComponent,
     PrivateformComponent,
-    DisplayFormComponent
+    DisplayFormComponent,
+    DialogFormComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +30,7 @@ import {DisplayFormComponent} from './display-form/display-form.component';
     BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DisplayFormComponent, DialogFormComponent]
 })
 export class AppModule { }
