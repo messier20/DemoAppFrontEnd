@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LeasingModel } from '../models/LeasingModel';
+import {Component, OnInit} from '@angular/core';
+import {LeasingModel} from '../models/LeasingModel';
 import {CarList} from '../models/CarList';
 import {DataStorageService} from '../services/data-storage-service.service';
 
@@ -7,14 +7,12 @@ import {DataStorageService} from '../services/data-storage-service.service';
 @Component({
   selector: 'app-privateform',
   templateUrl: './privateform.component.html',
-  styleUrls: ['./privateform.component.css'],
-  providers: [DataStorageService]
+  styleUrls: ['./privateform.component.css']
 })
 export class PrivateformComponent implements OnInit {
 
 
   leasingModel: LeasingModel;
-
 
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
@@ -60,7 +58,23 @@ export class PrivateformComponent implements OnInit {
     console.log('Lease period in months: ' + this.leasingModel.leasePeriodInMonths);
     console.log('Margin: ' + this.leasingModel.margin);
     console.log('Payment date: ' + this.leasingModel.paymentDate);
-    
+
+    // this.fakeData = {
+    //   customerType: 'private',
+    //   assetType: 'vehicle',
+    //   carBrand: 'Honda',
+    //   carModel: 'civic',
+    //   manufacturedDate: '2004-01-01',
+    //   enginePower: 78,
+    //   assetPrice: 5001,
+    //   advancePaymentPercentage: 30,
+    //   advancePaymentAmount: 400,
+    //   leasePeriodInMonths: 20,
+    //   margin: 30,
+    //   contractFee: 200,
+    //   paymentDate: 15,
+    // };
+
     this.dataService.setLeasingModel(this.leasingModel);
   }
 

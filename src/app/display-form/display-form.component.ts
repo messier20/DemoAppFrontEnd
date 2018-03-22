@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material';
+import {DataStorageService} from '../services/data-storage-service.service';
+import {LeasingModel} from '../models/LeasingModel';
 
 @Component({
   selector: 'app-display-form',
@@ -24,8 +26,14 @@ export class DisplayFormComponent {
     {heading: 'Contract fee', value: '200EUR default min 3.2%'},
     {heading: 'Payment date', value: '15 or 30'}
   ];
-  // data[0].value
-  constructor() {
+
+  leasingModel: LeasingModel;
+
+  constructor(private dataService: DataStorageService) {
+
+    this.leasingModel = this.dataService.getLeasingModel();
+    console.log('leasingModel: ');
+    console.log(this.leasingModel);
   }
 
 }
