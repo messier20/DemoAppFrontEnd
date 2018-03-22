@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Private customer form</h1>
 
-  <form (ngSubmit)="submitForm()" #privateform="ngForm">
+  <form (ngSubmit)="submitForm()" #privateform="ngForm" >
 
     <div class="form-row">
       <div class="form-group col-md-4">
@@ -66,18 +66,70 @@
       </div>
     </div>
 
+
+
+    <form [formGroup]="leasingForm">
     <div class="form-row">
       <div class="form-group col-md-4">
-        <label for="assetPrice">Asset price</label>
-        <input type="number" class="form-control" id="assetPrice" required
-               [(ngModel)]="leasingModel.assetPrice"
-               name="assetPriceField" #assetPriceField="ngModel" (keyup)=calcContractFee() (keyup)=calcAdvancePaymentAmount()>
+        <label  >Number</label>
+        <input type="number" class="form-control" id="numb"
+        formControlName="numb"
+          >
 
-        <div [hidden]="assetPriceField.valid || assetPriceField.untouched"
-             class="alert alert-danger">
-          Asset price is required.
+        <div [hidden]="leasingForm.get('numb').valid || leasingForm.get('numb').untouched"
+        class="alert alert-danger">
+        assetPrice must be at least 2000
         </div>
+
+
       </div>
+
+
+    </div>
+    <!--<p>Form value: {{ leasingForm.value | json }}</p>-->
+    <!--<p>Form status: {{ leasingForm.status | json }}</p>-->
+    <!--<p>Name value: {{ leasingForm.get('name').value }}</p>-->
+    <!--<p>Numb value: {{ leasingForm.get('numb').value }}</p>-->
+    <!--<p>Numb status: {{ leasingForm.get('numb').status }}</p>-->
+    <!--<p>Numb value as i need: {{numb}}</p>-->
+    <!--<p>is numb valid: {{leasingForm.get('numb').valid}}</p>-->
+
+    <button (click)="check()" class=" btn"> Check</button>
+    </form>
+
+    <!--<div class="form-row">-->
+      <!--<div class="form-group col-md-4">-->
+        <!--<label for="assetPrice">Asset price</label>-->
+        <!--<input type="number" class="form-control" id="assetPrice" required-->
+               <!--[(ngModel)]="leasingModel.assetPrice"-->
+               <!--formControlName="assetPrice"-->
+               <!--name="assetPriceField"  (keyup)=calcContractFee() (keyup)=calcAdvancePaymentAmount()>-->
+
+        <!--&lt;!&ndash;<div [hidden]="assetPriceField.valid || assetPriceField.untouched"&ndash;&gt;-->
+             <!--&lt;!&ndash;class="alert alert-danger">&ndash;&gt;-->
+          <!--&lt;!&ndash;Asset price is required.&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--<div [hidden]="leasingForm.get('assetPrice').valid"-->
+             <!--class="alert alert-danger">-->
+          <!--assetPrice must be at least 2000-->
+        <!--</div>-->
+
+        <!--<p>is numb valid: {{leasingForm.get('assetPrice').valid}}</p>-->
+        <!--<p>Form value: {{ leasingForm.value | json }}</p>-->
+        <!--<p>Form status: {{ leasingForm.status | json }}</p>-->
+        <!--<p>Name value: {{ leasingForm.get('assetPrice').value }}</p>-->
+        <!--<p>Numb value: {{ leasingForm.get('assetPrice').value }}</p>-->
+        <!--<p>Numb status: {{ leasingForm.get('assetPrice').status }}</p>-->
+        <!--<p>Numb value as i need: {{leasingModel.assetPrice}}</p>-->
+        <!--<p>is numb valid: {{leasingForm.get('assetPrice').valid}}</p>-->
+      <!--</div>-->
+    <!--</div>-->
+
+
+
+
+
 
       <div class="form-group col-md-4">
         <label for="advancePaymentPercentage">Advance payment percentage</label>
@@ -90,7 +142,7 @@
           Advance payment percentage is required.
         </div>
       </div>
-    </div>
+
 
     <div class="form-row">
       <div class="form-group col-md-4">
@@ -141,7 +193,8 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-success" [disabled]="!privateform.form.valid">Submit form</button>
-
+    <button type="submit" class="btn btn-success" [disabled]="!privateform.form.valid" (click)="check()">Submit form</button>
+    <!--</div>-->
   </form>
+
 </div>

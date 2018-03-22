@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LeasingModel } from '../models/LeasingModel';
 import {CarList} from '../models/CarList';
 import {DataStorageService} from '../services/data-storage-service.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -14,6 +15,7 @@ export class PrivateformComponent implements OnInit {
 
 
   leasingModel: LeasingModel;
+  leasingForm: FormGroup;
 
 
   availableCustomerTypes = ['Private', 'Business'];
@@ -22,9 +24,13 @@ export class PrivateformComponent implements OnInit {
   model: String[];
   availableDays = [15, 30];
 
+  numb;
+  assetPrice;
 
-  constructor(private dataService: DataStorageService) {
+
+  constructor(private dataService: DataStorageService, private formBuilder: FormBuilder) {
     this.cars = new CarList().cars;
+    this.createValidForm();
   }
 
   ngOnInit() {
@@ -60,8 +66,22 @@ export class PrivateformComponent implements OnInit {
     console.log('Lease period in months: ' + this.leasingModel.leasePeriodInMonths);
     console.log('Margin: ' + this.leasingModel.margin);
     console.log('Payment date: ' + this.leasingModel.paymentDate);
-    
+
     this.dataService.setLeasingModel(this.leasingModel);
+  }
+
+  createValidForm() {
+    this.leasingForm = this.formBuilder.group({
+      // assetPrice: [this.assetPrice, [Validators.required, Validators.min(2000)]],
+      numb: [this.numb, [Validators.required, Validators.min(200)]]
+    })
+  }
+  // this.myGroup = new FormGroup({
+  //   firstName: new FormControl()
+  // });
+
+  check() {
+    console.log("check function", this.leasingForm.value);
   }
 
 }
