@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
+import {BackendService} from '../services/backend.service';
+import {LeasingModel} from '../models/LeasingModel';
+import {DataStorageService} from '../services/data-storage-service.service';
 
 @Component({
   selector: 'app-display-form',
@@ -8,18 +11,29 @@ import {MatDialog} from '@angular/material';
 })
 export class DisplayFormComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {
+  leasingModel: LeasingModel;
+
+  constructor(public dialog: MatDialog,
+              private dataService: DataStorageService,
+              private backendService: BackendService) {
   }
 
   ngOnInit() {
   }
 
   openDialog() {
+    this.leasingModel = this.dataService.getLeasingModel();
+    this.sendFormToBackend();
+
     const dialogRef = this.dialog.open(DialogFormComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  sendFormToBackend() {
+    this.backendService.submitForm(this.leasingModel);
   }
 }
 
@@ -29,21 +43,10 @@ export class DisplayFormComponent implements OnInit {
   styleUrls: ['./dialog-form.css']
 })
 export class DialogFormComponent {
-  leasingModel = {
-    customerType: 'private',
-    assetType: 'vehicle',
-    carBrand: 'Honda',
-    carModel: 'civic',
-    manufacturedDate: '2004-01-01',
-    enginePower: 78,
-    assetPrice: 5001,
-    advancePaymentPercentage: 30,
-    advancePaymentAmount: 400,
-    leasePeriodInMonths: 20,
-    margin: 30,
-    contractFee: 200,
-    paymentDate: 15,
-  };
+
+
+  leasingModel: LeasingModel;
+
   data = [
     {heading: 'Customer type', value: 'Private'},
     {heading: 'Asset type', value: 'Vehicle'},
@@ -60,7 +63,13 @@ export class DialogFormComponent {
     {heading: 'Payment date', value: '15 or 30'}
   ];
 
-  constructor() {
+  constructor(private dataService: DataStorageService,
+              private backendService: BackendService) {
+
+    this.leasingModel = this.dataService.getLeasingModel();
+
+    this.sendFormToBackend();
+
     this.data[0].value = this.leasingModel.customerType;
     this.data[1].value = this.leasingModel.assetType;
     this.data[2].value = this.leasingModel.carBrand;
@@ -69,10 +78,14 @@ export class DialogFormComponent {
     this.data[5].value = String(this.leasingModel.enginePower);
     this.data[6].value = String(this.leasingModel.assetPrice);
     this.data[7].value = String(this.leasingModel.advancePaymentPercentage);
-    this.data[8].value = String(this.leasingModel.advancePaymentAmount);
+    this.data[8].value = this.leasingModel.advancePaymentAmount;
     this.data[9].value = String(this.leasingModel.leasePeriodInMonths);
     this.data[10].value = String(this.leasingModel.margin);
-    this.data[11].value = String(this.leasingModel.contractFee);
+    this.data[11].value = this.leasingModel.contractFee;
     this.data[12].value = String(this.leasingModel.paymentDate);
+  }
+
+  sendFormToBackend() {
+    this.backendService.submitForm(this.leasingModel);
   }
 }

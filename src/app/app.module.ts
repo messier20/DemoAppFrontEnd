@@ -1,19 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 
-import { AppComponent } from './app.component';
-import { PrivateCustomerLeasingFormComponent } from './private-customer-leasing-form/private-customer-leasing-form.component';
-import { PrivateformComponent } from './privateform/privateform.component';
+import {DataStorageService} from './services/data-storage-service.service';
+import {BackendService} from './services/backend.service';
+
+import {AppComponent} from './app.component';
+import {PrivateCustomerLeasingFormComponent} from './private-customer-leasing-form/private-customer-leasing-form.component';
+import {PrivateformComponent} from './privateform/privateform.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material';
 import {DialogFormComponent, DisplayFormComponent} from './display-form/display-form.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import { DataStorageService } from './services/data-storage-service.service';
-import {BusinessCustomerPersonalFormComponent} from "./business-customer-personal-form/business-customer-personal-form.component";
-import {PrivateCustomerPersonalFormComponent} from "./private-customer-personal-form/private-customer-personal-form.component";
+import {BusinessCustomerPersonalFormComponent} from './business-customer-personal-form/business-customer-personal-form.component';
+import {PrivateCustomerPersonalFormComponent} from './private-customer-personal-form/private-customer-personal-form.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -34,9 +37,11 @@ import {PrivateCustomerPersonalFormComponent} from "./private-customer-personal-
     MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [DataStorageService],
+  providers: [DataStorageService, BackendService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
