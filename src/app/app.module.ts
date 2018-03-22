@@ -13,6 +13,8 @@ import {MatDialogModule} from '@angular/material';
 import {DialogFormComponent, DisplayFormComponent} from './display-form/display-form.component';
 
 
+import { DataStorageService } from './services/data-storage-service.service';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import {DialogFormComponent, DisplayFormComponent} from './display-form/display-
     MatDialogModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [DataStorageService],
   bootstrap: [AppComponent],
   entryComponents: [DisplayFormComponent, DialogFormComponent]
 })
