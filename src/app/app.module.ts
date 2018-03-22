@@ -1,18 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { PrivateCustomerLeasingFormComponent } from './private-customer-leasing-form/private-customer-leasing-form.component';
-// import { ServicesComponent } from './services/services.component';
+
 import { PrivateformComponent } from './privateform/privateform.component';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material';
-import {DisplayFormComponent} from './display-form/display-form.component';
-// import {DisplayForm} from './display-form/display-form';
+import {DialogFormComponent, DisplayFormComponent} from './display-form/display-form.component';
+
 
 import { DataStorageService } from './services/data-storage-service.service';
 
@@ -21,9 +20,9 @@ import { DataStorageService } from './services/data-storage-service.service';
   declarations: [
     AppComponent,
     PrivateCustomerLeasingFormComponent,
-    // ServicesComponent,
     PrivateformComponent,
-    DisplayFormComponent
+    DisplayFormComponent,
+    DialogFormComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +32,7 @@ import { DataStorageService } from './services/data-storage-service.service';
     BrowserAnimationsModule
   ],
   providers: [DataStorageService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DisplayFormComponent, DialogFormComponent]
 })
 export class AppModule { }
