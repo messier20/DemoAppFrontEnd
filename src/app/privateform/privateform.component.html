@@ -1,41 +1,71 @@
 <div class="container">
   <h1>Private customer form</h1>
 
-  <form (ngSubmit)="submitForm()" #privateform="ngForm">
+  <form [formGroup]="leasingForm" (ngSubmit)="submitForm()">
+  <!--<form (ngSubmit)="submitForm()" #privateform="ngForm">-->
 
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="customerType">Customer Type</label>
-        <select class="form-control" id="customerType" required name="customerTypeField" [(ngModel)]="leasingModel.customerType">
+        <select class="form-control" id="customerType" required name="customerTypeField"
+                formControlName="customerType">
+                <!--[(ngModel)]="leasingModel.customerType">-->
           <option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>
         </select>
+
+        <div [hidden]="leasingForm.get('customerType').valid || leasingForm.get('customerType').untouched"
+        class="alert-danger alert">
+          Customer type is required
+
+        </div>
+
       </div>
 
 
       <div class="form-group col-md-4">
         <label for="assetType">Asset Type</label>
-        <select class="form-control" id="assetType" required name="assetTypeField" [(ngModel)]="leasingModel.assetType">
+        <select class="form-control" id="assetType" required name="assetTypeField" formControlName="assetType">
           <option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</option>
         </select>
+
+
+      <div [hidden]="leasingForm.get('assetType').valid || leasingForm.get('assetType').untouched"
+           class="alert-danger alert">
+        Customer type is required
       </div>
+      </div>
+
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-4">
         <div>
-         <label for="carBrand">Car Brand</label>
-          <select class="form-control" id="carBrand" name="carBrandField" [(ngModel)]="leasingModel.carBrand" (change)="selectBrandHandler()" required>
-           <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
+          <label for="carBrand">Car Brand</label>
+          <select class="form-control" id="carBrand" name="carBrandField" formControlName="carBrand"
+                  (change)="selectBrandHandler()" required>
+            <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
           </select>
         </div>
+
+        <div [hidden]="leasingForm.get('carBrand').valid || leasingForm.get('carBrand').untouched"
+             class="alert-danger alert">
+          Car Brand is required
+        </div>
+
       </div>
       <div class="form-group col-md-4">
         <div>
           <label for="carModel">Car Model</label>
-          <select class="form-control" id="carModel" name="carModelField" [(ngModel)]="leasingModel.carModel" required>
+          <select class="form-control" id="carModel" name="carModelField" formControlName="carModel" >
             <option *ngFor="let selectedModel of model" [value]="selectedModel">{{selectedModel}}</option>
           </select>
         </div>
+
+        <div [hidden]="leasingForm.get('carModel').valid || leasingForm.get('carModel').untouched"
+             class="alert-danger alert">
+          Car Model is required
+        </div>
+
       </div>
     </div>
 
@@ -43,59 +73,88 @@
     <div class="form-row">
       <div class="form-group col-md-2">
         <label for="manufacturedDate">Manufactured Date</label>
-        <input type="date"  class="form-control" id="manufacturedDate"
-               [(ngModel)]="leasingModel.manufacturedDate"
-               name="manufacturedDateForm" #manufacturedDateForm="ngModel">
+        <input type="date" class="form-control" id="manufacturedDate"
+               formControlName="manufacturedDate"
+               name="manufacturedDateForm" >
 
-        <div [hidden]="manufacturedDateForm.valid || manufacturedDateForm.untouched"
-             class="alert alert-danger">
+        <div [hidden]="leasingForm.get('manufacturedDate').valid || leasingForm.get('manufacturedDate').untouched"
+             class="alert-danger alert">
           Manufactured date is required.
         </div>
+
+
       </div>
 
       <div class="form-group col-md-2">
         <label for="enginePower">Engine power</label>
         <input type="number" class="form-control" id="enginePower"
-               required [(ngModel)]="leasingModel.enginePower"
-               name="enginePowerForm" #enginePowerForm="ngModel">
+               formControlName="enginePower"
+               name="enginePowerForm">
 
-        <div [hidden]="enginePowerForm.valid || enginePowerForm.untouched"
-             class="alert alert-danger">
+        <div [hidden]="leasingForm.get('enginePower').valid || leasingForm.get('enginePower').untouched"
+             class="alert-danger alert">
           Engine power is required.
         </div>
+
+
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="assetPrice">Asset price</label>
-        <input type="number" class="form-control" id="assetPrice" required
-               [(ngModel)]="leasingModel.assetPrice"
-               name="assetPriceField" #assetPriceField="ngModel" (keyup)=calcContractFee() (keyup)=calcAdvancePaymentAmount()>
 
-        <div [hidden]="assetPriceField.valid || assetPriceField.untouched"
-             class="alert alert-danger">
-          Asset price is required.
+
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="assetPrice">Asset price</label>
+          <input type="number" class="form-control" id="assetPrice" required
+                 formControlName="assetPrice"
+                 name="assetPriceField" (keyup)=calcContractFee() (keyup)=calcAdvancePaymentAmount()>
+
+          <div [hidden]="leasingForm.get('assetPrice').valid || leasingForm.get('assetPrice').untouched"
+               class="alert alert-danger">
+            Asset price must be at least 5000
+          </div>
         </div>
       </div>
 
       <div class="form-group col-md-4">
         <label for="advancePaymentPercentage">Advance payment percentage</label>
         <input type="number" class="form-control" id="advancePaymentPercentage"
-               required [(ngModel)]="leasingModel.advancePaymentPercentage"
-               name="advancePaymentPercentageField" #advancePaymentPercentageField="ngModel" (keyup)=calcAdvancePaymentAmount()>
+               formControlName="advancePaymentPercentage"
+               name="advancePaymentPercentageField"
+               (keyup)=calcAdvancePaymentAmount()>
 
-        <div [hidden]="advancePaymentPercentageField.valid || advancePaymentPercentageField.untouched"
-             class="alert alert-danger">
-          Advance payment percentage is required.
+        <div [hidden]="leasingForm.get('advancePaymentPercentage').valid || leasingForm.get('advancePaymentPercentage').untouched" class="alert alert-danger">
+          Advance payment percentage cannot be less than 10%
+
         </div>
+
       </div>
-    </div>
+
+      <div class="form-group col-md-3">
+        <label for="margin">Margin</label>
+        <input type="number" class="form-control" id="margin" required
+               formControlName="margin" name="margin">
+
+        <div [hidden]="leasingForm.get('margin').valid || leasingForm.get('margin').untouched" class="alert alert-danger">
+          Margin cannot be less than 3.2 %
+        </div>
+
+      </div>
+
+      <button (click)="check()" class=" btn"> Check</button>
+
+
+
 
     <div class="form-row">
       <div class="form-group col-md-4">
-         <label for="advancePaymentAmount">Advance payment amount</label>
-          <input type="text" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField" required [(ngModel)]="leasingModel.advancePaymentAmount" disabled>
+        <label for="advancePaymentAmount">Advance payment amount</label>
+        <input type="text" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField"
+               formControlName="advancePaymentAmount" disabled>
+        <div>
+          {{this.leasingModel.advancePaymentAmount}}
+        </div>
       </div>
     </div>
 
@@ -103,45 +162,49 @@
       <div class="form-group col-md-4">
         <label for="leasePeriodInMonths">Lease period in months</label>
         <input type="number" class="form-control" id="leasePeriodInMonths" required
-               [(ngModel)]="leasingModel.leasePeriodInMonths"
-               name="leasePeriodInMonthsField" #leasePeriodInMonthsField="ngModel">
+               formControlName="leasePeriodInMonths"
+               name="leasePeriodInMonthsField" >
 
-        <div [hidden]="leasePeriodInMonthsField.valid || leasePeriodInMonthsField.untouched"
-             class="alert alert-danger">
+        <div [hidden]="leasingForm.get('leasePeriodInMonths').valid || leasingForm.get('leasePeriodInMonths').untouched" class="alert alert-danger">
           Lease period is required.
         </div>
+
       </div>
 
-      <div class="form-group col-md-3">
-        <label for="margin">Margin</label>
-        <input type="number" class="form-control" id="margin" required
-               [(ngModel)]="leasingModel.margin"
-               name="marginField" #marginField="ngModel">
 
-        <div [hidden]="marginField.valid || marginField.untouched"
-             class="alert alert-danger">
-          Margin is required.
-        </div>
-      </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-3">
         <label for="contractFee">Contract Fee</label>
-         <input type="text" class="form-control" id="contractFee" name="contractFeeField" [(ngModel)]="leasingModel.contractFee" disabled>
+        <!--<input-->
+              <!--formControlName="contractFee" [hidden]>-->
+        <div>
+        <span type="text" class="form-control" id="contractFee" name="contractFee" disabled>
+          {{this.leasingModel.contractFee}}
+
+          </span>
+        </div>
+
       </div>
+
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-2">
         <label for="paymentDay">Payment day</label>
-        <select class="form-control" id="paymentDay" name="paymentDateField" [(ngModel)]="leasingModel.paymentDate" required>
+        <select class="form-control" id="paymentDay" name="paymentDateField" formControlName="paymentDate"
+                required>
           <option *ngFor="let currentDay of availableDays" [value]="currentDay">{{currentDay}}</option>
         </select>
       </div>
     </div>
 
-    <button type="submit" class="btn btn-success" [disabled]="!privateform.form.valid">Submit form</button>
-
+    <button type="submit" class="btn btn-success"  [disabled]="!leasingForm.valid" (click)="check()">Submit form
+    </button>
+    <!--</div>-->
   </form>
+
 </div>
+
+<!--[disabled]="!privateform.form.valid"-->
