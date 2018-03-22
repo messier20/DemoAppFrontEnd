@@ -25,7 +25,7 @@ export class PrivateformComponent implements OnInit {
   availableDays = [15, 30];
 
   numb;
-  assetPrice;
+  // assetPrice;
 
 
   constructor(private dataService: DataStorageService, private formBuilder: FormBuilder) {
@@ -73,23 +73,46 @@ export class PrivateformComponent implements OnInit {
 
   createValidForm() {
     this.leasingForm = this.formBuilder.group({
-      assetPrice: ['', [Validators.required, Validators.min(2000)]],
-      numb: [this.numb, [Validators.required, Validators.min(200)]]
+      customerType: ['', [Validators.required]],
+      assetType: ['', [Validators.required]],
+      // carBrand: ['', [Validators.required]],
+      carBrand: [''],
+      // carModel: ['', [Validators.required]],
+      carModel: [''],
+      manufacturedDate: ['', [Validators.required]],
+      enginePower: ['', [Validators.required]],
+      // advancePaymentAmount: ['', [Validators.required]],
+      advancePaymentAmount: [''],
+      leasePeriodInMonths: ['', [Validators.required]],
+      // contractFee: ['', [Validators.required]],
+      contractFee: [''],
+      paymentDate: ['', [Validators.required]],
+      assetPrice: ['', [Validators.required, Validators.min(5000)]],
+      advancePaymentPercentage: ['', [Validators.required, Validators.min(10)]],
+      margin: ['', [Validators.required]],
+      // contractFee: ['', [Validators.required, Validators]]
+
+      // numb: [this.numb, [Validators.required, Validators.min(200)]]
     })
     // this.leasingModel.assetPrice = this.assetPrice;
   }
 
-  createValidFormSetVars(){
 
-  }
 
 
   check() {
-    this.leasingModel.assetPrice = this.leasingForm.get('assetPrice').value;
-    console.log("asset price in class", this.leasingModel.assetPrice);
+    // this.leasingModel.assetPrice = this.leasingForm.get('assetPrice').value;
+    // this.leasingModel.advancePaymentPercentage = this.leasingForm.get('advancePaymentPercentage').value;
+    // // this.leasingModel.margin = this.leasingForm.get('margin').value;
+    // console.log("asset price in class", this.leasingModel.assetPrice);
+    // console.log("advance payment percentage in class", this.leasingModel.advancePaymentPercentage);
+    this.leasingModel = this.leasingForm.value;
+    console.log("all class", this.leasingModel );
+    console.log('all form', this.leasingForm);
 
-    console.log("numb", this.leasingForm.value);
-    console.log("assetPrice", this.leasingForm.get('assetPrice'));
+    //
+    // console.log("numb", this.leasingForm.value);
+    // console.log("assetPrice", this.leasingForm.get('assetPrice'));
   }
 
 }
