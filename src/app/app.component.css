@@ -1,0 +1,14 @@
+.bg-light {
+  background: -ms-linear-gradient(left, #f58322 0, #ffcb13 100%);
+  background: linear-gradient(to right, #f58322 0, #ffcb13 100%);
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb661d', endColorstr='#f4ba44', GradientType=1);
+
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #512b2b;
+}
+
+
+

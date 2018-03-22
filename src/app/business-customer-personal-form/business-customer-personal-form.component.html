@@ -1,0 +1,76 @@
+<div class="container">
+  <h1>Private customer form</h1>
+
+  <form (ngSubmit)="submitForm()" #privatecustomerpersonalform="ngForm">
+
+
+    <!--pattern="\d{4}" maxlength="4" required-->
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="companyName">companyName</label>
+        <input type="name"  class="form-control" id="companyName"
+               [(ngModel)]="businessCustomerInfo.companyName"
+               name="companyNameForm" #companyNameForm="ngModel">
+
+        <div [hidden]="companyNameForm.valid || companyNameForm.untouched"
+             class="alert alert-danger">
+          Company name is required
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="companyCode">Company code</label>
+        <input type="number" class="form-control" id="companyCode"
+               required [(ngModel)]="businessCustomerInfo.companyCode"
+               name="companyCodeForm" #companyCodeForm="ngModel">
+
+        <div [hidden]="companyCodeForm.valid || companyCodeForm.untouched"
+             class="alert alert-danger">
+          Company code is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="companyEmail">company email</label>
+        <input type="email" class="form-control" id="companyEmail"
+               required [(ngModel)]="businessCustomerInfo.companyEmail"
+               name="companyEmailForm" #companyEmailForm="ngModel">
+
+        <div [hidden]="companyEmailForm.valid || companyEmailForm.untouched"
+             class="alert alert-danger">
+          Company email required
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="number" class="form-control" id="phoneNumber"
+               required [(ngModel)]="businessCustomerInfo.phoneNumber"
+               name="phoneNumberForm" #phoneNumberForm="ngModel">
+
+        <div [hidden]="phoneNumberForm.valid || phoneNumberForm.untouched"
+             class="alert alert-danger">
+          Phone number is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="address">Address</label>
+        <input type="name"  class="form-control" id="address"
+               [(ngModel)]="businessCustomerInfo.address"
+               name="addressForm" #addressForm="ngModel">
+
+        <div [hidden]="addressForm.valid || addressForm.untouched"
+             class="alert alert-danger">
+          Address is required
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!privatecustomerpersonalform.form.valid">Submit form</button>
+  </form>
+</div>
