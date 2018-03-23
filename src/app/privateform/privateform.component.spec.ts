@@ -3,7 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {PrivateformComponent} from './privateform.component';
 import {PrivateCustomerPersonalFormComponent} from '../private-customer-personal-form/private-customer-personal-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PrivateCustomerLeasingFormComponent} from '../private-customer-leasing-form/private-customer-leasing-form.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_BASE_HREF} from '@angular/common';
@@ -53,7 +53,26 @@ describe('PrivateformComponent', () => {
     component.leasingForm.get('assetPrice').setValue(100);
     component.leasingForm.get('advancePaymentPercentage').setValue(10);
     component.calcAdvancePaymentAmountAndContractFee();
+
     expect(component.leasingForm.get('advancePaymentAmount').value).toEqual('10.00');
     expect(component.leasingForm.get('contractFee').value).toEqual('200.00');
-  })
+  });
+
+  it('should setMinAssetPrice', () => {
+    component.leasingForm.get('customerType').setValue('Business');
+    component.setMinAssetPrice();
+    expect(component.minAssetPrice).toEqual(10000);
+
+    component.leasingForm.get('customerType').setValue('SomethingElse');
+    component.setMinAssetPrice();
+    expect(component.minAssetPrice).toEqual(5000);
+    });
+
+  it('should selectBrandHandler', () => {
+    component.cars = [{make: 'FORD', model: 'FORD MODEL'},
+                      {make: 'AUDI', model: 'A4'}];
+    component.leasingForm.get('carBrand').setValue('FORD');
+    component.selectBrandHandler();
+    expect(component.model).toEqual('FORD MODEL');
+  });
 });

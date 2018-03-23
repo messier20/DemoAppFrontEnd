@@ -18,17 +18,14 @@ export class PrivateformComponent implements OnInit {
   leasingModel: LeasingModel;
   leasingForm: FormGroup;
 
-
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
   cars;
   leasePeriods;
   model: String[];
   availableDays = [15, 30];
-  minAssetPrice = 5000;
-  numb;
+  minAssetPrice;
 
-  // assetPrice;
 
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
@@ -41,45 +38,36 @@ export class PrivateformComponent implements OnInit {
     this.leasingModel = new LeasingModel();
   }
 
+
   setMinAssetPrice() {
-    this.check();
-    if (this.leasingModel.customerType === 'Business') {
+    if (this.leasingForm.get('customerType').value === 'Business') {
       this.minAssetPrice = 10000;
+      this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice)]);
+      this.leasingForm.get('assetPrice').updateValueAndValidity();
     } else {
       this.minAssetPrice = 5000;
+      this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice)]);
+      this.leasingForm.get('assetPrice').updateValueAndValidity();
     }
   }
 
   selectBrandHandler() {
-    this.check();
     for (let i = 0; i < this.cars.length; i++) {
-      if (this.cars[i].make === this.leasingModel.carBrand) {
+      if (this.cars[i].make === this.leasingForm.get('carBrand').value) {
         this.model = this.cars[i].model;
         break;
       }
     }
   }
 
-  // calcAdvancePaymentAmountAndContractFee() {
-  //   this.check()
-  //   this.leasingModel.contractFee = (this.leasingModel.assetPrice * 0.01).toFixed(2);
-  //   if (Number.parseFloat(this.leasingModel.contractFee) < 200) {
-  //     this.leasingModel.contractFee = (200).toFixed(2);
-  //   }
-  //   this.leasingModel.advancePaymentAmount = (this.leasingModel.assetPrice * this.leasingModel.advancePaymentPercentage / 100).toFixed(2);
-  // }
 
   calcAdvancePaymentAmountAndContractFee() {
-    this.check();
     this.leasingForm.get('contractFee').setValue((this.leasingForm.get('assetPrice').value * 0.01).toFixed(2));
     if (Number.parseFloat(this.leasingForm.get('contractFee').value) < 200) {
       this.leasingForm.get('contractFee').setValue((200).toFixed(2));
     }
     this.leasingForm.get('advancePaymentAmount').setValue((this.leasingForm.get('assetPrice').value * this.leasingForm.get('advancePaymentPercentage').value / 100).toFixed(2));
   }
-
-
-
 
 
   submitForm() {
@@ -119,6 +107,8 @@ export class PrivateformComponent implements OnInit {
   }
 
   createValidForm() {
+
+
     this.leasingForm = this.formBuilder.group({
       customerType: ['', [Validators.required]],
       assetType: ['', [Validators.required]],
@@ -137,28 +127,14 @@ export class PrivateformComponent implements OnInit {
       assetPrice: ['', [Validators.required, Validators.min(this.minAssetPrice)]],
       advancePaymentPercentage: ['', [Validators.required, Validators.min(10)]],
       margin: ['', [Validators.required, Validators.min(3.2)]],
-      // contractFee: ['', [Validators.required, Validators]]
 
-      // numb: [this.numb, [Validators.required, Validators.min(200)]]
     });
-    // this.leasingModel.assetPrice = this.assetPrice;
   }
 
-
-  check() {
-    // this.leasingModel.assetPrice = this.leasingForm.get('assetPrice').value;
-    // this.leasingModel.advancePaymentPercentage = this.leasingForm.get('advancePaymentPercentage').value;
-    // // this.leasingModel.margin = this.leasingForm.get('margin').value;
-    // console.log("asset price in class", this.leasingModel.assetPrice);
-    // console.log("advance payment percentage in class", this.leasingModel.advancePaymentPercentage);
+  setLeasingModel() {
     this.leasingModel = this.leasingForm.value;
-    console.log('all class', this.leasingModel);
-    console.log('all form', this.leasingForm);
 
-
-    //
-    // console.log("numb", this.leasingForm.value);
-    // console.log("assetPrice", this.leasingForm.get('assetPrice'));
   }
+
 
 }
