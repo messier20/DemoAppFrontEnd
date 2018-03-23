@@ -8,12 +8,13 @@ import { PrivateCustomerLeasingFormComponent } from './private-customer-leasing-
 import { PrivateformComponent } from './privateform/privateform.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material';
-import {DialogFormComponent, DisplayFormComponent} from './display-form/display-form.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { DataStorageService } from './services/data-storage-service.service';
-import {BusinessCustomerPersonalFormComponent} from "./business-customer-personal-form/business-customer-personal-form.component";
-import {PrivateCustomerPersonalFormComponent} from "./private-customer-personal-form/private-customer-personal-form.component";
+import {BusinessCustomerPersonalFormComponent} from './business-customer-personal-form/business-customer-personal-form.component';
+import {PrivateCustomerPersonalFormComponent} from './private-customer-personal-form/private-customer-personal-form.component';
+import {DisplayFormComponent} from './display-form/display-form.component';
+import {DialogFormComponent} from './display-form/dialog-form/dialog-form';
 
 
 @NgModule({
@@ -24,7 +25,6 @@ import {PrivateCustomerPersonalFormComponent} from "./private-customer-personal-
     DisplayFormComponent,
     PrivateCustomerPersonalFormComponent,
     BusinessCustomerPersonalFormComponent,
-    DisplayFormComponent,
     DialogFormComponent
   ],
   imports: [
@@ -37,6 +37,7 @@ import {PrivateCustomerPersonalFormComponent} from "./private-customer-personal-
     FormsModule
   ],
   providers: [DataStorageService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DisplayFormComponent, DialogFormComponent]
 })
 export class AppModule { }
