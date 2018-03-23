@@ -5,7 +5,7 @@
     <!--<form (ngSubmit)="submitForm()" #privateform="ngForm">-->
 
     <div class="form-row">
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-4 col-sm-6">
 
         <label for="customerType">Customer Type</label>
         <select class="form-control" id="customerType" required name="customerTypeField"
@@ -22,7 +22,7 @@
       </div>
 
 
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-4 col-sm-6">
         <label for="assetType">Asset Type</label>
         <select class="form-control" id="assetType" required name="assetTypeField" formControlName="assetType">
           <option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</option>
@@ -36,7 +36,7 @@
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-3">
+      <div class="form-group  col-md-4 col-sm-6">
         <label for="carBrand">Car Brand</label>
         <select class="form-control" id="carBrand" name="carBrandField" formControlName="carBrand"
                 (change)="selectBrandHandler()" required>
@@ -50,7 +50,7 @@
 
       </div>
 
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-4 col-sm-6">
         <label for="carModel">Car Model</label>
         <select class="form-control" id="carModel" name="carModelField" formControlName="carModel">
           <option *ngFor="let selectedModel of model" [value]="selectedModel">{{selectedModel}}</option>
@@ -64,7 +64,7 @@
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-3">
+      <div class="form-group  col-md-4 col-sm-6">
         <label for="manufacturedDate">Manufactured Date</label>
         <input type="date" class="form-control" id="manufacturedDate"
                formControlName="manufacturedDate"
@@ -76,7 +76,7 @@
         </div>
       </div>
 
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-4 col-sm-6">
         <label for="enginePower">Engine power</label>
         <input type="number" class="form-control" id="enginePower"
                formControlName="enginePower"
@@ -90,7 +90,7 @@
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-4 col-sm-6">
         <label for="assetPrice">Asset price</label>
         <input type="number" class="form-control" id="assetPrice" required
                formControlName="assetPrice"
@@ -107,7 +107,7 @@
       <!--=======-->
 
       <!--&gt;>>>>>> 809cfafb8a4c0ff0b622d7aca2a3864eb2848765-->
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-4 col-sm-6">
         <label for="advancePaymentPercentage">Advance payment percentage</label>
         <input type="number" class="form-control" id="advancePaymentPercentage"
                formControlName="advancePaymentPercentage"
@@ -126,7 +126,7 @@
 
     <div class="form-row">
 
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-4 col-sm-6">
         <label for="advancePaymentAmount">Advance payment amount</label>
         <input type="text" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField"
                formControlName="advancePaymentAmount" disabled>
@@ -134,7 +134,7 @@
         <!--<<<<<<< HEAD-->
       </div>
 
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-4 col-sm-6">
         <label for="contractFee">Contract Fee</label>
         <input type="text" class="form-control" id="contractFee" name="contractFeeField"
                formControlName="contractFee" disabled >
@@ -153,7 +153,7 @@
 
 
     <div class="form-row">
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-4 col-sm-6">
         <label for="margin">Margin</label>
         <input type="number" class="form-control" id="margin" required
                formControlName="margin" name="margin" step="0.1">
@@ -164,7 +164,7 @@
         </div>
       </div>
 
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-4 col-sm-6">
         <label for="leasePeriodInMonths">Lease period in months</label>
         <select class="form-control" id="leasePeriodInMonths" required name="leasePeriodInMonthsField"
                 formControlName="leasePeriodInMonths">
@@ -180,7 +180,7 @@
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-2">
+      <div class="form-group col-md-4 col-sm-6">
         <label for="paymentDay">Payment day</label>
         <select class="form-control" id="paymentDay" name="paymentDateField" formControlName="paymentDate"
                 required>
