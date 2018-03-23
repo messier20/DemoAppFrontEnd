@@ -6,15 +6,16 @@ import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
   templateUrl: './private-customer-personal-form.component.html',
   styleUrls: ['./private-customer-personal-form.component.css']
 })
-export class PrivateCustomerPersonalFormComponent implements OnInit {
-
+export class PrivateCustomerPersonalFormComponent implements OnInit{
   privateCustomerInfo: PrivateCustomerInfo;
+
   constructor() {
   }
 
   ngOnInit() {
     this.privateCustomerInfo = new PrivateCustomerInfo();
   }
+
   submitForm() {
     console.log('First name: ' + this.privateCustomerInfo.firstName);
     console.log('Last name: ' + this.privateCustomerInfo.lastName);
