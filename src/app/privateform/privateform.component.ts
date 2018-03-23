@@ -3,7 +3,8 @@ import {LeasingModel} from '../models/LeasingModel';
 import {CarList} from '../models/CarList';
 import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {LeasePeriods} from '../models/LeasePeriods';
 
 
 @Component({
@@ -21,20 +22,32 @@ export class PrivateformComponent implements OnInit {
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
   cars;
+  leasePeriods;
   model: String[];
   availableDays = [15, 30];
-
+  minAssetPrice = 5000;
   numb;
+
   // assetPrice;
 
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
     this.cars = new CarList().cars;
+    this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
   }
 
   ngOnInit() {
     this.leasingModel = new LeasingModel();
+  }
+
+  setMinAssetPrice() {
+    this.check();
+    if (this.leasingModel.customerType === 'Business') {
+      this.minAssetPrice = 10000;
+    } else {
+      this.minAssetPrice = 5000;
+    }
   }
 
   selectBrandHandler() {
@@ -47,23 +60,12 @@ export class PrivateformComponent implements OnInit {
     }
   }
 
-  calcContractFee() {
-
-    this.check();
-    console.log(" in calcContract");
-
-    // console.log(this.leasingModel.con)
+  calcAdvancePaymentAmountAndContractFee() {
+    this.check()
     this.leasingModel.contractFee = (this.leasingModel.assetPrice * 0.01).toFixed(2);
-    if (Number.parseFloat(this.leasingModel.contractFee)< 200) {
+    if (Number.parseFloat(this.leasingModel.contractFee) < 200) {
       this.leasingModel.contractFee = (200).toFixed(2);
     }
-
-    console.log("contractFee", this.leasingModel.contractFee);
-  }
-
-  calcAdvancePaymentAmount() {
-    this.check();
-    console.log(" in advancePayment");
     this.leasingModel.advancePaymentAmount = (this.leasingModel.assetPrice * this.leasingModel.advancePaymentPercentage / 100).toFixed(2);
   }
 
@@ -76,7 +78,7 @@ export class PrivateformComponent implements OnInit {
     console.log('Lease period in months: ' + this.leasingModel.leasePeriodInMonths);
     console.log('Margin: ' + this.leasingModel.margin);
     console.log('Payment date: ' + this.leasingModel.paymentDate);
-    if(this.leasingModel.customerType === this.availableCustomerTypes[1]){
+    if (this.leasingModel.customerType === this.availableCustomerTypes[1]) {
       this.router.navigate(['/businessPersonalForm']);
     } else {
       this.router.navigate(['/privatePersonalForm']);
@@ -119,17 +121,15 @@ export class PrivateformComponent implements OnInit {
       // contractFee: ['', [Validators.required]],
       contractFee: [''],
       paymentDate: ['', [Validators.required]],
-      assetPrice: ['', [Validators.required, Validators.min(5000)]],
+      assetPrice: ['', [Validators.required, Validators.min(this.minAssetPrice)]],
       advancePaymentPercentage: ['', [Validators.required, Validators.min(10)]],
-      margin: ['', [Validators.required]],
+      margin: ['', [Validators.required, Validators.min(3.2)]],
       // contractFee: ['', [Validators.required, Validators]]
 
       // numb: [this.numb, [Validators.required, Validators.min(200)]]
-    })
+    });
     // this.leasingModel.assetPrice = this.assetPrice;
   }
-
-
 
 
   check() {
@@ -139,7 +139,7 @@ export class PrivateformComponent implements OnInit {
     // console.log("asset price in class", this.leasingModel.assetPrice);
     // console.log("advance payment percentage in class", this.leasingModel.advancePaymentPercentage);
     this.leasingModel = this.leasingForm.value;
-    console.log("all class", this.leasingModel );
+    console.log('all class', this.leasingModel);
     console.log('all form', this.leasingForm);
 
     //
