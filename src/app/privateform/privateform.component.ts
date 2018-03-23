@@ -27,6 +27,7 @@ export class PrivateformComponent implements OnInit {
   availableDays = [15, 30];
   minAssetPrice;
 
+  // assetPrice;
 
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
@@ -38,7 +39,6 @@ export class PrivateformComponent implements OnInit {
   ngOnInit() {
     this.leasingModel = new LeasingModel();
   }
-
 
   setMinAssetPrice() {
     if (this.leasingForm.get('customerType').value === 'Business') {
@@ -53,13 +53,9 @@ export class PrivateformComponent implements OnInit {
   }
 
   selectBrandHandler() {
-    // this.check();
-    console.log("inside select brand")
     for (let i = 0; i < this.cars.length; i++) {
       if (this.cars[i].make === this.leasingForm.get('carBrand').value) {
-        console.log("inside if, carBRand", this.leasingForm.get('carBrand').value)
         this.model = this.cars[i].model;
-        console.log(this.model);
         break;
       }
     }
@@ -67,7 +63,6 @@ export class PrivateformComponent implements OnInit {
 
 
   calcAdvancePaymentAmountAndContractFee() {
-    // this.check();
     this.leasingForm.get('contractFee').setValue((this.leasingForm.get('assetPrice').value * 0.01).toFixed(2));
     if (Number.parseFloat(this.leasingForm.get('contractFee').value) < 200) {
       this.leasingForm.get('contractFee').setValue((200).toFixed(2));
