@@ -60,14 +60,27 @@ export class PrivateformComponent implements OnInit {
     }
   }
 
+  // calcAdvancePaymentAmountAndContractFee() {
+  //   this.check()
+  //   this.leasingModel.contractFee = (this.leasingModel.assetPrice * 0.01).toFixed(2);
+  //   if (Number.parseFloat(this.leasingModel.contractFee) < 200) {
+  //     this.leasingModel.contractFee = (200).toFixed(2);
+  //   }
+  //   this.leasingModel.advancePaymentAmount = (this.leasingModel.assetPrice * this.leasingModel.advancePaymentPercentage / 100).toFixed(2);
+  // }
+
   calcAdvancePaymentAmountAndContractFee() {
-    this.check()
-    this.leasingModel.contractFee = (this.leasingModel.assetPrice * 0.01).toFixed(2);
-    if (Number.parseFloat(this.leasingModel.contractFee) < 200) {
-      this.leasingModel.contractFee = (200).toFixed(2);
+    this.check();
+    this.leasingForm.get('contractFee').setValue((this.leasingForm.get('assetPrice').value * 0.01).toFixed(2));
+    if (Number.parseFloat(this.leasingForm.get('contractFee').value) < 200) {
+      this.leasingForm.get('contractFee').setValue((200).toFixed(2));
     }
-    this.leasingModel.advancePaymentAmount = (this.leasingModel.assetPrice * this.leasingModel.advancePaymentPercentage / 100).toFixed(2);
+    this.leasingForm.get('advancePaymentAmount').setValue((this.leasingForm.get('assetPrice').value * this.leasingForm.get('advancePaymentPercentage').value / 100).toFixed(2));
   }
+
+
+
+
 
   submitForm() {
     console.log('Customer type: ' + this.leasingModel.customerType);
@@ -141,6 +154,7 @@ export class PrivateformComponent implements OnInit {
     this.leasingModel = this.leasingForm.value;
     console.log('all class', this.leasingModel);
     console.log('all form', this.leasingForm);
+
 
     //
     // console.log("numb", this.leasingForm.value);
