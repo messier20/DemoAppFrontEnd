@@ -1,9 +1,15 @@
 
-export class PrivateCustomerInfo {
-  firstName: string;
+import {BusinessCustomerInfo} from "./businessCustomerInfo";
+
+export class PrivateCustomerInfo extends BusinessCustomerInfo{
+
   lastName: string;
-  personalCode: number;
-  personalEmail: string;
-  phoneNumber: number;
-  address: string;
+
+  constructor( businessCustomerInfo?: BusinessCustomerInfo, privateCustomerInfo?: PrivateCustomerInfo) {
+    if(privateCustomerInfo) {
+      super(businessCustomerInfo);
+      this.lastName = privateCustomerInfo.lastName;
+    }
+
+  }
 }
