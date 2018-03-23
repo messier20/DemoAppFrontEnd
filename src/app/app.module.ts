@@ -3,16 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { AppComponent } from './app.component';
-// import { PrivateCustomerLeasingFormComponent } from './private-customer-leasing-form/private-customer-leasing-form.component';
-import { PrivateformComponent } from './privateform/privateform.component';
+import {BackendService} from './services/backend.service';
+import {AppComponent} from './app.component';
+import {PrivateformComponent} from './privateform/privateform.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material';
+
+import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import { DataStorageService } from './services/data-storage-service.service';
-// import {BusinessCustomerPersonalFormComponent} from './business-customer-personal-form/business-customer-personal-form.component';
-// import {PrivateCustomerPersonalFormComponent} from './private-customer-personal-form/private-customer-personal-form.component';
+import {DataStorageService} from './services/data-storage-service.service';
+
 import {DisplayFormComponent} from './display-form/display-form.component';
 import {DialogFormComponent} from './display-form/dialog-form/dialog-form';
 
@@ -20,11 +21,8 @@ import {DialogFormComponent} from './display-form/dialog-form/dialog-form';
 @NgModule({
   declarations: [
     AppComponent,
-    // PrivateCustomerLeasingFormComponent,
     PrivateformComponent,
     DisplayFormComponent,
-    // PrivateCustomerPersonalFormComponent,
-    // BusinessCustomerPersonalFormComponent,
     DialogFormComponent
   ],
   imports: [
@@ -34,10 +32,12 @@ import {DialogFormComponent} from './display-form/dialog-form/dialog-form';
     MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [DataStorageService],
+  providers: [DataStorageService, BackendService],
   bootstrap: [AppComponent],
   entryComponents: [DisplayFormComponent, DialogFormComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
