@@ -3,7 +3,7 @@ import {LeasingModel} from '../models/LeasingModel';
 import {CarList} from '../models/CarList';
 import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
 
 
@@ -80,13 +80,7 @@ export class PrivateformComponent implements OnInit {
     console.log('Lease period in months: ' + this.leasingModel.leasePeriodInMonths);
     console.log('Margin: ' + this.leasingModel.margin);
     console.log('Payment date: ' + this.leasingModel.paymentDate);
-    if (this.leasingModel.customerType === this.availableCustomerTypes[1]) {
-      this.router.navigate(['/businessPersonalForm']);
-    } else {
-      this.router.navigate(['/privatePersonalForm']);
-    }
-
-
+    this.router.navigate(['/customerInfoForm']);
 
   }
 

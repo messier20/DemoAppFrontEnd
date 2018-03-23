@@ -13,8 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {DataStorageService} from './services/data-storage-service.service';
-import {BusinessCustomerPersonalFormComponent} from './business-customer-personal-form/business-customer-personal-form.component';
-import {PrivateCustomerPersonalFormComponent} from './private-customer-personal-form/private-customer-personal-form.component';
+import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DisplayFormComponent} from './display-form/display-form.component';
 import {DialogFormComponent} from './display-form/dialog-form/dialog-form';
 
@@ -23,8 +22,7 @@ import {DialogFormComponent} from './display-form/dialog-form/dialog-form';
     AppComponent,
     PrivateformComponent,
     DisplayFormComponent,
-    PrivateCustomerPersonalFormComponent,
-    BusinessCustomerPersonalFormComponent,
+    CustomerInfoFormComponent,
     DialogFormComponent
   ],
   imports: [

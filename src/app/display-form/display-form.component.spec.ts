@@ -8,7 +8,7 @@ import {AppRoutingModule} from '../app-routing.module';
 import {APP_BASE_HREF} from '@angular/common';
 import {MatDialogModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
-import {PrivateCustomerPersonalFormComponent} from '../private-customer-personal-form/private-customer-personal-form.component';
+import {CustomerInfoFormComponent} from '../customer-info-form/customer-info-form.component';
 import {PrivateformComponent} from '../privateform/privateform.component';
 import {BusinessCustomerPersonalFormComponent} from '../business-customer-personal-form/business-customer-personal-form.component';
 
@@ -18,7 +18,7 @@ describe('DisplayFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BusinessCustomerPersonalFormComponent, PrivateformComponent, PrivateCustomerPersonalFormComponent, DisplayFormComponent],
+      declarations: [BusinessCustomerPersonalFormComponent, PrivateformComponent, CustomerInfoFormComponent, DisplayFormComponent],
       imports: [
         BrowserModule,
         AppRoutingModule,
