@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {DataStorageService} from '../services/data-storage-service.service';
-import {CustomerInfoLabels} from '../models/CustomerInfoLabels';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
