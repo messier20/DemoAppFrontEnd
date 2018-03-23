@@ -3,10 +3,13 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 
+import {BackendService} from './services/backend.service';
 import {AppComponent} from './app.component';
 import {PrivateformComponent} from './privateform/privateform.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material';
+
+import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {DataStorageService} from './services/data-storage-service.service';
@@ -14,7 +17,6 @@ import {BusinessCustomerPersonalFormComponent} from './business-customer-persona
 import {PrivateCustomerPersonalFormComponent} from './private-customer-personal-form/private-customer-personal-form.component';
 import {DisplayFormComponent} from './display-form/display-form.component';
 import {DialogFormComponent} from './display-form/dialog-form/dialog-form';
-
 
 @NgModule({
   declarations: [
@@ -32,9 +34,10 @@ import {DialogFormComponent} from './display-form/dialog-form/dialog-form';
     MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [DataStorageService],
+  providers: [DataStorageService, BackendService],
   bootstrap: [AppComponent],
   entryComponents: [DisplayFormComponent, DialogFormComponent]
 })
