@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-dialog-form',
-  templateUrl: 'dialog-form/dialog-form.html',
+  templateUrl: 'dialog-form.html',
   styleUrls: ['./dialog-form.css']
 })
 export class DialogFormComponent {
