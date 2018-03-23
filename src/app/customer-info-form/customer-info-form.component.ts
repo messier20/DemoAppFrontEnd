@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DataStorageService} from '../services/data-storage-service.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-customer-info-form',
@@ -13,10 +13,11 @@ export class CustomerInfoFormComponent implements OnInit {
   formLabels: String[];
   infoForm: FormGroup;
 
-  constructor(private dataService: DataStorageService) {
-    this.infoForm = new FormGroup({
-      email: new FormControl()
-    });
+  constructor(private dataService: DataStorageService, private formBuilder: FormBuilder) {
+    this.createValidCustomerInfoForm();
+    // this.infoForm = new FormGroup({
+    //   email: new FormControl()
+    // });
   }
 
   ngOnInit() {
@@ -36,6 +37,12 @@ export class CustomerInfoFormComponent implements OnInit {
     // console.log('Phone number: ' + this.privateCustomerInfo.phoneNumber);
     // console.log('Address: ' + this.privateCustomerInfo.address);
 
+  }
+
+  createValidCustomerInfoForm(){
+    this.infoForm = this.formBuilder.group({
+
+    })
   }
 
 }
