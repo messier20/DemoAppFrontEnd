@@ -25,10 +25,8 @@ export class PrivateformComponent implements OnInit {
   leasePeriods;
   model: String[];
   availableDays = [15, 30];
-  minAssetPrice = 5000;
-  numb;
+  minAssetPrice;
 
-  // assetPrice;
 
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
@@ -41,20 +39,52 @@ export class PrivateformComponent implements OnInit {
     this.leasingModel = new LeasingModel();
   }
 
+  // setMinAssetPrice() {
+  //   this.check();
+  // console.log("customerType", this.leasingForm.get('customerType').value);
+  //   if (this.leasingModel.customerType === 'Business') {
+  //     this.minAssetPrice = 10000;
+  //   } else {
+  //     this.minAssetPrice = 5000;
+  //   }
+  //   console.log("assetPrice", this.minAssetPrice);
+  // }
+
   setMinAssetPrice() {
-    this.check();
-    if (this.leasingModel.customerType === 'Business') {
+    // this.check();
+    console.log("customerType", this.leasingForm.get('customerType').value);
+
+    if (this.leasingForm.get('customerType').value === 'Business') {
       this.minAssetPrice = 10000;
+      this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice)]);
+      this.leasingForm.get('assetPrice').updateValueAndValidity();
     } else {
       this.minAssetPrice = 5000;
+      this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice)]);
+      this.leasingForm.get('assetPrice').updateValueAndValidity();
     }
+
+    console.log("assetPrice", this.minAssetPrice);
   }
 
+  // selectBrandHandler() {
+  //   this.check();
+  //   for (let i = 0; i < this.cars.length; i++) {
+  //     if (this.cars[i].make === this.leasingModel.carBrand) {
+  //       this.model = this.cars[i].model;
+  //       break;
+  //     }
+  //   }
+  // }
+
   selectBrandHandler() {
-    this.check();
+    // this.check();
+    console.log("inside select brand")
     for (let i = 0; i < this.cars.length; i++) {
-      if (this.cars[i].make === this.leasingModel.carBrand) {
+      if (this.cars[i].make === this.leasingForm.get('carBrand').value) {
+        console.log("inside if, carBRand", this.leasingForm.get('carBrand').value)
         this.model = this.cars[i].model;
+        console.log(this.model);
         break;
       }
     }
@@ -119,6 +149,8 @@ export class PrivateformComponent implements OnInit {
   }
 
   createValidForm() {
+
+
     this.leasingForm = this.formBuilder.group({
       customerType: ['', [Validators.required]],
       assetType: ['', [Validators.required]],
@@ -144,6 +176,11 @@ export class PrivateformComponent implements OnInit {
     // this.leasingModel.assetPrice = this.assetPrice;
   }
 
+  setLeasingModel() {
+    this.leasingModel = this.leasingForm.value;
+
+  }
+
 
   check() {
     // this.leasingModel.assetPrice = this.leasingForm.get('assetPrice').value;
@@ -152,8 +189,8 @@ export class PrivateformComponent implements OnInit {
     // console.log("asset price in class", this.leasingModel.assetPrice);
     // console.log("advance payment percentage in class", this.leasingModel.advancePaymentPercentage);
     this.leasingModel = this.leasingForm.value;
-    console.log('all class', this.leasingModel);
-    console.log('all form', this.leasingForm);
+    // console.log('all class', this.leasingModel);
+    // console.log('all form', this.leasingForm);
 
 
     //
