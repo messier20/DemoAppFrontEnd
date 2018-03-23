@@ -90,25 +90,8 @@ export class PrivateformComponent implements OnInit {
     } else {
       this.router.navigate(['/privatePersonalForm']);
     }
-    // this.fakeData = {
-    //   customerType: 'private',
-    //   assetType: 'vehicle',
-    //   carBrand: 'Honda',
-    //   carModel: 'civic',
-    //   manufacturedDate: '2004-01-01',
-    //   enginePower: 78,
-    //   assetPrice: 5001,
-    //   advancePaymentPercentage: 30,
-    //   advancePaymentAmount: 400,
-    //   leasePeriodInMonths: 20,
-    //   margin: 30,
-    //   contractFee: 200,
-    //   paymentDate: 15,
-    // };
 
 
-    // this.leasingModel = new LeasingModel(this.leasingForm.value);
-    this.dataService.setLeasingModel(this.leasingModel);
 
   }
 
@@ -118,17 +101,13 @@ export class PrivateformComponent implements OnInit {
     this.leasingForm = this.formBuilder.group({
       customerType: ['', [Validators.required]],
       assetType: ['', [Validators.required]],
-      // carBrand: ['', [Validators.required]],
-      carBrand: [''],
-      // carModel: ['', [Validators.required]],
-      carModel: [''],
+      carBrand: ['', [Validators.required]],
+      carModel: ['', [Validators.required]],
       manufacturedDate: ['', [Validators.required]],
       enginePower: ['', [Validators.required]],
-      // advancePaymentAmount: ['', [Validators.required]],
-      advancePaymentAmount: [''],
+      advancePaymentAmount: ['', [Validators.required]],
       leasePeriodInMonths: ['', [Validators.required]],
-      // contractFee: ['', [Validators.required]],
-      contractFee: [''],
+      contractFee: ['', [Validators.required]],
       paymentDate: ['', [Validators.required]],
       assetPrice: ['', [Validators.required, Validators.min(this.minAssetPrice)]],
       advancePaymentPercentage: ['', [Validators.required, Validators.min(10)]],
@@ -139,6 +118,7 @@ export class PrivateformComponent implements OnInit {
 
   setLeasingModel() {
     this.leasingModel = this.leasingForm.value;
+    this.dataService.setLeasingModel(this.leasingModel);
 
   }
 
