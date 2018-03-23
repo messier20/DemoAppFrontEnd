@@ -11,13 +11,15 @@ import {PrivateCustomerLeasingFormComponent} from './private-customer-leasing-fo
 import {PrivateformComponent} from './privateform/privateform.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material';
-import {DialogFormComponent, DisplayFormComponent} from './display-form/display-form.component';
+
+import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+import { DataStorageService } from './services/data-storage-service.service';
 import {BusinessCustomerPersonalFormComponent} from './business-customer-personal-form/business-customer-personal-form.component';
 import {PrivateCustomerPersonalFormComponent} from './private-customer-personal-form/private-customer-personal-form.component';
-import {HttpClientModule} from '@angular/common/http';
-
+import {DisplayFormComponent} from './display-form/display-form.component';
+import {DialogFormComponent} from './display-form/dialog-form/dialog-form';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,6 @@ import {HttpClientModule} from '@angular/common/http';
     DisplayFormComponent,
     PrivateCustomerPersonalFormComponent,
     BusinessCustomerPersonalFormComponent,
-    DisplayFormComponent,
     DialogFormComponent
   ],
   imports: [
@@ -41,7 +42,8 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule
   ],
   providers: [DataStorageService, BackendService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DisplayFormComponent, DialogFormComponent]
 })
 export class AppModule {
 }
