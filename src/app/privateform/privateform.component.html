@@ -84,7 +84,7 @@
 
         <div [hidden]="leasingForm.get('enginePower').valid || leasingForm.get('enginePower').untouched"
              class="alert-danger alert">
-          Engine power is required.
+          Engine power must be between 1 and 9999
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@
 
         <div [hidden]="leasingForm.get('assetPrice').valid || leasingForm.get('assetPrice').untouched"
              class="alert alert-danger">
-          Asset price must be at least {{this.minAssetPrice}}
+          Asset price must be between {{this.minAssetPrice}} and 9999999
         </div>
       </div>
       <!--<<<<<<< HEAD-->
@@ -118,7 +118,7 @@
         <div
           [hidden]="leasingForm.get('advancePaymentPercentage').valid || leasingForm.get('advancePaymentPercentage').untouched"
           class="alert alert-danger">
-          Advance payment percentage cannot be less than 10%
+          Advance payment percentage must be between 10% and 100%
         </div>
 
       </div>
@@ -158,14 +158,12 @@
         <input type="number" class="form-control" id="margin" required
                formControlName="margin" name="margin" step="0.1">
 
-        <!--<div [hidden]="leasingForm.get('margin').valid || leasingForm.get('margin').untouched"-->
-             <!--class="alert alert-danger">-->
-          <!--Margin cannot be less than 3.2 %-->
-        <!--</div>-->
-
-        <div [hidden]="leasingForm.get('margin').errors" class="alert alert-danger">
-          margin cannot be less than {{leasingForm.get('margin').errors}}
+        <div [hidden]="leasingForm.get('margin').valid || leasingForm.get('margin').untouched"
+             class="alert alert-danger">
+          Margin must be between 3.2% and 100 %
         </div>
+
+
 
       </div>
 
