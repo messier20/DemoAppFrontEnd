@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
 import {Router} from '@angular/router';
+import {TextLabels} from '../models/TextLabels';
 
 @Component({
   selector: 'app-customer-info-form',
@@ -11,8 +12,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./customer-info-form.component.css']
 })
 export class CustomerInfoFormComponent implements OnInit {
-  privateLabels = ['First Name', 'Personal Code', 'Email', 'Phone no.', 'Address', 'Last Name'];
-  businessLabels = ['Company Name', 'Company Code', 'Email', 'Phone no.', 'Address', 'Empty'];
   formLabels: String[];
   infoForm: FormGroup;
   businessCustomerInfo: BusinessCustomerInfo;
@@ -28,10 +27,10 @@ export class CustomerInfoFormComponent implements OnInit {
 
   ngOnInit() {
     if (this.isCustomerPrivate()) {
-      this.formLabels = this.privateLabels;
+      this.formLabels = new TextLabels().privateInfoLabels;
       this.privateCustomerInfo = new PrivateCustomerInfo();
     } else {
-      this.formLabels = this.businessLabels;
+      this.formLabels = new TextLabels().businessInfoLabels;
       this.businessCustomerInfo = new BusinessCustomerInfo();
       document.getElementById('test').hidden = true;
       this.infoForm.get('lastName').disable();
