@@ -34,6 +34,5 @@ export class DisplayFormComponent implements OnInit {
   }
 
   sendFormToBackend() {
-    this.backendService.submitForm(this.leasingModel);
   }
 }
