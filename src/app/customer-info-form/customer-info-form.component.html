@@ -19,7 +19,7 @@
       </div>
 
 
-      <div class="form-group col-md-4 col-sm-6">
+      <div class="form-group col-md-4 col-sm-6" id="test">
         <label for="lastName">{{formLabels[5]}}</label>
         <input type="text" class="form-control" id="lastName" required
                formControlName="lastName" name="lastName">
@@ -61,11 +61,11 @@
     <div class="form-row">
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="phone">{{formLabels[3]}}</label>
-        <input type="text" class="form-control" id="phone" required
-               formControlName="phone" name="phone">
+        <label for="phoneNumber">{{formLabels[3]}}</label>
+        <input type="text" class="form-control" id="phoneNumber" required
+               formControlName="phoneNumber" name="phoneNumber">
 
-        <div [hidden]="infoForm.get('phone').valid || infoForm.get('phone').untouched"
+        <div [hidden]="infoForm.get('phoneNumber').valid || infoForm.get('phoneNumber').untouched"
              class="alert alert-danger">
           {{formLabels[3]}} field is required
         </div>
@@ -84,7 +84,7 @@
       </div>
 
     </div>
-    <button type="submit" class="btn btn-success" [disabled]="!privatecustomerpersonalform.form.valid">Submit form
+    <button type="submit" class="btn btn-success" [disabled]="!infoForm.valid" (click)="setCustomerInfo()">Submit form
     </button>
   </form>
 </div>

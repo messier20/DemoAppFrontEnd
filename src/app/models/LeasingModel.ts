@@ -1,5 +1,3 @@
-import {FormGroup} from '@angular/forms';
-
 export class LeasingModel {
 
   customerType: string;
@@ -31,10 +29,10 @@ export class LeasingModel {
       this.margin = leasingModel.margin;
       this.contractFee = leasingModel.contractFee;
       this.paymentDate = leasingModel.paymentDate;
-    } else{
+    } else {
 
+    }
   }
-}
 
 
 }
