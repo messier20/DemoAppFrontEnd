@@ -29,6 +29,7 @@ export class CustomerInfoFormComponent implements OnInit {
       this.formLabels = this.businessLabels;
       this.businessCustomerInfo = new BusinessCustomerInfo();
       document.getElementById('test').hidden = true;
+      this.infoForm.get('lastName').disable();
     }
   }
 
