@@ -3,6 +3,7 @@ import {DataStorageService} from '../services/data-storage-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-customer-info-form',
@@ -17,7 +18,7 @@ export class CustomerInfoFormComponent implements OnInit {
   businessCustomerInfo: BusinessCustomerInfo;
   privateCustomerInfo: PrivateCustomerInfo;
 
-  constructor(private dataService: DataStorageService, private formBuilder: FormBuilder) {
+  constructor(private router: Router, private dataService: DataStorageService, private formBuilder: FormBuilder) {
     this.createValidForm();
   }
 
@@ -29,7 +30,10 @@ export class CustomerInfoFormComponent implements OnInit {
       this.formLabels = this.businessLabels;
       this.businessCustomerInfo = new BusinessCustomerInfo();
       document.getElementById('test').hidden = true;
+      this.infoForm.get('lastName').disable();
     }
+
+
   }
 
   submitForm() {
@@ -39,6 +43,7 @@ export class CustomerInfoFormComponent implements OnInit {
     console.log('Personal email: ' + this.privateCustomerInfo.email);
     console.log('Phone number: ' + this.privateCustomerInfo.phoneNumber);
     console.log('Address: ' + this.privateCustomerInfo.address);
+    this.router.navigate(['/displayForm']);
 
   }
 
