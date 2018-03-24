@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Private customer form</h1>
+  <h1>{{formLabels[6]}}</h1>
 
   <form (ngSubmit)="submitForm()" [formGroup]="infoForm">
 
@@ -58,12 +58,17 @@
       </div>
     </div>
 
-    <div class="form-row">
 
+    <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
         <label for="phoneNumber">{{formLabels[3]}}</label>
-        <input type="number" class="form-control" id="phoneNumber" required
-               formControlName="phoneNumber" name="phoneNumber">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">+</span>
+          </div>
+          <input type="text" class="form-control" id="phoneNumber" required
+                 formControlName="phoneNumber" name="phoneNumber" maxlength="11">
+        </div>
 
         <div [hidden]="infoForm.get('phoneNumber').valid || infoForm.get('phoneNumber').untouched"
              class="alert alert-danger">

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
+import {TextLabels} from '../models/TextLabels';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class PrivateformComponent implements OnInit {
 
   leasingModel: LeasingModel;
   leasingForm: FormGroup;
-
+  leasingFormLabels: string[];
 
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
@@ -34,6 +35,8 @@ export class PrivateformComponent implements OnInit {
     this.cars = new CarList().cars;
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
+    this.leasingForm.get('assetType').setValue('Vehicle');
+    this.leasingFormLabels = new TextLabels().leasingFormLabels;
   }
 
   ngOnInit() {

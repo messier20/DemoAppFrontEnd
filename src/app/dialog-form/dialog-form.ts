@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {DataStorageService} from '../services/data-storage-service.service';
+import {BackendService} from '../services/backend.service';
 
 @Component({
   selector: 'app-dialog-form',
@@ -6,21 +8,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./dialog-form.css']
 })
 export class DialogFormComponent {
-  leasingModel = {
-    customerType: 'private',
-    assetType: 'vehicle',
-    carBrand: 'Honda',
-    carModel: 'civic',
-    manufacturedDate: '2004-01-01',
-    enginePower: 78,
-    assetPrice: 5001,
-    advancePaymentPercentage: 30,
-    advancePaymentAmount: 400,
-    leasePeriodInMonths: 20,
-    margin: 30,
-    contractFee: 200,
-    paymentDate: 15,
-  };
+  leasingModel = this.dataService.getLeasingModel();
   data = [
     {heading: 'Customer type', value: 'Private'},
     {heading: 'Asset type', value: 'Vehicle'},
@@ -37,7 +25,7 @@ export class DialogFormComponent {
     {heading: 'Payment date', value: '15 or 30'}
   ];
 
-  constructor() {
+  constructor(private dataService: DataStorageService, private backendService: BackendService) {
     this.data[0].value = this.leasingModel.customerType;
     this.data[1].value = this.leasingModel.assetType;
     this.data[2].value = this.leasingModel.carBrand;
@@ -52,4 +40,9 @@ export class DialogFormComponent {
     this.data[11].value = String(this.leasingModel.contractFee);
     this.data[12].value = String(this.leasingModel.paymentDate);
   }
+
+  sendFormToBackend() {
+    this.backendService.submitForm(this.leasingModel);
+  }
+
 }
