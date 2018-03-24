@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DataStorageService} from '../services/data-storage-service.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
+import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
 
 @Component({
   selector: 'app-customer-info-form',
@@ -12,30 +14,47 @@ export class CustomerInfoFormComponent implements OnInit {
   businessLabels = ['Company Name', 'Company Code', 'Email', 'Phone no.', 'Address', 'Empty'];
   formLabels: String[];
   infoForm: FormGroup;
+  businessCustomerInfo: BusinessCustomerInfo;
+  privateCustomerInfo: PrivateCustomerInfo;
 
-  constructor(private dataService: DataStorageService) {
-    this.infoForm = new FormGroup({
-      email: new FormControl()
-    });
+  constructor(private dataService: DataStorageService, private formBuilder: FormBuilder) {
+    this.createValidForm();
   }
 
   ngOnInit() {
     if (this.dataService.getLeasingModel().customerType === 'Private') {
       this.formLabels = this.privateLabels;
+      this.privateCustomerInfo = new PrivateCustomerInfo();
     } else {
       this.formLabels = this.businessLabels;
+      this.businessCustomerInfo = new BusinessCustomerInfo();
+      document.getElementById('test').hidden = true;
     }
-    console.log(this.formLabels.toString());
   }
 
   submitForm() {
-    // console.log('First name: ' + this.privateCustomerInfo.firstName);
-    // console.log('Last name: ' + this.privateCustomerInfo.lastName);
-    // console.log('Personal Code: ' + this.privateCustomerInfo.personalCode);
-    // console.log('Personal email: ' + this.privateCustomerInfo.personalEmail);
-    // console.log('Phone number: ' + this.privateCustomerInfo.phoneNumber);
-    // console.log('Address: ' + this.privateCustomerInfo.address);
+    console.log('First name: ' + this.privateCustomerInfo.name);
+    console.log('Last name: ' + this.privateCustomerInfo.lastName);
+    console.log('Personal Code: ' + this.privateCustomerInfo.code);
+    console.log('Personal email: ' + this.privateCustomerInfo.email);
+    console.log('Phone number: ' + this.privateCustomerInfo.phoneNumber);
+    console.log('Address: ' + this.privateCustomerInfo.address);
 
   }
 
+  private createValidForm() {
+    this.infoForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      code: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      lastName: ['', [Validators.required]]
+    });
+  }
+
+  setCustomerInfo() {
+    this.privateCustomerInfo = this.infoForm.value;
+    this.dataService.setPrivateCustomerInfo(this.privateCustomerInfo);
+  }
 }

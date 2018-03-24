@@ -1,11 +1,6 @@
-import {LeasingModel} from "./LeasingModel";
+import {LeasingModel} from './LeasingModel';
 
 export class BusinessCustomerInfo {
-  // companyName: string;
-  // companyCode: number;
-  // companyEmail: string;
-  // phoneNumber: number;
-  // address: string;
 
   customerType;
   name: string;

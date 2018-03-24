@@ -1,15 +1,12 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { PrivateformComponent } from './privateform/privateform.component';
-// import { PrivateCustomerPersonalFormComponent } from './private-customer-personal-form/private-customer-personal-form.component';
-import {BusinessCustomerInfo} from './models/businessCustomerInfo';
-// import {BusinessCustomerPersonalFormComponent} from './business-customer-personal-form/business-customer-personal-form.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {PrivateformComponent} from './privateform/privateform.component';
 import {DisplayFormComponent} from './display-form/display-form.component';
+import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 
 const routes: Routes = [
   {path: 'privateForm', component: PrivateformComponent},
-  // {path: 'privatePersonalForm', component: PrivateCustomerPersonalFormComponent},
-  // {path: 'businessPersonalForm', component: BusinessCustomerPersonalFormComponent},
+  {path: 'customerInfoForm', component: CustomerInfoFormComponent},
   {path: 'displayForm', component: DisplayFormComponent}
 ];
 
@@ -17,4 +14,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

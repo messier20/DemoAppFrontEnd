@@ -43,13 +43,11 @@ export class PrivateformComponent implements OnInit {
   setMinAssetPrice() {
     if (this.leasingForm.get('customerType').value === 'Business') {
       this.minAssetPrice = 10000;
-      this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice)]);
-      this.leasingForm.get('assetPrice').updateValueAndValidity();
     } else {
       this.minAssetPrice = 5000;
-      this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice)]);
-      this.leasingForm.get('assetPrice').updateValueAndValidity();
     }
+    this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice)]);
+    this.leasingForm.get('assetPrice').updateValueAndValidity();
   }
 
   selectBrandHandler() {
@@ -67,7 +65,8 @@ export class PrivateformComponent implements OnInit {
     if (Number.parseFloat(this.leasingForm.get('contractFee').value) < 200) {
       this.leasingForm.get('contractFee').setValue((200).toFixed(2));
     }
-    this.leasingForm.get('advancePaymentAmount').setValue((this.leasingForm.get('assetPrice').value * this.leasingForm.get('advancePaymentPercentage').value / 100).toFixed(2));
+    this.leasingForm.get('advancePaymentAmount').setValue((this.leasingForm.get('assetPrice').value
+      * this.leasingForm.get('advancePaymentPercentage').value / 100).toFixed(2));
   }
 
 
@@ -108,8 +107,5 @@ export class PrivateformComponent implements OnInit {
   setLeasingModel() {
     this.leasingModel = this.leasingForm.value;
     this.dataService.setLeasingModel(this.leasingModel);
-
   }
-
-
 }
