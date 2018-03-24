@@ -62,7 +62,7 @@
 
       <div class="form-group col-md-4 col-sm-6">
         <label for="phoneNumber">{{formLabels[3]}}</label>
-        <input type="text" class="form-control" id="phoneNumber" required
+        <input type="number" class="form-control" id="phoneNumber" required
                formControlName="phoneNumber" name="phoneNumber">
 
         <div [hidden]="infoForm.get('phoneNumber').valid || infoForm.get('phoneNumber').untouched"
