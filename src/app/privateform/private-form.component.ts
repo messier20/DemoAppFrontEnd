@@ -13,7 +13,7 @@ import {TextLabels} from '../models/TextLabels';
   templateUrl: './privateform.component.html',
   styleUrls: ['./privateform.component.css']
 })
-export class PrivateformComponent implements OnInit {
+export class PrivateFormComponent implements OnInit {
 
 
   leasingModel: LeasingModel;
@@ -27,8 +27,6 @@ export class PrivateformComponent implements OnInit {
   model: String[];
   availableDays = [15, 30];
   minAssetPrice;
-
-  // assetPrice;
 
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
