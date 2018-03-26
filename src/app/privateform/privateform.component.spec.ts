@@ -1,16 +1,13 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {PrivateformComponent} from './privateform.component';
-import {PrivateCustomerPersonalFormComponent} from '../private-customer-personal-form/private-customer-personal-form.component';
+import {CustomerInfoFormComponent} from '../customer-info-form/customer-info-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {PrivateCustomerLeasingFormComponent} from '../private-customer-leasing-form/private-customer-leasing-form.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_BASE_HREF} from '@angular/common';
 import {MatDialogModule} from '@angular/material';
-import {BusinessCustomerPersonalFormComponent} from '../business-customer-personal-form/business-customer-personal-form.component';
 import {AppRoutingModule} from '../app-routing.module';
-import {DisplayFormComponent} from '../display-form/display-form.component';
 import {RouterModule} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
 
@@ -20,7 +17,7 @@ describe('PrivateformComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PrivateCustomerLeasingFormComponent, BusinessCustomerPersonalFormComponent, PrivateformComponent, PrivateCustomerPersonalFormComponent, DisplayFormComponent],
+      declarations: [PrivateformComponent, CustomerInfoFormComponent],
       imports: [
         BrowserModule,
         AppRoutingModule,
@@ -66,11 +63,11 @@ describe('PrivateformComponent', () => {
     component.leasingForm.get('customerType').setValue('SomethingElse');
     component.setMinAssetPrice();
     expect(component.minAssetPrice).toEqual(5000);
-    });
+  });
 
   it('should selectBrandHandler', () => {
     component.cars = [{make: 'FORD', model: 'FORD MODEL'},
-                      {make: 'AUDI', model: 'A4'}];
+      {make: 'AUDI', model: 'A4'}];
     component.leasingForm.get('carBrand').setValue('FORD');
     component.selectBrandHandler();
     expect(component.model).toEqual('FORD MODEL');

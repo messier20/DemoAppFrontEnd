@@ -1,7 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 
 import {BackendService} from './services/backend.service';
 import {AppComponent} from './app.component';
@@ -14,15 +14,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {DataStorageService} from './services/data-storage-service.service';
 
-import {DisplayFormComponent} from './display-form/display-form.component';
-import {DialogFormComponent} from './display-form/dialog-form/dialog-form';
+import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
+import {DialogFormComponent} from './dialog-form/dialog-form';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PrivateformComponent,
-    DisplayFormComponent,
+    CustomerInfoFormComponent,
     DialogFormComponent
   ],
   imports: [
@@ -37,7 +37,7 @@ import {DialogFormComponent} from './display-form/dialog-form/dialog-form';
   ],
   providers: [DataStorageService, BackendService],
   bootstrap: [AppComponent],
-  entryComponents: [DisplayFormComponent, DialogFormComponent]
+  entryComponents: [DialogFormComponent]
 })
 export class AppModule {
 }

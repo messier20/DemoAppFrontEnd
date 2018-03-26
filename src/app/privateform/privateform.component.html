@@ -2,15 +2,13 @@
   <h1>Leasing Application</h1>
 
   <form [formGroup]="leasingForm" (ngSubmit)="submitForm()">
-    <!--<form (ngSubmit)="submitForm()" #privateform="ngForm">-->
 
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
 
-        <label for="customerType">Customer Type</label>
+        <label for="customerType">{{leasingFormLabels[0]}}</label>
         <select class="form-control" id="customerType" required name="customerTypeField"
                 formControlName="customerType" (change)="setMinAssetPrice()">
-          <!--[(ngModel)]="leasingModel.customerType">-->
           <option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>
         </select>
 
@@ -23,7 +21,7 @@
 
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="assetType">Asset Type</label>
+        <label for="assetType">{{leasingFormLabels[1]}}</label>
         <select class="form-control" id="assetType" required name="assetTypeField" formControlName="assetType">
           <option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</option>
         </select>
@@ -37,7 +35,7 @@
 
     <div class="form-row">
       <div class="form-group  col-md-4 col-sm-6">
-        <label for="carBrand">Car Brand</label>
+        <label for="carBrand">{{leasingFormLabels[2]}}</label>
         <select class="form-control" id="carBrand" name="carBrandField" formControlName="carBrand"
                 (change)="selectBrandHandler()" required>
           <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
@@ -51,7 +49,7 @@
       </div>
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="carModel">Car Model</label>
+        <label for="carModel">{{leasingFormLabels[3]}}</label>
         <select class="form-control" id="carModel" name="carModelField" formControlName="carModel">
           <option *ngFor="let selectedModel of model" [value]="selectedModel">{{selectedModel}}</option>
         </select>
@@ -65,7 +63,7 @@
     </div>
     <div class="form-row">
       <div class="form-group  col-md-4 col-sm-6">
-        <label for="manufacturedDate">Manufactured Date</label>
+        <label for="manufacturedDate">{{leasingFormLabels[4]}}</label>
         <input type="date" class="form-control" id="manufacturedDate"
                formControlName="manufacturedDate"
                name="manufacturedDateForm">
@@ -77,21 +75,21 @@
       </div>
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="enginePower">Engine power</label>
+        <label for="enginePower">{{leasingFormLabels[5]}}</label>
         <input type="number" class="form-control" id="enginePower"
                formControlName="enginePower"
                name="enginePowerForm">
 
         <div [hidden]="leasingForm.get('enginePower').valid || leasingForm.get('enginePower').untouched"
              class="alert-danger alert">
-          Engine power is required.
+          Engine power must be between 1 and 9999
         </div>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
-        <label for="assetPrice">Asset price</label>
+        <label for="assetPrice">{{leasingFormLabels[6]}}</label>
         <input type="number" class="form-control" id="assetPrice" required
                formControlName="assetPrice"
                name="assetPriceField"
@@ -99,16 +97,11 @@
 
         <div [hidden]="leasingForm.get('assetPrice').valid || leasingForm.get('assetPrice').untouched"
              class="alert alert-danger">
-          Asset price must be at least {{this.minAssetPrice}}
+          Asset price must be between {{this.minAssetPrice}} and 9999999
         </div>
       </div>
-      <!--<<<<<<< HEAD-->
-
-      <!--=======-->
-
-      <!--&gt;>>>>>> 809cfafb8a4c0ff0b622d7aca2a3864eb2848765-->
       <div class="form-group col-md-4 col-sm-6">
-        <label for="advancePaymentPercentage">Advance payment percentage</label>
+        <label for="advancePaymentPercentage">{{leasingFormLabels[7]}}</label>
         <input type="number" class="form-control" id="advancePaymentPercentage"
                formControlName="advancePaymentPercentage"
                name="advancePaymentPercentageField"
@@ -118,7 +111,7 @@
         <div
           [hidden]="leasingForm.get('advancePaymentPercentage').valid || leasingForm.get('advancePaymentPercentage').untouched"
           class="alert alert-danger">
-          Advance payment percentage cannot be less than 10%
+          Advance payment percentage must be between 10% and 100%
         </div>
 
       </div>
@@ -127,45 +120,36 @@
     <div class="form-row">
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="advancePaymentAmount">Advance payment amount</label>
+        <label for="advancePaymentAmount">{{leasingFormLabels[8]}}</label>
         <input type="text" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField"
                formControlName="advancePaymentAmount" disabled>
-               <!--[value]="leasingModel.advancePaymentAmount ? leasingModel.advancePaymentAmount: ''  ">-->
-        <!--<<<<<<< HEAD-->
       </div>
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="contractFee">Contract Fee</label>
+        <label for="contractFee">{{leasingFormLabels[9]}}</label>
         <input type="text" class="form-control" id="contractFee" name="contractFeeField"
                formControlName="contractFee" disabled >
       </div>
 
-      <!--=======-->
     </div>
-
-    <!--<div class="form-group col-md-3">-->
-    <!--<label for="contractFee">Contract Fee</label>-->
-    <!--<input type="text" class="form-control"  name="contractFeeField"-->
-    <!--formControlName="contractFee" disabled [value]="leasingModel.contractFee">-->
-    <!--</div>-->
-
-    <!--&gt;>>>>>> 809cfafb8a4c0ff0b622d7aca2a3864eb2848765-->
-
 
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
-        <label for="margin">Margin</label>
+        <label for="margin">{{leasingFormLabels[10]}}</label>
         <input type="number" class="form-control" id="margin" required
                formControlName="margin" name="margin" step="0.1">
 
         <div [hidden]="leasingForm.get('margin').valid || leasingForm.get('margin').untouched"
              class="alert alert-danger">
-          Margin cannot be less than 3.2 %
+          Margin must be between 3.2% and 100 %
         </div>
+
+
+
       </div>
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="leasePeriodInMonths">Lease period in months</label>
+        <label for="leasePeriodInMonths">{{leasingFormLabels[11]}}</label>
         <select class="form-control" id="leasePeriodInMonths" required name="leasePeriodInMonthsField"
                 formControlName="leasePeriodInMonths">
           <option *ngFor="let type of leasePeriods" [value]="type">{{type}}</option>
@@ -181,7 +165,7 @@
 
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
-        <label for="paymentDay">Payment day</label>
+        <label for="paymentDay">{{leasingFormLabels[12]}}</label>
         <select class="form-control" id="paymentDay" name="paymentDateField" formControlName="paymentDate"
                 required>
           <option *ngFor="let currentDay of availableDays" [value]="currentDay">{{currentDay}}</option>
@@ -193,5 +177,3 @@
   </form>
 
 </div>
-
-<!--[disabled]="!privateform.form.valid"-->

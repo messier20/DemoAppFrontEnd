@@ -1,17 +1,12 @@
-import {LeasingModel} from "./LeasingModel";
+import {LeasingModel} from './LeasingModel';
 
 export class BusinessCustomerInfo {
-  // companyName: string;
-  // companyCode: number;
-  // companyEmail: string;
-  // phoneNumber: number;
-  // address: string;
 
   customerType;
   name: string;
   code: number;
   email: string;
-  phoneNumber: number;
+  phoneNumber: string;
   address: string;
 
   constructor(businessCustomerInfo?: BusinessCustomerInfo, leasingModel?: LeasingModel) {
@@ -27,4 +22,5 @@ export class BusinessCustomerInfo {
 
     }
   }
+
 }

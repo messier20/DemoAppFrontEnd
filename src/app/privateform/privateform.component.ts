@@ -3,11 +3,9 @@ import {LeasingModel} from '../models/LeasingModel';
 import {CarList} from '../models/CarList';
 import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
-import {BackendService} from '../services/backend.service';
-import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
-import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
+import {TextLabels} from '../models/TextLabels';
 
 
 @Component({
@@ -20,6 +18,7 @@ export class PrivateformComponent implements OnInit {
 
   leasingModel: LeasingModel;
   leasingForm: FormGroup;
+  leasingFormLabels: string[];
 
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
@@ -32,11 +31,12 @@ export class PrivateformComponent implements OnInit {
   // assetPrice;
 
   constructor(private router: Router,
-              private formBuilder: FormBuilder) {
-
+              private dataService: DataStorageService, private formBuilder: FormBuilder) {
     this.cars = new CarList().cars;
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
+    this.leasingForm.get('assetType').setValue('Vehicle');
+    this.leasingFormLabels = new TextLabels().leasingFormLabels;
   }
 
   ngOnInit() {
@@ -46,13 +46,11 @@ export class PrivateformComponent implements OnInit {
   setMinAssetPrice() {
     if (this.leasingForm.get('customerType').value === 'Business') {
       this.minAssetPrice = 10000;
-      this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice)]);
-      this.leasingForm.get('assetPrice').updateValueAndValidity();
     } else {
       this.minAssetPrice = 5000;
-      this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice)]);
-      this.leasingForm.get('assetPrice').updateValueAndValidity();
     }
+    this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice), Validators.max(9999999)]);
+    this.leasingForm.get('assetPrice').updateValueAndValidity();
   }
 
   selectBrandHandler() {
@@ -70,7 +68,8 @@ export class PrivateformComponent implements OnInit {
     if (Number.parseFloat(this.leasingForm.get('contractFee').value) < 200) {
       this.leasingForm.get('contractFee').setValue((200).toFixed(2));
     }
-    this.leasingForm.get('advancePaymentAmount').setValue((this.leasingForm.get('assetPrice').value * this.leasingForm.get('advancePaymentPercentage').value / 100).toFixed(2));
+    this.leasingForm.get('advancePaymentAmount').setValue((this.leasingForm.get('assetPrice').value
+      * this.leasingForm.get('advancePaymentPercentage').value / 100).toFixed(2));
   }
 
 
@@ -83,12 +82,7 @@ export class PrivateformComponent implements OnInit {
     console.log('Lease period in months: ' + this.leasingModel.leasePeriodInMonths);
     console.log('Margin: ' + this.leasingModel.margin);
     console.log('Payment date: ' + this.leasingModel.paymentDate);
-    if (this.leasingModel.customerType === this.availableCustomerTypes[1]) {
-      this.router.navigate(['/businessPersonalForm']);
-    } else {
-      this.router.navigate(['/privatePersonalForm']);
-    }
-
+    this.router.navigate(['/customerInfoForm']);
 
   }
 
@@ -101,21 +95,20 @@ export class PrivateformComponent implements OnInit {
       carBrand: ['', [Validators.required]],
       carModel: ['', [Validators.required]],
       manufacturedDate: ['', [Validators.required]],
-      enginePower: ['', [Validators.required]],
-      advancePaymentAmount: ['', [Validators.required]],
+      enginePower: ['', [Validators.required, Validators.min(0), Validators.max(9999)]],
+      advancePaymentAmount: ['', [Validators.required, Validators.min(500), Validators.max(9999999)]],
       leasePeriodInMonths: ['', [Validators.required]],
       contractFee: ['', [Validators.required]],
       paymentDate: ['', [Validators.required]],
-      assetPrice: ['', [Validators.required, Validators.min(this.minAssetPrice)]],
-      advancePaymentPercentage: ['', [Validators.required, Validators.min(10)]],
-      margin: ['', [Validators.required, Validators.min(3.2)]],
+      assetPrice: ['', [Validators.required, Validators.min(this.minAssetPrice), Validators.max(9999999)]],
+      advancePaymentPercentage: ['', [Validators.required, Validators.min(10), Validators.max(100)]],
+      margin: ['', [Validators.required, Validators.min(3.2), Validators.max(100)]],
 
     });
   }
 
   setLeasingModel() {
-    // this.leasingModel = this.leasingForm.value;
+    this.leasingModel = this.leasingForm.value;
+    this.dataService.setLeasingModel(this.leasingModel);
   }
-
-
 }
