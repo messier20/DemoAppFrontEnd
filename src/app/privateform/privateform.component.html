@@ -188,8 +188,7 @@
         </select>
       </div>
     </div>
-    <!--[disabled]="!leasingForm.valid" -->
-    <button type="submit" class="btn btn-success" (click)="setLeasingModel()">Submit form
+    <button type="submit" class="btn btn-success" [disabled]="!leasingForm.valid" (click)="setLeasingModel()">Submit form
     </button>
   </form>
 

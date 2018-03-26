@@ -21,12 +21,6 @@ export class PrivateformComponent implements OnInit {
   leasingModel: LeasingModel;
   leasingForm: FormGroup;
 
-  // -------------------------------------------------
-  businessPersonal: BusinessCustomerInfo;
-  privatePersonal: PrivateCustomerInfo;
-  // -------------------------------------------------
-
-
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
   cars;
@@ -38,9 +32,7 @@ export class PrivateformComponent implements OnInit {
   // assetPrice;
 
   constructor(private router: Router,
-              private dataService: DataStorageService,
-              private formBuilder: FormBuilder,
-              private backend: BackendService) {
+              private formBuilder: FormBuilder) {
 
     this.cars = new CarList().cars;
     this.leasePeriods = new LeasePeriods().leasePeriods;
@@ -91,11 +83,11 @@ export class PrivateformComponent implements OnInit {
     console.log('Lease period in months: ' + this.leasingModel.leasePeriodInMonths);
     console.log('Margin: ' + this.leasingModel.margin);
     console.log('Payment date: ' + this.leasingModel.paymentDate);
-    // if (this.leasingModel.customerType === this.availableCustomerTypes[1]) {
-    //   this.router.navigate(['/businessPersonalForm']);
-    // } else {
-    //   this.router.navigate(['/privatePersonalForm']);
-    // }
+    if (this.leasingModel.customerType === this.availableCustomerTypes[1]) {
+      this.router.navigate(['/businessPersonalForm']);
+    } else {
+      this.router.navigate(['/privatePersonalForm']);
+    }
 
 
   }
@@ -123,47 +115,6 @@ export class PrivateformComponent implements OnInit {
 
   setLeasingModel() {
     // this.leasingModel = this.leasingForm.value;
-
-    this.leasingModel = {
-      customerType: 'Business',
-      assetType: 'vehicle',
-      carBrand: 'Honda',
-      carModel: 'civic',
-      manufacturedDate: '2004-01-01',
-      enginePower: 78,
-      assetPrice: 5001,
-      advancePaymentPercentage: 30,
-      advancePaymentAmount: '400',
-      leasePeriodInMonths: 20,
-      margin: 30,
-      contractFee: '200',
-      paymentDate: 15,
-    };
-
-    this.businessPersonal = {
-      customerType: 'Business',
-      name: 'Donatas',
-      code: 31415926535,
-      email: 'doncekebabas@jammi.lt',
-      phoneNumber: 860001337,
-      address: 'Barak g. 12'
-    };
-
-    this.privatePersonal = {
-      customerType: 'Private',
-      name: 'Donatas',
-      code: 31415926535,
-      email: 'doncekebabas@jammi.lt',
-      phoneNumber: 860001337,
-      address: 'Barak g. 12',
-      lastName: 'PlutoHasFeelingsToo'
-    };
-
-    this.dataService.setLeasingModel(this.leasingModel);
-    this.dataService.setBusinessInfo(this.businessPersonal);
-    this.dataService.setPrivateInfo(this.privatePersonal);
-
-    this.backend.sendCompletedForm();
   }
 
 
