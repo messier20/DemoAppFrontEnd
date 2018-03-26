@@ -25,7 +25,7 @@ export class PrivateFormComponent implements OnInit {
   leasePeriods;
   model: String[];
   availableDays = [15, 30];
-  minAssetPrice;
+  minAssetPrice = 5000;
 
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
