@@ -46,7 +46,14 @@ export class CustomerInfoFormComponent implements OnInit {
   }
 
   submitForm() {
-    this.dialog.open(DialogFormComponent);
+    if (!this.infoForm.valid) {
+      Object.keys(this.infoForm.controls).forEach(field => {
+        const control = this.infoForm.get(field);
+        control.markAsTouched({onlySelf: true});
+      });
+    } else {
+      this.dialog.open(DialogFormComponent);
+    }
   }
 
   private createValidForm() {
