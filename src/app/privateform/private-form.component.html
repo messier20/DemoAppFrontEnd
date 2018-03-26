@@ -6,7 +6,7 @@
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
 
-        <label for="customerType">{{leasingFormLabels[0]}}</label>
+        <label for="customerType">{{leasingFormLabels.CUSTOMER_TYPE}}</label>
         <select class="form-control" id="customerType" required name="customerTypeField"
                 formControlName="customerType" (change)="setMinAssetPrice()">
           <option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>
@@ -21,7 +21,7 @@
 
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="assetType">{{leasingFormLabels[1]}}</label>
+        <label for="assetType">{{leasingFormLabels.ASSET_TYPE}}</label>
         <select class="form-control" id="assetType" required name="assetTypeField" formControlName="assetType">
           <option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</option>
         </select>
@@ -35,7 +35,7 @@
 
     <div class="form-row">
       <div class="form-group  col-md-4 col-sm-6">
-        <label for="carBrand">{{leasingFormLabels[2]}}</label>
+        <label for="carBrand">{{leasingFormLabels.CAR_BRAND}}</label>
         <select class="form-control" id="carBrand" name="carBrandField" formControlName="carBrand"
                 (change)="selectBrandHandler()" required>
           <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
@@ -49,7 +49,7 @@
       </div>
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="carModel">{{leasingFormLabels[3]}}</label>
+        <label for="carModel">{{leasingFormLabels.CAR_MODEL}}</label>
         <select class="form-control" id="carModel" name="carModelField" formControlName="carModel">
           <option *ngFor="let selectedModel of model" [value]="selectedModel">{{selectedModel}}</option>
         </select>
@@ -63,7 +63,7 @@
     </div>
     <div class="form-row">
       <div class="form-group  col-md-4 col-sm-6">
-        <label for="manufacturedDate">{{leasingFormLabels[4]}}</label>
+        <label for="manufacturedDate">{{leasingFormLabels.MANUFACTURED_DATE}}</label>
         <input type="date" class="form-control" id="manufacturedDate"
                formControlName="manufacturedDate"
                name="manufacturedDateForm">
@@ -75,7 +75,7 @@
       </div>
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="enginePower">{{leasingFormLabels[5]}}</label>
+        <label for="enginePower">{{leasingFormLabels.ENGINE_POWER}}</label>
         <input type="number" class="form-control" id="enginePower"
                formControlName="enginePower"
                name="enginePowerForm">
@@ -89,7 +89,7 @@
 
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
-        <label for="assetPrice">{{leasingFormLabels[6]}}</label>
+        <label for="assetPrice">{{leasingFormLabels.ASSET_PRICE}}</label>
         <input type="number" class="form-control" id="assetPrice" required
                formControlName="assetPrice"
                name="assetPriceField"
@@ -101,7 +101,7 @@
         </div>
       </div>
       <div class="form-group col-md-4 col-sm-6">
-        <label for="advancePaymentPercentage">{{leasingFormLabels[7]}}</label>
+        <label for="advancePaymentPercentage">{{leasingFormLabels.ADVANCE_PAYMENT_PERCENTAGE}}</label>
         <input type="number" class="form-control" id="advancePaymentPercentage"
                formControlName="advancePaymentPercentage"
                name="advancePaymentPercentageField"
@@ -120,13 +120,13 @@
     <div class="form-row">
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="advancePaymentAmount">{{leasingFormLabels[8]}}</label>
+        <label for="advancePaymentAmount">{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}</label>
         <input type="text" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField"
                formControlName="advancePaymentAmount" disabled>
       </div>
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="contractFee">{{leasingFormLabels[9]}}</label>
+        <label for="contractFee">{{leasingFormLabels.CONTRACT_FEE}}</label>
         <input type="text" class="form-control" id="contractFee" name="contractFeeField"
                formControlName="contractFee" disabled >
       </div>
@@ -135,7 +135,7 @@
 
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
-        <label for="margin">{{leasingFormLabels[10]}}</label>
+        <label for="margin">{{leasingFormLabels.MARGIN}}</label>
         <input type="number" class="form-control" id="margin" required
                formControlName="margin" name="margin" step="0.1">
 
@@ -149,7 +149,7 @@
       </div>
 
       <div class="form-group col-md-4 col-sm-6">
-        <label for="leasePeriodInMonths">{{leasingFormLabels[11]}}</label>
+        <label for="leasePeriodInMonths">{{leasingFormLabels.LEASING_PERIOD}}</label>
         <select class="form-control" id="leasePeriodInMonths" required name="leasePeriodInMonthsField"
                 formControlName="leasePeriodInMonths">
           <option *ngFor="let type of leasePeriods" [value]="type">{{type}}</option>
@@ -165,7 +165,7 @@
 
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
-        <label for="paymentDay">{{leasingFormLabels[12]}}</label>
+        <label for="paymentDay">{{leasingFormLabels.PAYMENT_DAY}}</label>
         <select class="form-control" id="paymentDay" name="paymentDateField" formControlName="paymentDate"
                 required>
           <option *ngFor="let currentDay of availableDays" [value]="currentDay">{{currentDay}}</option>

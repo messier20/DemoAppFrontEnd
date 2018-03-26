@@ -6,19 +6,20 @@ import {DataStorageService} from '../services/data-storage-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
 import {TextLabels} from '../models/TextLabels';
+import {LeasingFormLabels} from '../models/LeasingFormLabels';
 
 
 @Component({
   selector: 'app-privateform',
-  templateUrl: './privateform.component.html',
-  styleUrls: ['./privateform.component.css']
+  templateUrl: './private-form.component.html',
+  styleUrls: ['./private-form.component.css']
 })
 export class PrivateFormComponent implements OnInit {
 
 
   leasingModel: LeasingModel;
   leasingForm: FormGroup;
-  leasingFormLabels: string[];
+  leasingFormLabels = new LeasingFormLabels();
 
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
@@ -34,7 +35,6 @@ export class PrivateFormComponent implements OnInit {
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
     this.leasingForm.get('assetType').setValue('Vehicle');
-    this.leasingFormLabels = new TextLabels().leasingFormLabels;
   }
 
   ngOnInit() {
@@ -72,21 +72,10 @@ export class PrivateFormComponent implements OnInit {
 
 
   submitForm() {
-    console.log('Customer type: ' + this.leasingModel.customerType);
-    console.log('Asset type: ' + this.leasingModel.assetType);
-    console.log('Engine power: ' + this.leasingModel.enginePower);
-    console.log('Asset price: ' + this.leasingModel.assetPrice);
-    console.log('Advance payment percentage: ' + this.leasingModel.advancePaymentPercentage);
-    console.log('Lease period in months: ' + this.leasingModel.leasePeriodInMonths);
-    console.log('Margin: ' + this.leasingModel.margin);
-    console.log('Payment date: ' + this.leasingModel.paymentDate);
     this.router.navigate(['/customerInfoForm']);
-
   }
 
   createValidForm() {
-
-
     this.leasingForm = this.formBuilder.group({
       customerType: ['', [Validators.required]],
       assetType: ['', [Validators.required]],

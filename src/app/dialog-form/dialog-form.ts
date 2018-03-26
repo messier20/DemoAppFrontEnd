@@ -5,6 +5,7 @@ import {LeasingModel} from '../models/LeasingModel';
 import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
 import {TextLabels} from '../models/TextLabels';
+import {LeasingFormLabels} from '../models/LeasingFormLabels';
 
 @Component({
   selector: 'app-dialog-form',
@@ -44,7 +45,7 @@ export class DialogFormComponent {
     const labels = new TextLabels();
 
     this.leasingModel = this.dataService.getLeasingModel();
-    this.leasingLabels = labels.leasingFormLabels;
+    this.leasingLabels = new LeasingFormLabels().leasingFormLabels;
 
     this.isCustomerPrivate();
     if (this.privateCustomer) {
