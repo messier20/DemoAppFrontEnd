@@ -37,7 +37,7 @@ export class CustomerInfoFormComponent implements OnInit {
     } else {
       this.formLabels = new TextLabels().businessInfoLabels;
       this.businessCustomerInfo = new BusinessCustomerInfo();
-      document.getElementById('test').hidden = true;
+      document.getElementById('hiddenName').hidden = true;
       this.infoForm.get('lastName').disable();
     }
 

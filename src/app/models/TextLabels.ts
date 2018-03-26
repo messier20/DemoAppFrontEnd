@@ -4,8 +4,8 @@ export class TextLabels {
   private _leasingFormLabels: string[];
 
   constructor() {
-    this._privateInfoLabels = ['First Name', 'Personal Code', 'Email', 'Phone no.', 'Address', 'Last Name', 'Personal Details'];
-    this._businessInfoLabels = ['Company Name', 'Company Code', 'Email', 'Phone no.', 'Address', 'Empty', 'Company Details'];
+    this._privateInfoLabels = ['Personal Details', 'First Name', 'Last Name', 'Personal Code', 'Email', 'Phone no.', 'Address'];
+    this._businessInfoLabels = ['Company Details', 'Company Name', '', 'Company Code', 'Email', 'Phone no.', 'Address'];
     this._leasingFormLabels = ['Customer Type', 'Asset Type', 'Car Brand', 'Car Model', 'Manufactured Date',
       'Engine Power', 'Asset Price', 'Advance Payment Percentage', 'Advance Payment Amount', 'Contract Fee',
       'Margin', 'Leasing Period (months)', 'Payment Day'];

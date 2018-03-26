@@ -9,6 +9,8 @@ export class BusinessCustomerInfo {
   phoneNumber: string;
   address: string;
 
+  private businessCustomerInfoArray: string[];
+
   constructor(businessCustomerInfo?: BusinessCustomerInfo, leasingModel?: LeasingModel) {
 
     if (businessCustomerInfo) {
@@ -21,5 +23,15 @@ export class BusinessCustomerInfo {
     } else {
 
     }
+  }
+
+  public toArray(): string[] {
+    this.businessCustomerInfoArray[0] = this.name;
+    this.businessCustomerInfoArray[2] = this.code.toString();
+    this.businessCustomerInfoArray[3] = this.email;
+    this.businessCustomerInfoArray[4] = this.phoneNumber;
+    this.businessCustomerInfoArray[5] = this.address;
+
+    return this.businessCustomerInfoArray;
   }
 }
