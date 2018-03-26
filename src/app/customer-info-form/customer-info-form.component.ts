@@ -66,13 +66,13 @@ export class CustomerInfoFormComponent implements OnInit {
       if (!this.privateCustomerInfo.phoneNumber.startsWith('+370')) {
         this.privateCustomerInfo.phoneNumber = '+370' + this.privateCustomerInfo.phoneNumber;
       }
-      this.dataService.setPrivateCustomerInfo(this.privateCustomerInfo);
+      this.dataService.setPrivateInfo(this.privateCustomerInfo);
     } else {
       this.businessCustomerInfo = this.infoForm.value;
       if (!this.businessCustomerInfo.phoneNumber.startsWith('+370')) {
         this.businessCustomerInfo.phoneNumber = '+370' + this.businessCustomerInfo.phoneNumber;
       }
-      this.dataService.setBusinessCustomerInfo(this.businessCustomerInfo);
+      this.dataService.setBusinessInfo(this.businessCustomerInfo);
     }
   }
 }
