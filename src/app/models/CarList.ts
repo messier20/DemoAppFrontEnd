@@ -2,7 +2,7 @@ export class CarList {
   cars;
 
   constructor() {
-    this.cars = [{make: 'ACURA', model: ['ILX', 'MDX', 'RDX', 'RLX', 'TLX',]}, {make: 'ALFA ROMEO', model: ['4C', 'MITO',]}, {
+    this.cars = [{make: 'ACURA', model: ['ILX', 'MDX', 'RDX', 'RLX', 'TLX']}, {make: 'ALFA ROMEO', model: ['4C', 'MITO',]}, {
       make: 'AUDI',
       model: ['A1', 'A3', 'A3 QUATTRO', 'A4', 'A4 ALLROAD', 'A4 QUATTRO', 'A5', 'A5 QUATTRO', 'A6', 'A6 QUATTRO', 'A7 QUATTRO', 'A8', 'A8 QUATTRO', 'ALLROAD', 'Q3', 'Q3 QUATTRO', 'Q5', 'Q7', 'R8', 'RS5', 'RS7', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'SQ5', 'TT QUATTRO',]
     }, {make: 'BENTLEY', model: ['CONTINENTAL', 'MULSANNE',]}, {

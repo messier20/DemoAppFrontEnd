@@ -1,5 +1,3 @@
-import {FormGroup} from '@angular/forms';
-
 export class LeasingModel {
 
   customerType: string;
@@ -16,13 +14,24 @@ export class LeasingModel {
   contractFee: string;
   paymentDate: number;
 
-  // heroForm = new FormGroup({
-  //
-  // })
-  // constructor(customerType, assetType) {
-  //   this.customerType = customerType;
-  //   this.assetType = assetType;
-  // }
+
+  constructor(leasingModel?: LeasingModel) {
+    if (leasingModel) {
+      this.customerType = leasingModel.customerType;
+      this.assetType = leasingModel.assetType;
+      this.carBrand = leasingModel.carBrand;
+      this.carModel = leasingModel.carModel;
+      this.manufacturedDate = leasingModel.manufacturedDate;
+      this.enginePower = leasingModel.enginePower;
+      this.assetPrice = leasingModel.assetPrice;
+      this.advancePaymentPercentage = leasingModel.advancePaymentPercentage;
+      this.advancePaymentAmount = leasingModel.advancePaymentAmount;
+      this.leasePeriodInMonths = leasingModel.leasePeriodInMonths;
+      this.margin = leasingModel.margin;
+      this.contractFee = leasingModel.contractFee;
+      this.paymentDate = leasingModel.paymentDate;
+    }
+  }
 
 
 }
