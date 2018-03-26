@@ -1,38 +1,49 @@
 import {Injectable} from '@angular/core';
 import {LeasingModel} from '../models/LeasingModel';
-import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
 import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
+import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
 
 @Injectable()
 export class DataStorageService {
 
-
   private leasingModel: LeasingModel;
-  private privateCustomerInfo: PrivateCustomerInfo;
   private businessCustomerInfo: BusinessCustomerInfo;
+  private privateCustomerInfo: PrivateCustomerInfo;
 
-  setLeasingModel(leasingModel) {
-    this.leasingModel = leasingModel;
+  static refactorCustomerType(form) {
+
+    if (form.customerType === 'Private') {
+      form.customerType = 'PRIVATE';
+      return form;
+
+    } else {
+      form.customerType = 'BUSINESS';
+      return form;
+    }
+  }
+
+  setLeasingModel(givenLeasingModel) {
+    this.leasingModel = givenLeasingModel;
   }
 
   getLeasingModel() {
     return this.leasingModel;
   }
 
-  setPrivateCustomerInfo(privateCustomerInfo) {
-    this.privateCustomerInfo = privateCustomerInfo;
+  setBusinessInfo(givenBusinessInfo) {
+    this.businessCustomerInfo = givenBusinessInfo;
   }
 
-  getPrivateCustomerInfo() {
-    return this.privateCustomerInfo;
-  }
-
-  setBusinessCustomerInfo(businessCustomerInfo) {
-    this.businessCustomerInfo = businessCustomerInfo;
-  }
-
-  getBusinessCustomerInfo() {
+  getBusinessInfo() {
     return this.businessCustomerInfo;
+  }
+
+  setPrivateInfo(givenPrivateInfo) {
+    this.privateCustomerInfo = givenPrivateInfo;
+  }
+
+  getPrivateInfo() {
+    return this.privateCustomerInfo;
   }
 
 }

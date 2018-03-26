@@ -48,11 +48,11 @@ export class DialogFormComponent {
 
     this.isCustomerPrivate();
     if (this.privateCustomer) {
-      this.privateCustomerInfo = this.dataService.getPrivateCustomerInfo();
+      this.privateCustomerInfo = this.dataService.getPrivateInfo();
       this.customerInfoLabels = labels.privateInfoLabels;
       this.setupPrivateCustomerInfoArray();
     } else {
-      this.businessCustomerInfo = this.dataService.getBusinessCustomerInfo();
+      this.businessCustomerInfo = this.dataService.getBusinessInfo();
       this.customerInfoLabels = labels.businessInfoLabels;
       this.setupBusinessCustomerInfoArray();
     }
@@ -61,7 +61,7 @@ export class DialogFormComponent {
   }
 
   sendFormToBackend() {
-    this.backendService.submitForm(this.leasingModel);
+    this.backendService.sendCompletedForm();
   }
 
   private isCustomerPrivate() {
