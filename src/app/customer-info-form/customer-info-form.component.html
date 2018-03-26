@@ -49,11 +49,11 @@
       <div class="form-group col-md-4 col-sm-6">
         <label for="email">{{formLabels[2]}}</label>
         <input type="text" class="form-control" id="email" required
-               formControlName="email" name="email">
+               formControlName="email" name="email" placeholder="Ex: email@domain.com">
 
         <div [hidden]="infoForm.get('email').valid || infoForm.get('email').untouched"
              class="alert alert-danger">
-          {{formLabels[2]}} field is required
+          Must be a valid {{formLabels[2]}} address
         </div>
       </div>
     </div>
@@ -67,7 +67,7 @@
             <span class="input-group-text" id="basic-addon1">+370</span>
           </div>
           <input type="text" class="form-control" id="phoneNumber" required
-                 formControlName="phoneNumber" name="phoneNumber" maxlength="11">
+                 formControlName="phoneNumber" name="phoneNumber" maxlength="8">
         </div>
 
         <div [hidden]="infoForm.get('phoneNumber').valid || infoForm.get('phoneNumber').untouched"

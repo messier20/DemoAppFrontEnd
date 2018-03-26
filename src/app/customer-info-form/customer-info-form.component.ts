@@ -45,24 +45,7 @@ export class CustomerInfoFormComponent implements OnInit {
   }
 
   submitForm() {
-    //   if (this.isCustomerPrivate()) {
-    //     console.log('First name: ' + this.privateCustomerInfo.name);
-    //     console.log('Last name: ' + this.privateCustomerInfo.lastName);
-    //     console.log('Personal Code: ' + this.privateCustomerInfo.code);
-    //     console.log('Personal email: ' + this.privateCustomerInfo.email);
-    //     console.log('Phone number: ' + this.privateCustomerInfo.phoneNumber);
-    //     console.log('Address: ' + this.privateCustomerInfo.address);
-    //   } else {
-    //     console.log('First name: ' + this.businessCustomerInfo.name);
-    //     console.log('Personal Code: ' + this.businessCustomerInfo.code);
-    //     console.log('Personal email: ' + this.businessCustomerInfo.email);
-    //     console.log('Phone number: ' + this.businessCustomerInfo.phoneNumber);
-    //     console.log('Address: ' + this.businessCustomerInfo.address);
-    //     console.log(this.infoForm);
-    // this.router.navigate(['/displayForm']);
-    // }
     this.dialog.open(DialogFormComponent);
-
   }
 
   private createValidForm() {
@@ -79,9 +62,11 @@ export class CustomerInfoFormComponent implements OnInit {
   setCustomerInfo() {
     if (this.isCustomerPrivate()) {
       this.privateCustomerInfo = this.infoForm.value;
+      this.privateCustomerInfo.phoneNumber = '+370' + this.privateCustomerInfo.phoneNumber;
       this.dataService.setPrivateCustomerInfo(this.privateCustomerInfo);
     } else {
       this.businessCustomerInfo = this.infoForm.value;
+      this.businessCustomerInfo.phoneNumber = '+370' + this.businessCustomerInfo.phoneNumber;
       this.dataService.setBusinessCustomerInfo(this.businessCustomerInfo);
     }
   }

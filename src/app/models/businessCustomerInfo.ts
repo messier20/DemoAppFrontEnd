@@ -6,7 +6,7 @@ export class BusinessCustomerInfo {
   name: string;
   code: number;
   email: string;
-  phoneNumber: number;
+  phoneNumber: string;
   address: string;
 
   constructor(businessCustomerInfo?: BusinessCustomerInfo, leasingModel?: LeasingModel) {
