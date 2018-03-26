@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {PrivateformComponent} from './privateform.component';
+import {PrivateFormComponent} from './private-form.component';
 import {CustomerInfoFormComponent} from '../customer-info-form/customer-info-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -11,13 +11,13 @@ import {AppRoutingModule} from '../app-routing.module';
 import {RouterModule} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
 
-describe('PrivateformComponent', () => {
-  let component: PrivateformComponent;
-  let fixture: ComponentFixture<PrivateformComponent>;
+describe('PrivateFormComponent', () => {
+  let component: PrivateFormComponent;
+  let fixture: ComponentFixture<PrivateFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PrivateformComponent, CustomerInfoFormComponent],
+      declarations: [PrivateFormComponent, CustomerInfoFormComponent],
       imports: [
         BrowserModule,
         AppRoutingModule,
@@ -37,7 +37,7 @@ describe('PrivateformComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PrivateformComponent);
+    fixture = TestBed.createComponent(PrivateFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

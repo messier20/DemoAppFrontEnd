@@ -6,7 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_BASE_HREF} from '@angular/common';
 import {MatDialogModule} from '@angular/material';
-import {PrivateformComponent} from '../privateform/privateform.component';
+import {PrivateFormComponent} from '../privateform/private-form.component';
 import {AppRoutingModule} from '../app-routing.module';
 import {RouterModule} from '@angular/router';
 
@@ -16,7 +16,7 @@ describe('CustomerInfoFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CustomerInfoFormComponent, PrivateformComponent],
+      declarations: [CustomerInfoFormComponent, PrivateFormComponent],
       imports: [
         BrowserModule,
         AppRoutingModule,

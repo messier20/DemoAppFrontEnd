@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {BackendService} from './services/backend.service';
 import {AppComponent} from './app.component';
-import {PrivateformComponent} from './privateform/privateform.component';
+import {PrivateFormComponent} from './privateform/private-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material';
 
@@ -21,7 +21,7 @@ import {DialogFormComponent} from './dialog-form/dialog-form';
 @NgModule({
   declarations: [
     AppComponent,
-    PrivateformComponent,
+    PrivateFormComponent,
     CustomerInfoFormComponent,
     DialogFormComponent
   ],

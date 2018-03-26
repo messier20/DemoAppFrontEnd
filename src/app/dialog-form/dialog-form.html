@@ -6,24 +6,18 @@
     <div class="form-group col-md-6">
       <div class="container">
         <div class="panel panel-info">
-          <div class="panel-body"><b>Leasing Information</b></div>
-        </div>
-      </div>
-      <div *ngFor="let element of leasingModelArray" class="container">
-        <div class="panel panel-info">
-          <div class="panel-body"><i>{{element.heading}}: </i>{{element.value}}</div>
+          <div class="panel-body" id="label"><b>Leasing Information</b></div>
+          <div class="panel-body" *ngFor="let element of leasingModelArray"><i>{{element.heading}}: </i>{{element.value}}
+          </div>
         </div>
       </div>
     </div>
     <div class="form-group col-md-6">
       <div class="container">
         <div class="panel panel-info">
-          <div class="panel-body"><b>{{customerInfoLabels[0]}}</b></div>
-        </div>
-      </div>
-      <div *ngFor="let element of customerInfoArray" class="container">
-        <div class="panel panel-info">
-          <div class="panel-body"><i>{{element.heading}}: </i>{{element.value}}</div>
+          <div class="panel-body" id="labelis"><b>{{customerInfoLabels[0]}}</b></div>
+          <div class="panel-body" *ngFor="let element of customerInfoArray"><i>{{element.heading}}: </i>{{element.value}}
+          </div>
         </div>
       </div>
     </div>
