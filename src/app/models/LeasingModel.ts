@@ -14,7 +14,6 @@ export class LeasingModel {
   contractFee: string;
   paymentDate: number;
 
-  private leasingModelArray: string[];
 
   constructor(leasingModel?: LeasingModel) {
     if (leasingModel) {
@@ -34,21 +33,5 @@ export class LeasingModel {
     }
   }
 
-  public toArray(): string[] {
-    this.leasingModelArray[0] = this.customerType;
-    this.leasingModelArray[1] = this.assetType;
-    this.leasingModelArray[2] = this.carBrand;
-    this.leasingModelArray[3] = this.carModel;
-    this.leasingModelArray[4] = this.manufacturedDate;
-    this.leasingModelArray[5] = this.enginePower.toString();
-    this.leasingModelArray[6] = this.assetPrice.toString();
-    this.leasingModelArray[7] = this.advancePaymentPercentage.toString();
-    this.leasingModelArray[8] = this.advancePaymentAmount;
-    this.leasingModelArray[9] = this.leasePeriodInMonths.toString();
-    this.leasingModelArray[10] = this.margin.toString();
-    this.leasingModelArray[11] = this.contractFee;
-    this.paymentDate[12] = this.paymentDate;
 
-    return this.leasingModelArray;
-  }
 }

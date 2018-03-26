@@ -13,6 +13,7 @@ import {MatDialog} from '@angular/material';
   templateUrl: './customer-info-form.component.html',
   styleUrls: ['./customer-info-form.component.css']
 })
+
 export class CustomerInfoFormComponent implements OnInit {
   formLabels: String[];
   infoForm: FormGroup;
