@@ -49,7 +49,7 @@ export class PrivateformComponent implements OnInit {
     } else {
       this.minAssetPrice = 5000;
     }
-    this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice)]);
+    this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice), Validators.max(9999999)]);
     this.leasingForm.get('assetPrice').updateValueAndValidity();
   }
 
