@@ -23,21 +23,7 @@ export class DialogFormComponent {
   businessCustomerInfo: BusinessCustomerInfo;
   customerInfoLabels: string[];
 
-  leasingModelArray = [
-    {heading: '', value: ''},
-    {heading: '', value: ''},
-    {heading: '', value: ''},
-    {heading: '', value: ''},
-    {heading: '', value: ''},
-    {heading: '', value: ''},
-    {heading: '', value: ''},
-    {heading: '', value: ''},
-    {heading: '', value: ''},
-    {heading: '', value: ''},
-    {heading: '', value: ''},
-    {heading: '', value: ''},
-    {heading: '', value: ''}
-  ];
+  leasingModelArray = [];
 
   customerInfoArray = [];
 
@@ -87,22 +73,20 @@ export class DialogFormComponent {
   }
 
   private setupLeasingModelArray() {
-    for (let i = 0; i < this.leasingLabels.length; i++) {
-      this.leasingModelArray[i].heading = this.leasingLabels[i];
-    }
 
-    this.leasingModelArray[0].value = this.leasingModel.customerType;
-    this.leasingModelArray[1].value = this.leasingModel.assetType;
-    this.leasingModelArray[2].value = this.leasingModel.carBrand;
-    this.leasingModelArray[3].value = this.leasingModel.carModel;
-    this.leasingModelArray[4].value = this.leasingModel.manufacturedDate;
-    this.leasingModelArray[5].value = String(this.leasingModel.enginePower);
-    this.leasingModelArray[6].value = String(this.leasingModel.assetPrice);
-    this.leasingModelArray[7].value = String(this.leasingModel.advancePaymentPercentage);
-    this.leasingModelArray[8].value = String(this.leasingModel.advancePaymentAmount);
-    this.leasingModelArray[9].value = String(this.leasingModel.leasePeriodInMonths);
-    this.leasingModelArray[10].value = String(this.leasingModel.margin);
-    this.leasingModelArray[11].value = String(this.leasingModel.contractFee);
-    this.leasingModelArray[12].value = String(this.leasingModel.paymentDate);
+    this.leasingModelArray.push({heading: this.leasingLabels[0], value: this.leasingModel.customerType});
+    this.leasingModelArray.push({heading: this.leasingLabels[1], value: this.leasingModel.assetType});
+    this.leasingModelArray.push({heading: this.leasingLabels[2], value: this.leasingModel.carBrand});
+    this.leasingModelArray.push({heading: this.leasingLabels[3], value: this.leasingModel.carModel});
+    this.leasingModelArray.push({heading: this.leasingLabels[4], value: this.leasingModel.manufacturedDate});
+    this.leasingModelArray.push({heading: this.leasingLabels[5], value: this.leasingModel.enginePower.toString()});
+    this.leasingModelArray.push({heading: this.leasingLabels[6], value: this.leasingModel.assetPrice.toString()});
+    this.leasingModelArray.push({heading: this.leasingLabels[7], value: this.leasingModel.advancePaymentPercentage.toString()});
+    this.leasingModelArray.push({heading: this.leasingLabels[8], value: this.leasingModel.advancePaymentAmount});
+    this.leasingModelArray.push({heading: this.leasingLabels[9], value: this.leasingModel.leasePeriodInMonths.toString()});
+    this.leasingModelArray.push({heading: this.leasingLabels[10], value: this.leasingModel.margin.toString()});
+    this.leasingModelArray.push({heading: this.leasingLabels[11], value: this.leasingModel.contractFee});
+    this.leasingModelArray.push({heading: this.leasingLabels[12], value: this.leasingModel.paymentDate.toString()});
+
   }
 }

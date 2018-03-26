@@ -16,7 +16,6 @@ import {LeasingFormLabels} from '../models/LeasingFormLabels';
 })
 export class PrivateFormComponent implements OnInit {
 
-
   leasingModel: LeasingModel;
   leasingForm: FormGroup;
   leasingFormLabels = new LeasingFormLabels();

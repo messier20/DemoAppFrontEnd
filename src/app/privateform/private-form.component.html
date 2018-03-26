@@ -5,7 +5,6 @@
 
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
-
         <label for="customerType">{{leasingFormLabels.CUSTOMER_TYPE}}</label>
         <select class="form-control" id="customerType" required name="customerTypeField"
                 formControlName="customerType" (change)="setMinAssetPrice()">
@@ -16,9 +15,7 @@
              class="alert-danger alert">
           Customer type is required
         </div>
-
       </div>
-
 
       <div class="form-group col-md-4 col-sm-6">
         <label for="assetType">{{leasingFormLabels.ASSET_TYPE}}</label>
@@ -40,12 +37,10 @@
                 (change)="selectBrandHandler()" required>
           <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
         </select>
-
         <div [hidden]="leasingForm.get('carBrand').valid || leasingForm.get('carBrand').untouched"
              class="alert-danger alert">
           Car Brand is required
         </div>
-
       </div>
 
       <div class="form-group col-md-4 col-sm-6">
@@ -128,7 +123,7 @@
       <div class="form-group col-md-4 col-sm-6">
         <label for="contractFee">{{leasingFormLabels.CONTRACT_FEE}}</label>
         <input type="text" class="form-control" id="contractFee" name="contractFeeField"
-               formControlName="contractFee" disabled >
+               formControlName="contractFee" disabled>
       </div>
 
     </div>
@@ -143,9 +138,6 @@
              class="alert alert-danger">
           Margin must be between 3.2% and 100 %
         </div>
-
-
-
       </div>
 
       <div class="form-group col-md-4 col-sm-6">
@@ -172,7 +164,8 @@
         </select>
       </div>
     </div>
-    <button type="submit" class="btn btn-success" [disabled]="!leasingForm.valid" (click)="setLeasingModel()">Submit form
+    <button type="submit" class="btn btn-success" [disabled]="!leasingForm.valid" (click)="setLeasingModel()">Submit
+      form
     </button>
   </form>
 
