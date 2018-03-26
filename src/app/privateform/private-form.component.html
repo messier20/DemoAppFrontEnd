@@ -73,7 +73,7 @@
         <label for="enginePower">{{leasingFormLabels.ENGINE_POWER}}</label>
         <input type="number" class="form-control" id="enginePower"
                formControlName="enginePower"
-               name="enginePowerForm">
+               name="enginePowerForm" min="1" max="9999">
 
         <div [hidden]="leasingForm.get('enginePower').valid || leasingForm.get('enginePower').untouched"
              class="alert-danger alert">
@@ -88,6 +88,7 @@
         <input type="number" class="form-control" id="assetPrice" required
                formControlName="assetPrice"
                name="assetPriceField"
+               min="5000" max="9999999"
                (keyup)=calcAdvancePaymentAmountAndContractFee() (change)=calcAdvancePaymentAmountAndContractFee()>
 
         <div [hidden]="leasingForm.get('assetPrice').valid || leasingForm.get('assetPrice').untouched"
@@ -100,6 +101,7 @@
         <input type="number" class="form-control" id="advancePaymentPercentage"
                formControlName="advancePaymentPercentage"
                name="advancePaymentPercentageField"
+               min="10" max="100"
                (keyup)=calcAdvancePaymentAmountAndContractFee()
                (change)="calcAdvancePaymentAmountAndContractFee()">
 
@@ -132,7 +134,7 @@
       <div class="form-group col-md-4 col-sm-6">
         <label for="margin">{{leasingFormLabels.MARGIN}}</label>
         <input type="number" class="form-control" id="margin" required
-               formControlName="margin" name="margin" step="0.1">
+               formControlName="margin" name="margin" step="0.1" min="3.2" max="100">
 
         <div [hidden]="leasingForm.get('margin').valid || leasingForm.get('margin').untouched"
              class="alert alert-danger">

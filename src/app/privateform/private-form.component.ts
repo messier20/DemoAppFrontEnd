@@ -47,6 +47,7 @@ export class PrivateFormComponent implements OnInit {
     }
     this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice), Validators.max(9999999)]);
     this.leasingForm.get('assetPrice').updateValueAndValidity();
+    document.getElementById('assetPrice').setAttribute('min', this.minAssetPrice.toString());
   }
 
   selectBrandHandler() {
@@ -79,7 +80,7 @@ export class PrivateFormComponent implements OnInit {
       carBrand: ['', [Validators.required]],
       carModel: ['', [Validators.required]],
       manufacturedDate: ['', [Validators.required]],
-      enginePower: ['', [Validators.required, Validators.min(0), Validators.max(9999)]],
+      enginePower: ['', [Validators.required, Validators.min(1), Validators.max(9999)]],
       advancePaymentAmount: ['', [Validators.required, Validators.min(500), Validators.max(9999999)]],
       leasePeriodInMonths: ['', [Validators.required]],
       contractFee: ['', [Validators.required]],
