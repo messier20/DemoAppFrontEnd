@@ -53,7 +53,7 @@ export class CustomerInfoFormComponent implements OnInit {
     this.infoForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(40)]],
       code: ['', [Validators.required, Validators.maxLength(15), Validators.pattern('^\\d+$')]],
-      email: ['', [Validators.required, Validators.maxLength(65), Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
+      email: ['', [Validators.required, Validators.maxLength(65), Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?'), Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^\\d+$')]],
       address: ['', [Validators.required, Validators.maxLength(80)]],
       lastName: ['', [Validators.required, Validators.maxLength(40)]]
