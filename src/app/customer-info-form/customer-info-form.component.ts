@@ -53,29 +53,36 @@ export class CustomerInfoFormComponent implements OnInit {
     this.infoForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(40)]],
       code: ['', [Validators.required, Validators.maxLength(15), Validators.pattern('^\\d+$')]],
-      email: ['', [Validators.required, Validators.maxLength(65), Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?'), Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^\\d+$')]],
+      email: ['', [Validators.required, Validators.maxLength(65), Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(15), Validators.pattern('^\\d+$')]],
       address: ['', [Validators.required, Validators.maxLength(80)]],
       lastName: ['', [Validators.required, Validators.maxLength(40)]]
     });
   }
 
   setCustomerInfo() {
-
-
-
     if (this.isCustomerPrivate()) {
       this.privateCustomerInfo = this.infoForm.value;
-      if (!this.privateCustomerInfo.phoneNumber.startsWith('+370')) {
-        this.privateCustomerInfo.phoneNumber = '+370' + this.privateCustomerInfo.phoneNumber;
+      if (!this.privateCustomerInfo.phoneNumber.startsWith('+')) {
+        this.privateCustomerInfo.phoneNumber = '+' + this.privateCustomerInfo.phoneNumber;
       }
       this.dataService.setPrivateInfo(this.privateCustomerInfo);
     } else {
       this.businessCustomerInfo = this.infoForm.value;
-      if (!this.businessCustomerInfo.phoneNumber.startsWith('+370')) {
-        this.businessCustomerInfo.phoneNumber = '+370' + this.businessCustomerInfo.phoneNumber;
+      if (!this.businessCustomerInfo.phoneNumber.startsWith('+')) {
+        this.businessCustomerInfo.phoneNumber = '+' + this.businessCustomerInfo.phoneNumber;
       }
       this.dataService.setBusinessInfo(this.businessCustomerInfo);
+    }
+  }
+
+  _keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+    const inputChar = String.fromCharCode(event.charCode);
+
+    if (!pattern.test(inputChar)) {
+      // invalid character, prevent input
+      event.preventDefault();
     }
   }
 }

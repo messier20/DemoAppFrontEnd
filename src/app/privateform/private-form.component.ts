@@ -5,21 +5,19 @@ import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
-import {TextLabels} from '../models/TextLabels';
-import {forEach} from "@angular/router/src/utils/collection";
+import {LeasingFormLabels} from '../models/LeasingFormLabels';
 
 
 @Component({
   selector: 'app-privateform',
-  templateUrl: './privateform.component.html',
-  styleUrls: ['./privateform.component.css']
+  templateUrl: './private-form.component.html',
+  styleUrls: ['./private-form.component.css']
 })
-export class PrivateformComponent implements OnInit {
-
+export class PrivateFormComponent implements OnInit {
 
   leasingModel: LeasingModel;
   leasingForm: FormGroup;
-  leasingFormLabels: string[];
+  leasingFormLabels = new LeasingFormLabels();
 
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
@@ -29,15 +27,12 @@ export class PrivateformComponent implements OnInit {
   availableDays = [15, 30];
   minAssetPrice;
 
-  // assetPrice;
-
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
     this.cars = new CarList().cars;
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
     this.leasingForm.get('assetType').setValue('Vehicle');
-    this.leasingFormLabels = new TextLabels().leasingFormLabels;
   }
 
   ngOnInit() {
@@ -75,21 +70,9 @@ export class PrivateformComponent implements OnInit {
 
 
   submitForm() {
-    console.log('Customer type: ' + this.leasingModel.customerType);
-    console.log('Asset type: ' + this.leasingModel.assetType);
-    console.log('Engine power: ' + this.leasingModel.enginePower);
-    console.log('Asset price: ' + this.leasingModel.assetPrice);
-    console.log('Advance payment percentage: ' + this.leasingModel.advancePaymentPercentage);
-    console.log('Lease period in months: ' + this.leasingModel.leasePeriodInMonths);
-    console.log('Margin: ' + this.leasingModel.margin);
-    console.log('Payment date: ' + this.leasingModel.paymentDate);
-
-
   }
 
   createValidForm() {
-
-
     this.leasingForm = this.formBuilder.group({
       customerType: ['', [Validators.required]],
       assetType: ['', [Validators.required]],
@@ -109,17 +92,14 @@ export class PrivateformComponent implements OnInit {
   }
 
   setLeasingModel() {
-
     if (!this.leasingForm.valid) {
       Object.keys(this.leasingForm.controls).forEach(field => {
         const control = this.leasingForm.get(field);
-        control.markAsTouched({ onlySelf: true });
+        control.markAsTouched({onlySelf: true});
       });
-    }
-    else {
+    } else {
       this.router.navigate(['/customerInfoForm']);
     }
-
     this.leasingModel = this.leasingForm.value;
     this.dataService.setLeasingModel(this.leasingModel);
   }

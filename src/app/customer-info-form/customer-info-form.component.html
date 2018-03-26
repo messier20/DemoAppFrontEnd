@@ -3,27 +3,20 @@
 
   <form (ngSubmit)="submitForm()" [formGroup]="infoForm">
 
-
     <div class="form-row">
-
-
       <div class="form-group col-md-4 col-sm-6">
         <label for="name">{{formLabels[1]}}</label>
         <input type="text" class="form-control" id="name" required
                formControlName="name" name="name">
-
         <div [hidden]="infoForm.get('name').valid || infoForm.get('name').untouched"
              class="alert alert-danger">
           {{formLabels[1]}} field is required
         </div>
       </div>
-
-
       <div class="form-group col-md-4 col-sm-6" id="hiddenName">
         <label for="lastName">{{formLabels[2]}}</label>
         <input type="text" class="form-control" id="lastName" required
                formControlName="lastName" name="lastName">
-
         <div [hidden]="infoForm.get('lastName').valid || infoForm.get('lastName').untouched"
              class="alert alert-danger">
           {{formLabels[2]}} field is required
@@ -33,24 +26,19 @@
 
 
     <div class="form-row">
-
-
       <div class="form-group col-md-4 col-sm-6">
         <label for="code">{{formLabels[3]}}</label>
         <input type="number" class="form-control" id="code" required
                formControlName="code" name="code">
-
         <div [hidden]="infoForm.get('code').valid || infoForm.get('code').untouched"
              class="alert alert-danger">
           {{formLabels[3]}} field is required
         </div>
       </div>
-
       <div class="form-group col-md-4 col-sm-6">
         <label for="email">{{formLabels[4]}}</label>
         <input type="text" class="form-control" id="email" required
                formControlName="email" name="email" placeholder="Ex: email@domain.com">
-
         <div [hidden]="infoForm.get('email').valid || infoForm.get('email').untouched"
              class="alert alert-danger">
           Must be a valid {{formLabels[4]}} address
@@ -58,38 +46,34 @@
       </div>
     </div>
 
-
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
         <label for="phoneNumber">{{formLabels[5]}}</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">+370</span>
+            <span class="input-group-text" id="plusSign">+</span>
           </div>
           <input type="text" class="form-control" id="phoneNumber" required
-                 formControlName="phoneNumber" name="phoneNumber" maxlength="8">
+                 formControlName="phoneNumber" name="phoneNumber" (keypress)="_keyPress($event)">
         </div>
-
         <div [hidden]="infoForm.get('phoneNumber').valid || infoForm.get('phoneNumber').untouched"
              class="alert alert-danger">
-          {{formLabels[5]}} field is required
+          {{formLabels[5]}} must be between 10 and 15 digits long
         </div>
       </div>
-
-
       <div class="form-group col-md-4 col-sm-6">
         <label for="address">{{formLabels[6]}}</label>
         <input type="text" class="form-control" id="address" required
                formControlName="address" name="address">
-
         <div [hidden]="infoForm.get('address').valid || infoForm.get('address').untouched"
              class="alert alert-danger">
           {{formLabels[6]}} field is required
         </div>
       </div>
-
     </div>
-    <button type="submit" class="btn btn-success" [disabled]="!infoForm.valid"  (click)="setCustomerInfo()">Submit form
+
+    <button type="submit" class="btn btn-success" [disabled]="!infoForm.valid" (click)="setCustomerInfo()">Submit form
     </button>
+
   </form>
 </div>
