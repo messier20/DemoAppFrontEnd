@@ -95,14 +95,14 @@ export class PrivateformComponent implements OnInit {
       carBrand: ['', [Validators.required]],
       carModel: ['', [Validators.required]],
       manufacturedDate: ['', [Validators.required]],
-      enginePower: ['', [Validators.required]],
-      advancePaymentAmount: ['', [Validators.required]],
+      enginePower: ['', [Validators.required, Validators.min(0), Validators.max(9999)]],
+      advancePaymentAmount: ['', [Validators.required, Validators.min(500), Validators.max(9999999)]],
       leasePeriodInMonths: ['', [Validators.required]],
       contractFee: ['', [Validators.required]],
       paymentDate: ['', [Validators.required]],
-      assetPrice: ['', [Validators.required, Validators.min(this.minAssetPrice)]],
-      advancePaymentPercentage: ['', [Validators.required, Validators.min(10)]],
-      margin: ['', [Validators.required, Validators.min(3.2)]],
+      assetPrice: ['', [Validators.required, Validators.min(this.minAssetPrice), Validators.max(9999999)]],
+      advancePaymentPercentage: ['', [Validators.required, Validators.min(10), Validators.max(100)]],
+      margin: ['', [Validators.required, Validators.min(3.2), Validators.max(100)]],
 
     });
   }
