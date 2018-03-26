@@ -59,7 +59,7 @@ export class CustomerInfoFormComponent implements OnInit {
   private createValidForm() {
     this.infoForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(40)]],
-      code: ['', [Validators.required, Validators.maxLength(15), Validators.pattern('^\\d+$')]],
+      code: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^\\d+$')]],
       email: ['', [Validators.required, Validators.maxLength(65), Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
       phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(15), Validators.pattern('^\\d+$')]],
       address: ['', [Validators.required, Validators.maxLength(80)]],
