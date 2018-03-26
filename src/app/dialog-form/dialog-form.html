@@ -2,17 +2,38 @@
 
 <h1 mat-dialog-title>Confirmation required</h1>
 <div mat-dialog-content>
-  <div *ngFor="let element of leasingModelArray" class="container">
-    <div class="panel panel-info">
-      <div class="panel-heading">{{element.heading}}</div>
-      <div class="panel-body">{{element.value}}</div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div class="container">
+        <div class="panel panel-info">
+          <div class="panel-body"><b>Leasing Information</b></div>
+        </div>
+      </div>
+      <div *ngFor="let element of leasingModelArray" class="container">
+        <div class="panel panel-info">
+          <div class="panel-body"><i>{{element.heading}}: </i>{{element.value}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <div class="container">
+        <div class="panel panel-info">
+          <div class="panel-body"><b>{{customerInfoLabels[0]}}</b></div>
+        </div>
+      </div>
+      <div *ngFor="let element of customerInfoArray" class="container">
+        <div class="panel panel-info">
+          <div class="panel-body"><i>{{element.heading}}: </i>{{element.value}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 <div mat-dialog-actions>
   <div class="float-xl-right">
     <button mat-button mat-dialog-close class="btn btn-default" style="margin-right: 10px">Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-primary" (click)="sendFormToBackend()">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-primary"
+            (click)="sendFormToBackend()">
       Confirm
     </button>
   </div>

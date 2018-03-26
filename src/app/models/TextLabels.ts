@@ -7,8 +7,8 @@ export class TextLabels {
     this._privateInfoLabels = ['Personal Details', 'First Name', 'Last Name', 'Personal Code', 'Email', 'Phone no.', 'Address'];
     this._businessInfoLabels = ['Company Details', 'Company Name', '', 'Company Code', 'Email', 'Phone no.', 'Address'];
     this._leasingFormLabels = ['Customer Type', 'Asset Type', 'Car Brand', 'Car Model', 'Manufactured Date',
-      'Engine Power', 'Asset Price', 'Advance Payment Percentage', 'Advance Payment Amount', 'Contract Fee',
-      'Margin', 'Leasing Period (months)', 'Payment Day'];
+      'Engine Power(kW)', 'Asset Price(€)', 'Advance Payment Percentage(%)', 'Advance Payment Amount(€)', 'Contract Fee(€)',
+      'Margin(%)', 'Leasing Period (months)', 'Payment Day'];
   }
 
   get privateInfoLabels(): string[] {

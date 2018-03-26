@@ -12,8 +12,15 @@ import {TextLabels} from '../models/TextLabels';
   styleUrls: ['./dialog-form.css']
 })
 export class DialogFormComponent {
-  leasingModel;
+
+  privateCustomer: boolean;
+
+  leasingModel: LeasingModel;
   leasingLabels;
+
+  privateCustomerInfo: PrivateCustomerInfo;
+  businessCustomerInfo: BusinessCustomerInfo;
+  customerInfoLabels: string[];
 
   leasingModelArray = [
     {heading: '', value: ''},
@@ -31,24 +38,57 @@ export class DialogFormComponent {
     {heading: '', value: ''}
   ];
 
+  customerInfoArray = [];
+
   constructor(private dataService: DataStorageService, private backendService: BackendService) {
     const labels = new TextLabels();
+
     this.leasingModel = this.dataService.getLeasingModel();
     this.leasingLabels = labels.leasingFormLabels;
 
-    this.leasingModelArray[0].heading = this.leasingLabels[0];
-    this.leasingModelArray[1].heading = this.leasingLabels[1];
-    this.leasingModelArray[2].heading = this.leasingLabels[2];
-    this.leasingModelArray[3].heading = this.leasingLabels[3];
-    this.leasingModelArray[4].heading = this.leasingLabels[4];
-    this.leasingModelArray[5].heading = this.leasingLabels[5];
-    this.leasingModelArray[6].heading = this.leasingLabels[6];
-    this.leasingModelArray[7].heading = this.leasingLabels[7];
-    this.leasingModelArray[8].heading = this.leasingLabels[8];
-    this.leasingModelArray[9].heading = this.leasingLabels[9];
-    this.leasingModelArray[10].heading = this.leasingLabels[10];
-    this.leasingModelArray[11].heading = this.leasingLabels[11];
-    this.leasingModelArray[12].heading = this.leasingLabels[12];
+    this.isCustomerPrivate();
+    if (this.privateCustomer) {
+      this.privateCustomerInfo = this.dataService.getPrivateCustomerInfo();
+      this.customerInfoLabels = labels.privateInfoLabels;
+      this.setupPrivateCustomerInfoArray();
+    } else {
+      this.businessCustomerInfo = this.dataService.getBusinessCustomerInfo();
+      this.customerInfoLabels = labels.businessInfoLabels;
+      this.setupBusinessCustomerInfoArray();
+    }
+
+    this.setupLeasingModelArray();
+  }
+
+  sendFormToBackend() {
+    this.backendService.submitForm(this.leasingModel);
+  }
+
+  private isCustomerPrivate() {
+    this.privateCustomer = this.dataService.getLeasingModel().customerType === 'Private';
+  }
+
+  private setupPrivateCustomerInfoArray() {
+    this.customerInfoArray.push({heading: this.customerInfoLabels[1], value: this.privateCustomerInfo.name});
+    this.customerInfoArray.push({heading: this.customerInfoLabels[2], value: this.privateCustomerInfo.lastName});
+    this.customerInfoArray.push({heading: this.customerInfoLabels[3], value: this.privateCustomerInfo.code.toString()});
+    this.customerInfoArray.push({heading: this.customerInfoLabels[4], value: this.privateCustomerInfo.email});
+    this.customerInfoArray.push({heading: this.customerInfoLabels[5], value: this.privateCustomerInfo.phoneNumber});
+    this.customerInfoArray.push({heading: this.customerInfoLabels[6], value: this.privateCustomerInfo.address});
+  }
+
+  private setupBusinessCustomerInfoArray() {
+    this.customerInfoArray.push({heading: this.customerInfoLabels[1], value: this.businessCustomerInfo.name});
+    this.customerInfoArray.push({heading: this.customerInfoLabels[3], value: this.businessCustomerInfo.code.toString()});
+    this.customerInfoArray.push({heading: this.customerInfoLabels[4], value: this.businessCustomerInfo.email});
+    this.customerInfoArray.push({heading: this.customerInfoLabels[5], value: this.businessCustomerInfo.phoneNumber});
+    this.customerInfoArray.push({heading: this.customerInfoLabels[6], value: this.businessCustomerInfo.address});
+  }
+
+  private setupLeasingModelArray() {
+    for (let i = 0; i < this.leasingLabels.length; i++) {
+      this.leasingModelArray[i].heading = this.leasingLabels[i];
+    }
 
     this.leasingModelArray[0].value = this.leasingModel.customerType;
     this.leasingModelArray[1].value = this.leasingModel.assetType;
@@ -64,9 +104,4 @@ export class DialogFormComponent {
     this.leasingModelArray[11].value = String(this.leasingModel.contractFee);
     this.leasingModelArray[12].value = String(this.leasingModel.paymentDate);
   }
-
-  sendFormToBackend() {
-    this.backendService.submitForm(this.leasingModel);
-  }
-
 }
