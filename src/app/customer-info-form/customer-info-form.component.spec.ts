@@ -1,24 +1,23 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {DisplayFormComponent} from './display-form.component';
+import {CustomerInfoFormComponent} from './customer-info-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
-import {AppRoutingModule} from '../app-routing.module';
 import {APP_BASE_HREF} from '@angular/common';
 import {MatDialogModule} from '@angular/material';
-import {RouterModule} from '@angular/router';
-import {PrivateCustomerPersonalFormComponent} from '../private-customer-personal-form/private-customer-personal-form.component';
 import {PrivateformComponent} from '../privateform/privateform.component';
-import {BusinessCustomerPersonalFormComponent} from '../business-customer-personal-form/business-customer-personal-form.component';
+import {AppRoutingModule} from '../app-routing.module';
+import {DisplayFormComponent} from '../display-form/display-form.component';
+import {RouterModule} from '@angular/router';
 
-describe('DisplayFormComponent', () => {
-  let component: DisplayFormComponent;
-  let fixture: ComponentFixture<DisplayFormComponent>;
+describe('CustomerInfoFormComponent', () => {
+  let component: CustomerInfoFormComponent;
+  let fixture: ComponentFixture<CustomerInfoFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BusinessCustomerPersonalFormComponent, PrivateformComponent, PrivateCustomerPersonalFormComponent, DisplayFormComponent],
+      declarations: [CustomerInfoFormComponent, PrivateformComponent, CustomerInfoFormComponent, DisplayFormComponent],
       imports: [
         BrowserModule,
         AppRoutingModule,
@@ -37,7 +36,7 @@ describe('DisplayFormComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DisplayFormComponent);
+    fixture = TestBed.createComponent(CustomerInfoFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
