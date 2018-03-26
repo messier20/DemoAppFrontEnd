@@ -5,7 +5,6 @@ import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
-import {TextLabels} from '../models/TextLabels';
 import {LeasingFormLabels} from '../models/LeasingFormLabels';
 
 
@@ -71,7 +70,6 @@ export class PrivateFormComponent implements OnInit {
 
 
   submitForm() {
-    this.router.navigate(['/customerInfoForm']);
   }
 
   createValidForm() {
@@ -94,6 +92,14 @@ export class PrivateFormComponent implements OnInit {
   }
 
   setLeasingModel() {
+    if (!this.leasingForm.valid) {
+      Object.keys(this.leasingForm.controls).forEach(field => {
+        const control = this.leasingForm.get(field);
+        control.markAsTouched({onlySelf: true});
+      });
+    } else {
+      this.router.navigate(['/customerInfoForm']);
+    }
     this.leasingModel = this.leasingForm.value;
     this.dataService.setLeasingModel(this.leasingModel);
   }
