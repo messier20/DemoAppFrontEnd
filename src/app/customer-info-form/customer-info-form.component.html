@@ -58,7 +58,7 @@
         </div>
         <div [hidden]="infoForm.get('phoneNumber').valid || infoForm.get('phoneNumber').untouched"
              class="alert alert-danger">
-          {{formLabels[5]}} must be between 10 and 15 digits long
+          {{formLabels[5]}} must be 10-15 digits long
         </div>
       </div>
       <div class="form-group col-md-4 col-sm-6">
@@ -72,7 +72,7 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-success" [disabled]="!infoForm.valid" (click)="setCustomerInfo()">Submit form
+    <button type="submit" class="btn btn-success" (click)="setCustomerInfo()">Submit form
     </button>
 
   </form>
