@@ -170,9 +170,15 @@
                 required>
           <option *ngFor="let currentDay of availableDays" [value]="currentDay">{{currentDay}}</option>
         </select>
+
+        <div [hidden]="leasingForm.get('paymentDate').valid || leasingForm.get('paymentDate').untouched"
+             class="alert alert-danger">
+          Payment date is required.
+        </div>
+
       </div>
     </div>
-    <button type="submit" class="btn btn-success" [disabled]="!leasingForm.valid" (click)="setLeasingModel()">Submit form
+    <button type="submit" class="btn btn-success"  (click)="setLeasingModel()">Submit form
     </button>
   </form>
 

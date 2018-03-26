@@ -6,6 +6,7 @@ import {DataStorageService} from '../services/data-storage-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
 import {TextLabels} from '../models/TextLabels';
+import {forEach} from "@angular/router/src/utils/collection";
 
 
 @Component({
@@ -82,7 +83,7 @@ export class PrivateformComponent implements OnInit {
     console.log('Lease period in months: ' + this.leasingModel.leasePeriodInMonths);
     console.log('Margin: ' + this.leasingModel.margin);
     console.log('Payment date: ' + this.leasingModel.paymentDate);
-    this.router.navigate(['/customerInfoForm']);
+
 
   }
 
@@ -108,6 +109,17 @@ export class PrivateformComponent implements OnInit {
   }
 
   setLeasingModel() {
+
+    if (!this.leasingForm.valid) {
+      Object.keys(this.leasingForm.controls).forEach(field => {
+        const control = this.leasingForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+    }
+    else {
+      this.router.navigate(['/customerInfoForm']);
+    }
+
     this.leasingModel = this.leasingForm.value;
     this.dataService.setLeasingModel(this.leasingModel);
   }

@@ -61,6 +61,9 @@ export class CustomerInfoFormComponent implements OnInit {
   }
 
   setCustomerInfo() {
+
+
+
     if (this.isCustomerPrivate()) {
       this.privateCustomerInfo = this.infoForm.value;
       if (!this.privateCustomerInfo.phoneNumber.startsWith('+370')) {
