@@ -64,15 +64,15 @@
         <label for="phoneNumber">{{formLabels[5]}}</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">+</span>
+            <span class="input-group-text" id="plusSign">+</span>
           </div>
           <input type="text" class="form-control" id="phoneNumber" required
-                 formControlName="phoneNumber" name="phoneNumber">
+                 formControlName="phoneNumber" name="phoneNumber" (keypress)="_keyPress($event)">
         </div>
 
         <div [hidden]="infoForm.get('phoneNumber').valid || infoForm.get('phoneNumber').untouched"
-             class="alert alert-danger">
-          {{formLabels[5]}} must be between 10 and 15 digits long and contain only digits
+             class="alert alert-danger" >
+          {{formLabels[5]}} must be between 10 and 15 digits long
         </div>
       </div>
 
