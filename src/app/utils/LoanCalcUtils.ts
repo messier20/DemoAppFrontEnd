@@ -1,8 +1,9 @@
 import {Repayment} from '../models/Repayment';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {LeasingCalculator} from '../models/LeasingCalculator';
+import {DateUtils} from './DateUtils';
 
-export class LoanCalcs {
+export class LoanCalcUtils {
 
   private repaymentPlan: Repayment[];
   private lastRepayment: Repayment;
@@ -36,8 +37,8 @@ export class LoanCalcs {
   }
 
   private calculateFirstRepayment() {
-    this.lastDate = this.calcFirstPaymentDate();
-    this.repayment.repaymentDate(this.dateToString(this.lastDate));
+    this.lastDate = DateUtils.calcFirstPaymentDate();
+    this.repayment.repaymentDate(DateUtils.dateToString(this.lastDate));
     this.repayment.remainingAmountToRepay(this.leasingCalculator.assetPrice.toFixed(2));
     this.repayment.assetValuePaymentAmount(this.advancePaymentAmount.toFixed(2));
     this.repayment.interestPaymentAmount(Number(0).toFixed(2));
@@ -47,73 +48,12 @@ export class LoanCalcs {
   }
 
   private calculateNextRepayment() {
-    this.repayment.repaymentDate = this.dateToString(this.calcNextPaymentDate(this.lastRepayment.repaymentDate));
+    this.repayment.repaymentDate = DateUtils.dateToString(DateUtils.calcNextPaymentDate(this.lastRepayment.repaymentDate));
     this.repayment.remainingAmountToRepay = this.lastRepayment.remainingAmountToRepay - this.lastRepayment.assetValuePaymentAmount;
-    this.repayment.assetValuePaymentAmount;
-    this.repayment.interestPaymentAmount;
+    // this.repayment.assetValuePaymentAmount;
+    // this.repayment.interestPaymentAmount;
     this.repayment.contractFee = '';
-    this.repayment.totalPaymentAmount;
-  }
-
-  private calcFirstPaymentDate(): Date {
-    let date = this.getCurrentDate();
-    date = this.addMonthToPaymentDate(date);
-    date = this.setPaymentDay(date);
-    return date;
-  }
-
-  private calcNextPaymentDate(lastDate: Date): Date {
-    lastDate = this.addMonthToPaymentDate(lastDate);
-    lastDate = this.setPaymentDay(lastDate);
-    return lastDate;
-  }
-
-  private setPaymentDay(lastDate: Date): Date {
-    if (this.leasingCalculator.paymentDate === 15) {
-      lastDate.setDate(this.leasingCalculator.paymentDate);
-      return lastDate;
-    } else if (lastDate.getMonth() !== 1) {
-      lastDate.setDate(this.leasingCalculator.paymentDate);
-      return lastDate;
-    } else if ((lastDate.getFullYear() / 4) === 0) {
-      lastDate.setDate(29);
-      return lastDate;
-    } else {
-      lastDate.setDate(28);
-      return lastDate;
-    }
-  }
-
-  private addMonthToPaymentDate(lastDate: Date): Date {
-    lastDate.setMonth(lastDate.getMonth() + 1);
-    return lastDate;
-  }
-
-  private getCurrentDate(): Date {
-    return new Date();
-  }
-
-  private dateToString(date: Date): string {
-
-    let d;
-    let m;
-    const dd = date.getDate();
-    const mm = date.getMonth() + 1;
-    const yyyy = date.getFullYear();
-
-    if (dd < 10) {
-      d = '0' + dd;
-    } else {
-      d = dd;
-    }
-
-    if (mm < 10) {
-      m = '0' + mm;
-    } else {
-      m = mm;
-    }
-
-    return yyyy + '-' + m + '-' + d;
+    // this.repayment.totalPaymentAmount;
   }
 
   private addRepayment(repayment: Repayment) {
