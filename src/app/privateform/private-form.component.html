@@ -89,7 +89,8 @@
                formControlName="assetPrice"
                name="assetPriceField"
                min="5000" max="9999999"
-               (keyup)=calcAdvancePaymentAmountAndContractFee() (change)=calcAdvancePaymentAmountAndContractFee()>
+               (keyup)=calcAdvancePaymentAmountAndContractFee()
+               (change)=calcAdvancePaymentAmountAndContractFee()>
 
         <div [hidden]="leasingForm.get('assetPrice').valid || leasingForm.get('assetPrice').untouched"
              class="alert alert-danger">

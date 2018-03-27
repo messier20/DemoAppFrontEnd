@@ -4,7 +4,7 @@ import {BackendService} from '../services/backend.service';
 import {LeasingModel} from '../models/LeasingModel';
 import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
-import {TextLabels} from '../models/TextLabels';
+import {TextLabels} from '../constants/TextLabels';
 import {LeasingFormLabels} from '../models/LeasingFormLabels';
 
 @Component({
