@@ -1,0 +1,18 @@
+
+<button type="button"  class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+  Application ID {{lease.id.counter}}, submitted on {{lease.id.date}}
+
+</button>
+<div id="collapseExample" [ngbCollapse]="isCollapsed">
+  <div class="card">
+    <div class="card-body">
+      <h3>Application information</h3>
+      <div>
+        <label>{{leasingFormLabels.CUSTOMER_TYPE}}: </label>
+        <!--<span>{{lease.}}</span>-->
+
+      </div>
+    </div>
+  </div>
+</div>

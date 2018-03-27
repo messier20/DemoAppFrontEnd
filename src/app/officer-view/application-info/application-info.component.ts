@@ -1,21 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {DataStorageService} from "../services/data-storage-service.service";
-import {BackendService} from "../services/backend.service";
-import {LeasingModel} from "../models/LeasingModel";
-import {BusinessCustomerInfo} from "../models/businessCustomerInfo";
-import {PrivateCustomerInfo} from "../models/privateCustomerInfo";
-import {LeasingFormLabels} from "../models/LeasingFormLabels";
+import {Component, Input, OnInit} from '@angular/core';
+import {LeasingModel} from "../../models/LeasingModel";
+import {LeasingFormLabels} from "../../models/LeasingFormLabels";
+import {BusinessCustomerInfo} from "../../models/businessCustomerInfo";
+import {PrivateCustomerInfo} from "../../models/privateCustomerInfo";
+import {DataStorageService} from "../../services/data-storage-service.service";
+import {BackendService} from "../../services/backend.service";
 
 @Component({
-  selector: 'app-officer-view',
-  templateUrl: './officer-view.component.html',
-  styleUrls: ['./officer-view.component.css']
+  selector: 'app-application-info',
+  templateUrl: './application-info.component.html',
+  styleUrls: ['./application-info.component.css']
 })
-export class OfficerViewComponent implements OnInit {
+export class ApplicationInfoComponent implements OnInit {
 
-   leasesModel: LeasingModel[];
-   leasesModelList: LeasingModel[];
+
+  leasesModel: LeasingModel[];
+  leasesModelList: LeasingModel[];
   leasingFormLabels = new LeasingFormLabels();
   private businessCustomerModel: BusinessCustomerInfo;
   private privateCustomerModel: PrivateCustomerInfo;
@@ -37,6 +37,8 @@ export class OfficerViewComponent implements OnInit {
     this.refresh();
     this.setLeases();
   }
+
+  @Input() lease;
 
 
   refresh() {
@@ -77,10 +79,10 @@ export class OfficerViewComponent implements OnInit {
     //   });
     // console.log("getas", this.dataService.getLeasingModel());
     // console.log("getas2", this.leasesModel);
-      //   this.leases.forEach(lease => {
-      //   this.leasesModel = this.dataService.getLeasingModel();
-      //   console.log("leasesmodel", this.dataService.getLeasingModel());
-      // }));
+    //   this.leases.forEach(lease => {
+    //   this.leasesModel = this.dataService.getLeasingModel();
+    //   console.log("leasesmodel", this.dataService.getLeasingModel());
+    // }));
 
 
     //
@@ -96,4 +98,5 @@ export class OfficerViewComponent implements OnInit {
     // }
 
   }
+
 }

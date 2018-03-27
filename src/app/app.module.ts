@@ -18,6 +18,7 @@ import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form
 import {DialogFormComponent} from './dialog-form/dialog-form';
 import {OfficerViewComponent} from "./officer-view/officer-view.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { ApplicationInfoComponent } from './officer-view/application-info/application-info.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     PrivateFormComponent,
     CustomerInfoFormComponent,
     DialogFormComponent,
-    OfficerViewComponent
+    OfficerViewComponent,
+    ApplicationInfoComponent
   ],
   imports: [
     BrowserModule,
