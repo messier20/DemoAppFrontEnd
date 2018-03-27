@@ -5,6 +5,7 @@ import {DataStorageService} from '../services/data-storage-service.service';
 import {Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
 import {LeasingFormLabels} from '../models/LeasingFormLabels';
+import {CustomValidators} from '../constants/CustomValidators';
 
 @Component({
   selector: 'app-leasing-calculator',
@@ -38,10 +39,11 @@ export class LeasingCalculatorComponent implements OnInit {
   setMinAssetPrice() {
     if (this.leasingForm.get('customerType').value === 'Business') {
       this.minAssetPrice = 10000;
+      this.leasingForm.get('assetPrice').setValidators(CustomValidators.assetPriceBusinessValidator);
     } else {
       this.minAssetPrice = 5000;
+      this.leasingForm.get('assetPrice').setValidators(CustomValidators.assetPricePersonalValidator);
     }
-    this.leasingForm.get('assetPrice').setValidators([Validators.required, Validators.min(this.minAssetPrice), Validators.max(9999999)]);
     this.leasingForm.get('assetPrice').updateValueAndValidity();
     document.getElementById('assetPrice').setAttribute('min', this.minAssetPrice.toString());
   }
@@ -60,25 +62,24 @@ export class LeasingCalculatorComponent implements OnInit {
 
   createValidForm() {
     this.leasingForm = this.formBuilder.group({
-      customerType: ['', [Validators.required]],
-      assetType: ['', [Validators.required]],
-      carBrand: ['', [Validators.required]],
-      carModel: ['', [Validators.required]],
-      manufacturedDate: ['', [Validators.required]],
-      enginePower: ['', [Validators.required, Validators.min(1), Validators.max(9999)]],
-      advancePaymentAmount: ['', [Validators.required, Validators.min(500), Validators.max(9999999)]],
-      leasePeriodInMonths: ['', [Validators.required]],
-      contractFee: ['', [Validators.required]],
-      paymentDate: ['', [Validators.required]],
-      assetPrice: ['', [Validators.required, Validators.min(this.minAssetPrice), Validators.max(9999999)]],
-      advancePaymentPercentage: ['', [Validators.required, Validators.min(10), Validators.max(100)]],
-      margin: ['', [Validators.required, Validators.min(3.2), Validators.max(100)]],
-
+      customerType: ['', CustomValidators.customerTypeValidator],
+      assetType: ['', CustomValidators.assetTypeValidator],
+      carBrand: ['', CustomValidators.carBrandValidator],
+      carModel: ['', CustomValidators.carModelValidator],
+      manufacturedDate: ['', CustomValidators.manufacturedDateValidator],
+      enginePower: ['', CustomValidators.enginePowerValidator],
+      advancePaymentAmount: ['', CustomValidators.advancePaymentAmountValidator],
+      leasePeriodInMonths: ['', CustomValidators.leasePeriodInMonthsValidator],
+      contractFee: ['', CustomValidators.contractFeeValidator],
+      paymentDate: ['', CustomValidators.paymentDateValidator],
+      assetPrice: ['', CustomValidators.assetPricePersonalValidator],
+      advancePaymentPercentage: ['', CustomValidators.advancePaymentPercentageValidator],
+      margin: ['', CustomValidators.marginValidator],
     });
   }
 
   setLeasingCalculator() {
-    if (!this.leasingForm.valid){
+    if (!this.leasingForm.valid) {
       Object.keys(this.leasingForm.controls).forEach(field => {
         const control = this.leasingForm.get(field);
         control.markAsTouched({onlySelf: true});
