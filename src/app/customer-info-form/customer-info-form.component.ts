@@ -52,6 +52,7 @@ export class CustomerInfoFormComponent implements OnInit {
         control.markAsTouched({onlySelf: true});
       });
     } else {
+      this.dataService.setLeasingStatus('');
       this.dialog.open(DialogFormComponent);
     }
   }
@@ -73,12 +74,14 @@ export class CustomerInfoFormComponent implements OnInit {
       if (!this.privateCustomerInfo.phoneNumber.startsWith('+')) {
         this.privateCustomerInfo.phoneNumber = '+' + this.privateCustomerInfo.phoneNumber;
       }
+      this.privateCustomerInfo.customerType = this.dataService.getLeasingModel().customerType;
       this.dataService.setPrivateInfo(this.privateCustomerInfo);
     } else {
       this.businessCustomerInfo = this.infoForm.value;
       if (!this.businessCustomerInfo.phoneNumber.startsWith('+')) {
         this.businessCustomerInfo.phoneNumber = '+' + this.businessCustomerInfo.phoneNumber;
       }
+      this.businessCustomerInfo.customerType = this.dataService.getLeasingModel().customerType;
       this.dataService.setBusinessInfo(this.businessCustomerInfo);
     }
   }

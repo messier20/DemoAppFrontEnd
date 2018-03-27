@@ -5,12 +5,27 @@
 
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
-        <label for="idNumber">{{formLabels[1]}}</label>
-        <input type="text" class="form-control" id="idNumber" required
-               formControlName="idNumber" name="idNumber">
-        <div [hidden]="checkStatusForm.get('idNumber').valid || checkStatusForm.get('idNumber').untouched"
+        <label for="customerType">{{leasingFormLabels.CUSTOMER_TYPE}}</label>
+        <select class="form-control" id="customerType" required name="customerTypeField"
+                formControlName="customerType" >
+          <option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>
+        </select>
+
+        <div [hidden]="checkStatusForm.get('customerType').valid || checkStatusForm.get('customerType').untouched"
+             class="alert-danger alert">
+          Customer type is required
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4 col-sm-6">
+        <label for="id">{{formLabels[1]}}</label>
+        <input type="text" class="form-control" id="id" required
+               formControlName="id" name="id">
+        <div [hidden]="checkStatusForm.get('id').valid || checkStatusForm.get('id').untouched"
              class="alert alert-danger">
-          {{formLabels[1]}} field is required
+          {{formLabels[1]}} must be 24 characters long.
         </div>
       </div>
     </div>

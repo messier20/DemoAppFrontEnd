@@ -15,6 +15,7 @@ import {LeasingFormLabels} from '../models/LeasingFormLabels';
 export class DialogFormComponent {
 
   privateCustomer: boolean;
+  checkLeasingStatus: boolean;
 
   leasingModel: LeasingModel;
   leasingLabels;
@@ -27,10 +28,12 @@ export class DialogFormComponent {
 
   customerInfoArray = [];
 
-  constructor(private dataService: DataStorageService, private backendService: BackendService) {
+  constructor(private dataService: DataStorageService,
+              private backendService: BackendService) {
     const labels = new TextLabels();
 
     this.leasingModel = this.dataService.getLeasingModel();
+    this.checkLeasingStatus = !(this.dataService.getLeasingStatus() === '');
     this.leasingLabels = new LeasingFormLabels().leasingFormLabels;
 
     this.isCustomerPrivate();

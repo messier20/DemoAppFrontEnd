@@ -3,8 +3,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {BackendService} from '../services/backend.service';
 import {CheckStatusInfo} from '../models/CheckStatusInfo';
-import {LeasingModel} from '../models/LeasingModel';
-import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
+import {LeasingFormLabels} from '../models/LeasingFormLabels';
+import {DialogFormComponent} from '../dialog-form/dialog-form';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-check-leasing-status',
@@ -16,15 +17,13 @@ export class CheckLeasingStatusComponent implements OnInit {
   formLabels: String[];
   checkStatusForm: FormGroup;
   checkStatusInfo: CheckStatusInfo;
-
-  returnedForm: {
-    customerLeasingForm: LeasingModel;
-    privateCustomerForm: PrivateCustomerInfo;
-  };
+  leasingFormLabels = new LeasingFormLabels();
+  availableCustomerTypes = ['Private', 'Business'];
 
   constructor(private formBuilder: FormBuilder,
               private dataService: DataStorageService,
-              private backend: BackendService) {
+              private backend: BackendService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -34,34 +33,37 @@ export class CheckLeasingStatusComponent implements OnInit {
 
   createValidForm() {
     this.checkStatusForm = this.formBuilder.group({
-      idNumber: ['', [Validators.minLength(5), Validators.maxLength(6)]]
+      customerType: ['', [Validators.required]],
+      id: ['', [Validators.minLength(24), Validators.maxLength(24)]]
     });
   }
 
-  submitSearch() {
-    if (this.checkStatusInfo.customerType === 'Private') {
-      this.submitPrivateSearch();
-    } else {
-      this.submitBusinessSearch();
-    }
+  setCheckingInfo() {
+    this.checkStatusInfo = this.checkStatusForm.value;
   }
 
-  // submitPrivateSearch() {
-  //   this.backend.getPrivateFormById(this.checkStatusInfo).then(
-  //     function (returnedForm: {
-  //       customerLeasingForm: LeasingModel;
-  //       privateCustomerForm: PrivateCustomerInfo; }) {
-  //
-  //     // this.dataService.setLeasingModel(returnedForm.customerLeasingForm);
-  //   });
-  // }
+  submitSearch() {
+    if (!this.checkStatusForm.valid) {
+      Object.keys(this.checkStatusForm.controls).forEach(field => {
+        const control = this.checkStatusForm.get(field);
+        control.markAsTouched({onlySelf: true});
+      });
+    } else {
+
+      if (this.checkStatusInfo.customerType === 'Private') {
+        this.submitPrivateSearch();
+      } else if (this.checkStatusInfo.customerType === 'Business') {
+        this.submitBusinessSearch();
+      }
+    }
+  }
 
   submitPrivateSearch() {
     this.backend.getPrivateFormById(this.checkStatusInfo).then(
       data => {
-        console.log(data);
-        this.dataService.setLeasingModel(data.customerLeasingForm);
-        this.dataService.setPrivateInfo(data.privateCustomerForm);
+        this.dataService.setLeasingModel(DataStorageService.refactorCustomerType(data.customerLeasingForm));
+        this.dataService.setPrivateInfo(DataStorageService.refactorCustomerType(data.privateCustomerForm));
+        this.dialog.open(DialogFormComponent);
       },
       error => {
         console.log('Error: ' + error);
@@ -70,15 +72,17 @@ export class CheckLeasingStatusComponent implements OnInit {
   }
 
   submitBusinessSearch() {
-    // this.backend.getPrivateFormById(this.checkStatusInfo).then(
-    //   _returnedForm => {
-    //     this.returnedForm = _returnedForm;
-    //     this.dataService.setLeasingModel(this.returnedForm.customerLeasingForm);
-    //   });
-  }
-
-  setCheckingInfo() {
-    this.checkStatusInfo = this.checkStatusForm.value;
+    this.backend.getBusinessFormById(this.checkStatusInfo).then(
+      data => {
+        console.log(data);
+        this.dataService.setLeasingModel(DataStorageService.refactorCustomerType(data.customerLeasingForm));
+        this.dataService.setBusinessInfo(DataStorageService.refactorCustomerType(data.businessCustomerForm));
+        this.dialog.open(DialogFormComponent);
+      },
+      error => {
+        console.log('Error: ' + error);
+      }
+    );
   }
 
 }

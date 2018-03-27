@@ -8,8 +8,8 @@ import {CheckStatusInfo} from '../models/CheckStatusInfo';
 export class BackendService {
 
   httpLink = 'http://localhost:8080/';
-  businessCustomerLink = 'add-business-customer-form';
-  privateCustomerLink = 'add-private-customer-form';
+  businessCustomerLink = 'user/business';
+  privateCustomerLink = 'user/private';
 
   constructor(private http: HttpClient,
               private dataStorage: DataStorageService) {
@@ -18,8 +18,12 @@ export class BackendService {
   sendCompletedForm() {
     if (this.dataStorage.getLeasingModel().customerType === 'Private') {
       this.sendPrivateForm();
-    } else {
+
+    } else if (this.dataStorage.getLeasingModel().customerType === 'Business') {
       this.sendBusinessForm();
+
+    } else {
+      console.log('Error in backendService, could not determine customerType of form');
     }
   }
 
@@ -37,17 +41,16 @@ export class BackendService {
       customerLeasingForm: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
       privateCustomerForm: DataStorageService.refactorCustomerType(this.dataStorage.getPrivateInfo())
     };
-    console.log(postBody);
 
     this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
   }
 
   getBusinessFormById(checkData: CheckStatusInfo) {
-    return this.http.get(this.httpLink + this.businessCustomerLink + checkData.id).toPromise();
+    return this.http.get(this.httpLink + this.businessCustomerLink + '/' + checkData.id).toPromise();
   }
 
-  getPrivateFormById(chechkData: CheckStatusInfo) {
-    return this.http.get(this.httpLink + this.privateCustomerLink + chechkData.id).toPromise();
+  getPrivateFormById(checkData: CheckStatusInfo) {
+    return this.http.get(this.httpLink + this.privateCustomerLink + '/' + checkData.id).toPromise();
   }
 
 }
