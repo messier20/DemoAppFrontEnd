@@ -1,4 +1,5 @@
 export class Repayment {
+
   private _repaymentDate;
   private _remainingAmountToRepay;
   private _assetValuePaymentAmount;
@@ -6,14 +7,7 @@ export class Repayment {
   private _contractFee;
   private _totalPaymentAmount;
 
-
-  constructor(repaymentDate, remainingAmountToRepay, assetValuePaymentAmount, interestPaymentAmount, contractFee, totalPaymentAmount) {
-    this._repaymentDate = repaymentDate;
-    this._remainingAmountToRepay = remainingAmountToRepay;
-    this._assetValuePaymentAmount = assetValuePaymentAmount;
-    this._interestPaymentAmount = interestPaymentAmount;
-    this._contractFee = contractFee;
-    this._totalPaymentAmount = totalPaymentAmount;
+  constructor() {
   }
 
   get repaymentDate() {
@@ -38,5 +32,29 @@ export class Repayment {
 
   get totalPaymentAmount() {
     return this._totalPaymentAmount;
+  }
+
+  set repaymentDate(value) {
+    this._repaymentDate = value;
+  }
+
+  set remainingAmountToRepay(value) {
+    this._remainingAmountToRepay = value;
+  }
+
+  set assetValuePaymentAmount(value) {
+    this._assetValuePaymentAmount = value;
+  }
+
+  set interestPaymentAmount(value) {
+    this._interestPaymentAmount = value;
+  }
+
+  set contractFee(value) {
+    this._contractFee = value;
+  }
+
+  set totalPaymentAmount(value) {
+    this._totalPaymentAmount = value;
   }
 }

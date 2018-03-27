@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {LeasingModel} from '../models/LeasingModel';
-import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
-import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
+import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
+import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
 import {LeasingCalculator} from '../models/LeasingCalculator';
 import {Repayment} from '../models/Repayment';
 
@@ -58,7 +58,7 @@ export class DataStorageService {
   getLeasingCalculator() {
     return this.leasingCalculator;
   }
-  
+
   setRepaymentPlan(givenRepaymentPlan) {
     this.repaymentPlan = givenRepaymentPlan;
   }

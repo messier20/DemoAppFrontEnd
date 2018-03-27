@@ -1,7 +1,6 @@
 export class LeasingCalculator {
 
   customerType: string;
-  assetType: string;
   assetPrice: number;
   advancePaymentPercentage: number;
   advancePaymentAmount: string;
@@ -13,7 +12,6 @@ export class LeasingCalculator {
   constructor(leasingCalculator?: LeasingCalculator) {
     if (leasingCalculator) {
       this.customerType = leasingCalculator.customerType;
-      this.assetType = leasingCalculator.assetType;
       this.assetPrice = leasingCalculator.assetPrice;
       this.advancePaymentPercentage = leasingCalculator.advancePaymentPercentage;
       this.advancePaymentAmount = leasingCalculator.advancePaymentAmount;
