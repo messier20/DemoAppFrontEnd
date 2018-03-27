@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {LeasingModel} from '../models/LeasingModel';
 import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
+import {LeasingCalculator} from '../models/LeasingCalculator';
 
 @Injectable()
 export class DataStorageService {
@@ -9,6 +10,8 @@ export class DataStorageService {
   private leasingModel: LeasingModel;
   private businessCustomerInfo: BusinessCustomerInfo;
   private privateCustomerInfo: PrivateCustomerInfo;
+  private leasingCalculator: LeasingCalculator;
+
 
   static refactorCustomerType(form) {
 
@@ -44,6 +47,14 @@ export class DataStorageService {
 
   getPrivateInfo() {
     return this.privateCustomerInfo;
+  }
+
+  setLeasingCalculator(givenLeasingCalculator) {
+    this.leasingCalculator = givenLeasingCalculator;
+  }
+
+  getLeasingCalculator() {
+    return this.leasingCalculator;
   }
 
 }
