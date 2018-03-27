@@ -15,15 +15,50 @@
 
 <ul *ngFor="let lease of leases" class="list-group list-group-flush">
   private lease
-  <li class="list-group-item">
+  <li class="list-group-item"
+      >
+    {{lease.customerLeasingForm.carModel}} sm
+    <!--{{lease}}-->
 
-    {{lease.id.counter }} {{lease.customerLeasingForm.assetType}}
+    <ul *ngFor="let lease3 of leasesModel" class="list-group list-group-flush">
+      private lease model
+      <li class="list-group-item"
+      >
+        {{lease3.carModel}} aa
+        <!--{{lease}}-->
+
+
+        <!--{{lease.id.counter }} {{lease.customerLeasingForm.assetType}} {{lease.privateCustomerForm.customerType}}-->
+        <!--<app-post [myPost]="post" [showStars]="showStars" (postDelete)="onPostDeleted()"></app-post>-->
+      </li>
+    </ul>
+
+    <!--{{lease.id.counter }} {{lease.customerLeasingForm.assetType}} {{lease.privateCustomerForm.customerType}}-->
     <!--<app-post [myPost]="post" [showStars]="showStars" (postDelete)="onPostDeleted()"></app-post>-->
   </li>
-
-
 </ul>
 
+
+<ul *ngFor="let lease3 of leasesModel" class="list-group list-group-flush">
+  private lease model
+  <li class="list-group-item"
+  >
+    {{lease3.carModel}} aa
+    <!--{{lease}}-->
+
+
+    <!--{{lease.id.counter }} {{lease.customerLeasingForm.assetType}} {{lease.privateCustomerForm.customerType}}-->
+    <!--<app-post [myPost]="post" [showStars]="showStars" (postDelete)="onPostDeleted()"></app-post>-->
+  </li>
+</ul>
+
+<div *ngFor="let lease of leases">
+<button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+
+
+</button>
+</div>
 <!--<div>-->
   <!--{{leases || json}}-->
 <!--</div>-->
