@@ -1,43 +1,42 @@
-import {Validators} from '@angular/forms';
-
 export class Repayment {
-  private _date;
-  private _leftToRepay;
-  private _repayAmount;
-  private _repayMargin;
-  private _costs;
-  private _totalRepay;
+  private _repaymentDate;
+  private _remainingAmountToRepay;
+  private _assetValuePaymentAmount;
+  private _interestPaymentAmount;
+  private _contractFee;
+  private _totalPaymentAmount;
 
-  constructor(date, leftToRepay, repayAmount, repayMargin, costs, totalRepay) {
-    this._date = date;
-    this._leftToRepay = leftToRepay;
-    this._repayAmount = repayAmount;
-    this._repayMargin = repayMargin;
-    this._costs = costs;
-    this._totalRepay = totalRepay;
+
+  constructor(repaymentDate, remainingAmountToRepay, assetValuePaymentAmount, interestPaymentAmount, contractFee, totalPaymentAmount) {
+    this._repaymentDate = repaymentDate;
+    this._remainingAmountToRepay = remainingAmountToRepay;
+    this._assetValuePaymentAmount = assetValuePaymentAmount;
+    this._interestPaymentAmount = interestPaymentAmount;
+    this._contractFee = contractFee;
+    this._totalPaymentAmount = totalPaymentAmount;
   }
 
-  get date() {
-    return this._date;
+  get repaymentDate() {
+    return this._repaymentDate;
   }
 
-  get leftToRepay() {
-    return this._leftToRepay;
+  get remainingAmountToRepay() {
+    return this._remainingAmountToRepay;
   }
 
-  get repayAmount() {
-    return this._repayAmount;
+  get assetValuePaymentAmount() {
+    return this._assetValuePaymentAmount;
   }
 
-  get repayMargin() {
-    return this._repayMargin;
+  get interestPaymentAmount() {
+    return this._interestPaymentAmount;
   }
 
-  get costs() {
-    return this._costs;
+  get contractFee() {
+    return this._contractFee;
   }
 
-  get totalRepay() {
-    return this._totalRepay;
+  get totalPaymentAmount() {
+    return this._totalPaymentAmount;
   }
 }

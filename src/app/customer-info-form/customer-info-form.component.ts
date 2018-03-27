@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
-import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
+import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
+import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
 import {Router} from '@angular/router';
 import {CustomerInfoLabels} from '../constants/CustomerInfoLabels';
 import {DialogFormComponent} from '../dialog-form/dialog-form';
