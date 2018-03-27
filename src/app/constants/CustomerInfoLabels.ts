@@ -1,4 +1,4 @@
-export class TextLabels {
+export class CustomerInfoLabels {
 
   public readonly PERSONAL_DETAILS = 'Personal Details';
   public readonly FIRST_NAME = 'First Name';
