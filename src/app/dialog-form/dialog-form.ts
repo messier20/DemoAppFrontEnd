@@ -5,7 +5,7 @@ import {LeasingModel} from '../models/LeasingModel';
 import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
 import {TextLabels} from '../constants/TextLabels';
-import {LeasingFormLabels} from '../models/LeasingFormLabels';
+import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 
 @Component({
   selector: 'app-dialog-form',
