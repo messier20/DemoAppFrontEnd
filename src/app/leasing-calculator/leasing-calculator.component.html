@@ -16,18 +16,6 @@
           Customer type is required
         </div>
       </div>
-
-      <div class="form-group col-md-4 col-sm-6">
-        <label for="assetType">{{leasingFormLabels.ASSET_TYPE}}</label>
-        <select class="form-control" id="assetType" required name="assetTypeField" formControlName="assetType">
-          <option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</option>
-        </select>
-
-        <div [hidden]="leasingForm.get('assetType').valid || leasingForm.get('assetType').untouched"
-             class="alert-danger alert">
-          Customer type is required
-        </div>
-      </div>
     </div>
 
 
