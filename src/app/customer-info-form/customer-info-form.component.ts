@@ -4,9 +4,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
 import {Router} from '@angular/router';
-import {TextLabels} from '../models/TextLabels';
+import {TextLabels} from '../constants/TextLabels';
 import {DialogFormComponent} from '../dialog-form/dialog-form';
 import {MatDialog} from '@angular/material';
+import {CustomValidators} from '../constants/CustomValidators';
 
 @Component({
   selector: 'app-customer-info-form',
@@ -58,12 +59,12 @@ export class CustomerInfoFormComponent implements OnInit {
 
   private createValidForm() {
     this.infoForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(40)]],
-      code: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^\\d+$')]],
-      email: ['', [Validators.required, Validators.maxLength(65), Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]],
-      phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(15), Validators.pattern('^\\d+$')]],
-      address: ['', [Validators.required, Validators.maxLength(80)]],
-      lastName: ['', [Validators.required, Validators.maxLength(40)]]
+      name: ['', CustomValidators.nameValidator],
+      code: ['', CustomValidators.codeValidator],
+      email: ['', CustomValidators.emailValidator],
+      phoneNumber: ['', CustomValidators.phoneNumberValidator],
+      address: ['', CustomValidators.addressValidator],
+      lastName: ['', CustomValidators.lastNameValidator]
     });
   }
 
