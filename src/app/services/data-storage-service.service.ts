@@ -3,6 +3,7 @@ import {LeasingModel} from '../models/LeasingModel';
 import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
 import {LeasingCalculator} from '../models/LeasingCalculator';
+import {Repayment} from '../models/Repayment';
 
 @Injectable()
 export class DataStorageService {
@@ -11,6 +12,7 @@ export class DataStorageService {
   private businessCustomerInfo: BusinessCustomerInfo;
   private privateCustomerInfo: PrivateCustomerInfo;
   private leasingCalculator: LeasingCalculator;
+  private repaymentPlan: Repayment[];
 
 
   static refactorCustomerType(form) {
@@ -56,5 +58,12 @@ export class DataStorageService {
   getLeasingCalculator() {
     return this.leasingCalculator;
   }
+  
+  setRepaymentPlan(givenRepaymentPlan) {
+    this.repaymentPlan = givenRepaymentPlan;
+  }
 
+  getRepaymentPlan() {
+    return this.repaymentPlan;
+  }
 }
