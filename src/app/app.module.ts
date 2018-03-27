@@ -16,6 +16,7 @@ import {DataStorageService} from './services/data-storage-service.service';
 
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DialogFormComponent} from './dialog-form/dialog-form';
+import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasing-status.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {DialogFormComponent} from './dialog-form/dialog-form';
     AppComponent,
     PrivateFormComponent,
     CustomerInfoFormComponent,
-    DialogFormComponent
+    DialogFormComponent,
+    CheckLeasingStatusComponent
   ],
   imports: [
     BrowserModule,

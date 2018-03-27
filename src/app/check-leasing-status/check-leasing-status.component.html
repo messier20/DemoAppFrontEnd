@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>{{formLabels[0]}}</h1>
+
+  <form (ngSubmit)="submitSearch()" [formGroup]="checkStatusForm">
+
+    <div class="form-row">
+      <div class="form-group col-md-4 col-sm-6">
+        <label for="idNumber">{{formLabels[1]}}</label>
+        <input type="text" class="form-control" id="idNumber" required
+               formControlName="idNumber" name="idNumber">
+        <div [hidden]="checkStatusForm.get('idNumber').valid || checkStatusForm.get('idNumber').untouched"
+             class="alert alert-danger">
+          {{formLabels[1]}} field is required
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="setCheckingInfo()">Check status
+    </button>
+
+  </form>
+</div>

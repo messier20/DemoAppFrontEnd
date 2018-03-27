@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DataStorageService} from './data-storage-service.service';
 import {LeasingModel} from '../models/LeasingModel';
+import {CheckStatusInfo} from '../models/CheckStatusInfo';
 
 @Injectable()
 export class BackendService {
@@ -39,6 +40,14 @@ export class BackendService {
     console.log(postBody);
 
     this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
+  }
+
+  getBusinessFormById(checkData: CheckStatusInfo) {
+    return this.http.get(this.httpLink + this.businessCustomerLink + checkData.id).toPromise();
+  }
+
+  getPrivateFormById(chechkData: CheckStatusInfo) {
+    return this.http.get(this.httpLink + this.privateCustomerLink + chechkData.id).toPromise();
   }
 
 }

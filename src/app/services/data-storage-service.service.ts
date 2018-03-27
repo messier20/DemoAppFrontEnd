@@ -9,6 +9,7 @@ export class DataStorageService {
   private leasingModel: LeasingModel;
   private businessCustomerInfo: BusinessCustomerInfo;
   private privateCustomerInfo: PrivateCustomerInfo;
+  private leasingStatus: string;
 
   static refactorCustomerType(form) {
 
@@ -46,4 +47,11 @@ export class DataStorageService {
     return this.privateCustomerInfo;
   }
 
+  setLeasingStatus(givenLeasingStatus) {
+    this.leasingStatus = givenLeasingStatus;
+  }
+
+  getLeasingStatus() {
+    return this.leasingStatus;
+  }
 }
