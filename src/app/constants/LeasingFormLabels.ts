@@ -1,5 +1,6 @@
 export class LeasingFormLabels {
 
+  public readonly LEASING_APPLICATION = 'Leasing Application';
   public readonly CUSTOMER_TYPE = 'Customer Type';
   public readonly ASSET_TYPE = 'Asset Type';
   public readonly CAR_BRAND = 'Car Brand';
