@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
-import {LeasingFormLabels} from '../models/LeasingFormLabels';
+import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {CustomValidators} from '../constants/CustomValidators';
 
 @Component({

@@ -4,8 +4,8 @@ import {BackendService} from '../services/backend.service';
 import {LeasingModel} from '../models/LeasingModel';
 import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
-import {TextLabels} from '../constants/TextLabels';
-import {LeasingFormLabels} from '../models/LeasingFormLabels';
+import {CustomerInfoLabels} from '../constants/CustomerInfoLabels';
+import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 
 @Component({
   selector: 'app-dialog-form',
@@ -28,7 +28,7 @@ export class DialogFormComponent {
   customerInfoArray = [];
 
   constructor(private dataService: DataStorageService, private backendService: BackendService) {
-    const labels = new TextLabels();
+    const labels = new CustomerInfoLabels();
 
     this.leasingModel = this.dataService.getLeasingModel();
     this.leasingLabels = new LeasingFormLabels().leasingFormLabels;
