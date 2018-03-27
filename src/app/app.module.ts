@@ -16,6 +16,8 @@ import {DataStorageService} from './services/data-storage-service.service';
 
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DialogFormComponent} from './dialog-form/dialog-form';
+import {OfficerViewComponent} from "./officer-view/officer-view.component";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import {DialogFormComponent} from './dialog-form/dialog-form';
     AppComponent,
     PrivateFormComponent,
     CustomerInfoFormComponent,
-    DialogFormComponent
+    DialogFormComponent,
+    OfficerViewComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import {DialogFormComponent} from './dialog-form/dialog-form';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule.forRoot()
   ],
   providers: [DataStorageService, BackendService],
   bootstrap: [AppComponent],
