@@ -41,4 +41,10 @@ export class BackendService {
     this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
   }
 
+  getAllPosts() {
+    return this.http
+      .get('//localhost:8080/private')
+      .toPromise();
+  }
+
 }
