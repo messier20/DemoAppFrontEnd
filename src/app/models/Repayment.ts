@@ -1,60 +1,60 @@
 export class Repayment {
 
-  private _repaymentDate;
-  private _remainingAmountToRepay;
-  private _assetValuePaymentAmount;
-  private _interestPaymentAmount;
-  private _contractFee;
-  private _totalPaymentAmount;
+  private _repaymentDate: string;
+  private _remainingAmountToRepay: string;
+  private _assetValuePaymentAmount: string;
+  private _interestPaymentAmount: string;
+  private _contractFee: string;
+  private _totalPaymentAmount: string;
 
   constructor() {
   }
 
-  get repaymentDate() {
+  get repaymentDate(): string {
     return this._repaymentDate;
   }
 
-  get remainingAmountToRepay() {
-    return this._remainingAmountToRepay;
-  }
-
-  get assetValuePaymentAmount() {
-    return this._assetValuePaymentAmount;
-  }
-
-  get interestPaymentAmount() {
-    return this._interestPaymentAmount;
-  }
-
-  get contractFee() {
-    return this._contractFee;
-  }
-
-  get totalPaymentAmount() {
-    return this._totalPaymentAmount;
-  }
-
-  set repaymentDate(value) {
+  set repaymentDate(value: string) {
     this._repaymentDate = value;
   }
 
-  set remainingAmountToRepay(value) {
+  get remainingAmountToRepay(): string {
+    return this._remainingAmountToRepay;
+  }
+
+  set remainingAmountToRepay(value: string) {
     this._remainingAmountToRepay = value;
   }
 
-  set assetValuePaymentAmount(value) {
+  get assetValuePaymentAmount(): string {
+    return this._assetValuePaymentAmount;
+  }
+
+  set assetValuePaymentAmount(value: string) {
     this._assetValuePaymentAmount = value;
   }
 
-  set interestPaymentAmount(value) {
+  get interestPaymentAmount(): string {
+    return this._interestPaymentAmount;
+  }
+
+  set interestPaymentAmount(value: string) {
     this._interestPaymentAmount = value;
   }
 
-  set contractFee(value) {
+  get contractFee(): string {
+    return this._contractFee;
+  }
+
+  set contractFee(value: string) {
     this._contractFee = value;
   }
 
-  set totalPaymentAmount(value) {
+  get totalPaymentAmount(): string {
+    return this._totalPaymentAmount;
+  }
+
+  set totalPaymentAmount(value: string) {
     this._totalPaymentAmount = value;
   }
 }

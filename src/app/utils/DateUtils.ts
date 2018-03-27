@@ -28,12 +28,12 @@ export class DateUtils {
   }
 
 
-  static setPaymentDay(lastDate: Date): Date {
-    if (this.leasingCalculator.paymentDate === 15) {
-      lastDate.setDate(this.leasingCalculator.paymentDate);
+  static setPaymentDay(lastDate: Date, paymentDate: number): Date {
+    if (paymentDate === 15) {
+      lastDate.setDate(paymentDate);
       return lastDate;
     } else if (lastDate.getMonth() !== 1) {
-      lastDate.setDate(this.leasingCalculator.paymentDate);
+      lastDate.setDate(paymentDate);
       return lastDate;
     } else if ((lastDate.getFullYear() / 4) === 0) {
       lastDate.setDate(29);
@@ -44,16 +44,16 @@ export class DateUtils {
     }
   }
 
-  static calcFirstPaymentDate(): Date {
+  static calcFirstPaymentDate(paymentDate: number): Date {
     let date = this.getCurrentDate();
     date = this.addMonthToPaymentDate(date);
-    date = this.setPaymentDay(date);
+    date = this.setPaymentDay(date, paymentDate);
     return date;
   }
 
-  static calcNextPaymentDate(lastDate: Date): Date {
+  static calcNextPaymentDate(lastDate: Date, paymentDate: number): Date {
     lastDate = this.addMonthToPaymentDate(lastDate);
-    lastDate = this.setPaymentDay(lastDate);
+    lastDate = this.setPaymentDay(lastDate, paymentDate);
     return lastDate;
   }
 
