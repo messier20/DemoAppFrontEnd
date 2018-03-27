@@ -16,9 +16,9 @@ export class BackendService {
 
   sendCompletedForm() {
     if (this.dataStorage.getLeasingModel().customerType === 'Private') {
-      this.sendPrivateForm();
+      return this.sendPrivateForm();
     } else {
-      this.sendBusinessForm();
+      return this.sendBusinessForm();
     }
   }
 

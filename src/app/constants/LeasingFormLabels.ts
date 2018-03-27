@@ -17,7 +17,6 @@ export class LeasingFormLabels {
   public readonly THE_REMAINING_AMOUNT = 'The remaining amount';
   public readonly ASSET_PAYMENT_AMOUNT = 'Asset payment amount';
   public readonly INTEREST_PAYMENT_AMOUNT = 'Interest payment amount';
-  public readonly CONCTRACT_FEE = 'Contract fee';
   public readonly TOTAL_PAYMENT_AMOUNT = 'Total payment amount';
 
   private _leasingFormLabels = [this.CUSTOMER_TYPE, this.ASSET_TYPE, this.CAR_BRAND, this.CAR_MODEL, this.MANUFACTURED_DATE,

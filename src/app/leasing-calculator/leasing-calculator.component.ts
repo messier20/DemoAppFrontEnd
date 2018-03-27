@@ -18,7 +18,7 @@ export class LeasingCalculatorComponent implements OnInit {
   leasingCalculator: LeasingCalculator;
   leasingForm: FormGroup;
   leasingFormLabels = new LeasingFormLabels();
-  leasingCalculatorLabels = this.leasingFormLabels.leasingCalculatorLabels;
+  leasingCalculatorLabels = this.leasingCalculatorLabels;
 
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];

@@ -6,6 +6,7 @@ import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
 import {CustomerInfoLabels} from '../constants/CustomerInfoLabels';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dialog-form',
@@ -27,7 +28,8 @@ export class DialogFormComponent {
 
   customerInfoArray = [];
 
-  constructor(private dataService: DataStorageService, private backendService: BackendService) {
+  constructor(private router: Router,
+    private dataService: DataStorageService, private backendService: BackendService) {
     const labels = new CustomerInfoLabels();
 
     this.leasingModel = this.dataService.getLeasingModel();
@@ -49,6 +51,8 @@ export class DialogFormComponent {
 
   sendFormToBackend() {
     this.backendService.sendCompletedForm();
+    this.router.navigate(['/confirmedLeasingForm']);
+
   }
 
   private isCustomerPrivate() {
