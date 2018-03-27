@@ -4,8 +4,9 @@ import {Data, Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
-import {LeasingFormLabels} from '../models/LeasingFormLabels';
+import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {CustomValidators} from '../constants/CustomValidators';
+import {Repayment} from '../models/Repayment';
 
 @Component({
   selector: 'app-leasing-calculator',
@@ -17,6 +18,7 @@ export class LeasingCalculatorComponent implements OnInit {
   leasingCalculator: LeasingCalculator;
   leasingForm: FormGroup;
   leasingFormLabels = new LeasingFormLabels();
+  leasingCalculatorLabels = this.leasingFormLabels.leasingCalculatorLabels;
 
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];

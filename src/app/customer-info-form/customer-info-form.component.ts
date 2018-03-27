@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
-import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
+import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
+import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
 import {Router} from '@angular/router';
-import {TextLabels} from '../constants/TextLabels';
+import {CustomerInfoLabels} from '../constants/CustomerInfoLabels';
 import {DialogFormComponent} from '../dialog-form/dialog-form';
 import {MatDialog} from '@angular/material';
 import {CustomValidators} from '../constants/CustomValidators';
@@ -34,10 +34,10 @@ export class CustomerInfoFormComponent implements OnInit {
 
   ngOnInit() {
     if (this.isCustomerPrivate()) {
-      this.formLabels = new TextLabels().privateInfoLabels;
+      this.formLabels = new CustomerInfoLabels().privateInfoLabels;
       this.privateCustomerInfo = new PrivateCustomerInfo();
     } else {
-      this.formLabels = new TextLabels().businessInfoLabels;
+      this.formLabels = new CustomerInfoLabels().businessInfoLabels;
       this.businessCustomerInfo = new BusinessCustomerInfo();
       document.getElementById('hiddenName').hidden = true;
       this.infoForm.get('lastName').disable();
