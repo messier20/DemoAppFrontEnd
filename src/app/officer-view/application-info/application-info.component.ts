@@ -5,6 +5,7 @@ import {BusinessCustomerInfo} from "../../models/businessCustomerInfo";
 import {PrivateCustomerInfo} from "../../models/privateCustomerInfo";
 import {DataStorageService} from "../../services/data-storage-service.service";
 import {BackendService} from "../../services/backend.service";
+import {TextLabels} from "../../models/TextLabels";
 
 @Component({
   selector: 'app-application-info',
@@ -17,9 +18,13 @@ export class ApplicationInfoComponent implements OnInit {
   leasesModel: LeasingModel[];
   leasesModelList: LeasingModel[];
   leasingFormLabels = new LeasingFormLabels();
+  privateInfoLabels = new TextLabels().privateInfoLabels;
+
   private businessCustomerModel: BusinessCustomerInfo;
   private privateCustomerModel: PrivateCustomerInfo;
   public isCollapsed = true;
+  // public isDisabled = false;
+  public disabled = false;
   public ob;
   leases;
 

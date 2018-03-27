@@ -1,18 +1,33 @@
 
+<div >
 <button type="button"  class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
         [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
   Application ID {{lease.id.counter}}, submitted on {{lease.id.date}}
 
 </button>
-<div id="collapseExample" [ngbCollapse]="isCollapsed">
+<div id="collapseExample" [ngbCollapse]="isCollapsed" *ngFor="let info of leasesModel">
   <div class="card">
     <div class="card-body">
       <h3>Application information</h3>
-      <div>
-        <label>{{leasingFormLabels.CUSTOMER_TYPE}}: </label>
+      <ul>
+        <li>
+          <label>{{leasingFormLabels.CUSTOMER_TYPE}}: </label> <span>{{lease.customerLeasingForm.customerType}}</span>
+      </li>
+        <li>
+        <label>{{leasingFormLabels.CAR_MODEL}}: </label> <span>{{lease.customerLeasingForm.carModel}}</span>
+        </li>
+        <li>
+          <label>{{privateInfoLabels[1]}}: </label> <span>{{lease.privateCustomerForm.name}}</span>
+        </li>
         <!--<span>{{lease.}}</span>-->
+      </ul>
 
       </div>
+    <div>
+      <button class="btn btn-group btn-danger"  onclick="disabled=!disabled">Deny</button>
+      <button class="btn btn-group btn-success" onclick="disabled=!disabled">Approve</button>
+      <!--[disabled]="(click) ? !isDisabled : isDisabled"-->
+    </div>
     </div>
   </div>
 </div>

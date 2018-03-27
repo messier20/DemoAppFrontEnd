@@ -16,6 +16,7 @@ export class OfficerViewComponent implements OnInit {
 
    leasesModel: LeasingModel[];
    leasesModelList: LeasingModel[];
+   leasesModel2: LeasingModel;
   leasingFormLabels = new LeasingFormLabels();
   private businessCustomerModel: BusinessCustomerInfo;
   private privateCustomerModel: PrivateCustomerInfo;
@@ -52,6 +53,7 @@ export class OfficerViewComponent implements OnInit {
           // this.leasesModel.carModel = lease.customerLeasingForm.carModel;
           this.dataService.setLeasingModel(lease.customerLeasingForm);
           this.leasesModel = [this.dataService.getLeasingModel()];
+          // this.leasesModel2 = this.dataService.getLeasingModel();
           console.log("all data: ", lease);
           console.log("lease: ", lease.customerLeasingForm.carModel);
           console.log("set", this.dataService.getLeasingModel().carModel);
