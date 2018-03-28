@@ -7,8 +7,11 @@ import {LeasingModel} from '../models/LeasingModel';
 export class BackendService {
 
   httpLink = 'http://localhost:8080/';
-  businessCustomerLink = 'add-business-customer-form';
-  privateCustomerLink = 'add-private-customer-form';
+  // businessCustomerLink = 'add-business-customer-form';
+  // privateCustomerLink = 'add-private-customer-form';
+
+  businessCustomerLink = '/user/business';
+  privateCustomerLink = '/user/private';
 
   constructor(private http: HttpClient,
               private dataStorage: DataStorageService) {
@@ -43,7 +46,7 @@ export class BackendService {
 
   getAllPosts() {
     return this.http
-      .get('//localhost:8080/private')
+      .get('//localhost:8080/user/private/status/{status}' + status)
       .toPromise();
   }
 
