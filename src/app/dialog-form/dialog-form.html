@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 
 <h1 mat-dialog-title>Confirmation required</h1>
 <div mat-dialog-content>
@@ -6,6 +6,10 @@
     <div class="form-group col-md-6">
       <div class="container">
         <div class="panel panel-info">
+          <div class="panel-body" *ngIf="checkLeasingStatus" id="statusLabel"><b>Leasing status</b></div>
+          <div class="panel-body" *ngIf="checkLeasingStatus"><i>Current status of leasing application: </i>{{leasingStatus}}
+          </div>
+
           <div class="panel-body" id="label"><b>Leasing Information</b></div>
           <div class="panel-body" *ngFor="let element of leasingModelArray"><i>{{element.heading}}: </i>{{element.value}}
           </div>

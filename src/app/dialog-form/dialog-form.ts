@@ -16,6 +16,7 @@ export class DialogFormComponent {
 
   privateCustomer: boolean;
   checkLeasingStatus: boolean;
+  leasingStatus: string;
 
   leasingModel: LeasingModel;
   leasingLabels;
@@ -34,6 +35,7 @@ export class DialogFormComponent {
 
     this.leasingModel = this.dataService.getLeasingModel();
     this.checkLeasingStatus = !(this.dataService.getLeasingStatus() === '');
+    this.leasingStatus = this.dataService.getLeasingStatus();
     this.leasingLabels = new LeasingFormLabels().leasingFormLabels;
 
     this.isCustomerPrivate();

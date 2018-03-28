@@ -61,8 +61,11 @@ export class CheckLeasingStatusComponent implements OnInit {
   submitPrivateSearch() {
     this.backend.getPrivateFormById(this.checkStatusInfo).then(
       data => {
+        console.log(data);
         this.dataService.setLeasingModel(DataStorageService.refactorCustomerType(data.customerLeasingForm));
         this.dataService.setPrivateInfo(DataStorageService.refactorCustomerType(data.privateCustomerForm));
+        // this.dataService.setLeasingStatus(data.status);
+        // this.dataService.setLeasingStatus('PENDING');
         this.dialog.open(DialogFormComponent);
       },
       error => {
