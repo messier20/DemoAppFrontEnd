@@ -10,8 +10,8 @@ export class BackendService {
   // businessCustomerLink = 'add-business-customer-form';
   // privateCustomerLink = 'add-private-customer-form';
 
-  businessCustomerLink = '/user/business';
-  privateCustomerLink = '/user/private';
+  businessCustomerLink = 'user/business';
+  privateCustomerLink = 'user/private';
 
   constructor(private http: HttpClient,
               private dataStorage: DataStorageService) {
@@ -26,18 +26,18 @@ export class BackendService {
   }
 
   sendBusinessForm() {
-    const postBody = {
-      customerLeasingForm: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
-      businessCustomerForm: DataStorageService.refactorCustomerType(this.dataStorage.getBusinessInfo())
-    };
+    // const postBody = {
+    //   customerLeasingForm: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
+    //   businessCustomerForm: DataStorageService.refactorCustomerType(this.dataStorage.getBusinessInfo())
+    // };
 
-    this.http.post(this.httpLink + this.businessCustomerLink, postBody).toPromise();
+    // this.http.post(this.httpLink + this.businessCustomerLink, postBody).toPromise();
   }
 
   sendPrivateForm() {
     const postBody = {
-      customerLeasingForm: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
-      privateCustomerForm: DataStorageService.refactorCustomerType(this.dataStorage.getPrivateInfo())
+      customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
+      privateCustomer: DataStorageService.refactorCustomerType(this.dataStorage.getPrivateInfo())
     };
     console.log(postBody);
 
