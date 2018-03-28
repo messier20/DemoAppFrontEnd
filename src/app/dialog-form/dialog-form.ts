@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {BackendService} from '../services/backend.service';
 import {LeasingModel} from '../models/LeasingModel';
-import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
-import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
+import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
+import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
 import {CustomerInfoLabels} from '../constants/CustomerInfoLabels';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 

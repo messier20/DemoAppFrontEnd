@@ -1,43 +1,60 @@
-import {Validators} from '@angular/forms';
-
 export class Repayment {
-  private _date;
-  private _leftToRepay;
-  private _repayAmount;
-  private _repayMargin;
-  private _costs;
-  private _totalRepay;
 
-  constructor(date, leftToRepay, repayAmount, repayMargin, costs, totalRepay) {
-    this._date = date;
-    this._leftToRepay = leftToRepay;
-    this._repayAmount = repayAmount;
-    this._repayMargin = repayMargin;
-    this._costs = costs;
-    this._totalRepay = totalRepay;
+  private _repaymentDate: string;
+  private _remainingAmountToRepay: string;
+  private _assetValuePaymentAmount: string;
+  private _interestPaymentAmount: string;
+  private _contractFee: string;
+  private _totalPaymentAmount: string;
+
+  constructor() {
   }
 
-  get date() {
-    return this._date;
+  get repaymentDate(): string {
+    return this._repaymentDate;
   }
 
-  get leftToRepay() {
-    return this._leftToRepay;
+  set repaymentDate(value: string) {
+    this._repaymentDate = value;
   }
 
-  get repayAmount() {
-    return this._repayAmount;
+  get remainingAmountToRepay(): string {
+    return this._remainingAmountToRepay;
   }
 
-  get repayMargin() {
-    return this._repayMargin;
+  set remainingAmountToRepay(value: string) {
+    this._remainingAmountToRepay = value;
   }
 
-  get costs() {
-    return this._costs;
+  get assetValuePaymentAmount(): string {
+    return this._assetValuePaymentAmount;
   }
 
-  get totalRepay() {
-    return this._totalRepay;
+  set assetValuePaymentAmount(value: string) {
+    this._assetValuePaymentAmount = value;
+  }
+
+  get interestPaymentAmount(): string {
+    return this._interestPaymentAmount;
+  }
+
+  set interestPaymentAmount(value: string) {
+    this._interestPaymentAmount = value;
+  }
+
+  get contractFee(): string {
+    return this._contractFee;
+  }
+
+  set contractFee(value: string) {
+    this._contractFee = value;
+  }
+
+  get totalPaymentAmount(): string {
+    return this._totalPaymentAmount;
+  }
+
+  set totalPaymentAmount(value: string) {
+    this._totalPaymentAmount = value;
   }
 }
