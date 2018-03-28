@@ -62,8 +62,8 @@ export class CheckLeasingStatusComponent implements OnInit {
     this.backend.getPrivateFormById(this.checkStatusInfo).then(
       data => {
         console.log(data);
-        this.dataService.setLeasingModel(DataStorageService.refactorCustomerType(data.customerLeasingForm));
-        this.dataService.setPrivateInfo(DataStorageService.refactorCustomerType(data.privateCustomerForm));
+        // this.dataService.setLeasingModel(DataStorageService.refactorCustomerType(data.customerLeasingForm));
+        // this.dataService.setPrivateInfo(DataStorageService.refactorCustomerType(data.privateCustomerForm));
         // this.dataService.setLeasingStatus(data.status);
         // this.dataService.setLeasingStatus('PENDING');
         this.dialog.open(DialogFormComponent);
@@ -78,8 +78,8 @@ export class CheckLeasingStatusComponent implements OnInit {
     this.backend.getBusinessFormById(this.checkStatusInfo).then(
       data => {
         console.log(data);
-        this.dataService.setLeasingModel(DataStorageService.refactorCustomerType(data.customerLeasingForm));
-        this.dataService.setBusinessInfo(DataStorageService.refactorCustomerType(data.businessCustomerForm));
+        // this.dataService.setLeasingModel(DataStorageService.refactorCustomerType(data.customerLeasingForm));
+        // this.dataService.setBusinessInfo(DataStorageService.refactorCustomerType(data.businessCustomerForm));
         this.dialog.open(DialogFormComponent);
       },
       error => {
