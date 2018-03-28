@@ -5,7 +5,8 @@ import {BackendService} from "../services/backend.service";
 import {LeasingModel} from "../models/LeasingModel";
 import {BusinessCustomerInfo} from "../models/businessCustomerInfo";
 import {PrivateCustomerInfo} from "../models/privateCustomerInfo";
-import {LeasingFormLabels} from "../models/LeasingFormLabels";
+import {LeasingFormLabels} from "../constants/LeasingFormLabels";
+// import {LeasingFormLabels} from "../models/LeasingFormLabels";
 
 @Component({
   selector: 'app-officer-view',
@@ -43,7 +44,7 @@ export class OfficerViewComponent implements OnInit {
   refresh() {
 
     // console.log("lalala ", this.leasesModel.carModel)
-    this.backendService.getAllPosts()
+    this.backendService.getAllPosts("PENDING")
       .then(data => {
         this.leases = data;
         this.leases.forEach(lease => {

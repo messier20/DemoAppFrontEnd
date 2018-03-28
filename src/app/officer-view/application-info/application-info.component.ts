@@ -1,11 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {LeasingModel} from "../../models/LeasingModel";
-import {LeasingFormLabels} from "../../models/LeasingFormLabels";
+// import {LeasingFormLabels} from "../../models/LeasingFormLabels";
 import {BusinessCustomerInfo} from "../../models/businessCustomerInfo";
 import {PrivateCustomerInfo} from "../../models/privateCustomerInfo";
 import {DataStorageService} from "../../services/data-storage-service.service";
 import {BackendService} from "../../services/backend.service";
-import {TextLabels} from "../../models/TextLabels";
+import {LeasingFormLabels} from "../../constants/LeasingFormLabels";
+import {CustomerInfoLabels} from "../../constants/CustomerInfoLabels";
+// import {TextLabels} from "../../models/TextLabels";
 
 @Component({
   selector: 'app-application-info',
@@ -18,7 +20,8 @@ export class ApplicationInfoComponent implements OnInit {
   leasesModel: LeasingModel[];
   leasesModelList: LeasingModel[];
   leasingFormLabels = new LeasingFormLabels();
-  privateInfoLabels = new TextLabels().privateInfoLabels;
+  privateInfoLabels = new CustomerInfoLabels().privateInfoLabels;
+  // privateInfoLabels = new TextLabels().privateInfoLabels;
 
   private businessCustomerModel: BusinessCustomerInfo;
   private privateCustomerModel: PrivateCustomerInfo;
@@ -48,7 +51,7 @@ export class ApplicationInfoComponent implements OnInit {
 
   refresh() {
 
-    this.backendService.getAllPosts()
+    this.backendService.getAllPosts("PENDING")
       .then(data => {
         this.leases = data;
         this.leases.forEach(lease => {
