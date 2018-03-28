@@ -7,6 +7,9 @@ import {LeasingModel} from '../models/LeasingModel';
 export class BackendService {
 
   httpLink = 'http://localhost:8080/';
+  // businessCustomerLink = 'add-business-customer-form';
+  // privateCustomerLink = 'add-private-customer-form';
+
   businessCustomerLink = 'user/business';
   privateCustomerLink = 'user/private';
 
@@ -43,7 +46,7 @@ export class BackendService {
 
   getAllPosts(status) {
     return this.http
-      .get('//localhost:8080//user/private/status/' + status)
+      .get('//localhost:8080/user/private/status/' + status)
       .toPromise();
   }
 

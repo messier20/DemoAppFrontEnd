@@ -4,20 +4,22 @@
         [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
   Application ID {{lease.id.counter}}, submitted on {{lease.id.date}}
 
+  <!--*ngFor="let info of leasesModel"-->
+
 </button>
-<div id="collapseExample" [ngbCollapse]="isCollapsed" *ngFor="let info of leasesModel">
+<div id="collapseExample" [ngbCollapse]="isCollapsed" >
   <div class="card">
     <div class="card-body">
       <h3>Application information</h3>
       <ul>
         <li>
-          <label>{{leasingFormLabels.CUSTOMER_TYPE}}: </label> <span>{{lease.customerLeasingForm.customerType}} {{info.carModel}}</span>
+          <label>{{leasingFormLabels.CUSTOMER_TYPE}}: </label> <span>{{lease.customerLeasing.customerType}}</span>
       </li>
         <li>
-        <label>{{leasingFormLabels.CAR_MODEL}}: </label> <span>{{lease.customerLeasingForm.carModel}}</span>
+        <label>{{leasingFormLabels.CAR_MODEL}}: </label> <span>{{lease.customerLeasing.carModel}}</span>
         </li>
         <li>
-          <label>{{privateInfoLabels[1]}}: </label> <span>{{lease.privateCustomerForm.name}}</span>
+          <label>{{privateInfoLabels[1]}}: </label> <span>{{lease.privateCustomer.name}}</span>
         </li>
         <!--<span>{{lease.}}</span>-->
       </ul>

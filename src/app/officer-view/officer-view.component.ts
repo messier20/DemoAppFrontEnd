@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DataStorageService} from "../services/data-storage-service.service";
 import {BackendService} from "../services/backend.service";
@@ -6,6 +6,8 @@ import {LeasingModel} from "../models/LeasingModel";
 import {BusinessCustomerInfo} from "../models/businessCustomerInfo";
 import {PrivateCustomerInfo} from "../models/privateCustomerInfo";
 import {LeasingFormLabels} from "../constants/LeasingFormLabels";
+import {LeaseInfoOfPrivate} from "../models/LeaseInfoOfPrivate";
+import {LeaseInfoService} from "../services/lease-info.service";
 // import {LeasingFormLabels} from "../models/LeasingFormLabels";
 
 @Component({
@@ -25,9 +27,12 @@ export class OfficerViewComponent implements OnInit {
   public ob;
   leases;
 
+  @Input() leasesInfoOfPrivate: LeaseInfoOfPrivate[];
+
 
   constructor(private dataService: DataStorageService,
-              private backendService: BackendService,) {
+              private backendService: BackendService,
+              private leasesInfoService: LeaseInfoService) {
 
   }
 
@@ -47,18 +52,33 @@ export class OfficerViewComponent implements OnInit {
     this.backendService.getAllPosts("PENDING")
       .then(data => {
         this.leases = data;
+        // this.leasesInfoOfPrivate.forEach( objectIndex => {
+        //
+        // });
+
+        // this.leases.forEach(lease => {
+        //   this.leasesInfoOfPrivate.status;
+        // });
+        // this.leasesInfoService.leaseInfoOfPrivate[data];
+        // this.leasesInfoOfPrivate = [data];
+
+
         this.leases.forEach(lease => {
+
+          // this.leasesInfoService.leaseInfoOfPrivate[lease];
+          this.leasesInfoOfPrivate = [lease];
           lease.id.date = (lease.id.date).substr(0,10);
           // this.leasesModel.customerType = lease.customerLeasingForm.customerType;
           // console.log("lease model: ", this.leasesModel.customerType);
           // this.leasesModel.carModel = lease.customerLeasingForm.carModel;
-          this.dataService.setLeasingModel(lease.customerLeasingForm);
+          this.dataService.setLeasingModel(lease.customerLeasing);
           this.leasesModel = [this.dataService.getLeasingModel()];
           // this.leasesModel2 = this.dataService.getLeasingModel();
           console.log("all data: ", lease);
-          console.log("lease: ", lease.customerLeasingForm.carModel);
+          console.log("lease: ", lease.customerLeasing.carModel);
           console.log("set", this.dataService.getLeasingModel().carModel);
           console.log("this leases model: ", this.leasesModel);
+          console.log("array", this.leasesInfoOfPrivate);
         });
         console.log("list", this.leasesModelList);
 

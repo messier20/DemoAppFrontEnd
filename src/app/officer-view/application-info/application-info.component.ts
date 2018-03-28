@@ -5,8 +5,9 @@ import {BusinessCustomerInfo} from "../../models/businessCustomerInfo";
 import {PrivateCustomerInfo} from "../../models/privateCustomerInfo";
 import {DataStorageService} from "../../services/data-storage-service.service";
 import {BackendService} from "../../services/backend.service";
-import {LeasingFormLabels} from "../../constants/LeasingFormLabels";
+// import {LeasingFormLabels} from "../../constants/LeasingFormLabels";
 import {CustomerInfoLabels} from "../../constants/CustomerInfoLabels";
+import {LeasingFormLabels} from "../../constants/LeasingFormLabels";
 // import {TextLabels} from "../../models/TextLabels";
 
 @Component({
@@ -51,6 +52,7 @@ export class ApplicationInfoComponent implements OnInit {
 
   refresh() {
 
+    // console.log("lalala ", this.leasesModel.carModel)
     this.backendService.getAllPosts("PENDING")
       .then(data => {
         this.leases = data;
@@ -62,7 +64,7 @@ export class ApplicationInfoComponent implements OnInit {
           this.dataService.setLeasingModel(lease.customerLeasingForm);
           this.leasesModel = [this.dataService.getLeasingModel()];
           console.log("all data: ", lease);
-          console.log("lease: ", lease.customerLeasingForm.carModel);
+          console.log("lease: ", lease.customerLeasing.carModel);
           console.log("set", this.dataService.getLeasingModel().carModel);
           console.log("this leases model: ", this.leasesModel);
         });
