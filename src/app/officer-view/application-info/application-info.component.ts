@@ -49,7 +49,7 @@ export class ApplicationInfoComponent implements OnInit {
   refresh() {
 
     // console.log("lalala ", this.leasesModel.carModel)
-    this.backendService.getAllPosts()
+    this.backendService.getAllPosts("PENDING")
       .then(data => {
         this.leases = data;
         this.leases.forEach(lease => {
