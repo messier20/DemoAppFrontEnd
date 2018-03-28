@@ -1,4 +1,4 @@
-import {BusinessCustomerInfo} from './businessCustomerInfo';
+import {BusinessCustomerInfo} from './BusinessCustomerInfo';
 
 export class PrivateCustomerInfo extends BusinessCustomerInfo {
 
