@@ -43,7 +43,7 @@ export class BackendService {
 
   getAllPosts() {
     return this.http
-      .get('//localhost:8080/private')
+      .get('//localhost:8080/')
       .toPromise();
   }
 
