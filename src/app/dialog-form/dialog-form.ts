@@ -50,10 +50,11 @@ export class DialogFormComponent {
   }
 
   sendFormToBackend() {
-    this.backendService.sendCompletedForm();
-    this.router.navigate(['/confirmedLeasingForm']);
-
-  }
+    this.backendService.sendCompletedForm().then(data => {
+      console.log(data);
+      this.router.navigate(['/confirmedLeasingForm']);
+    });
+    }
 
   private isCustomerPrivate() {
     this.privateCustomer = this.dataService.getLeasingModel().customerType === 'Private';

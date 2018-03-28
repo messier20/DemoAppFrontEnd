@@ -28,7 +28,7 @@ export class BackendService {
       businessCustomerForm: DataStorageService.refactorCustomerType(this.dataStorage.getBusinessInfo())
     };
 
-    this.http.post(this.httpLink + this.businessCustomerLink, postBody).toPromise();
+    return this.http.post(this.httpLink + this.businessCustomerLink, postBody).toPromise();
   }
 
   sendPrivateForm() {
@@ -38,7 +38,7 @@ export class BackendService {
     };
     console.log(postBody);
 
-    this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
+    return this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
   }
 
 }

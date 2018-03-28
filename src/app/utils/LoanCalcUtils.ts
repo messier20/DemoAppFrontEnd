@@ -64,6 +64,6 @@ export class LoanCalcUtils {
   }
 
   private pushRepaymentPlanToDataStorageService() {
-    this.dataService.setRepaymentPlan(this.repaymentPlan);
+   // this.dataService.setRepaymentPlan(this.repaymentPlan);
   }
 }
