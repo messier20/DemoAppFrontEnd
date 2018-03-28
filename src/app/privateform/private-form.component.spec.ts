@@ -10,6 +10,7 @@ import {MatDialogModule} from '@angular/material';
 import {AppRoutingModule} from '../app-routing.module';
 import {RouterModule} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
+import {LeasingCalculatorComponent} from '../leasing-calculator/leasing-calculator.component';
 
 describe('PrivateFormComponent', () => {
   let component: PrivateFormComponent;
@@ -26,7 +27,8 @@ describe('PrivateFormComponent', () => {
         BrowserAnimationsModule,
         ReactiveFormsModule,
         FormsModule,
-        RouterModule
+        RouterModule,
+        LeasingCalculatorComponent
       ],
       providers: [
         DataStorageService,

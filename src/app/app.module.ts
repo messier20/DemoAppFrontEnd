@@ -16,6 +16,7 @@ import {DataStorageService} from './services/data-storage-service.service';
 
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DialogFormComponent} from './dialog-form/dialog-form';
+import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
 import {OfficerViewComponent} from "./officer-view/officer-view.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { ApplicationInfoComponent } from './officer-view/application-info/application-info.component';
@@ -26,6 +27,8 @@ import { ApplicationInfoComponent } from './officer-view/application-info/applic
     AppComponent,
     PrivateFormComponent,
     CustomerInfoFormComponent,
+    DialogFormComponent,
+    LeasingCalculatorComponent,
     DialogFormComponent,
     OfficerViewComponent,
     ApplicationInfoComponent
