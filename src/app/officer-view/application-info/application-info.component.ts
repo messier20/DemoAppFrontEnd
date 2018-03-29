@@ -48,6 +48,7 @@ export class ApplicationInfoComponent implements OnInit {
   }
 
   @Input() lease;
+  @Input() leasesInfoOfPrivate;
 
 
   refresh() {
@@ -61,12 +62,12 @@ export class ApplicationInfoComponent implements OnInit {
           // this.leasesModel.customerType = lease.customerLeasingForm.customerType;
           // console.log("lease model: ", this.leasesModel.customerType);
           // this.leasesModel.carModel = lease.customerLeasingForm.carModel;
-          this.dataService.setLeasingModel(lease.customerLeasingForm);
-          this.leasesModel = [this.dataService.getLeasingModel()];
-          console.log("all data: ", lease);
-          console.log("lease: ", lease.customerLeasing.carModel);
-          console.log("set", this.dataService.getLeasingModel().carModel);
-          console.log("this leases model: ", this.leasesModel);
+          // this.dataService.setLeasingModel(lease.customerLeasingForm);
+          // this.leasesModel = [this.dataService.getLeasingModel()];
+          // console.log("all data: ", lease);
+          // console.log("lease: ", lease.customerLeasing.carModel);
+          // console.log("set", this.dataService.getLeasingModel().carModel);
+          // console.log("this leases model: ", this.leasesModel);
         });
         console.log("list", this.leasesModelList);
 

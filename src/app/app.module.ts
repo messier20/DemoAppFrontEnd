@@ -20,6 +20,7 @@ import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculato
 import {OfficerViewComponent} from "./officer-view/officer-view.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { ApplicationInfoComponent } from './officer-view/application-info/application-info.component';
+import {LeaseInfoService} from "./services/lease-info.service";
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import { ApplicationInfoComponent } from './officer-view/application-info/applic
     HttpClientModule,
     NgbModule.forRoot()
   ],
-  providers: [DataStorageService, BackendService],
+  providers: [DataStorageService, BackendService, LeaseInfoService],
   bootstrap: [AppComponent],
   entryComponents: [DialogFormComponent]
 })

@@ -8,10 +8,10 @@ export class LeaseInfoOfPrivate {
   privateCustomerInfo: PrivateCustomerInfo;
   status: string;
 
-  constructor(leaseInfoOfPrivate?: LeaseInfoOfPrivate) {
+  constructor(leaseInfoOfPrivate?) {
     if(leaseInfoOfPrivate) {
-      this.leasingModel = leaseInfoOfPrivate.leasingModel;
-      this.privateCustomerInfo = leaseInfoOfPrivate.privateCustomerInfo;
+      this.leasingModel = leaseInfoOfPrivate.customerLeasing;
+      this.privateCustomerInfo = leaseInfoOfPrivate.privateCustomer;
       this.status = leaseInfoOfPrivate.status;
     }
   }

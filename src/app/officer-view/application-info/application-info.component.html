@@ -2,9 +2,11 @@
 <div >
 <button type="button"  class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
         [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-  Application ID {{lease.id.counter}}, submitted on {{lease.id.date}}
+  <!--Application ID {{lease}}, submitted on {{lease}}-->
 
+  Application
   <!--*ngFor="let info of leasesModel"-->
+  <!--*ngFor="let info of leasesInfoOfPrivate"-->
 
 </button>
 <div id="collapseExample" [ngbCollapse]="isCollapsed" >
@@ -13,13 +15,13 @@
       <h3>Application information</h3>
       <ul>
         <li>
-          <label>{{leasingFormLabels.CUSTOMER_TYPE}}: </label> <span>{{lease.customerLeasing.customerType}}</span>
+          <label>{{leasingFormLabels.CUSTOMER_TYPE}}: </label> <span>{{lease.leasingModel.customerType}}</span>
       </li>
         <li>
-        <label>{{leasingFormLabels.CAR_MODEL}}: </label> <span>{{lease.customerLeasing.carModel}}</span>
+        <label>{{leasingFormLabels.CAR_MODEL}}: </label> <span>{{lease.leasingModel.carModel}}</span>
         </li>
         <li>
-          <label>{{privateInfoLabels[1]}}: </label> <span>{{lease.privateCustomer.name}}</span>
+          <!--<label>{{privateInfoLabels[1]}}: </label> <span>{{lease.privateCustomer.name}}</span>-->
         </li>
         <!--<span>{{lease.}}</span>-->
       </ul>
