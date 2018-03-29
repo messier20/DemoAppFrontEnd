@@ -17,6 +17,7 @@ import {DataStorageService} from './services/data-storage-service.service';
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DialogFormComponent} from './dialog-form/dialog-form';
 import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
+import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasing-status.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculato
     PrivateFormComponent,
     CustomerInfoFormComponent,
     DialogFormComponent,
-    LeasingCalculatorComponent
+    LeasingCalculatorComponent,
+    CheckLeasingStatusComponent
   ],
   imports: [
     BrowserModule,

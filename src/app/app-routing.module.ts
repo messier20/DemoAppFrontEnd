@@ -3,11 +3,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {PrivateFormComponent} from './privateform/private-form.component';
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
+import {CheckLeasingStatusComponent} from './check-leasing-status/check-leasing-status.component';
 
 const routes: Routes = [
   {path: 'privateForm', component: PrivateFormComponent},
   {path: 'customerInfoForm', component: CustomerInfoFormComponent},
-  {path: 'leasingCalculatorForm', component: LeasingCalculatorComponent}
+  {path: 'leasingCalculatorForm', component: LeasingCalculatorComponent},
+  {path: 'checkLeasingStatus', component: CheckLeasingStatusComponent}
 ];
 
 @NgModule({

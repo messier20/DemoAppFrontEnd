@@ -16,14 +16,24 @@ export class DataStorageService {
 
 
   static refactorCustomerType(form) {
-
     if (form.customerType === 'Private') {
       form.customerType = 'PRIVATE';
       return form;
 
-    } else {
+    } else if (form.customerType === 'Business') {
       form.customerType = 'BUSINESS';
       return form;
+
+    } else if (form.customerType === 'PRIVATE') {
+      form.customerType = 'Private';
+      return form;
+
+    } else if (form.customerType === 'BUSINESS') {
+      form.customerType = 'Business';
+      return form;
+
+    } else {
+      console.log('Error in data-storage-service.refactorCustomerType(), could not refactor. Value: ' + form.customerType);
     }
   }
 
