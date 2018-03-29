@@ -18,6 +18,7 @@ import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form
 import {DialogFormComponent} from './dialog-form/dialog-form';
 import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
 import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasing-status.component';
+import { AllInformationListComponent } from './all-information-list/all-information-list.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasin
     CustomerInfoFormComponent,
     DialogFormComponent,
     LeasingCalculatorComponent,
-    CheckLeasingStatusComponent
+    CheckLeasingStatusComponent,
+    AllInformationListComponent
   ],
   imports: [
     BrowserModule,
