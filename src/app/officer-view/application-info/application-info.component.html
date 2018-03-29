@@ -4,7 +4,7 @@
         [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
   <!--Application ID {{lease}}, submitted on {{lease}}-->
 
-  Application
+  Application {{lease.id}} submited on {{lease.date}}
   <!--*ngFor="let info of leasesModel"-->
   <!--*ngFor="let info of leasesInfoOfPrivate"-->
 
@@ -27,6 +27,8 @@
       </ul>
 
       </div>
+
+    <app-dialog-form2></app-dialog-form2>
     <div>
       <button class="btn btn-group btn-danger"  onclick="disabled=!disabled">Deny</button>
       <button class="btn btn-group btn-success" onclick="disabled=!disabled">Approve</button>

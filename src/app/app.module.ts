@@ -21,6 +21,7 @@ import {OfficerViewComponent} from "./officer-view/officer-view.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { ApplicationInfoComponent } from './officer-view/application-info/application-info.component';
 import {LeaseInfoService} from "./services/lease-info.service";
+import { DialogForm2Component } from './dialog-form2/dialog-form2.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {LeaseInfoService} from "./services/lease-info.service";
     LeasingCalculatorComponent,
     DialogFormComponent,
     OfficerViewComponent,
-    ApplicationInfoComponent
+    ApplicationInfoComponent,
+    DialogForm2Component
   ],
   imports: [
     BrowserModule,

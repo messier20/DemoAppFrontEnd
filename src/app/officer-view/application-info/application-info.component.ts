@@ -30,8 +30,7 @@ export class ApplicationInfoComponent implements OnInit {
   // public isDisabled = false;
   public disabled = false;
   public ob;
-  leases;
-
+  sm;
 
   constructor(private dataService: DataStorageService,
               private backendService: BackendService,) {
@@ -39,49 +38,63 @@ export class ApplicationInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     // this.ob = [
     //   // this.dataService.getPrivateInfo(),
     //   // this.dataService.getLeasingModel(),
     // ];
-    this.refresh();
-    this.setLeases();
+    // this.refresh();
+    // this.setLeases();
+    // this.getAllsm();
   }
 
   @Input() lease;
   @Input() leasesInfoOfPrivate;
+  @Input() leases;
 
 
-  refresh() {
+
+  // getAllsm() {
+  //   this.sm = this.lease.leasingModel.carModel;
+  //   return this.sm.toPromise();
+  //
+  // }
+  // refresh() {
 
     // console.log("lalala ", this.leasesModel.carModel)
-    this.backendService.getAllPosts("PENDING")
-      .then(data => {
-        this.leases = data;
-        this.leases.forEach(lease => {
-          lease.id.date = (lease.id.date).substr(0,10);
-          // this.leasesModel.customerType = lease.customerLeasingForm.customerType;
-          // console.log("lease model: ", this.leasesModel.customerType);
-          // this.leasesModel.carModel = lease.customerLeasingForm.carModel;
-          // this.dataService.setLeasingModel(lease.customerLeasingForm);
-          // this.leasesModel = [this.dataService.getLeasingModel()];
-          // console.log("all data: ", lease);
-          // console.log("lease: ", lease.customerLeasing.carModel);
-          // console.log("set", this.dataService.getLeasingModel().carModel);
-          // console.log("this leases model: ", this.leasesModel);
-        });
-        console.log("list", this.leasesModelList);
+    // this.backendService.getAllPosts("PENDING")
+    //   .then(data => {
+    //     this.leases = data;
+    //
+    //     this.leases.forEach(lease => {
+    //       this.sm = this.lease.leasingModel.customerType;
+    //     });
+    //     console.log("sm", this.sm);
+    //       lease.id.date = (lease.id.date).substr(0,10);
+    //       // this.leasesModel.customerType = lease.customerLeasingForm.customerType;
+    //       // console.log("lease model: ", this.leasesModel.customerType);
+    //       // this.leasesModel.carModel = lease.customerLeasingForm.carModel;
+    //       // this.dataService.setLeasingModel(lease.customerLeasingForm);
+    //       // this.leasesModel = [this.dataService.getLeasingModel()];
+    //       // console.log("all data: ", lease);
+    //       // console.log("lease: ", lease.customerLeasing.carModel);
+    //       // console.log("set", this.dataService.getLeasingModel().carModel);
+    //       // console.log("this leases model: ", this.leasesModel);
+    //     });
+    //     console.log("list", this.leasesModelList);
 
         // console.log('subscribe', this.leases)
         // console.log("cust type", this.leasesModel.customerType);
-      });
+      // });
 
 
     // return this.leasesModel;
 
     // return this.leases;
-  }
+  // }
 
-  setLeases() {
+  // setLeases() {
     // this.leases.forEach(lease => {
     //   console.log("lease sete", lease);
     //     this.leasesModel = this.dataService.getLeasingModel();
@@ -107,6 +120,6 @@ export class ApplicationInfoComponent implements OnInit {
     //   // })
     // }
 
-  }
+  // }
 
 }
