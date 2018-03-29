@@ -31,20 +31,20 @@ export class BackendService {
   sendBusinessForm() {
     const postBody = {
       customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
-      businessCustomer: DataStorageService.refactorCustomerType(this.dataStorage.getBusinessInfo())
+      businessCustomer: this.dataStorage.getBusinessInfo()
     };
 
-    this.http.post(this.httpLink + this.businessCustomerLink, postBody).toPromise();
+    return this.http.post(this.httpLink + this.businessCustomerLink, postBody).toPromise();
   }
 
   sendPrivateForm() {
     const postBody = {
       customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
-      privateCustomer: DataStorageService.refactorCustomerType(this.dataStorage.getPrivateInfo())
+      privateCustomer: this.dataStorage.getPrivateInfo()
     };
     console.log(postBody);
 
-    this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
+    return this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
   }
 
   getBusinessFormById(checkData: CheckStatusInfo) {
