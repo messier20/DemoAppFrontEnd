@@ -5,6 +5,7 @@ import {BackendService} from '../services/backend.service';
 import {CheckStatusInfo} from '../models/CheckStatusInfo';
 import {DialogFormComponent} from '../dialog-form/dialog-form';
 import {MatDialog} from '@angular/material';
+import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 
 @Component({
   selector: 'app-check-leasing-status',
@@ -14,6 +15,7 @@ import {MatDialog} from '@angular/material';
 export class CheckLeasingStatusComponent implements OnInit {
 
   formLabels: String[];
+  leasingFormLabels = new LeasingFormLabels();
   checkStatusForm: FormGroup;
   checkStatusInfo: CheckStatusInfo;
   availableCustomerTypes = ['Private', 'Business'];
