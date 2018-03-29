@@ -1,7 +1,10 @@
 body {
+  height: 100%;
   color: #fff;
   background: repeating-linear-gradient(-45deg, #a1d8f4 0, #a1d8f4 25%, #8ccae9 0, #8ccae9 38%) 0 / 20px 20px;
 }
-
+#upperbar{
+  height: 55px;
+}
 
 

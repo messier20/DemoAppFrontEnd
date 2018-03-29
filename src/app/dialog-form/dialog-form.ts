@@ -52,7 +52,7 @@ export class DialogFormComponent {
   sendFormToBackend() {
     this.backendService.sendCompletedForm().then(data => {
       const id: any = data;
-      console.log(id);
+      this.dataService.setCustomerId(id.id);
       this.router.navigate(['/confirmedLeasingForm']);
     });
     }
