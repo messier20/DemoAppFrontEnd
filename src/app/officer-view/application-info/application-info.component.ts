@@ -8,6 +8,8 @@ import {BackendService} from "../../services/backend.service";
 // import {LeasingFormLabels} from "../../constants/LeasingFormLabels";
 import {CustomerInfoLabels} from "../../constants/CustomerInfoLabels";
 import {LeasingFormLabels} from "../../constants/LeasingFormLabels";
+import {DialogFormComponent} from "../../dialog-form/dialog-form";
+import {MatDialog} from "@angular/material";
 // import {TextLabels} from "../../models/TextLabels";
 
 @Component({
@@ -33,7 +35,8 @@ export class ApplicationInfoComponent implements OnInit {
   sm;
 
   constructor(private dataService: DataStorageService,
-              private backendService: BackendService,) {
+              private backendService: BackendService
+              ) {
 
   }
 
@@ -52,6 +55,17 @@ export class ApplicationInfoComponent implements OnInit {
   @Input() lease;
   @Input() leasesInfoOfPrivate;
   @Input() leases;
+
+
+//   onDisplay(){
+//   this.dialog.open(DialogFormComponent, {
+//     data: {
+//       leasingModel: this.lease.leasingModel,
+//       privateInfo: this.lease.privateCustomerInfo
+//       // businessInfo: this.businessCustomerInfo
+//     }
+// });
+// };
 
 
 

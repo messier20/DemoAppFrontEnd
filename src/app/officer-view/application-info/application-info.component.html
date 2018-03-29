@@ -1,7 +1,7 @@
 
 <div >
 <button type="button"  class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
-        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" (click)="onDisplay()">
   <!--Application ID {{lease}}, submitted on {{lease}}-->
 
   Application {{lease.id}} submited on {{lease.date}}
@@ -28,7 +28,7 @@
 
       </div>
 
-    <app-dialog-form2></app-dialog-form2>
+    <app-dialog-form2 [lease]="lease"></app-dialog-form2>
     <div>
       <button class="btn btn-group btn-danger"  onclick="disabled=!disabled">Deny</button>
       <button class="btn btn-group btn-success" onclick="disabled=!disabled">Approve</button>

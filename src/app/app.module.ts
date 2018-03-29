@@ -17,6 +17,8 @@ import {DataStorageService} from './services/data-storage-service.service';
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DialogFormComponent} from './dialog-form/dialog-form';
 import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
+import {CheckLeasingStatusComponent} from "./check-leasing-status/check-leasing-status.component";
+// import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasing-status.component';
 import {OfficerViewComponent} from "./officer-view/officer-view.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { ApplicationInfoComponent } from './officer-view/application-info/application-info.component';
@@ -31,6 +33,9 @@ import { DialogForm2Component } from './dialog-form2/dialog-form2.component';
     CustomerInfoFormComponent,
     DialogFormComponent,
     LeasingCalculatorComponent,
+    // CheckLeasingStatusComponent
+    CheckLeasingStatusComponent,
+    // LeasingCalculatorComponent,
     DialogFormComponent,
     OfficerViewComponent,
     ApplicationInfoComponent,

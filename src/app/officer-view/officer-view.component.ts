@@ -39,8 +39,13 @@ export class OfficerViewComponent implements OnInit {
         this.leases = data;
 
         this.leases.forEach(lease => {
+          // console.log("lease id", lease.id);
 
           lease.id.date = (lease.id.date).substr(0,10);
+          // lease.id = lease.id.toString();
+
+          // console.log("lease id2", lease.id.toString());
+
 
           this.leasesInfoOfPrivate.push(new LeaseInfoOfPrivate(lease));
 
