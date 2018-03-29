@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {DataStorageService} from './data-storage-service.service';
 import {LeasingModel} from '../models/LeasingModel';
 import {CheckStatusInfo} from "../models/CheckStatusInfo";
@@ -11,6 +11,7 @@ export class BackendService {
   httpLink = 'http://localhost:8080/';
   businessCustomerLink = 'user/business';
   privateCustomerLink = 'user/private';
+  headers;
 
   constructor(private http: HttpClient,
               private dataStorage: DataStorageService) {
@@ -61,4 +62,45 @@ export class BackendService {
       .toPromise();
   }
 
+  updatePrivateCustomerStatus(id, postBody) {
+    // const postBody = {
+    //   customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
+    //   privateCustomer: this.dataStorage.getPrivateInfo()
+    // };
+
+    return this.http
+      .put('//localhost:8080/user/private/update/' + id, postBody ).toPromise();
+      // .toPromise()
+  }
+
+
+  // updation() {
+  //
+  //   this.headers = new HttpHeaders()
+  // .
+  //   set("Content-Type", "application/json");
+  //
+  //   this.httpLink.put("/courses/-KgVwECOnlc-LHb_B0cQ.json",
+  //     {
+  //       "courseListIcon": ".../main-page-logo-small-hat.png",
+  //       "description": "Angular Tutorial For Beginners TEST",
+  //       "iconUrl": ".../angular2-for-beginners.jpg",
+  //       "longDescription": "...",
+  //       "url": "new-value-for-url"
+  //     },
+  //     {headers})
+  //     .subscribe(
+  //       val => {
+  //         console.log("PUT call successful value returned in body",
+  //           val);
+  //       },
+  //       response => {
+  //         console.log("PUT call in error", response);
+  //       },
+  //       () => {
+  //         console.log("The PUT observable is now completed.");
+  //       }
+  //     );
+
+  // }
 }

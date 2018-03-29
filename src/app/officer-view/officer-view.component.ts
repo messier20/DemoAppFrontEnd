@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DataStorageService} from "../services/data-storage-service.service";
 import {BackendService} from "../services/backend.service";
@@ -18,8 +18,11 @@ import {LeaseInfoService} from "../services/lease-info.service";
 export class OfficerViewComponent implements OnInit {
 
   leases;
+  // @Input() lease;
 
    leasesInfoOfPrivate: LeaseInfoOfPrivate[] = [];
+
+
 
 
   constructor(private backendService: BackendService) {
@@ -57,6 +60,15 @@ export class OfficerViewComponent implements OnInit {
       });
 
   }
+
+  // updatePrivateCustomerStatus() {
+  //   // this.disabled = true;
+  //   this.backendService.updatePrivateCustomerStatus(this.lease.id)
+  //     .then(data => {
+  //       this.updateApplication.emit()
+  //     });
+  //   console.log("in update")
+  // }
 
 
 

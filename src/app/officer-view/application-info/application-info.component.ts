@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {LeasingModel} from "../../models/LeasingModel";
 // import {LeasingFormLabels} from "../../models/LeasingFormLabels";
 import {BusinessCustomerInfo} from "../../models/businessCustomerInfo";
@@ -42,19 +42,56 @@ export class ApplicationInfoComponent implements OnInit {
 
   ngOnInit() {
 
-
-    // this.ob = [
-    //   // this.dataService.getPrivateInfo(),
-    //   // this.dataService.getLeasingModel(),
-    // ];
-    // this.refresh();
-    // this.setLeases();
-    // this.getAllsm();
   }
 
   @Input() lease;
   @Input() leasesInfoOfPrivate;
   @Input() leases;
+  @Output() updateApplication = new EventEmitter<Object>();
+
+  submit() {
+
+    // updatePrivateCustomerStatus() {
+    //   // this.disabled = true;
+    //   this.backendService.updatePrivateCustomerStatus(this.lease.id)
+    //     .then(data => {
+    //       this.updateApplication.emit()
+    //     });
+    //   console.log("in update")
+    // }
+
+
+  }
+  setAprovedStatus() {
+    this.lease.status = "PENDING";
+    this.approvePrivateCustomerStatus()
+    return true;
+  }
+
+  setDeniedStatus() {
+    this.lease.status = "PENDING";
+    this.approvePrivateCustomerStatus()
+    return true;
+  }
+
+  approvePrivateCustomerStatus() {
+
+
+    let postBody = {
+      customerLeasing: this.lease.leasingModel,
+      privateCustomer: this.lease.privateCustomerInfo,
+      status: this.lease.status,
+      idHex: this.lease.id
+    }
+
+    console.log("post body", postBody);
+    // this.disabled = true;
+    this.backendService.updatePrivateCustomerStatus(this.lease.id, postBody)
+      .then(data => {
+        this.updateApplication.emit()
+      });
+    console.log("in update")
+  }
 
 
 //   onDisplay(){
