@@ -22,12 +22,13 @@ export class ApplicationInfoComponent implements OnInit {
 
   leasesModel: LeasingModel[];
   leasesModelList: LeasingModel[];
+  statusChanged = false;
   leasingFormLabels = new LeasingFormLabels();
   privateInfoLabels = new CustomerInfoLabels().privateInfoLabels;
   // privateInfoLabels = new TextLabels().privateInfoLabels;
 
-  private businessCustomerModel: BusinessCustomerInfo;
-  private privateCustomerModel: PrivateCustomerInfo;
+  // private businessCustomerModel: BusinessCustomerInfo;
+  // private privateCustomerModel: BusinessCustomerInfo;
   public isCollapsed = true;
   // public isDisabled = false;
   public disabled = false;
@@ -36,7 +37,7 @@ export class ApplicationInfoComponent implements OnInit {
 
   constructor(private dataService: DataStorageService,
               private backendService: BackendService
-              ) {
+  ) {
 
   }
 
@@ -47,6 +48,7 @@ export class ApplicationInfoComponent implements OnInit {
   @Input() lease;
   @Input() leasesInfoOfPrivate;
   @Input() leases;
+  @Input() ida;
   @Output() updateApplication = new EventEmitter<Object>();
 
   submit() {
@@ -64,12 +66,14 @@ export class ApplicationInfoComponent implements OnInit {
   }
   setAprovedStatus() {
     this.lease.status = "PENDING";
+    this.statusChanged = true;
     this.approvePrivateCustomerStatus()
-    return true;
+    // return true;
   }
 
   setDeniedStatus() {
     this.lease.status = "PENDING";
+    this.statusChanged = true;
     this.approvePrivateCustomerStatus()
     return true;
   }
@@ -113,63 +117,63 @@ export class ApplicationInfoComponent implements OnInit {
   // }
   // refresh() {
 
-    // console.log("lalala ", this.leasesModel.carModel)
-    // this.backendService.getAllPosts("PENDING")
-    //   .then(data => {
-    //     this.leases = data;
-    //
-    //     this.leases.forEach(lease => {
-    //       this.sm = this.lease.leasingModel.customerType;
-    //     });
-    //     console.log("sm", this.sm);
-    //       lease.id.date = (lease.id.date).substr(0,10);
-    //       // this.leasesModel.customerType = lease.customerLeasingForm.customerType;
-    //       // console.log("lease model: ", this.leasesModel.customerType);
-    //       // this.leasesModel.carModel = lease.customerLeasingForm.carModel;
-    //       // this.dataService.setLeasingModel(lease.customerLeasingForm);
-    //       // this.leasesModel = [this.dataService.getLeasingModel()];
-    //       // console.log("all data: ", lease);
-    //       // console.log("lease: ", lease.customerLeasing.carModel);
-    //       // console.log("set", this.dataService.getLeasingModel().carModel);
-    //       // console.log("this leases model: ", this.leasesModel);
-    //     });
-    //     console.log("list", this.leasesModelList);
+  // console.log("lalala ", this.leasesModel.carModel)
+  // this.backendService.getAllPosts("PENDING")
+  //   .then(data => {
+  //     this.leases = data;
+  //
+  //     this.leases.forEach(lease => {
+  //       this.sm = this.lease.leasingModel.customerType;
+  //     });
+  //     console.log("sm", this.sm);
+  //       lease.id.date = (lease.id.date).substr(0,10);
+  //       // this.leasesModel.customerType = lease.customerLeasingForm.customerType;
+  //       // console.log("lease model: ", this.leasesModel.customerType);
+  //       // this.leasesModel.carModel = lease.customerLeasingForm.carModel;
+  //       // this.dataService.setLeasingModel(lease.customerLeasingForm);
+  //       // this.leasesModel = [this.dataService.getLeasingModel()];
+  //       // console.log("all data: ", lease);
+  //       // console.log("lease: ", lease.customerLeasing.carModel);
+  //       // console.log("set", this.dataService.getLeasingModel().carModel);
+  //       // console.log("this leases model: ", this.leasesModel);
+  //     });
+  //     console.log("list", this.leasesModelList);
 
-        // console.log('subscribe', this.leases)
-        // console.log("cust type", this.leasesModel.customerType);
-      // });
+  // console.log('subscribe', this.leases)
+  // console.log("cust type", this.leasesModel.customerType);
+  // });
 
 
-    // return this.leasesModel;
+  // return this.leasesModel;
 
-    // return this.leases;
+  // return this.leases;
   // }
 
   // setLeases() {
-    // this.leases.forEach(lease => {
-    //   console.log("lease sete", lease);
-    //     this.leasesModel = this.dataService.getLeasingModel();
-    //     console.log("leasesmodel", this.dataService.getLeasingModel());
-    //   });
-    // console.log("getas", this.dataService.getLeasingModel());
-    // console.log("getas2", this.leasesModel);
-    //   this.leases.forEach(lease => {
-    //   this.leasesModel = this.dataService.getLeasingModel();
-    //   console.log("leasesmodel", this.dataService.getLeasingModel());
-    // }));
+  // this.leases.forEach(lease => {
+  //   console.log("lease sete", lease);
+  //     this.leasesModel = this.dataService.getLeasingModel();
+  //     console.log("leasesmodel", this.dataService.getLeasingModel());
+  //   });
+  // console.log("getas", this.dataService.getLeasingModel());
+  // console.log("getas2", this.leasesModel);
+  //   this.leases.forEach(lease => {
+  //   this.leasesModel = this.dataService.getLeasingModel();
+  //   console.log("leasesmodel", this.dataService.getLeasingModel());
+  // }));
 
 
-    //
-    // setLeases() {
-    //   this.refresh().forEach(data => {
-    //     console.log("test", data);
-    //   });
-    //   // console.log("leasesModel1: ", this.leases);
-    //   // this.leases.forEach(lease => {
-    //   //   this.leasesModel = lease.customerLeasingForm;
-    //   //   console.log("leasesModel: ", this.leasesModel);
-    //   // })
-    // }
+  //
+  // setLeases() {
+  //   this.refresh().forEach(data => {
+  //     console.log("test", data);
+  //   });
+  //   // console.log("leasesModel1: ", this.leases);
+  //   // this.leases.forEach(lease => {
+  //   //   this.leasesModel = lease.customerLeasingForm;
+  //   //   console.log("leasesModel: ", this.leasesModel);
+  //   // })
+  // }
 
   // }
 

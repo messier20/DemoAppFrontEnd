@@ -1,5 +1,5 @@
 
-<div >
+<div *ngFor="let lease of leasesInfoOfPrivate">
 <button type="button"  class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
         [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" >
   <!--Application ID {{lease}}, submitted on {{lease}}-->
@@ -39,3 +39,6 @@
     </div>
   </div>
 </div>
+
+
+

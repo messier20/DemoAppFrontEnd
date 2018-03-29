@@ -56,21 +56,30 @@ export class BackendService {
     return this.http.get(this.httpLink + this.privateCustomerLink + '/' + checkData.id).toPromise();
   }
 
-  getAllPosts(status) {
+  getAllPrivateUserApplications(status) {
     return this.http
       .get('//localhost:8080/user/private/status/' + status)
       .toPromise();
   }
 
+  getAllBusinessUserApplications(status) {
+    return this.http
+      .get('//localhost:8080/user/business/status/' + status)
+      .toPromise();
+  }
+
   updatePrivateCustomerStatus(id, postBody) {
-    // const postBody = {
-    //   customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
-    //   privateCustomer: this.dataStorage.getPrivateInfo()
-    // };
 
     return this.http
       .put('//localhost:8080/user/private/update/' + id, postBody ).toPromise();
-      // .toPromise()
+    // .toPromise()
+  }
+
+  updateBusinessCustomerStatus(id, postBody) {
+
+    return this.http
+      .put('//localhost:8080/user/private/update/' + id, postBody ).toPromise();
+    // .toPromise()
   }
 
 
