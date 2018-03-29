@@ -16,6 +16,7 @@ import {DataStorageService} from './services/data-storage-service.service';
 
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DialogFormComponent} from './dialog-form/dialog-form';
+import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
 import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasing-status.component';
 
 
@@ -25,6 +26,7 @@ import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasin
     PrivateFormComponent,
     CustomerInfoFormComponent,
     DialogFormComponent,
+    LeasingCalculatorComponent,
     CheckLeasingStatusComponent
   ],
   imports: [

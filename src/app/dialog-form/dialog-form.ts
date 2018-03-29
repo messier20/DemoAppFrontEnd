@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {DataStorageService} from '../services/data-storage-service.service';
+import {Component, Inject} from '@angular/core';
 import {BackendService} from '../services/backend.service';
 import {LeasingModel} from '../models/LeasingModel';
-import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
-import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
-import {TextLabels} from '../models/TextLabels';
-import {LeasingFormLabels} from '../models/LeasingFormLabels';
+import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
+import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
+import {CustomerInfoLabels} from '../constants/CustomerInfoLabels';
+import {LeasingFormLabels} from '../constants/LeasingFormLabels';
+import {MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-dialog-form',
@@ -15,8 +15,6 @@ import {LeasingFormLabels} from '../models/LeasingFormLabels';
 export class DialogFormComponent {
 
   privateCustomer: boolean;
-  checkLeasingStatus: boolean;
-  leasingStatus: string;
 
   leasingModel: LeasingModel;
   leasingLabels;
@@ -29,22 +27,20 @@ export class DialogFormComponent {
 
   customerInfoArray = [];
 
-  constructor(private dataService: DataStorageService,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private backendService: BackendService) {
-    const labels = new TextLabels();
+    const labels = new CustomerInfoLabels();
 
-    this.leasingModel = this.dataService.getLeasingModel();
-    this.checkLeasingStatus = !(this.dataService.getLeasingStatus() === '');
-    this.leasingStatus = this.dataService.getLeasingStatus();
+    this.leasingModel = this.data.leasingModel;
     this.leasingLabels = new LeasingFormLabels().leasingFormLabels;
 
     this.isCustomerPrivate();
     if (this.privateCustomer) {
-      this.privateCustomerInfo = this.dataService.getPrivateInfo();
+      this.privateCustomerInfo = this.data.privateInfo;
       this.customerInfoLabels = labels.privateInfoLabels;
       this.setupPrivateCustomerInfoArray();
     } else {
-      this.businessCustomerInfo = this.dataService.getBusinessInfo();
+      this.businessCustomerInfo = this.data.businessInfo;
       this.customerInfoLabels = labels.businessInfoLabels;
       this.setupBusinessCustomerInfoArray();
     }
@@ -57,7 +53,7 @@ export class DialogFormComponent {
   }
 
   private isCustomerPrivate() {
-    this.privateCustomer = this.dataService.getLeasingModel().customerType === 'Private';
+    this.privateCustomer = this.data.leasingModel.customerType === 'Private';
   }
 
   private setupPrivateCustomerInfoArray() {

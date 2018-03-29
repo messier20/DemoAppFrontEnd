@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {LeasingModel} from '../models/LeasingModel';
-import {BusinessCustomerInfo} from '../models/businessCustomerInfo';
-import {PrivateCustomerInfo} from '../models/privateCustomerInfo';
+import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
+import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
+import {LeasingCalculator} from '../models/LeasingCalculator';
+import {Repayment} from '../models/Repayment';
 
 @Injectable()
 export class DataStorageService {
@@ -9,7 +11,9 @@ export class DataStorageService {
   private leasingModel: LeasingModel;
   private businessCustomerInfo: BusinessCustomerInfo;
   private privateCustomerInfo: PrivateCustomerInfo;
-  private leasingStatus: string;
+  private leasingCalculator: LeasingCalculator;
+  private repaymentPlan: Repayment[];
+
 
   static refactorCustomerType(form) {
     if (form.customerType === 'Private') {
@@ -57,11 +61,19 @@ export class DataStorageService {
     return this.privateCustomerInfo;
   }
 
-  setLeasingStatus(givenLeasingStatus) {
-    this.leasingStatus = givenLeasingStatus;
+  setLeasingCalculator(givenLeasingCalculator) {
+    this.leasingCalculator = givenLeasingCalculator;
   }
 
-  getLeasingStatus() {
-    return this.leasingStatus;
+  getLeasingCalculator() {
+    return this.leasingCalculator;
+  }
+
+  setRepaymentPlan(givenRepaymentPlan) {
+    this.repaymentPlan = givenRepaymentPlan;
+  }
+
+  getRepaymentPlan() {
+    return this.repaymentPlan;
   }
 }
