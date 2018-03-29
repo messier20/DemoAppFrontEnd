@@ -17,6 +17,8 @@ import {DataStorageService} from './services/data-storage-service.service';
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DialogFormComponent} from './dialog-form/dialog-form';
 import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
+// import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasing-status.component';
+import { AllInformationListComponent } from './all-information-list/all-information-list.component';
 import {CheckLeasingStatusComponent} from "./check-leasing-status/check-leasing-status.component";
 // import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasing-status.component';
 import {OfficerViewComponent} from "./officer-view/officer-view.component";
@@ -33,8 +35,10 @@ import { DialogForm2Component } from './dialog-form2/dialog-form2.component';
     CustomerInfoFormComponent,
     DialogFormComponent,
     LeasingCalculatorComponent,
-    // CheckLeasingStatusComponent
     CheckLeasingStatusComponent,
+    AllInformationListComponent,
+    // CheckLeasingStatusComponent
+    // CheckLeasingStatusComponent,
     // LeasingCalculatorComponent,
     DialogFormComponent,
     OfficerViewComponent,

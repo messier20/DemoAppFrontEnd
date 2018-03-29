@@ -10,6 +10,8 @@ import {CustomerInfoLabels} from "../../constants/CustomerInfoLabels";
 import {LeasingFormLabels} from "../../constants/LeasingFormLabels";
 import {DialogFormComponent} from "../../dialog-form/dialog-form";
 import {MatDialog} from "@angular/material";
+import {LeaseInfoOfPrivate} from "../../models/LeaseInfoOfPrivate";
+import {LeaseInfoOfBusiness} from "../../models/LeaseInfoOfBusiness";
 // import {TextLabels} from "../../models/TextLabels";
 
 @Component({
@@ -19,6 +21,9 @@ import {MatDialog} from "@angular/material";
 })
 export class ApplicationInfoComponent implements OnInit {
 
+
+  @Input()  leasesInfoOfPrivate;
+  @Input() leasesInfoOfBusiness;
 
   leasesModel: LeasingModel[];
   leasesModelList: LeasingModel[];
@@ -46,7 +51,7 @@ export class ApplicationInfoComponent implements OnInit {
   }
 
   @Input() lease;
-  @Input() leasesInfoOfPrivate;
+  // @Input() leasesInfoOfPrivate;
   @Input() leases;
   @Input() ida;
   @Output() updateApplication = new EventEmitter<Object>();

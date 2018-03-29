@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {BackendService} from '../services/backend.service';
@@ -6,6 +6,9 @@ import {CheckStatusInfo} from '../models/CheckStatusInfo';
 import {DialogFormComponent} from '../dialog-form/dialog-form';
 import {MatDialog} from '@angular/material';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
+import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
+import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
+import {LeasingModel} from '../models/LeasingModel';
 
 @Component({
   selector: 'app-check-leasing-status',
@@ -61,16 +64,14 @@ export class CheckLeasingStatusComponent implements OnInit {
   submitPrivateSearch() {
     this.backend.getPrivateFormById(this.checkStatusInfo).then(
       receivedData => {
-        console.log(receivedData);
         const received: any = receivedData;
-        // this.dataService.setLeasingModel(DataStorageService.refactorCustomerType(data.customerLeasingForm));
-        // this.dataService.setPrivateInfo(DataStorageService.refactorCustomerType(data.privateCustomerForm));
-        // this.dataService.setLeasingStatus(data.status);
-        // this.dataService.setLeasingStatus('PENDING');
+
         this.dialog.open(DialogFormComponent, {
           data: {
-            leasingModel: received.customerLeasing,
-            privateInfo: received.privateCustomer
+            leasingModel: DataStorageService.refactorCustomerType(received.customerLeasing),
+            privateInfo: received.privateCustomer,
+            checkingLeasingStatus: true,
+            leasingStatus: received.status
           }
         });
       },
@@ -83,14 +84,14 @@ export class CheckLeasingStatusComponent implements OnInit {
   submitBusinessSearch() {
     this.backend.getBusinessFormById(this.checkStatusInfo).then(
       receivedData => {
-        console.log(receivedData);
         const received: any = receivedData;
-        // this.dataService.setLeasingModel(DataStorageService.refactorCustomerType(data.customerLeasingForm));
-        // this.dataService.setBusinessInfo(DataStorageService.refactorCustomerType(data.businessCustomerForm));
+
         this.dialog.open(DialogFormComponent, {
           data: {
-            leasingModel: received.customerLeasing,
-            businessInfo: received.businessCustomerInfo
+            leasingModel: DataStorageService.refactorCustomerType(received.customerLeasing),
+            businessInfo: received.businessCustomer,
+            checkingLeasingStatus: true,
+            leasingStatus: received.status
           }
         });
       },

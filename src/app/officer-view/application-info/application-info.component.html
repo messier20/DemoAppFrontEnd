@@ -1,10 +1,10 @@
 
-<div *ngFor="let lease of leasesInfoOfPrivate">
+<div >
 <button type="button"  class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
         [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" >
   <!--Application ID {{lease}}, submitted on {{lease}}-->
 
-  Application {{lease.id}} submited on {{lease.date}}
+  Application {{ida}} submited on
   <!--*ngFor="let info of leasesModel"-->
   <!--*ngFor="let info of leasesInfoOfPrivate"-->
 
@@ -12,23 +12,35 @@
 <div id="collapseExample" [ngbCollapse]="isCollapsed" >
   <div class="card">
     <div class="card-body">
-      <h3>Application information</h3>
-      <ul>
-        <li>
-          <label>{{leasingFormLabels.CUSTOMER_TYPE}}: </label> <span>{{lease.leasingModel.customerType}}</span>
-      </li>
-        <li>
-        <label>{{leasingFormLabels.CAR_MODEL}}: </label> <span>{{lease.leasingModel.carModel}}</span>
-        </li>
-        <li>
-          <!--<label>{{privateInfoLabels[1]}}: </label> <span>{{lease.privateCustomer.name}}</span>-->
-        </li>
-        <!--<span>{{lease.}}</span>-->
-      </ul>
+      <!--<h3>Application information</h3>-->
+      <!--<ul>-->
+        <!--<li>-->
+          <!--<label>{{leasingFormLabels.CUSTOMER_TYPE}}: </label> <span>{{lease.leasingModel.customerType}}</span>-->
+      <!--</li>-->
+        <!--<li>-->
+        <!--<label>{{leasingFormLabels.CAR_MODEL}}: </label> <span>{{lease.leasingModel.carModel}}</span>-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--&lt;!&ndash;<label>{{privateInfoLabels[1]}}: </label> <span>{{lease.privateCustomer.name}}</span>&ndash;&gt;-->
+        <!--</li>-->
+        <!--&lt;!&ndash;<span>{{lease.}}</span>&ndash;&gt;-->
+      <!--</ul>-->
+      <!--<div *ngFor="let businessLease of leasesInfoOfBusiness">-->
+        <!--<div >-->
+          <!--{{businessLease.leasingModel.customerType}}-->
+        <!--</div>-->
+      <app-all-information-list [businessCustomerInfo]="leasesInfoOfBusiness.businessCustomer"    [leasingModel]="leasesInfoOfBusiness.leasingModel" ></app-all-information-list>
+      <!--</div>-->
+      <!--<div *ngFor="let privateLease of leasesInfoOfPrivate">-->
+        <!--<div>-->
+          <!--{{privateLease}}-->
+        <!--</div>-->
+      <!--<app-all-information-list [privateCustomerInfo]="privateLease.privateCustomer" [leasingModel]="privateLease.leasingModel" ]></app-all-information-list>-->
+      <!--</div>-->
 
       </div>
 
-    <app-dialog-form2 [lease]="lease"></app-dialog-form2>
+    <!--<app-dialog-form2 [lease]="lease"></app-dialog-form2>-->
     <div>
       <button class="btn btn-group btn-danger"  (click)="setDeniedStatus()" onclick="disabled=!disabled" >Deny</button>
       <!--<button class="btn btn-group btn-success" (click)="setAprovedStatus()"  onclick="disabled=!disabled" ng-If="setDeniedStatus() ? disabled : disabled">Approve</button>-->
@@ -39,6 +51,7 @@
     </div>
   </div>
 </div>
+
 
 
 

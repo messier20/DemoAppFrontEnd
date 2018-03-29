@@ -57,7 +57,8 @@ export class CustomerInfoFormComponent implements OnInit {
         data: {
           leasingModel: this.dataService.getLeasingModel(),
           privateInfo: this.privateCustomerInfo,
-          businessInfo: this.businessCustomerInfo
+          businessInfo: this.businessCustomerInfo,
+          checkingLeasingStatus: false
         }
       });
     }
