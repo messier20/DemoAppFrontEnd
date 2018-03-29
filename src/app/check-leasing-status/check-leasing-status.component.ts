@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {BackendService} from '../services/backend.service';
 import {CheckStatusInfo} from '../models/CheckStatusInfo';
-import {LeasingFormLabels} from '../models/LeasingFormLabels';
 import {DialogFormComponent} from '../dialog-form/dialog-form';
 import {MatDialog} from '@angular/material';
 
@@ -17,7 +16,6 @@ export class CheckLeasingStatusComponent implements OnInit {
   formLabels: String[];
   checkStatusForm: FormGroup;
   checkStatusInfo: CheckStatusInfo;
-  leasingFormLabels = new LeasingFormLabels();
   availableCustomerTypes = ['Private', 'Business'];
 
   constructor(private formBuilder: FormBuilder,
