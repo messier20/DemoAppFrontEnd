@@ -25,7 +25,7 @@ export class DialogFormComponent {
   customerInfoLabels: string[];
 
   leasingModelArray = [];
-
+  data: string;
   customerInfoArray = [];
 
   constructor(private router: Router,
@@ -51,7 +51,8 @@ export class DialogFormComponent {
 
   sendFormToBackend() {
     this.backendService.sendCompletedForm().then(data => {
-      console.log(data);
+      const id: any = data;
+      console.log(id);
       this.router.navigate(['/confirmedLeasingForm']);
     });
     }
