@@ -13,6 +13,7 @@ export class BackendService {
   privateCustomerLink = 'user/private';
   repaymentScheduleLink = 'user/calculator/loan/vehicle';
 
+
   constructor(private http: HttpClient,
               private dataStorage: DataStorageService) {
   }
@@ -43,6 +44,7 @@ export class BackendService {
       customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
       privateCustomer: this.dataStorage.getPrivateInfo()
     };
+    console.log(postBody);
 
     return this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
   }
@@ -58,5 +60,32 @@ export class BackendService {
   sendLeasingCalculatorInput(leasingCalculatorInput: LeasingCalculator) {
     return this.http.post(this.httpLink + this.repaymentScheduleLink, leasingCalculatorInput).toPromise();
   }
+
+  getAllPrivateUserApplications(status) {
+    return this.http
+      .get('//localhost:8080/user/private/status/' + status)
+      .toPromise();
+  }
+
+  getAllBusinessUserApplications(status) {
+    return this.http
+      .get('//localhost:8080/user/business/status/' + status)
+      .toPromise();
+  }
+
+  updatePrivateCustomerStatus(id, postBody) {
+
+    return this.http
+      .put('//localhost:8080/user/private/update/' + id, postBody ).toPromise();
+    // .toPromise()
+  }
+
+  updateBusinessCustomerStatus(id, postBody) {
+
+    return this.http
+      .put('//localhost:8080/user/business/update/' + id, postBody ).toPromise();
+    // .toPromise()
+  }
+
 
 }

@@ -17,8 +17,17 @@ import {DataStorageService} from './services/data-storage-service.service';
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DialogFormComponent} from './dialog-form/dialog-form';
 import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
-import {CheckLeasingStatusComponent} from './check-leasing-status/check-leasing-status.component';
-import {AllInformationListComponent} from './all-information-list/all-information-list.component';
+// import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasing-status.component';
+import { AllInformationListComponent } from './all-information-list/all-information-list.component';
+import {CheckLeasingStatusComponent} from "./check-leasing-status/check-leasing-status.component";
+// import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasing-status.component';
+import {OfficerViewComponent} from "./officer-view/officer-view.component";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { ApplicationInfoComponent } from './officer-view/application-info/application-info.component';
+import {LeaseInfoService} from "./services/lease-info.service";
+import { DialogForm2Component } from './dialog-form2/dialog-form2.component';
+import { DisplayBusinessCustomerLeaseComponent } from './display-business-customer-lease/display-business-customer-lease.component';
+import { DisplayPrivateCustomerLeaseComponent } from './display-private-customer-lease/display-private-customer-lease.component';
 
 
 @NgModule({
@@ -28,8 +37,18 @@ import {AllInformationListComponent} from './all-information-list/all-informatio
     PrivateFormComponent,
     CustomerInfoFormComponent,
     DialogFormComponent,
+    LeasingCalculatorComponent,
     CheckLeasingStatusComponent,
-    AllInformationListComponent
+    AllInformationListComponent,
+    // CheckLeasingStatusComponent
+    // CheckLeasingStatusComponent,
+    // LeasingCalculatorComponent,
+    DialogFormComponent,
+    OfficerViewComponent,
+    ApplicationInfoComponent,
+    DialogForm2Component,
+    DisplayBusinessCustomerLeaseComponent,
+    DisplayPrivateCustomerLeaseComponent
   ],
   imports: [
     BrowserModule,
@@ -39,11 +58,12 @@ import {AllInformationListComponent} from './all-information-list/all-informatio
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule.forRoot()
   ],
-  providers: [DataStorageService, BackendService],
+  providers: [DataStorageService, BackendService, LeaseInfoService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogFormComponent]
+  entryComponents: [DialogFormComponent, DialogForm2Component]
 })
 export class AppModule {
 }
