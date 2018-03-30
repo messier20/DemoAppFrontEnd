@@ -27,7 +27,6 @@ export class LeasingCalculatorComponent implements OnInit {
   leasePeriods;
   availableDays = [15, 30];
   minAssetPrice = 5000;
-  emptyString = '';
   repaymentSchedule: Repayment[];
 
   constructor(private router: Router,
@@ -67,16 +66,7 @@ export class LeasingCalculatorComponent implements OnInit {
     this.backendService.sendLeasingCalculatorInput(this.leasingCalculator).then(
       receivedData => {
         const received: any = receivedData;
-        // this.repaymentSchedule = received.repaymentSchedule;
         this.displayRepaymentSchedule(received.repaymentSchedule);
-        // this.dialog.open(DialogFormComponent, {
-        //   data: {
-        //     leasingModel: DataStorageService.refactorCustomerType(received.customerLeasing),
-        //     businessInfo: received.businessCustomer,
-        //     checkingLeasingStatus: true,
-        //     leasingStatus: received.status
-        //   }
-        // });
       },
       error => {
         console.log('Error: ' + error);
