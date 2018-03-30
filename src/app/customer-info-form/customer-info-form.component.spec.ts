@@ -9,10 +9,26 @@ import {MatDialogModule} from '@angular/material';
 import {PrivateFormComponent} from '../privateform/private-form.component';
 import {AppRoutingModule} from '../app-routing.module';
 import {RouterModule} from '@angular/router';
+import {DataStorageService} from '../services/data-storage-service.service';
+import {LeasingModel} from '../models/LeasingModel';
 
 describe('CustomerInfoFormComponent', () => {
   let component: CustomerInfoFormComponent;
   let fixture: ComponentFixture<CustomerInfoFormComponent>;
+  const leasingModel = new LeasingModel();
+  leasingModel.customerType = 'Business';
+  leasingModel.assetType = 'Vehicle';
+  leasingModel.carBrand = 'AUDI';
+  leasingModel.carModel = 'A5';
+  leasingModel.manufacturedDate = '2018-02-02';
+  leasingModel.enginePower = 123;
+  leasingModel.assetPrice = 12345;
+  leasingModel.advancePaymentPercentage = 10;
+  leasingModel.advancePaymentAmount = '1234.50';
+  leasingModel.contractFee = '200.00';
+  leasingModel.margin = 3.2;
+  leasingModel.leasePeriodInMonths = 12;
+  leasingModel.paymentDate = 15;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -24,10 +40,10 @@ describe('CustomerInfoFormComponent', () => {
         MatDialogModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        FormsModule,
         RouterModule
       ],
       providers: [
+        DataStorageService,
         {provide: APP_BASE_HREF, useValue: '/'}
       ]
     })
@@ -37,10 +53,15 @@ describe('CustomerInfoFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CustomerInfoFormComponent);
     component = fixture.componentInstance;
+    component.leasingModel = leasingModel;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should read customer type as business', () => {
+    expect(component.isCustomerPrivate()).toEqual(false);
   });
 });
