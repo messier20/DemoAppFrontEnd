@@ -1,11 +1,11 @@
 export class Repayment {
 
   private _repaymentDate: string;
-  private _remainingAmountToRepay: string;
-  private _assetValuePaymentAmount: string;
-  private _interestPaymentAmount: string;
-  private _contractFee: string;
-  private _totalPaymentAmount: string;
+  private _remainingAmountToRepay: number;
+  private _assetValuePaymentAmount: number;
+  private _interestPaymentAmount: number;
+  private _contractFee: number;
+  private _totalPaymentAmount: number;
 
   constructor() {
   }
@@ -18,43 +18,43 @@ export class Repayment {
     this._repaymentDate = value;
   }
 
-  get remainingAmountToRepay(): string {
+  get remainingAmountToRepay(): number {
     return this._remainingAmountToRepay;
   }
 
-  set remainingAmountToRepay(value: string) {
+  set remainingAmountToRepay(value: number) {
     this._remainingAmountToRepay = value;
   }
 
-  get assetValuePaymentAmount(): string {
+  get assetValuePaymentAmount(): number {
     return this._assetValuePaymentAmount;
   }
 
-  set assetValuePaymentAmount(value: string) {
+  set assetValuePaymentAmount(value: number) {
     this._assetValuePaymentAmount = value;
   }
 
-  get interestPaymentAmount(): string {
+  get interestPaymentAmount(): number {
     return this._interestPaymentAmount;
   }
 
-  set interestPaymentAmount(value: string) {
+  set interestPaymentAmount(value: number) {
     this._interestPaymentAmount = value;
   }
 
-  get contractFee(): string {
+  get contractFee(): number {
     return this._contractFee;
   }
 
-  set contractFee(value: string) {
+  set contractFee(value: number) {
     this._contractFee = value;
   }
 
-  get totalPaymentAmount(): string {
+  get totalPaymentAmount(): number {
     return this._totalPaymentAmount;
   }
 
-  set totalPaymentAmount(value: string) {
+  set totalPaymentAmount(value: number) {
     this._totalPaymentAmount = value;
   }
 }
