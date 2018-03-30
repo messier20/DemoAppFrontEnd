@@ -37,6 +37,12 @@ export class DataStorageService {
     }
   }
 
+  deleteAllLeasingData() {
+    this.leasingModel = new LeasingModel();
+    this.businessCustomerInfo = new BusinessCustomerInfo();
+    this.privateCustomerInfo = new PrivateCustomerInfo();
+  }
+
   setLeasingModel(givenLeasingModel) {
     this.leasingModel = givenLeasingModel;
   }
