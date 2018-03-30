@@ -1,28 +1,43 @@
-<h1 *ngIf="!checkingLeasingStatus" mat-dialog-title>Confirmation required</h1>
-<div mat-dialog-content>
-  <div class="container">
-    <div class="panel panel-info">
-      <div class="panel-body" *ngIf="checkingLeasingStatus" id="statusLabel"><b>Leasing status</b></div>
-      <div class="panel-body" *ngIf="checkingLeasingStatus"><i>Current status of leasing application: </i>{{leasingStatus}}
+<div *ngIf="!showingUserId">
+  <h1 *ngIf="!checkingLeasingStatus" mat-dialog-title>Confirmation required</h1>
+  <div mat-dialog-content>
+    <div class="container">
+      <div class="panel panel-info">
+        <div class="panel-body" *ngIf="checkingLeasingStatus" id="statusLabel"><b>Leasing status</b></div>
+        <div class="panel-body" *ngIf="checkingLeasingStatus"><i>Current status of leasing application: </i>{{leasingStatus}}
+        </div>
       </div>
+
+      <app-all-information-list [leasingModel]="leasingModel"
+                                [privateCustomerInfo]="privateCustomerInfo"
+                                [businessCustomerInfo]="businessCustomerInfo">
+      </app-all-information-list>
+
     </div>
 
-    <app-all-information-list [leasingModel]="leasingModel"
-                              [privateCustomerInfo]="privateCustomerInfo"
-                              [businessCustomerInfo]="businessCustomerInfo">
-    </app-all-information-list>
-
+    <div mat-dialog-actions>
+      <div class="float-xl-right">
+        <button mat-button mat-dialog-close class="btn btn-default" style="margin-right: 10px">Cancel</button>
+        <button mat-button cdkFocusInitial
+                class="btn btn-primary"
+                (click)="sendFormToBackend()"
+                *ngIf="!checkingLeasingStatus">
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showingUserId">
+  <div mat-dialog-content>
+    Your application has been accepted and is being processed right now. You should receive decision within 3 days. <br />
+    <br />
+    You can always check your application status with application ID= {{receivedUserId}}
   </div>
 
   <div mat-dialog-actions>
     <div class="float-xl-right">
-      <button mat-button mat-dialog-close class="btn btn-default" style="margin-right: 10px">Cancel</button>
-      <button mat-button [mat-dialog-close]="true" cdkFocusInitial
-              class="btn btn-primary"
-              (click)="sendFormToBackend()"
-              *ngIf="!checkingLeasingStatus">
-        Confirm
-      </button>
+      <button mat-button mat-dialog-close routerLink="privateForm" class="btn btn-default" style="margin-right: 10px">Close</button>
     </div>
   </div>
 </div>

@@ -19,10 +19,10 @@ export class BackendService {
 
   sendCompletedForm() {
     if (this.dataStorage.getLeasingModel().customerType === 'Private') {
-      this.sendPrivateForm();
+      return this.sendPrivateForm();
 
     } else if (this.dataStorage.getLeasingModel().customerType === 'Business') {
-      this.sendBusinessForm();
+      return this.sendBusinessForm();
 
     } else {
       console.log('Error in backendService, could not determine customerType of form');
