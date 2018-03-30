@@ -1,41 +1,29 @@
 
-
-<!--almost gGoooooooood-->
-<!--<ul *ngFor="let lease of leases" class="list-group list-group-flush">-->
-  <!--private lease-->
-  <!--<li class="list-group-item"-->
-      <!--&gt;-->
-    <!--{{lease.customerLeasingForm.carModel}} sm-->
-
-    <!--<ul *ngFor="let lease3 of leasesModel" class="list-group list-group-flush">-->
-      <!--private lease model-->
-      <!--<li class="list-group-item"-->
-      <!--&gt;-->
-        <!--{{lease3.carModel}} aa-->
-      <!--</li>-->
-    <!--</ul>-->
-
-  <!--</li>-->
-<!--</ul>-->
-<!--goood finished-->
-
-
-
-<!--<div *ngFor="let lease of leasesInfoOfPrivate">-->
-
-  <!--<app-application-info [lease]="lease" ></app-application-info>-->
-  <!--&lt;!&ndash;{{leasesInfoOfPrivate}}&ndash;&gt;-->
-
-<!--</div>-->
-
-<!--<div *ngFor="let lease of leasesInfoOfPrivate">-->
-  <!--<app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"> text</app-application-info>-->
-  <!--{{lease.id}}-->
-<!--</div>-->
-
-<!--<div *ngFor="let name of names">-->
-<div *ngFor="let lease of combined; let i = index" >
-  <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate" [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"></app-application-info>
+<div>
+  <h1>Pending applications</h1>
+  <div *ngFor="let lease of pending; let i = index">
+    <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
+                          [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
+                          [pending]="lease"></app-application-info>
+  </div>
 </div>
 
-<!--</div>-->
+<div>
+  <h1>Approved applications</h1>
+  <div *ngFor="let lease of approved; let i = index">
+
+    <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
+                          [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"></app-application-info>
+  </div>
+</div>
+
+<div>
+  <h1>Denied applications</h1>
+  <div *ngFor="let lease of denied; let i = index">
+    <!--<div *ngFor="let sm of lease">-->
+
+    <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
+                          [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"></app-application-info>
+  </div>
+</div>
+

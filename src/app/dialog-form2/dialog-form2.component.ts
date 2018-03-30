@@ -21,14 +21,12 @@ export class DialogForm2Component implements OnInit {
   }
 
 
-  updateChoice = new EventEmitter<Object>();
-
   action;
 
   ngOnInit() {
     console.log(this.status);
 
-    if(this.status === "DENIED") {
+    if (this.status === "DENIED") {
       this.action = "deny";
       console.log("in deny", this.status);
     }
@@ -37,20 +35,15 @@ export class DialogForm2Component implements OnInit {
       console.log(this.status);
     }
 
-
   }
 
-  returnYes(){
+  returnYes() {
 
-    if(this.status==="APPROVED") {
+    if (this.status === "APPROVED") {
       this.choice = "APPROVED";
       console.log("in return yes", this.choice);
-      // this.updateChoice = this.choice;
-      // this.updateChoice.emit();
-      // this.choice.emit();
       this.dialogRef.close(this.choice);
     }
-    // return this.choice;
 
     else {
       this.choice = "DENIED";
@@ -60,13 +53,7 @@ export class DialogForm2Component implements OnInit {
   }
 
   returnNo() {
-
-    // this.choice.emit();
     console.log("just retured no");
-  }
-
-  closeDialog(){
-    // this.dialo
   }
 
 }
