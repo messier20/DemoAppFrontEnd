@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LeasingCalculator} from '../models/LeasingCalculator';
 import {Data, Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
@@ -7,6 +7,8 @@ import {LeasePeriods} from '../models/LeasePeriods';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {CustomValidators} from '../constants/CustomValidators';
 import {Repayment} from '../models/Repayment';
+import {BackendService} from '../services/backend.service';
+import {DialogFormComponent} from '../dialog-form/dialog-form';
 
 @Component({
   selector: 'app-leasing-calculator',
@@ -16,22 +18,23 @@ import {Repayment} from '../models/Repayment';
 export class LeasingCalculatorComponent implements OnInit {
 
   leasingCalculator: LeasingCalculator;
-  leasingForm: FormGroup;
+  leasingCalculatorForm: FormGroup;
   leasingFormLabels = new LeasingFormLabels();
   leasingCalculatorLabels = this.leasingFormLabels.leasingCalculatorLabels;
 
   availableCustomerTypes = ['Private', 'Business'];
-  availableAssetTypes = ['Vehicle'];
 
   leasePeriods;
   availableDays = [15, 30];
   minAssetPrice = 5000;
+  repaymentSchedule: Repayment[];
 
   constructor(private router: Router,
-              private dataService: DataStorageService, private formBuilder: FormBuilder) {
+              private dataService: DataStorageService,
+              private formBuilder: FormBuilder,
+              private backendService: BackendService) {
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
-    this.leasingForm.get('assetType').setValue('Vehicle');
   }
 
   ngOnInit() {
@@ -39,37 +42,46 @@ export class LeasingCalculatorComponent implements OnInit {
   }
 
   setMinAssetPrice() {
-    if (this.leasingForm.get('customerType').value === 'Business') {
+    if (this.leasingCalculatorForm.get('customerType').value === 'Business') {
       this.minAssetPrice = 10000;
-      this.leasingForm.get('assetPrice').setValidators(CustomValidators.assetPriceBusinessValidator);
+      this.leasingCalculatorForm.get('assetPrice').setValidators(CustomValidators.assetPriceBusinessValidator);
     } else {
       this.minAssetPrice = 5000;
-      this.leasingForm.get('assetPrice').setValidators(CustomValidators.assetPricePersonalValidator);
+      this.leasingCalculatorForm.get('assetPrice').setValidators(CustomValidators.assetPricePersonalValidator);
     }
-    this.leasingForm.get('assetPrice').updateValueAndValidity();
+    this.leasingCalculatorForm.get('assetPrice').updateValueAndValidity();
     document.getElementById('assetPrice').setAttribute('min', this.minAssetPrice.toString());
   }
 
   calcAdvancePaymentAmountAndContractFee() {
-    this.leasingForm.get('contractFee').setValue((this.leasingForm.get('assetPrice').value * 0.01).toFixed(2));
-    if (Number.parseFloat(this.leasingForm.get('contractFee').value) < 200) {
-      this.leasingForm.get('contractFee').setValue((200).toFixed(2));
+    this.leasingCalculatorForm.get('contractFee').setValue((this.leasingCalculatorForm.get('assetPrice').value * 0.01).toFixed(2));
+    if (Number.parseFloat(this.leasingCalculatorForm.get('contractFee').value) < 200) {
+      this.leasingCalculatorForm.get('contractFee').setValue((200).toFixed(2));
     }
-    this.leasingForm.get('advancePaymentAmount').setValue((this.leasingForm.get('assetPrice').value
-      * this.leasingForm.get('advancePaymentPercentage').value / 100).toFixed(2));
+    this.leasingCalculatorForm.get('advancePaymentAmount').setValue((this.leasingCalculatorForm.get('assetPrice').value
+      * this.leasingCalculatorForm.get('advancePaymentPercentage').value / 100).toFixed(2));
   }
 
   submitForm() {
+    this.backendService.sendLeasingCalculatorInput(this.leasingCalculator).then(
+      receivedData => {
+        const received: any = receivedData;
+        this.displayRepaymentSchedule(received.repaymentSchedule);
+      },
+      error => {
+        console.log('Error: ' + error);
+      }
+    );
+  }
+
+  private displayRepaymentSchedule(repaymentSchedule: Repayment[]) {
+    this.repaymentSchedule = repaymentSchedule;
+    document.getElementById('repaymentSchedule').hidden = false;
   }
 
   createValidForm() {
-    this.leasingForm = this.formBuilder.group({
+    this.leasingCalculatorForm = this.formBuilder.group({
       customerType: ['', CustomValidators.customerTypeValidator],
-      assetType: ['', CustomValidators.assetTypeValidator],
-      carBrand: ['', CustomValidators.carBrandValidator],
-      carModel: ['', CustomValidators.carModelValidator],
-      manufacturedDate: ['', CustomValidators.manufacturedDateValidator],
-      enginePower: ['', CustomValidators.enginePowerValidator],
       advancePaymentAmount: ['', CustomValidators.advancePaymentAmountValidator],
       leasePeriodInMonths: ['', CustomValidators.leasePeriodInMonthsValidator],
       contractFee: ['', CustomValidators.contractFeeValidator],
@@ -81,15 +93,15 @@ export class LeasingCalculatorComponent implements OnInit {
   }
 
   setLeasingCalculator() {
-    if (!this.leasingForm.valid) {
-      Object.keys(this.leasingForm.controls).forEach(field => {
-        const control = this.leasingForm.get(field);
+    if (!this.leasingCalculatorForm.valid) {
+      Object.keys(this.leasingCalculatorForm.controls).forEach(field => {
+        const control = this.leasingCalculatorForm.get(field);
         control.markAsTouched({onlySelf: true});
       });
     } else {
       this.router.navigate(['/leasingCalculatorForm']);
     }
-    this.leasingCalculator = this.leasingForm.value;
+    this.leasingCalculator = this.leasingCalculatorForm.value;
     this.dataService.setLeasingCalculator(this.leasingCalculator);
   }
 }
