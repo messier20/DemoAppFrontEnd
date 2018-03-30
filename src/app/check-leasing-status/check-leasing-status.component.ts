@@ -66,14 +66,21 @@ export class CheckLeasingStatusComponent implements OnInit {
       receivedData => {
         const received: any = receivedData;
 
-        this.dialog.open(DialogFormComponent, {
-          data: {
-            leasingModel: DataStorageService.refactorCustomerType(received.customerLeasing),
-            privateInfo: received.privateCustomer,
-            checkingLeasingStatus: true,
-            leasingStatus: received.status
-          }
-        });
+        if (received.customerType !== undefined) {
+
+          this.dialog.open(DialogFormComponent, {
+            data: {
+              leasingModel: DataStorageService.refactorCustomerType(received.customerLeasing),
+              privateInfo: received.privateCustomer,
+              checkingLeasingStatus: true,
+              leasingStatus: received.status
+            }
+          });
+
+        } else {
+          console.log('No data returned');
+        }
+
       },
       error => {
         console.log('Error: ' + error);
@@ -86,14 +93,21 @@ export class CheckLeasingStatusComponent implements OnInit {
       receivedData => {
         const received: any = receivedData;
 
-        this.dialog.open(DialogFormComponent, {
-          data: {
-            leasingModel: DataStorageService.refactorCustomerType(received.customerLeasing),
-            businessInfo: received.businessCustomer,
-            checkingLeasingStatus: true,
-            leasingStatus: received.status
-          }
-        });
+        if (received.customerType !== undefined) {
+
+          this.dialog.open(DialogFormComponent, {
+            data: {
+              leasingModel: DataStorageService.refactorCustomerType(received.customerLeasing),
+              businessInfo: received.businessCustomer,
+              checkingLeasingStatus: true,
+              leasingStatus: received.status
+            }
+          });
+
+        } else {
+          console.log('No data returned');
+        }
+
       },
       error => {
         console.log('Error: ' + error);
