@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CheckLeasingStatusComponent } from './check-leasing-status.component';
+import {CheckLeasingStatusComponent} from './check-leasing-status.component';
 import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LeasingCalculatorComponent} from '../leasing-calculator/leasing-calculator.component';
@@ -14,7 +14,11 @@ import {MatDialogModule} from '@angular/material';
 import {CustomerInfoFormComponent} from '../customer-info-form/customer-info-form.component';
 import {APP_BASE_HREF} from '@angular/common';
 import {BackendService} from '../services/backend.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
+import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
+import {LeasingModel} from '../models/LeasingModel';
+import {before} from 'selenium-webdriver/testing';
+import {CheckStatusInfo} from '../models/CheckStatusInfo';
 
 describe('CheckLeasingStatusComponent', () => {
   let component: CheckLeasingStatusComponent;
@@ -57,4 +61,5 @@ describe('CheckLeasingStatusComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
