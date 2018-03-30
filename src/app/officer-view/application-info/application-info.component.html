@@ -47,12 +47,12 @@
 
       <!--</div>-->
       <app-all-information-list [leasingModel]="lease.leasingModel" [privateCustomerInfo]="lease.privateCustomerInfo" [businessCustomerInfo]="lease.businessCustomerInfo"></app-all-information-list>
-
+{{lease.status}} status
 
       </div>
 
     <!--<app-dialog-form2 [lease]="lease"></app-dialog-form2>-->
-    <div>
+    <div *ngIf="pending">
       <button class="btn btn-group btn-success" id="approved" (click)="setApprovedStatus()" >Approved</button>
       <button class="btn btn-group btn-danger"  id="denied" (click)="setDeniedStatus()" >Deny</button>
       <!--<button class="btn btn-group btn-success" (click)="setAprovedStatus()"  onclick="disabled=!disabled" ng-If="setDeniedStatus() ? disabled : disabled">Approve</button>-->

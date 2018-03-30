@@ -24,10 +24,15 @@ export class OfficerViewComponent implements OnInit {
 
   leasesInfoOfPrivate: LeaseInfoOfPrivate[] = [];
   leasesInfoOfBusiness: LeaseInfoOfBusiness[] = [];
-  combined : any [] = [];
-  idandDate: string[][] = [[],[]];
+  combined: any [] = [];
+  idandDate: string[][] = [[], []];
   id: string[] = [];
   names: any [] = [];
+  statusEl: string[] = ["PENDING", "APPROVED", "DENIED"];
+  pending: any[] = [];
+  approved: any[] = [];
+  denied: any[] = [];
+  testing: any[] = [];
 
 
   constructor(private backendService: BackendService) {
@@ -42,43 +47,45 @@ export class OfficerViewComponent implements OnInit {
 
 
   refresh() {
+    // this.statusEl.forEach(statusEle => {
 
-    this.backendService.getAllPrivateUserApplications("PENDING")
-      .then(data => {
-        this.leases = data;
-        this.leases.forEach(lease => {
-          // console.log("lease id", lease.id);
-          // lease.id.date = (lease.id.date).substr(0, 10);
-          lease.customerLeasing = DataStorageService.refactorCustomerType(lease.customerLeasing);
-          this.id.push(lease.idHex);
-          // console.log("lease id2", lease.id.toString());
-          this.leasesInfoOfPrivate.push(new LeaseInfoOfPrivate(lease));
-          // this.leasesInfoOfPrivate.filter(data => {
-          //   this.idandDate.push([data.id],[data.date]);
-          //   this.id.push(data.id);
-          //   console.log("in private");
-          //
-          // });
+      this.backendService.getAllPrivateUserApplications()
+        .then(data => {
+            this.leases = data;
+            this.leases.forEach(lease => {
+              // console.log("lease id", lease.id);
+              // lease.id.date = (lease.id.date).substr(0, 10);
+              lease.customerLeasing = DataStorageService.refactorCustomerType(lease.customerLeasing);
+              this.id.push(lease.idHex);
+              // console.log("lease id2", lease.id.toString());
+              this.leasesInfoOfPrivate.push(new LeaseInfoOfPrivate(lease));
+              // this.leasesInfoOfPrivate.filter(data => {
+              //   this.idandDate.push([data.id],[data.date]);
+              //   this.id.push(data.id);
+              //   console.log("in private");
+              //
+              // });
 
-          console.log("all data: ", lease);
-          console.log("array", this.leasesInfoOfPrivate);
-          console.log("id private", this.idandDate);
-          console.log("id", this.id);
-        });
+              console.log("all data: ", lease);
+              console.log("array", this.leasesInfoOfPrivate);
+              console.log("id private", this.idandDate);
+              console.log("id", this.id);
+            });
 
-        this.getBusiness();
+            this.getBusiness();
 
-      }
-      );
+          }
+        )
 
-
-
+    // })
 
 
   }
 
   getBusiness() {
-    this.backendService.getAllBusinessUserApplications("PENDING")
+
+
+    this.backendService.getAllBusinessUserApplications()
       .then(data => {
         this.leases = data;
         this.leases.forEach(lease => {
@@ -103,29 +110,55 @@ export class OfficerViewComponent implements OnInit {
           console.log("id", this.id);
 
 
-
         });
         console.log("all id", this.id);
-        let a:any = this.leasesInfoOfPrivate;
-        let b:any = this.leasesInfoOfBusiness;
+        let a: any = this.leasesInfoOfPrivate;
+        let b: any = this.leasesInfoOfBusiness;
 
         this.leasesInfoOfPrivate.forEach(data => {
           // lease.id.date = (lease.id.date).substr(0, 10);
           this.names.push(data.privateCustomerInfo.name);
-          data.date = (data.date).substr(0,10);
+          data.date = (data.date).substr(0, 10);
         });
 
         this.leasesInfoOfBusiness.forEach(data => {
           // lease.id.date = (lease.id.date).substr(0, 10);
-          data.date = (data.date).substr(0,10);
+          data.date = (data.date).substr(0, 10);
           this.names.push(data.businessCustomerInfo.name);
         });
+
 
         this.combined = a.concat(b);
         // this.combined.concat([], this.leasesInfoOfBusiness);
         console.log("combined", this.combined);
         this.combined.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         console.log("combinned after sort", this.combined);
+
+        // this.combined.filter(varia =>
+          // varia.status === this.statusEl).forEach(comb => {
+
+        this.combined.forEach(comb => {
+            // this.testing.push(comb);
+          // this.statusEl.forEach(data => {
+          //   if (comb.status === data) {
+
+              if(comb.status==="PENDING") {
+                this.pending.push(comb);
+                console.log("in pending")
+              }
+              else if(comb.status === "APPROVED") {
+                this.approved.push(comb);
+                console.log("in approved")
+              }
+              else if (comb.status === "DENIED") {
+                this.denied.push(comb)
+              }
+
+            // }
+
+          // });
+        })
+
 
       });
   }

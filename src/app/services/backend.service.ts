@@ -61,15 +61,27 @@ export class BackendService {
     return this.http.post(this.httpLink + this.repaymentScheduleLink, leasingCalculatorInput).toPromise();
   }
 
-  getAllPrivateUserApplications(status) {
+  getAllPrivateUserApplicationsByStatus(status) {
     return this.http
       .get('//localhost:8080/user/private/status/' + status)
       .toPromise();
   }
 
-  getAllBusinessUserApplications(status) {
+  getAllBusinessUserApplicationsByStatus(status) {
     return this.http
       .get('//localhost:8080/user/business/status/' + status)
+      .toPromise();
+  }
+
+  getAllPrivateUserApplications() {
+    return this.http
+      .get('//localhost:8080/user/private')
+      .toPromise();
+  }
+
+  getAllBusinessUserApplications() {
+    return this.http
+      .get('//localhost:8080/user/business')
       .toPromise();
   }
 

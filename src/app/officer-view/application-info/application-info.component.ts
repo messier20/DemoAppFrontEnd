@@ -32,6 +32,8 @@ export class ApplicationInfoComponent implements OnInit {
   @Output() updateApplication = new EventEmitter<Object>();
   @Output() status;
   @Input() names;
+  @Input() statusEl;
+  @Input() pending;
 
 
   leasesModel: LeasingModel[];
@@ -72,8 +74,7 @@ export class ApplicationInfoComponent implements OnInit {
     this.lease.status = "APPROVED";
     this.statusChanged = true;
 
-    (<HTMLInputElement>document.getElementById('approved')).disabled=true;
-    (<HTMLInputElement>document.getElementById('denied')).disabled=true;
+
     // this.sendToBackendPrivate()
 
 
@@ -86,6 +87,10 @@ export class ApplicationInfoComponent implements OnInit {
     }).afterClosed().subscribe(data => {
       this.choice = data;
       if(this.choice === "APPROVED") {
+
+        (<HTMLInputElement>document.getElementById('approved')).disabled=true;
+        (<HTMLInputElement>document.getElementById('denied')).disabled=true;
+
         this.isPrivate();
         console.log("subscribe working: ${data}", data);
 
@@ -102,8 +107,6 @@ export class ApplicationInfoComponent implements OnInit {
   setDeniedStatus() {
     this.lease.status = "DENIED";
     this.statusChanged = true;
-    (<HTMLInputElement>document.getElementById('approved')).disabled=true;
-    (<HTMLInputElement>document.getElementById('denied')).disabled=true;
 
     this.dialog.open(DialogForm2Component, {
       data: {
@@ -118,6 +121,10 @@ export class ApplicationInfoComponent implements OnInit {
       if(this.choice === "DENIED") {
         console.log("ife choice", this.choice);
         console.log("ife statusas", this.status);
+
+        (<HTMLInputElement>document.getElementById('approved')).disabled=true;
+        (<HTMLInputElement>document.getElementById('denied')).disabled=true;
+
         this.isPrivate();
       }
     });
