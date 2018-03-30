@@ -1,7 +1,7 @@
 import {async, inject, TestBed} from '@angular/core/testing';
 
 import {BackendService} from './backend.service';
-import {HttpClientModule, HttpHandler} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {APP_BASE_HREF} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from '../app-routing.module';
