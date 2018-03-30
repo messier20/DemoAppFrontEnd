@@ -63,15 +63,24 @@ export class LeasingCalculatorComponent implements OnInit {
   }
 
   submitForm() {
-    this.backendService.sendLeasingCalculatorInput(this.leasingCalculator).then(
-      receivedData => {
-        const received: any = receivedData;
-        this.displayRepaymentSchedule(received.repaymentSchedule);
-      },
-      error => {
-        console.log('Error: ' + error);
-      }
-    );
+    if (!this.leasingCalculatorForm.valid) {
+      Object.keys(this.leasingCalculatorForm.controls).forEach(field => {
+        const control = this.leasingCalculatorForm.get(field);
+        control.markAsTouched({onlySelf: true});
+      });
+    } else {
+      this.leasingCalculator = this.leasingCalculatorForm.value;
+      this.dataService.setLeasingCalculator(this.leasingCalculator);
+      this.backendService.sendLeasingCalculatorInput(this.leasingCalculator).then(
+        receivedData => {
+          const received: any = receivedData;
+          this.displayRepaymentSchedule(received.repaymentSchedule);
+        },
+        error => {
+          console.log('Error: ' + error);
+        }
+      );
+    }
   }
 
   private displayRepaymentSchedule(repaymentSchedule: Repayment[]) {
@@ -93,15 +102,5 @@ export class LeasingCalculatorComponent implements OnInit {
   }
 
   setLeasingCalculator() {
-    if (!this.leasingCalculatorForm.valid) {
-      Object.keys(this.leasingCalculatorForm.controls).forEach(field => {
-        const control = this.leasingCalculatorForm.get(field);
-        control.markAsTouched({onlySelf: true});
-      });
-    } else {
-      this.router.navigate(['/leasingCalculatorForm']);
-    }
-    this.leasingCalculator = this.leasingCalculatorForm.value;
-    this.dataService.setLeasingCalculator(this.leasingCalculator);
   }
 }
