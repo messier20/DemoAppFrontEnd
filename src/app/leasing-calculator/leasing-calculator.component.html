@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Leasing Application</h1>
 
-  <form [formGroup]="leasingForm" (ngSubmit)="submitForm()">
+  <form [formGroup]="leasingCalculatorForm" (ngSubmit)="submitForm()">
 
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
@@ -11,8 +11,9 @@
           <option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>
         </select>
 
-        <div [hidden]="leasingForm.get('customerType').valid || leasingForm.get('customerType').untouched"
-             class="alert-danger alert">
+        <div
+          [hidden]="leasingCalculatorForm.get('customerType').valid || leasingCalculatorForm.get('customerType').untouched"
+          class="alert-danger alert">
           Customer type is required
         </div>
       </div>
@@ -28,8 +29,9 @@
                min="5000" max="9999999"
                (keyup)=calcAdvancePaymentAmountAndContractFee() (change)=calcAdvancePaymentAmountAndContractFee()>
 
-        <div [hidden]="leasingForm.get('assetPrice').valid || leasingForm.get('assetPrice').untouched"
-             class="alert alert-danger">
+        <div
+          [hidden]="leasingCalculatorForm.get('assetPrice').valid || leasingCalculatorForm.get('assetPrice').untouched"
+          class="alert alert-danger">
           Asset price must be between {{this.minAssetPrice}} and 9999999
         </div>
       </div>
@@ -43,7 +45,7 @@
                (change)="calcAdvancePaymentAmountAndContractFee()">
 
         <div
-          [hidden]="leasingForm.get('advancePaymentPercentage').valid || leasingForm.get('advancePaymentPercentage').untouched"
+          [hidden]="leasingCalculatorForm.get('advancePaymentPercentage').valid || leasingCalculatorForm.get('advancePaymentPercentage').untouched"
           class="alert alert-danger">
           Advance payment percentage must be between 10% and 100%
         </div>
@@ -73,7 +75,7 @@
         <input type="number" class="form-control" id="margin" required
                formControlName="margin" name="margin" step="0.1" min="3.2" max="100">
 
-        <div [hidden]="leasingForm.get('margin').valid || leasingForm.get('margin').untouched"
+        <div [hidden]="leasingCalculatorForm.get('margin').valid || leasingCalculatorForm.get('margin').untouched"
              class="alert alert-danger">
           Margin must be between 3.2% and 100 %
         </div>
@@ -86,8 +88,9 @@
           <option *ngFor="let type of leasePeriods" [value]="type">{{type}}</option>
         </select>
 
-        <div [hidden]="leasingForm.get('leasePeriodInMonths').valid || leasingForm.get('leasePeriodInMonths').untouched"
-             class="alert alert-danger">
+        <div
+          [hidden]="leasingCalculatorForm.get('leasePeriodInMonths').valid || leasingCalculatorForm.get('leasePeriodInMonths').untouched"
+          class="alert alert-danger">
           Lease period is required.
         </div>
 
@@ -101,8 +104,9 @@
                 required>
           <option *ngFor="let currentDay of availableDays" [value]="currentDay">{{currentDay}}</option>
         </select>
-        <div [hidden]="leasingForm.get('paymentDate').valid || leasingForm.get('paymentDate').untouched"
-             class="alert alert-danger">
+        <div
+          [hidden]="leasingCalculatorForm.get('paymentDate').valid || leasingCalculatorForm.get('paymentDate').untouched"
+          class="alert alert-danger">
           Payment date is required.
         </div>
       </div>
@@ -113,7 +117,7 @@
   </form>
 </div>
 
-<div class="container">
+<div class="container" id="repaymentSchedule" hidden>
   <form>
     <div class="form-row">
       <div class="form-group col-sm-2" *ngFor="let label of leasingCalculatorLabels">
@@ -123,14 +127,50 @@
         </div>
       </div>
     </div>
-    <div class="form-row">
-      <div class="form-group col-sm-2" *ngFor="">
+    <div class="form-row" *ngFor="let repayment of repaymentSchedule">
+      <div class="form-group col-sm-2">
         <div class="panel panel-info">
           <div class="panel-body">
-            <i></i>
+            <i>{{repayment.repaymentDate}}</i>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-2">
+        <div class="panel panel-info">
+          <div class="panel-body">
+            <i>{{repayment.remainingAmountToRepay.toFixed(2)}}</i>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-2">
+        <div class="panel panel-info">
+          <div class="panel-body">
+            <i>{{repayment.assetValuePaymentAmount.toFixed(2)}}</i>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-2">
+        <div class="panel panel-info">
+          <div class="panel-body">
+            <i>{{repayment.interestPaymentAmount.toFixed(2)}}</i>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-2">
+        <div class="panel panel-info">
+          <div class="panel-body" *ngIf="repayment.contractFee != 0">
+            <i>{{repayment.contractFee.toFixed(2)}}</i>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-2">
+        <div class="panel panel-info">
+          <div class="panel-body">
+            <i>{{repayment.totalPaymentAmount.toFixed(2)}}</i>
           </div>
         </div>
       </div>
     </div>
   </form>
 </div>
+
