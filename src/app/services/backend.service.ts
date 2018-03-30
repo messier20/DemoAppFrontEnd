@@ -78,7 +78,7 @@ export class BackendService {
   updateBusinessCustomerStatus(id, postBody) {
 
     return this.http
-      .put('//localhost:8080/user/private/update/' + id, postBody ).toPromise();
+      .put('//localhost:8080/user/business/update/' + id, postBody ).toPromise();
     // .toPromise()
   }
 

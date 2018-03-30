@@ -27,6 +27,7 @@ export class OfficerViewComponent implements OnInit {
   combined : any [] = [];
   idandDate: string[][] = [[],[]];
   id: string[] = [];
+  names: any [] = [];
 
 
   constructor(private backendService: BackendService) {
@@ -107,6 +108,18 @@ export class OfficerViewComponent implements OnInit {
         console.log("all id", this.id);
         let a:any = this.leasesInfoOfPrivate;
         let b:any = this.leasesInfoOfBusiness;
+
+        this.leasesInfoOfPrivate.forEach(data => {
+          // lease.id.date = (lease.id.date).substr(0, 10);
+          this.names.push(data.privateCustomerInfo.name);
+          data.date = (data.date).substr(0,10);
+        });
+
+        this.leasesInfoOfBusiness.forEach(data => {
+          // lease.id.date = (lease.id.date).substr(0, 10);
+          data.date = (data.date).substr(0,10);
+          this.names.push(data.businessCustomerInfo.name);
+        });
 
         this.combined = a.concat(b);
         // this.combined.concat([], this.leasesInfoOfBusiness);

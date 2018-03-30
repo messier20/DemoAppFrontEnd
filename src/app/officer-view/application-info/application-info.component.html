@@ -4,7 +4,7 @@
         [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" >
   <!--Application ID {{lease}}, submitted on {{lease}}-->
 
-  Application {{lease.id}} submited on
+  Application {{names[i]}}  {{lease.id}} submited on {{lease.date}}
   <!--*ngFor="let info of leasesModel"-->
   <!--*ngFor="let info of leasesInfoOfPrivate"-->
 
@@ -53,8 +53,10 @@
 
     <!--<app-dialog-form2 [lease]="lease"></app-dialog-form2>-->
     <div>
-      <button class="btn btn-group btn-danger"  (click)="setDeniedStatus()" onclick="disabled=!disabled" >Deny</button>
+      <button class="btn btn-group btn-success" id="approved" (click)="setApprovedStatus()" >Approved</button>
+      <button class="btn btn-group btn-danger"  id="denied" (click)="setDeniedStatus()" >Deny</button>
       <!--<button class="btn btn-group btn-success" (click)="setAprovedStatus()"  onclick="disabled=!disabled" ng-If="setDeniedStatus() ? disabled : disabled">Approve</button>-->
+
 
       <!--onclick="disabled=!disabled"-->
       <!--[disabled]="(click) ? !isDisabled : isDisabled"-->

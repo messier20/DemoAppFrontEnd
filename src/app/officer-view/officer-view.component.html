@@ -33,7 +33,9 @@
   <!--{{lease.id}}-->
 <!--</div>-->
 
-<div *ngFor="let lease of combined">
-  <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate" [leasesInfoOfBusiness]="leasesInfoOfBusiness"></app-application-info>
+<!--<div *ngFor="let name of names">-->
+<div *ngFor="let lease of combined; let i = index" >
+  <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate" [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"></app-application-info>
 </div>
 
+<!--</div>-->

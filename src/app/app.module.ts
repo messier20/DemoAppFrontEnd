@@ -62,7 +62,7 @@ import { DisplayPrivateCustomerLeaseComponent } from './display-private-customer
   ],
   providers: [DataStorageService, BackendService, LeaseInfoService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogFormComponent]
+  entryComponents: [DialogFormComponent, DialogForm2Component]
 })
 export class AppModule {
 }

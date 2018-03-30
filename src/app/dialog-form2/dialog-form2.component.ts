@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {ApplicationInfoComponent} from "../officer-view/application-info/application-info.component";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 
 @Component({
   selector: 'app-dialog-form2',
@@ -8,17 +9,64 @@ import {ApplicationInfoComponent} from "../officer-view/application-info/applica
 })
 export class DialogForm2Component implements OnInit {
 
-  @Input() lease;
-  // @Input() sm;
-  // appInfo: ApplicationInfoComponent;
+  status;
+  choice;
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+              public dialogRef: MatDialogRef<DialogForm2Component>) {
+
+    this.status = this.data.status;
+    this.choice = this.data.choice;
+
+  }
+
+
+  updateChoice = new EventEmitter<Object>();
+
+  action;
 
   ngOnInit() {
-    // this.appInfo.getAllsm().then( data => {
-    //   this.sm = data;
-    // });
+    console.log(this.status);
 
+    if(this.status === "DENIED") {
+      this.action = "deny";
+      console.log("in deny", this.status);
+    }
+    else {
+      this.action = "approve";
+      console.log(this.status);
+    }
+
+
+  }
+
+  returnYes(){
+
+    if(this.status==="APPROVED") {
+      this.choice = "APPROVED";
+      console.log("in return yes", this.choice);
+      // this.updateChoice = this.choice;
+      // this.updateChoice.emit();
+      // this.choice.emit();
+      this.dialogRef.close(this.choice);
+    }
+    // return this.choice;
+
+    else {
+      this.choice = "DENIED";
+      console.log("in return no", this.choice);
+      this.dialogRef.close(this.choice);
+    }
+  }
+
+  returnNo() {
+
+    // this.choice.emit();
+    console.log("just retured no");
+  }
+
+  closeDialog(){
+    // this.dialo
   }
 
 }
