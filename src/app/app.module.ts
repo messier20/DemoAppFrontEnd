@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import {AppRoutingModule} from './app-routing.module';
 
@@ -17,8 +18,8 @@ import {DataStorageService} from './services/data-storage-service.service';
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DialogFormComponent} from './dialog-form/dialog-form';
 import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
-import { ConfirmedLeasingFormComponent } from './confirmed-leasing-form/confirmed-leasing-form.component';
-
+import {ConfirmedLeasingFormComponent} from './confirmed-leasing-form/confirmed-leasing-form.component';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,10 @@ import { ConfirmedLeasingFormComponent } from './confirmed-leasing-form/confirme
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatFormFieldModule
   ],
   providers: [DataStorageService, BackendService],
   bootstrap: [AppComponent],
