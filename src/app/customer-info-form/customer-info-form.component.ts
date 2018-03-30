@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {CustomerInfoLabels} from '../constants/CustomerInfoLabels';
 import {DialogFormComponent} from '../dialog-form/dialog-form';
 import {MatDialog} from '@angular/material';
+import {LeasingModel} from '../models/LeasingModel';
 import {CustomValidators} from '../constants/CustomValidators';
 
 @Component({
@@ -20,16 +21,19 @@ export class CustomerInfoFormComponent implements OnInit {
   infoForm: FormGroup;
   businessCustomerInfo: BusinessCustomerInfo;
   privateCustomerInfo: PrivateCustomerInfo;
+  leasingModel: LeasingModel;
 
   constructor(private router: Router,
               private dataService: DataStorageService,
               private formBuilder: FormBuilder,
               private dialog: MatDialog) {
     this.createValidForm();
+    this.leasingModel = this.dataService.getLeasingModel();
   }
 
-  private isCustomerPrivate() {
-    return this.dataService.getLeasingModel().customerType === 'Private';
+  isCustomerPrivate() {
+    return this.leasingModel.customerType === 'Private';
+    // return this.dataService.getLeasingModel().customerType === 'Private';
   }
 
   ngOnInit() {
