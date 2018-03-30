@@ -4,7 +4,7 @@
         [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" >
   <!--Application ID {{lease}}, submitted on {{lease}}-->
 
-  Application {{ida}} submited on
+  Application {{lease.id}} submited on
   <!--*ngFor="let info of leasesModel"-->
   <!--*ngFor="let info of leasesInfoOfPrivate"-->
 
@@ -29,7 +29,7 @@
         <!--<div >-->
           <!--{{businessLease.leasingModel.customerType}}-->
         <!--</div>-->
-      <app-all-information-list [businessCustomerInfo]="leasesInfoOfBusiness.businessCustomer"    [leasingModel]="leasesInfoOfBusiness.leasingModel" ></app-all-information-list>
+      <!--<app-all-information-list [businessCustomerInfo]="leasesInfoOfBusiness.businessCustomer"    [leasingModel]="leasesInfoOfBusiness.leasingModel" ></app-all-information-list>-->
       <!--</div>-->
       <!--<div *ngFor="let privateLease of leasesInfoOfPrivate">-->
         <!--<div>-->
@@ -37,6 +37,17 @@
         <!--</div>-->
       <!--<app-all-information-list [privateCustomerInfo]="privateLease.privateCustomer" [leasingModel]="privateLease.leasingModel" ]></app-all-information-list>-->
       <!--</div>-->
+
+      <!--DONATAI, sicia veikia-->
+
+      <app-display-private-customer-lease [privateCustomerInfo]="lease.privateCustomerInfo" [leasingModel]="lease.leasingModel"></app-display-private-customer-lease>
+      <div>
+
+        <!--NUO cia nebeveikia-->
+
+      </div>
+      <app-all-information-list [privateCustomerInfo]="lease.privateCustomerInfo" [leasingModel]="lease.leasingModel" ></app-all-information-list>
+
 
       </div>
 

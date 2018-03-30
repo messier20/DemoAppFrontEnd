@@ -1,21 +1,20 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CustomerInfoLabels} from '../constants/CustomerInfoLabels';
-import {LeasingFormLabels} from '../constants/LeasingFormLabels';
+import {LeasingModel} from "../models/LeasingModel";
+import {PrivateCustomerInfo} from "../models/PrivateCustomerInfo";
+import {CustomerInfoLabels} from "../constants/CustomerInfoLabels";
+import {LeasingFormLabels} from "../constants/LeasingFormLabels";
 
 @Component({
-  selector: 'app-all-information-list',
-  templateUrl: './all-information-list.component.html',
-  styleUrls: ['./all-information-list.component.css']
+  selector: 'app-display-private-customer-lease',
+  templateUrl: './display-private-customer-lease.component.html',
+  styleUrls: ['./display-private-customer-lease.component.css']
 })
-export class AllInformationListComponent implements OnInit {
+export class DisplayPrivateCustomerLeaseComponent implements OnInit {
 
-  @Input() leasingModel;
-  @Input() privateCustomerInfo;
-  @Input() businessCustomerInfo;
-
+  @Input() leasingModel: LeasingModel;
+  @Input() privateCustomerInfo : PrivateCustomerInfo;
   leasingLabels;
   customerInfoLabels: string[];
-  privateCustomer: boolean;
 
   leasingModelArray = [];
   customerInfoArray = [];
@@ -27,24 +26,14 @@ export class AllInformationListComponent implements OnInit {
     const labels = new CustomerInfoLabels();
     this.leasingLabels = new LeasingFormLabels().leasingFormLabels;
 
-    this.isCustomerPrivate();
 
-    if (this.privateCustomer) {
       this.customerInfoLabels = labels.privateInfoLabels;
       this.setupPrivateCustomerInfoArray();
 
-    } else {
-      this.customerInfoLabels = labels.businessInfoLabels;
-      this.setupBusinessCustomerInfoArray();
-    }
 
     this.setupLeasingModelArray();
   }
 
-  private isCustomerPrivate() {
-    this.privateCustomer = this.leasingModel.customerType === 'Private';
-
-  }
 
   private setupPrivateCustomerInfoArray() {
     this.customerInfoArray.push({heading: this.customerInfoLabels[1], value: this.privateCustomerInfo.name});
@@ -55,13 +44,6 @@ export class AllInformationListComponent implements OnInit {
     this.customerInfoArray.push({heading: this.customerInfoLabels[6], value: this.privateCustomerInfo.address});
   }
 
-  private setupBusinessCustomerInfoArray() {
-    this.customerInfoArray.push({heading: this.customerInfoLabels[1], value: this.businessCustomerInfo.name});
-    this.customerInfoArray.push({heading: this.customerInfoLabels[3], value: this.businessCustomerInfo.code.toString()});
-    this.customerInfoArray.push({heading: this.customerInfoLabels[4], value: this.businessCustomerInfo.email});
-    this.customerInfoArray.push({heading: this.customerInfoLabels[5], value: this.businessCustomerInfo.phoneNumber});
-    this.customerInfoArray.push({heading: this.customerInfoLabels[6], value: this.businessCustomerInfo.address});
-  }
 
   private setupLeasingModelArray() {
 
@@ -81,6 +63,5 @@ export class AllInformationListComponent implements OnInit {
 
   }
 
+
 }
-
-

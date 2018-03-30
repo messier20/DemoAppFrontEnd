@@ -28,7 +28,8 @@
 
 <!--</div>-->
 
-<div *ngFor="let ida of id">
-  <app-application-info [ida]="ida" [leasesInfoOfBusiness]="leasesInfoOfBusiness" [leasesInfoOfPrivate]="leasesInfoOfPrivate"> text</app-application-info>
+<div *ngFor="let lease of leasesInfoOfPrivate">
+  <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"> text</app-application-info>
+  {{lease.id}}
 </div>
 
