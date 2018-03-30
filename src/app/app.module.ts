@@ -7,7 +7,14 @@ import {BackendService} from './services/backend.service';
 import {AppComponent} from './app.component';
 import {PrivateFormComponent} from './privateform/private-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatDatepicker, MatDialogModule} from '@angular/material';
+import {
+  MatDatepicker,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatFormField,
+  MatFormFieldModule,
+  MatNativeDateModule
+} from '@angular/material';
 
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -31,6 +38,9 @@ import { AllInformationListComponent } from './all-information-list/all-informat
     CheckLeasingStatusComponent,
     AllInformationListComponent
   ],
+  exports: [
+    MatDatepickerModule,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -41,7 +51,8 @@ import { AllInformationListComponent } from './all-information-list/all-informat
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatDatepicker
+    MatFormFieldModule,
+    MatNativeDateModule
   ],
   providers: [DataStorageService, BackendService],
   bootstrap: [AppComponent],

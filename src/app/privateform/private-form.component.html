@@ -88,6 +88,13 @@
       </div>
     </div>
 
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="{{leasingFormLabels.ENGINE_POWER}}" class="form-control" formControlName="enginePower">
+      <mat-error *ngIf="leasingForm.get('enginePower').valid || leasingForm.get('enginePower').untouched">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
         <label for="assetPrice">{{leasingFormLabels.ASSET_PRICE}}</label>
