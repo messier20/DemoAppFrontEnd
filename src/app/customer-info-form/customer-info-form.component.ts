@@ -53,7 +53,14 @@ export class CustomerInfoFormComponent implements OnInit {
         control.markAsTouched({onlySelf: true});
       });
     } else {
-      this.dialog.open(DialogFormComponent);
+      this.dialog.open(DialogFormComponent, {
+        data: {
+          leasingModel: this.dataService.getLeasingModel(),
+          privateInfo: this.privateCustomerInfo,
+          businessInfo: this.businessCustomerInfo,
+          checkingLeasingStatus: false
+        }
+      });
     }
   }
 

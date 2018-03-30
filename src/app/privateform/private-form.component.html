@@ -1,21 +1,21 @@
-<div class="mat-input-container">
+<div class="container">
+  <h1>{{leasingFormLabels.LEASING_APPLICATION}}</h1>
+
   <form [formGroup]="leasingForm" (ngSubmit)="submitForm()">
 
-    <h3>Asset Information</h3>
-
-    <mat-form-field class="example-full-width">
+    <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
-        <label>{{leasingFormLabels.CUSTOMER_TYPE}}</label>
-        <select class="form-control" required name="customerTypeField"
+        <label for="customerType">{{leasingFormLabels.CUSTOMER_TYPE}}</label>
+        <select class="form-control" id="customerType" required name="customerTypeField"
                 formControlName="customerType" (change)="setMinAssetPrice()">
           <option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>
         </select>
 
-        <mat-error *ngIf="leasingForm.get('customerType').valid || leasingForm.get('customerType').untouched">
+        <div [hidden]="leasingForm.get('customerType').valid || leasingForm.get('customerType').untouched"
+             class="alert-danger alert">
           Customer type is required
-        </mat-error>>
+        </div>
       </div>
-    </mat-form-field>>
 
       <div class="form-group col-md-4 col-sm-6">
         <label for="assetType">{{leasingFormLabels.ASSET_TYPE}}</label>
@@ -28,6 +28,7 @@
           Customer type is required
         </div>
       </div>
+    </div>
 
     <div class="form-row">
       <div class="form-group  col-md-4 col-sm-6">
@@ -68,6 +69,12 @@
         </div>
       </div>
 
+
+        <!--<input matInput [matDatepicker]="picker" placeholder="Choose a date">-->
+        <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+        <!--<mat-datepicker #picker></mat-datepicker>-->
+
+
       <div class="form-group col-md-4 col-sm-6">
         <label for="enginePower">{{leasingFormLabels.ENGINE_POWER}}</label>
         <input type="number" class="form-control" id="enginePower"
@@ -81,7 +88,12 @@
       </div>
     </div>
 
-    <h3>Payment Information</h3>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="{{leasingFormLabels.ENGINE_POWER}}" class="form-control" formControlName="enginePower">
+      <mat-error *ngIf="leasingForm.get('enginePower').valid || leasingForm.get('enginePower').untouched">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
 
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
@@ -172,7 +184,7 @@
         </div>
       </div>
     </div>
-    <button mat-raised-button color="primary" type="submit" (click)="setLeasingModel()">Submit
+    <button type="submit" class="btn btn-success" (click)="setLeasingModel()">Submit
       form
     </button>
   </form>
