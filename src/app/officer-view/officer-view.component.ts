@@ -3,8 +3,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DataStorageService} from "../services/data-storage-service.service";
 import {BackendService} from "../services/backend.service";
 import {LeasingModel} from "../models/LeasingModel";
-import {BusinessCustomerInfo} from "../models/businessCustomerInfo";
-import {PrivateCustomerInfo} from "../models/privateCustomerInfo";
+import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
+import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
 import {LeasingFormLabels} from "../constants/LeasingFormLabels";
 import {LeaseInfoOfPrivate} from "../models/LeaseInfoOfPrivate";
 import {LeaseInfoService} from "../services/lease-info.service";
@@ -45,6 +45,7 @@ export class OfficerViewComponent implements OnInit {
         this.leases.forEach(lease => {
           // console.log("lease id", lease.id);
           lease.id.date = (lease.id.date).substr(0, 10);
+          lease.customerLeasing = DataStorageService.refactorCustomerType(lease.customerLeasing);
           // lease.id = lease.id.toString();
 
           // console.log("lease id2", lease.id.toString());
@@ -65,6 +66,7 @@ export class OfficerViewComponent implements OnInit {
         this.leases.forEach(lease => {
           // console.log("lease id", lease.id);
           lease.id.date = (lease.id.date).substr(0, 10);
+          lease.customerLeasing = DataStorageService.refactorCustomerType(lease.customerLeasing);
           // lease.id = lease.id.toString();
 
           // console.log("lease id2", lease.id.toString());

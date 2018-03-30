@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {LeasingModel} from "../../models/LeasingModel";
 // import {LeasingFormLabels} from "../../models/LeasingFormLabels";
-import {BusinessCustomerInfo} from "../../models/businessCustomerInfo";
-import {PrivateCustomerInfo} from "../../models/privateCustomerInfo";
+import {BusinessCustomerInfo} from '../../models/BusinessCustomerInfo';
+import {PrivateCustomerInfo} from '../../models/PrivateCustomerInfo';
 import {DataStorageService} from "../../services/data-storage-service.service";
 import {BackendService} from "../../services/backend.service";
 // import {LeasingFormLabels} from "../../constants/LeasingFormLabels";
