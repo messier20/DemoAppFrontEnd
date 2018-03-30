@@ -28,8 +28,12 @@
 
 <!--</div>-->
 
-<div *ngFor="let lease of leasesInfoOfPrivate">
-  <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"> text</app-application-info>
-  {{lease.id}}
+<!--<div *ngFor="let lease of leasesInfoOfPrivate">-->
+  <!--<app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"> text</app-application-info>-->
+  <!--{{lease.id}}-->
+<!--</div>-->
+
+<div *ngFor="let lease of combined">
+  <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate" [leasesInfoOfBusiness]="leasesInfoOfBusiness"></app-application-info>
 </div>
 

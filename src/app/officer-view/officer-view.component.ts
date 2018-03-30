@@ -24,6 +24,8 @@ export class OfficerViewComponent implements OnInit {
 
   leasesInfoOfPrivate: LeaseInfoOfPrivate[] = [];
   leasesInfoOfBusiness: LeaseInfoOfBusiness[] = [];
+  combined : any [] = [];
+  idandDate: string[][] = [[],[]];
   id: string[] = [];
 
 
@@ -33,6 +35,7 @@ export class OfficerViewComponent implements OnInit {
 
   ngOnInit() {
     this.refresh();
+
 
   }
 
@@ -44,22 +47,36 @@ export class OfficerViewComponent implements OnInit {
         this.leases = data;
         this.leases.forEach(lease => {
           // console.log("lease id", lease.id);
-          lease.id.date = (lease.id.date).substr(0, 10);
+          // lease.id.date = (lease.id.date).substr(0, 10);
           lease.customerLeasing = DataStorageService.refactorCustomerType(lease.customerLeasing);
-          // lease.id = lease.id.toString();
-
+          this.id.push(lease.idHex);
           // console.log("lease id2", lease.id.toString());
           this.leasesInfoOfPrivate.push(new LeaseInfoOfPrivate(lease));
-          this.leasesInfoOfPrivate.filter(data => {
-            this.id.push(data.id);
-          });
+          // this.leasesInfoOfPrivate.filter(data => {
+          //   this.idandDate.push([data.id],[data.date]);
+          //   this.id.push(data.id);
+          //   console.log("in private");
+          //
+          // });
 
           console.log("all data: ", lease);
           console.log("array", this.leasesInfoOfPrivate);
-          console.log("id private", this.id);
+          console.log("id private", this.idandDate);
+          console.log("id", this.id);
         });
-      });
 
+        this.getBusiness();
+
+      }
+      );
+
+
+
+
+
+  }
+
+  getBusiness() {
     this.backendService.getAllBusinessUserApplications("PENDING")
       .then(data => {
         this.leases = data;
@@ -68,20 +85,36 @@ export class OfficerViewComponent implements OnInit {
           lease.id.date = (lease.id.date).substr(0, 10);
           lease.customerLeasing = DataStorageService.refactorCustomerType(lease.customerLeasing);
           // lease.id = lease.id.toString();
+          this.id.push(lease.idHex);
 
           // console.log("lease id2", lease.id.toString());
           this.leasesInfoOfBusiness.push(new LeaseInfoOfBusiness(lease));
-          this.leasesInfoOfBusiness.filter(data => {
-            this.id.push(data.id);
-          });
+          // this.leasesInfoOfBusiness.filter(data => {
+          //   this.idandDate.push([data.id],[data.date]);
+          //   this.id.push(data.id);
+          //   console.log("in business");
+
+          // });
 
           console.log("all data: ", lease);
           console.log("array", this.leasesInfoOfBusiness);
-          console.log("id private and business", this.id);
+          console.log("id private and business", this.idandDate);
+          console.log("id", this.id);
+
+
+
         });
+        console.log("all id", this.id);
+        let a:any = this.leasesInfoOfPrivate;
+        let b:any = this.leasesInfoOfBusiness;
+
+        this.combined = a.concat(b);
+        // this.combined.concat([], this.leasesInfoOfBusiness);
+        console.log("combined", this.combined);
+        this.combined.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        console.log("combinned after sort", this.combined);
+
       });
-
-
   }
 
 }

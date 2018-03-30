@@ -61,6 +61,7 @@ export class ApplicationInfoComponent implements OnInit {
     this.statusChanged = true;
     this.approvePrivateCustomerStatus()
     return true;
+
   }
 
   approvePrivateCustomerStatus() {
