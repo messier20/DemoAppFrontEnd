@@ -10,6 +10,9 @@ import {MatDialogModule} from '@angular/material';
 import {AppRoutingModule} from '../app-routing.module';
 import {RouterModule} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
+import {CheckLeasingStatusComponent} from '../check-leasing-status/check-leasing-status.component';
+import {AllInformationListComponent} from '../all-information-list/all-information-list.component';
+import {BackendService} from '../services/backend.service';
 import {LeasingCalculatorComponent} from '../leasing-calculator/leasing-calculator.component';
 
 describe('PrivateFormComponent', () => {
@@ -18,7 +21,13 @@ describe('PrivateFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PrivateFormComponent, CustomerInfoFormComponent],
+      declarations: [
+        LeasingCalculatorComponent,
+        PrivateFormComponent,
+        CustomerInfoFormComponent,
+        AllInformationListComponent,
+        CheckLeasingStatusComponent
+      ],
       imports: [
         BrowserModule,
         AppRoutingModule,
@@ -27,11 +36,11 @@ describe('PrivateFormComponent', () => {
         BrowserAnimationsModule,
         ReactiveFormsModule,
         FormsModule,
-        RouterModule,
-        LeasingCalculatorComponent
+        RouterModule
       ],
       providers: [
         DataStorageService,
+        BackendService,
         {provide: APP_BASE_HREF, useValue: '/'}
       ]
     })

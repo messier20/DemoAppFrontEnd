@@ -33,7 +33,6 @@ export class CustomerInfoFormComponent implements OnInit {
 
   isCustomerPrivate() {
     return this.leasingModel.customerType === 'Private';
-    // return this.dataService.getLeasingModel().customerType === 'Private';
   }
 
   ngOnInit() {
@@ -46,7 +45,6 @@ export class CustomerInfoFormComponent implements OnInit {
       document.getElementById('hiddenName').hidden = true;
       this.infoForm.get('lastName').disable();
     }
-
 
   }
 

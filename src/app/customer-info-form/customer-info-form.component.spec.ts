@@ -11,6 +11,10 @@ import {AppRoutingModule} from '../app-routing.module';
 import {RouterModule} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {LeasingModel} from '../models/LeasingModel';
+import {BackendService} from '../services/backend.service';
+import {LeasingCalculatorComponent} from '../leasing-calculator/leasing-calculator.component';
+import {CheckLeasingStatusComponent} from '../check-leasing-status/check-leasing-status.component';
+import {AllInformationListComponent} from '../all-information-list/all-information-list.component';
 
 describe('CustomerInfoFormComponent', () => {
   let component: CustomerInfoFormComponent;
@@ -32,7 +36,13 @@ describe('CustomerInfoFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CustomerInfoFormComponent, PrivateFormComponent],
+      declarations: [
+        PrivateFormComponent,
+        CustomerInfoFormComponent,
+        AllInformationListComponent,
+        CheckLeasingStatusComponent,
+        LeasingCalculatorComponent
+      ],
       imports: [
         BrowserModule,
         AppRoutingModule,
@@ -44,6 +54,7 @@ describe('CustomerInfoFormComponent', () => {
       ],
       providers: [
         DataStorageService,
+        BackendService,
         {provide: APP_BASE_HREF, useValue: '/'}
       ]
     })
