@@ -1,66 +1,19 @@
-
-<div >
-<button type="button"  class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
-        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" >
-  <!--Application ID {{lease}}, submitted on {{lease}}-->
-
-  Application {{names[i]}}  {{lease.id}} submited on {{lease.date}}
-  <!--*ngFor="let info of leasesModel"-->
-  <!--*ngFor="let info of leasesInfoOfPrivate"-->
-
-</button>
-<div id="collapseExample" [ngbCollapse]="isCollapsed" >
-  <div class="card">
-    <div class="card-body">
-      <!--<h3>Application information</h3>-->
-      <!--<ul>-->
-        <!--<li>-->
-          <!--<label>{{leasingFormLabels.CUSTOMER_TYPE}}: </label> <span>{{lease.leasingModel.customerType}}</span>-->
-      <!--</li>-->
-        <!--<li>-->
-        <!--<label>{{leasingFormLabels.CAR_MODEL}}: </label> <span>{{lease.leasingModel.carModel}}</span>-->
-        <!--</li>-->
-        <!--<li>-->
-          <!--&lt;!&ndash;<label>{{privateInfoLabels[1]}}: </label> <span>{{lease.privateCustomer.name}}</span>&ndash;&gt;-->
-        <!--</li>-->
-        <!--&lt;!&ndash;<span>{{lease.}}</span>&ndash;&gt;-->
-      <!--</ul>-->
-      <!--<div *ngFor="let businessLease of leasesInfoOfBusiness">-->
-        <!--<div >-->
-          <!--{{businessLease.leasingModel.customerType}}-->
-        <!--</div>-->
-      <!--<app-all-information-list [businessCustomerInfo]="leasesInfoOfBusiness.businessCustomer"    [leasingModel]="leasesInfoOfBusiness.leasingModel" ></app-all-information-list>-->
-      <!--</div>-->
-      <!--<div *ngFor="let privateLease of leasesInfoOfPrivate">-->
-        <!--<div>-->
-          <!--{{privateLease}}-->
-        <!--</div>-->
-      <!--<app-all-information-list [privateCustomerInfo]="privateLease.privateCustomer" [leasingModel]="privateLease.leasingModel" ]></app-all-information-list>-->
-      <!--</div>-->
-
-      <!--DONATAI, sicia veikia-->
-
-      <!--<app-display-private-customer-lease [privateCustomerInfo]="lease.privateCustomerInfo" [leasingModel]="lease.leasingModel"></app-display-private-customer-lease>-->
-      <!--<div>-->
-
-        <!--NUO cia nebeveikia-->
-
-      <!--</div>-->
-      <app-all-information-list [leasingModel]="lease.leasingModel" [privateCustomerInfo]="lease.privateCustomerInfo" [businessCustomerInfo]="lease.businessCustomerInfo"></app-all-information-list>
-{{lease.status}} status
-
+<div>
+  <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    Application {{names[i]}} {{lease.id}} submited on {{lease.date}}
+  </button>
+  <div id="collapseExample" [ngbCollapse]="isCollapsed">
+    <div class="card">
+      <div class="card-body">
+        <app-all-information-list [leasingModel]="lease.leasingModel" [privateCustomerInfo]="lease.privateCustomerInfo"
+                                  [businessCustomerInfo]="lease.businessCustomerInfo"></app-all-information-list>
+        {{lease.status}} status
       </div>
-
-    <!--<app-dialog-form2 [lease]="lease"></app-dialog-form2>-->
-    <div *ngIf="pending">
-      <button class="btn btn-group btn-success" id="approved" (click)="setApprovedStatus()" >Approved</button>
-      <button class="btn btn-group btn-danger"  id="denied" (click)="setDeniedStatus()" >Deny</button>
-      <!--<button class="btn btn-group btn-success" (click)="setAprovedStatus()"  onclick="disabled=!disabled" ng-If="setDeniedStatus() ? disabled : disabled">Approve</button>-->
-
-
-      <!--onclick="disabled=!disabled"-->
-      <!--[disabled]="(click) ? !isDisabled : isDisabled"-->
-    </div>
+      <div *ngIf="pending">
+        <button class="btn btn-group btn-success" id="approved" (click)="setApprovedStatus()">Approved</button>
+        <button class="btn btn-group btn-danger" id="denied" (click)="setDeniedStatus()">Deny</button>
+      </div>
     </div>
   </div>
 </div>

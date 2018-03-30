@@ -17,17 +17,13 @@ import {DataStorageService} from './services/data-storage-service.service';
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DialogFormComponent} from './dialog-form/dialog-form';
 import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
-// import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasing-status.component';
 import { AllInformationListComponent } from './all-information-list/all-information-list.component';
 import {CheckLeasingStatusComponent} from "./check-leasing-status/check-leasing-status.component";
-// import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasing-status.component';
 import {OfficerViewComponent} from "./officer-view/officer-view.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { ApplicationInfoComponent } from './officer-view/application-info/application-info.component';
-import {LeaseInfoService} from "./services/lease-info.service";
 import { DialogForm2Component } from './dialog-form2/dialog-form2.component';
-import { DisplayBusinessCustomerLeaseComponent } from './display-business-customer-lease/display-business-customer-lease.component';
-import { DisplayPrivateCustomerLeaseComponent } from './display-private-customer-lease/display-private-customer-lease.component';
+
 
 
 @NgModule({
@@ -40,15 +36,10 @@ import { DisplayPrivateCustomerLeaseComponent } from './display-private-customer
     LeasingCalculatorComponent,
     CheckLeasingStatusComponent,
     AllInformationListComponent,
-    // CheckLeasingStatusComponent
-    // CheckLeasingStatusComponent,
-    // LeasingCalculatorComponent,
     DialogFormComponent,
     OfficerViewComponent,
     ApplicationInfoComponent,
-    DialogForm2Component,
-    DisplayBusinessCustomerLeaseComponent,
-    DisplayPrivateCustomerLeaseComponent
+    DialogForm2Component
   ],
   imports: [
     BrowserModule,
@@ -61,7 +52,7 @@ import { DisplayPrivateCustomerLeaseComponent } from './display-private-customer
     HttpClientModule,
     NgbModule.forRoot()
   ],
-  providers: [DataStorageService, BackendService, LeaseInfoService],
+  providers: [DataStorageService, BackendService],
   bootstrap: [AppComponent],
   entryComponents: [DialogFormComponent, DialogForm2Component]
 })
