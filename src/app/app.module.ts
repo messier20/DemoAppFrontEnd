@@ -17,17 +17,17 @@ import {DataStorageService} from './services/data-storage-service.service';
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DialogFormComponent} from './dialog-form/dialog-form';
 import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
-import { CheckLeasingStatusComponent } from './check-leasing-status/check-leasing-status.component';
-import { AllInformationListComponent } from './all-information-list/all-information-list.component';
+import {CheckLeasingStatusComponent} from './check-leasing-status/check-leasing-status.component';
+import {AllInformationListComponent} from './all-information-list/all-information-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LeasingCalculatorComponent,
     PrivateFormComponent,
     CustomerInfoFormComponent,
     DialogFormComponent,
-    LeasingCalculatorComponent,
     CheckLeasingStatusComponent,
     AllInformationListComponent
   ],

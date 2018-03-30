@@ -29,10 +29,6 @@ describe('BackendService', () => {
       ],
       providers: [
         BackendService,
-        HttpClientTestingModule,
-        HttpClientModule,
-        HttpClient,
-        HttpHandler,
         {provide: APP_BASE_HREF, useValue: '/'}]
     });
   });

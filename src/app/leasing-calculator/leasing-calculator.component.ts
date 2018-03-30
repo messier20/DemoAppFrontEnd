@@ -1,20 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {LeasingCalculator} from '../models/LeasingCalculator';
-import {Data, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
-import {Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {CustomValidators} from '../constants/CustomValidators';
 import {Repayment} from '../models/Repayment';
 import {BackendService} from '../services/backend.service';
-import {DialogFormComponent} from '../dialog-form/dialog-form';
 
 @Component({
   selector: 'app-leasing-calculator',
   templateUrl: './leasing-calculator.component.html',
   styleUrls: ['./leasing-calculator.component.css']
 })
+
 export class LeasingCalculatorComponent implements OnInit {
 
   leasingCalculator: LeasingCalculator;
