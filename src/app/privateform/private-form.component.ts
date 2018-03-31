@@ -8,6 +8,7 @@ import {LeasePeriods} from '../models/LeasePeriods';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {CustomValidators} from '../constants/CustomValidators';
 import {LeasingCalculator} from '../models/LeasingCalculator';
+import {LoanUtils} from '../utils/LoanUtils';
 
 @Component({
   selector: 'app-privateform',
@@ -65,14 +66,28 @@ export class PrivateFormComponent implements OnInit {
     }
   }
 
+  calcContractFeeAndAdvancePaymentAmount() {
+    this.calcContractFee();
+    this.calcAdvancePaymentAmount();
+  }
 
-  calcAdvancePaymentAmountAndContractFee() {
-    this.leasingForm.get('contractFee').setValue((this.leasingForm.get('assetPrice').value * 0.01).toFixed(2));
-    if (Number.parseFloat(this.leasingForm.get('contractFee').value) < 200) {
-      this.leasingForm.get('contractFee').setValue((200).toFixed(2));
-    }
-    this.leasingForm.get('advancePaymentAmount').setValue((this.leasingForm.get('assetPrice').value
-      * this.leasingForm.get('advancePaymentPercentage').value / 100).toFixed(2));
+  calcContractFee() {
+    this.leasingForm.get('contractFee')
+      .setValue(LoanUtils.calculateContractFee(this.leasingForm.get('assetPrice').value));
+  }
+
+  calcAdvancePaymentPercentage() {
+    this.leasingForm.get('advancePaymentPercentage')
+      .setValue(LoanUtils
+        .calculateAdvancePaymentPercentage(this.leasingForm.get('assetPrice').value,
+          this.leasingForm.get('advancePaymentAmount').value));
+  }
+
+  calcAdvancePaymentAmount() {
+    this.leasingForm.get('advancePaymentAmount')
+      .setValue(LoanUtils
+        .calculateAdvancePaymentAmount(this.leasingForm.get('assetPrice').value,
+          this.leasingForm.get('advancePaymentPercentage').value));
   }
 
 

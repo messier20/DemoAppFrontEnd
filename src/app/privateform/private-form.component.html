@@ -89,8 +89,8 @@
                formControlName="assetPrice"
                name="assetPriceField"
                min="5000" max="9999999"
-               (keyup)=calcAdvancePaymentAmountAndContractFee()
-               (change)=calcAdvancePaymentAmountAndContractFee()>
+               (keyup)="calcContractFeeAndAdvancePaymentAmount()"
+               (change)="calcContractFeeAndAdvancePaymentAmount()">
 
         <div [hidden]="leasingForm.get('assetPrice').valid || leasingForm.get('assetPrice').untouched"
              class="alert alert-danger">
@@ -103,8 +103,8 @@
                formControlName="advancePaymentPercentage"
                name="advancePaymentPercentageField"
                min="10" max="100"
-               (keyup)=calcAdvancePaymentAmountAndContractFee()
-               (change)="calcAdvancePaymentAmountAndContractFee()">
+               (keyup)="calcAdvancePaymentAmount()"
+               (change)="calcAdvancePaymentAmount()">
 
         <div
           [hidden]="leasingForm.get('advancePaymentPercentage').valid || leasingForm.get('advancePaymentPercentage').untouched"
@@ -119,8 +119,16 @@
 
       <div class="form-group col-md-4 col-sm-6">
         <label for="advancePaymentAmount">{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}</label>
-        <input type="text" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField"
-               formControlName="advancePaymentAmount" disabled>
+        <input type="number" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField"
+               formControlName="advancePaymentAmount"
+               (keyup)="calcAdvancePaymentPercentage()"
+               (change)="calcAdvancePaymentPercentage()">
+
+        <div
+          [hidden]="leasingForm.get('advancePaymentAmount').valid || leasingForm.get('advancePaymentAmount').untouched"
+          class="alert alert-danger">
+          Advance payment amount must be {{this.minAssetPrice * 0.1}} and 9999999
+        </div>
       </div>
 
       <div class="form-group col-md-4 col-sm-6">
