@@ -14,11 +14,8 @@ import {MatDialogModule} from '@angular/material';
 import {CustomerInfoFormComponent} from '../customer-info-form/customer-info-form.component';
 import {APP_BASE_HREF} from '@angular/common';
 import {BackendService} from '../services/backend.service';
-import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
-import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
-import {LeasingModel} from '../models/LeasingModel';
-import {before} from 'selenium-webdriver/testing';
-import {CheckStatusInfo} from '../models/CheckStatusInfo';
+import {HttpClientModule} from '@angular/common/http';
+import {OfficerViewComponent} from '../officer-view/officer-view.component';
 
 describe('CheckLeasingStatusComponent', () => {
   let component: CheckLeasingStatusComponent;
@@ -31,7 +28,8 @@ describe('CheckLeasingStatusComponent', () => {
         PrivateFormComponent,
         CustomerInfoFormComponent,
         AllInformationListComponent,
-        CheckLeasingStatusComponent
+        CheckLeasingStatusComponent,
+        OfficerViewComponent
       ],
       imports: [
         BrowserModule,
