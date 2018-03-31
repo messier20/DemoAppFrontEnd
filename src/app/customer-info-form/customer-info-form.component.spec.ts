@@ -15,6 +15,7 @@ import {BackendService} from '../services/backend.service';
 import {LeasingCalculatorComponent} from '../leasing-calculator/leasing-calculator.component';
 import {CheckLeasingStatusComponent} from '../check-leasing-status/check-leasing-status.component';
 import {AllInformationListComponent} from '../all-information-list/all-information-list.component';
+import {OfficerViewComponent} from '../officer-view/officer-view.component';
 
 describe('CustomerInfoFormComponent', () => {
   let component: CustomerInfoFormComponent;
@@ -41,7 +42,8 @@ describe('CustomerInfoFormComponent', () => {
         CustomerInfoFormComponent,
         AllInformationListComponent,
         CheckLeasingStatusComponent,
-        LeasingCalculatorComponent
+        LeasingCalculatorComponent,
+        OfficerViewComponent
       ],
       imports: [
         BrowserModule,
