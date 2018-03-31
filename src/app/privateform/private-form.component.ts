@@ -66,9 +66,10 @@ export class PrivateFormComponent implements OnInit {
     }
   }
 
-  calcContractFeeAndAdvancePaymentAmount() {
+  manageDependantFields() {
     this.calcContractFee();
     this.calcAdvancePaymentAmount();
+    this.adjustAdvancePaymentAmountValidators();
   }
 
   calcContractFee() {
@@ -90,6 +91,9 @@ export class PrivateFormComponent implements OnInit {
           this.leasingForm.get('advancePaymentPercentage').value));
   }
 
+  adjustAdvancePaymentAmountValidators() {
+
+  }
 
   submitForm() {
   }
@@ -138,4 +142,5 @@ export class PrivateFormComponent implements OnInit {
     this.leasingForm.get('paymentDate').setValue(this.leasingCalculatorInput.paymentDate);
     this.dataService.setLeasingCalculator(null);
   }
+
 }

@@ -89,8 +89,8 @@
                formControlName="assetPrice"
                name="assetPriceField"
                min="5000" max="9999999"
-               (keyup)="calcContractFeeAndAdvancePaymentAmount()"
-               (change)="calcContractFeeAndAdvancePaymentAmount()">
+               (keyup)="manageDependantFields()"
+               (change)="manageDependantFields()">
 
         <div [hidden]="leasingForm.get('assetPrice').valid || leasingForm.get('assetPrice').untouched"
              class="alert alert-danger">
@@ -102,7 +102,7 @@
         <input type="number" class="form-control" id="advancePaymentPercentage"
                formControlName="advancePaymentPercentage"
                name="advancePaymentPercentageField"
-               min="10" max="100"
+               min="10" max="100" step="0.1"
                (keyup)="calcAdvancePaymentAmount()"
                (change)="calcAdvancePaymentAmount()">
 
@@ -121,6 +121,7 @@
         <label for="advancePaymentAmount">{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}</label>
         <input type="number" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField"
                formControlName="advancePaymentAmount"
+               min="500" max="9999999"
                (keyup)="calcAdvancePaymentPercentage()"
                (change)="calcAdvancePaymentPercentage()">
 
