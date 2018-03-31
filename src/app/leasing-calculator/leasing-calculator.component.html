@@ -3,6 +3,8 @@
 
   <form [formGroup]="leasingCalculatorForm" (ngSubmit)="submitForm()">
 
+
+    {{leasingCalculator | json }}
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
         <label for="customerType">{{leasingFormLabels.CUSTOMER_TYPE}}</label>
