@@ -70,7 +70,6 @@ export class LeasingCalculatorComponent implements OnInit {
       });
     } else {
       this.leasingCalculator = this.leasingCalculatorForm.value;
-      this.dataService.setLeasingCalculator(this.leasingCalculator);
       this.backendService.sendLeasingCalculatorInput(this.leasingCalculator).then(
         receivedData => {
           const received: any = receivedData;
@@ -102,5 +101,15 @@ export class LeasingCalculatorComponent implements OnInit {
   }
 
   setLeasingCalculator() {
+    if (!this.leasingCalculatorForm.valid) {
+      Object.keys(this.leasingCalculatorForm.controls).forEach(field => {
+        const control = this.leasingCalculatorForm.get(field);
+        control.markAsTouched({onlySelf: true});
+      });
+    } else {
+      this.leasingCalculator = this.leasingCalculatorForm.value;
+      this.dataService.setLeasingCalculator(this.leasingCalculator);
+      this.router.navigate(['/privateForm']);
+    }
   }
 }
