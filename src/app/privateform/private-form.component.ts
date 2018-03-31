@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {CustomValidators} from '../constants/CustomValidators';
+import {LeasingCalculator} from '../models/LeasingCalculator';
 
 @Component({
   selector: 'app-privateform',
@@ -18,6 +19,7 @@ export class PrivateFormComponent implements OnInit {
   leasingModel: LeasingModel;
   leasingForm: FormGroup;
   leasingFormLabels = new LeasingFormLabels();
+  leasingCalculatorInput: LeasingCalculator;
 
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
@@ -33,6 +35,9 @@ export class PrivateFormComponent implements OnInit {
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
     this.leasingForm.get('assetType').setValue('Vehicle');
+    if (this.dataService.getLeasingCalculator() != null) {
+      this.fillFieldsWithCalculatorInput();
+    }
   }
 
   ngOnInit() {
@@ -104,5 +109,18 @@ export class PrivateFormComponent implements OnInit {
     }
     this.leasingModel = this.leasingForm.value;
     this.dataService.setLeasingModel(this.leasingModel);
+  }
+
+  fillFieldsWithCalculatorInput() {
+    this.leasingCalculatorInput = this.dataService.getLeasingCalculator();
+    this.leasingForm.get('customerType').setValue(this.leasingCalculatorInput.customerType);
+    this.leasingForm.get('assetPrice').setValue(this.leasingCalculatorInput.assetPrice);
+    this.leasingForm.get('advancePaymentPercentage').setValue(this.leasingCalculatorInput.advancePaymentPercentage);
+    this.leasingForm.get('advancePaymentAmount').setValue(this.leasingCalculatorInput.advancePaymentAmount);
+    this.leasingForm.get('contractFee').setValue(this.leasingCalculatorInput.contractFee);
+    this.leasingForm.get('margin').setValue(this.leasingCalculatorInput.margin);
+    this.leasingForm.get('leasePeriodInMonths').setValue(this.leasingCalculatorInput.leasePeriodInMonths);
+    this.leasingForm.get('paymentDate').setValue(this.leasingCalculatorInput.paymentDate);
+    this.dataService.setLeasingCalculator(null);
   }
 }
