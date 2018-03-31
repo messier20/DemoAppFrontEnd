@@ -63,39 +63,39 @@ export class BackendService {
 
   getAllPrivateUserApplicationsByStatus(status) {
     return this.http
-      .get('//localhost:8080/user/private/status/' + status)
+      .get(this.httpLink + '/user/private/status/' + status)
       .toPromise();
   }
 
   getAllBusinessUserApplicationsByStatus(status) {
     return this.http
-      .get('//localhost:8080/user/business/status/' + status)
+      .get(this.httpLink + '/user/business/status/' + status)
       .toPromise();
   }
 
   getAllPrivateUserApplications() {
     return this.http
-      .get('//localhost:8080/user/private')
+      .get(this.httpLink + '/user/private')
       .toPromise();
   }
 
   getAllBusinessUserApplications() {
     return this.http
-      .get('//localhost:8080/user/business')
+      .get(this.httpLink + '/user/business')
       .toPromise();
   }
 
   updatePrivateCustomerStatus(id, postBody) {
 
     return this.http
-      .put('//localhost:8080/user/private/update/' + id, postBody ).toPromise();
+      .put(this.httpLink + '/user/private/update/' + id, postBody ).toPromise();
     // .toPromise()
   }
 
   updateBusinessCustomerStatus(id, postBody) {
 
     return this.http
-      .put('//localhost:8080/user/business/update/' + id, postBody ).toPromise();
+      .put(this.httpLink + '/user/business/update/' + id, postBody ).toPromise();
     // .toPromise()
   }
 
