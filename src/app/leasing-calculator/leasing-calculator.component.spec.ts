@@ -14,9 +14,8 @@ import {PrivateFormComponent} from '../privateform/private-form.component';
 import {CustomerInfoFormComponent} from '../customer-info-form/customer-info-form.component';
 import {AllInformationListComponent} from '../all-information-list/all-information-list.component';
 import {CheckLeasingStatusComponent} from '../check-leasing-status/check-leasing-status.component';
-import {LeasingFormLabels} from '../constants/LeasingFormLabels';
-import {CustomValidators} from '../constants/CustomValidators';
 import {HttpClientModule} from '@angular/common/http';
+import {OfficerViewComponent} from '../officer-view/officer-view.component';
 
 describe('LeasingCalculatorComponent', () => {
   let component: LeasingCalculatorComponent;
@@ -29,7 +28,8 @@ describe('LeasingCalculatorComponent', () => {
         PrivateFormComponent,
         CustomerInfoFormComponent,
         AllInformationListComponent,
-        CheckLeasingStatusComponent
+        CheckLeasingStatusComponent,
+        OfficerViewComponent
       ],
       imports: [
         BrowserModule,

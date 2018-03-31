@@ -14,6 +14,7 @@ import {CheckLeasingStatusComponent} from '../check-leasing-status/check-leasing
 import {AllInformationListComponent} from '../all-information-list/all-information-list.component';
 import {BackendService} from '../services/backend.service';
 import {LeasingCalculatorComponent} from '../leasing-calculator/leasing-calculator.component';
+import {OfficerViewComponent} from '../officer-view/officer-view.component';
 
 describe('PrivateFormComponent', () => {
   let component: PrivateFormComponent;
@@ -26,7 +27,8 @@ describe('PrivateFormComponent', () => {
         PrivateFormComponent,
         CustomerInfoFormComponent,
         AllInformationListComponent,
-        CheckLeasingStatusComponent
+        CheckLeasingStatusComponent,
+        OfficerViewComponent
       ],
       imports: [
         BrowserModule,
