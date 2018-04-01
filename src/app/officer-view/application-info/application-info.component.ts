@@ -26,7 +26,6 @@ export class ApplicationInfoComponent implements OnInit {
 
   @Input() leasesInfoOfPrivate;
   @Input() leasesInfoOfBusiness;
-  @Input() i;
   @Input() lease;
   @Input() ida;
   @Output() updateApplication = new EventEmitter<Object>();
@@ -34,6 +33,7 @@ export class ApplicationInfoComponent implements OnInit {
   @Input() names;
   @Input() statusEl;
   @Input() pending;
+  @Input() stepIndex;
 
 
   statusChanged = false;
@@ -49,9 +49,23 @@ export class ApplicationInfoComponent implements OnInit {
 
   }
 
+  step = 0;
 
-  isPrivate(){
-    if(this.lease.leasingModel.customerType === 'Private') {
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
+
+
+  isPrivate() {
+    if (this.lease.leasingModel.customerType === 'Private') {
       this.sendToBackendPrivate();
     }
     else {
@@ -72,10 +86,10 @@ export class ApplicationInfoComponent implements OnInit {
 
     }).afterClosed().subscribe(data => {
       this.choice = data;
-      if(this.choice === "APPROVED") {
+      if (this.choice === "APPROVED") {
 
-        (<HTMLInputElement>document.getElementById('approved')).disabled=true;
-        (<HTMLInputElement>document.getElementById('denied')).disabled=true;
+        (<HTMLInputElement>document.getElementById('approved')).disabled = true;
+        (<HTMLInputElement>document.getElementById('denied')).disabled = true;
 
         this.isPrivate();
         console.log("subscribe working: ${data}", data);
@@ -96,9 +110,9 @@ export class ApplicationInfoComponent implements OnInit {
       }
     }).afterClosed().subscribe(data => {
       this.choice = data;
-      if(this.choice === "DENIED") {
-        (<HTMLInputElement>document.getElementById('approved')).disabled=true;
-        (<HTMLInputElement>document.getElementById('denied')).disabled=true;
+      if (this.choice === "DENIED") {
+        (<HTMLInputElement>document.getElementById('approved')).disabled = true;
+        (<HTMLInputElement>document.getElementById('denied')).disabled = true;
 
         this.isPrivate();
       }

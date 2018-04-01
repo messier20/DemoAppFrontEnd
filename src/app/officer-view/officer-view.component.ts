@@ -30,6 +30,11 @@ export class OfficerViewComponent implements OnInit {
   approved: any[] = [];
   denied: any[] = [];
   testing: any[] = [];
+  stepIndex;
+
+  public isCollapsed = true;
+  public isCollapsed2 = true;
+  public isCollapsedHorizontal = false;
 
   constructor(private backendService: BackendService) {
   }
@@ -120,6 +125,31 @@ export class OfficerViewComponent implements OnInit {
         })
 
       });
+  }
+
+  step;
+  step2;
+  step3;
+  panelOpenState: boolean = false;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  setStep2(index: number) {
+    this.step2 = index;
+  }
+
+  setStep3(index: number) {
+    this.step3 = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 
 }

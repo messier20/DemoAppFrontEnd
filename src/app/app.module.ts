@@ -7,7 +7,14 @@ import {BackendService} from './services/backend.service';
 import {AppComponent} from './app.component';
 import {PrivateFormComponent} from './privateform/private-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatDialogModule} from '@angular/material';
+import {
+  MatCardModule,
+  MatDatepickerModule, MatDialogModule, MatExpansionPanel, MatFormFieldModule, MatIconModule, MatInputModule,
+  MatNativeDateModule,
+  MatTabsModule
+} from '@angular/material';
+import {MatExpansionModule} from '@angular/material/expansion';
+// import {MatExpansionModule} from '@angular/material/expansion';
 
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -50,6 +57,15 @@ import { DialogForm2Component } from './dialog-form2/dialog-form2.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatCardModule,
+
     NgbModule.forRoot()
   ],
   providers: [DataStorageService, BackendService],
