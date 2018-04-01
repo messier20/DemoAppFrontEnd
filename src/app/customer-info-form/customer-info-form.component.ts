@@ -38,12 +38,23 @@ export class CustomerInfoFormComponent implements OnInit {
   ngOnInit() {
     if (this.isCustomerPrivate()) {
       this.formLabels = new CustomerInfoLabels().privateInfoLabels;
+      if (this.dataService.getPrivateInfo() != null || (this.infoForm != null && this.dataService.getLeasingModel().customerType === 'Private')){
+        this.infoForm.setValue(this.dataService.getPrivateInfo());
+      }
+      else
       this.privateCustomerInfo = new PrivateCustomerInfo();
     } else {
       this.formLabels = new CustomerInfoLabels().businessInfoLabels;
-      this.businessCustomerInfo = new BusinessCustomerInfo();
-      document.getElementById('hiddenName').hidden = true;
-      this.infoForm.get('lastName').disable();
+
+      if (this.dataService.getBusinessInfo() != null || (this.infoForm != null && this.dataService.getLeasingModel().customerType === 'Business')) {
+        this.infoForm.setValue(this.dataService.getBusinessInfo());
+        document.getElementById('hiddenName').hidden = true;
+        this.infoForm.get('lastName').disable();
+      } else {
+        this.businessCustomerInfo = new BusinessCustomerInfo();
+        document.getElementById('hiddenName').hidden = true;
+        this.infoForm.get('lastName').disable();
+      }
     }
 
   }
@@ -64,6 +75,10 @@ export class CustomerInfoFormComponent implements OnInit {
         }
       });
     }
+  }
+
+  goBack(){
+    this.router.navigate(['/privateForm']);
   }
 
   private createValidForm() {

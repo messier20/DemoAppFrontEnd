@@ -38,10 +38,18 @@ export class PrivateFormComponent implements OnInit {
     if (this.dataService.getLeasingCalculator() != null) {
       this.fillFieldsWithCalculatorInput();
     }
+
   }
 
   ngOnInit() {
-    this.leasingModel = new LeasingModel();
+
+    // this.leasingModel = this.dataService.getLeasingModel();
+    // console.log("leasing model", this.leasingModel);
+    if(this.dataService.getLeasingModel() != null) {
+      this.leasingForm.setValue(this.dataService.getLeasingModel());
+      console.log("form", this.leasingForm);
+    }
+    else this.leasingModel = new LeasingModel();
   }
 
   setMinAssetPrice() {
@@ -110,6 +118,9 @@ export class PrivateFormComponent implements OnInit {
     this.leasingModel = this.leasingForm.value;
     this.dataService.setLeasingModel(this.leasingModel);
   }
+  goBack(){
+    this.router.navigate(['/leasingCalculatorForm']);
+  }
 
   fillFieldsWithCalculatorInput() {
     this.leasingCalculatorInput = this.dataService.getLeasingCalculator();
@@ -121,6 +132,6 @@ export class PrivateFormComponent implements OnInit {
     this.leasingForm.get('margin').setValue(this.leasingCalculatorInput.margin);
     this.leasingForm.get('leasePeriodInMonths').setValue(this.leasingCalculatorInput.leasePeriodInMonths);
     this.leasingForm.get('paymentDate').setValue(this.leasingCalculatorInput.paymentDate);
-    this.dataService.setLeasingCalculator(null);
+    // this.dataService.setLeasingCalculator(null);
   }
 }

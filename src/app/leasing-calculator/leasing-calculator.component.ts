@@ -101,8 +101,8 @@ export class LeasingCalculatorComponent implements OnInit {
   }
 
   setLeasingCalculator() {
-      this.leasingCalculator = this.leasingCalculatorForm.value;
-      this.dataService.setLeasingCalculator(this.leasingCalculator);
-      this.router.navigate(['/privateForm']);
+    this.leasingCalculator = this.leasingCalculatorForm.value;
+    this.dataService.setLeasingCalculator(this.leasingCalculator);
+    this.router.navigate(['/privateForm']);
   }
 }
