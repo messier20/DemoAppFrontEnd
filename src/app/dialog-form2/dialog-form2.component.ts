@@ -53,7 +53,9 @@ export class DialogForm2Component implements OnInit {
   }
 
   returnNo() {
+    this.choice = "no";
     console.log("just retured no");
+    this.dialogRef.close(this.choice);
   }
 
 }

@@ -37,7 +37,8 @@ export class ApplicationInfoComponent implements OnInit {
 
 
   statusChanged = false;
-  choice;
+  choice = "no";
+  visible: boolean;
   public isCollapsed = true;
 
 
@@ -47,6 +48,10 @@ export class ApplicationInfoComponent implements OnInit {
 
   ngOnInit() {
 
+    if(this.lease.status==="PENDING"){
+      this.visible = true;
+    }
+    else this.visible = false;
   }
 
   step = 0;
@@ -62,6 +67,17 @@ export class ApplicationInfoComponent implements OnInit {
   prevStep() {
     this.step--;
   }
+
+  // checkStatus(status, choice){
+  //   if(status==="PENDING" && choice ==="no") {
+  //     console.log("stat", status);
+  //     return true;
+  //   }
+  //   console.log("stat", status);
+  //   return false;
+  // }
+
+
 
 
   isPrivate() {
@@ -81,11 +97,14 @@ export class ApplicationInfoComponent implements OnInit {
     this.dialog.open(DialogForm2Component, {
       data: {
         status: this.lease.status,
-        choice: this.lease.choice
+        choice: this.choice
       }
+
 
     }).afterClosed().subscribe(data => {
       this.choice = data;
+      console.log("choice", this.choice);
+
       if (this.choice === "APPROVED") {
 
         (<HTMLInputElement>document.getElementById('approved')).disabled = true;
@@ -106,7 +125,7 @@ export class ApplicationInfoComponent implements OnInit {
     this.dialog.open(DialogForm2Component, {
       data: {
         status: this.lease.status,
-        choice: this.lease.choice
+        choice: this.choice
       }
     }).afterClosed().subscribe(data => {
       this.choice = data;

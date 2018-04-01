@@ -10,11 +10,13 @@
         <app-all-information-list [leasingModel]="lease.leasingModel" [privateCustomerInfo]="lease.privateCustomerInfo"
                                   [businessCustomerInfo]="lease.businessCustomerInfo"></app-all-information-list>
         {{lease.status}} status
+        {{choice}} choice
       <!--</div>-->
-      <div *ngIf="lease.status==='PENDING'">
+<!--*ngIf="choice==='no'&&lease.status==='PENDING'"      -->
+<div *ngIf="visible">
         <button class="btn btn-group btn-success" id="approved" (click)="setApprovedStatus()">Approved</button>
         <button class="btn btn-group btn-danger" id="denied" (click)="setDeniedStatus()">Deny</button>
-      </div>
+      </div >
     <!--</div>-->
   <!--</div>-->
 <!--</div>-->
