@@ -40,48 +40,40 @@ export class CustomerInfoFormComponent implements OnInit {
       this.formLabels = new CustomerInfoLabels().privateInfoLabels;
       if (this.dataService.getPrivateInfo() != null) {
         this.infoForm.setValue(this.dataService.getPrivateInfo());
+        this.infoForm.get('phoneNumber').setValue(this.infoForm.get('phoneNumber').value.substring(1));
+
       }
       else if (this.infoForm.get('name') === null) {
-        console.log("name", this.infoForm.get('name'));
+        console.log('name', this.infoForm.get('name'));
         // this.infoForm.setValue(this.infoForm.get('name'));
         // }
         // else {
         this.privateCustomerInfo = new PrivateCustomerInfo();
-        this.infoForm.setValue(this.dataService.getPrivateInfo());
       }
     } else {
       this.formLabels = new CustomerInfoLabels().businessInfoLabels;
-      console.log("should create form labels");
+      console.log('should create form labels');
 
 
       if (this.dataService.getBusinessInfo() != null) {
-        console.log("data service not empty");
+        console.log('data service not empty');
         document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
-        this.infoForm.setValue(this.dataService.getBusinessInfo());
-        //
-        // this.infoForm.get('name').setValue(this.dataService.getBusinessInfo().name);
-        // this.infoForm.get('code').setValue(this.dataService.getBusinessInfo().code);
-        // this.infoForm.get('email').setValue(this.dataService.getBusinessInfo().email);
-        // this.infoForm.get('address').setValue(this.dataService.getBusinessInfo().address);
-        // this.infoForm.get('phoneNumber').setValue(this.dataService.getBusinessInfo().phoneNumber);
-        // this.infoForm.setValue(this.dataService.getBusinessInfo());
 
-        console.log("info form", this.infoForm);
+        this.infoForm.get('name').setValue(this.dataService.getBusinessInfo().name);
+        this.infoForm.get('code').setValue(this.dataService.getBusinessInfo().code);
+        this.infoForm.get('email').setValue(this.dataService.getBusinessInfo().email);
+        this.infoForm.get('address').setValue(this.dataService.getBusinessInfo().address);
+        this.infoForm.get('phoneNumber').setValue(this.infoForm.get('phoneNumber').value.substring(1));        // this.infoForm.setValue(this.dataService.getBusinessInfo());
 
-      } else  {
+        console.log('info form', this.infoForm);
+
+      } else {
         this.businessCustomerInfo = new BusinessCustomerInfo();
         document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
-        this.infoForm.setValue(this.dataService.getBusinessInfo());
-        // this.infoForm.setValue(this.dataService.getBusinessInfo());
 
-        // this.infoForm.get('name').setValue(this.dataService.getBusinessInfo().name);
-        // this.infoForm.get('code').setValue(this.dataService.getBusinessInfo().code);
-        // this.infoForm.get('email').setValue(this.dataService.getBusinessInfo().email);
-        // this.infoForm.get('address').setValue(this.dataService.getBusinessInfo().address);
-        // this.infoForm.get('phoneNumber').setValue(this.dataService.getBusinessInfo().phoneNumber);
-        console.log("info form empty");
+        console.log('info form empty');
       }
     }
 
@@ -106,17 +98,8 @@ export class CustomerInfoFormComponent implements OnInit {
   }
 
   goBack() {
-
-    // if (this.isCustomerPrivate()) {
-      this.setCustomerInfo();
+    this.setCustomerInfo();
     this.router.navigate(['/privateForm']);
-      // this.dataService.setPrivateInfo(this.privateCustomerInfo);
-      // console.log("set data service private");
-    // }
-    // else {
-    //   this.dataService.setBusinessInfo(this.businessCustomerInfo);
-    //   console.log("set data service business");
-    // }
   }
 
   private createValidForm() {
