@@ -1,13 +1,3 @@
-/*#swed {*/
-/*position: relative;*/
-/*height: 14px;*/
-/*border-width: 20px;*/
-/*background: -ms-linear-gradient(left, #030035 0, #0300ff 100%);*/
-/*background: linear-gradient(to right, #030035 0, #0300ff 100%);*/
-
-/*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb661d', endColorstr='#f4ba44', GradientType=1);*/
-/*}*/
-
 .navbar-brand {
   margin-left: 15px;
   font-size: 20px;
@@ -30,3 +20,6 @@
 
 }
 
+.navbar-toggler-icon {
+  color: #d5d5d5;
+}
