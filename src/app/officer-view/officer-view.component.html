@@ -1,5 +1,5 @@
 <mat-tab-group>
-  <mat-tab label="All Applications">
+  <mat-tab class="mat-tab-label-content " label="All Applications">
     <div>
       <h4>Pending Applications</h4>
       <div *ngFor="let lease of pending; let stepIndex = index">
@@ -11,7 +11,7 @@
 
             <mat-expansion-panel-header id="header">
               <mat-panel-title>
-                Application submited on {{lease.date}}
+                Application {{lease.id}} submited on {{lease.date}}
               </mat-panel-title>
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"

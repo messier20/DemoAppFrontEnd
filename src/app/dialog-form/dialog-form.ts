@@ -7,6 +7,7 @@ import {CustomerInfoLabels} from '../constants/CustomerInfoLabels';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {DataStorageService} from '../services/data-storage-service.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dialog-form',
@@ -29,7 +30,9 @@ export class DialogFormComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<DialogFormComponent>,
               private backendService: BackendService,
-              private dataService: DataStorageService) {
+              private dataService: DataStorageService,
+              private router: Router
+  ) {
 
     this.showingUserId = false;
     this.leasingModel = this.data.leasingModel;
@@ -57,5 +60,10 @@ export class DialogFormComponent {
 
   private isCustomerPrivate() {
     this.privateCustomer = this.leasingModel.customerType === 'Private';
+  }
+
+
+  goBack() {
+    this.router.navigate(['/customerInfoForm']);
   }
 }
