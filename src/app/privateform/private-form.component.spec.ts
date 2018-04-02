@@ -62,7 +62,7 @@ describe('PrivateFormComponent', () => {
   it('should calculate AdvancePaymentAmount and ContractFee', () => {
     component.leasingForm.get('assetPrice').setValue(100);
     component.leasingForm.get('advancePaymentPercentage').setValue(10);
-    component.calcAdvancePaymentAmountAndContractFee();
+    component.calcAdvancePaymentAmount();
 
     expect(component.leasingForm.get('advancePaymentAmount').value).toEqual('10.00');
     expect(component.leasingForm.get('contractFee').value).toEqual('200.00');
