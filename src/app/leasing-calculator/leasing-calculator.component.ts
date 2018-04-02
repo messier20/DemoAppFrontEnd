@@ -90,7 +90,7 @@ export class LeasingCalculatorComponent implements OnInit {
   createValidForm() {
     this.leasingCalculatorForm = this.formBuilder.group({
       customerType: ['', CustomValidators.customerTypeValidator],
-      advancePaymentAmount: ['', CustomValidators.advancePaymentAmountValidator],
+      advancePaymentAmount: ['', CustomValidators.advancePaymentAmountPersonalValidator],
       leasePeriodInMonths: ['', CustomValidators.leasePeriodInMonthsValidator],
       contractFee: ['', CustomValidators.contractFeeValidator],
       paymentDate: ['', CustomValidators.paymentDateValidator],
