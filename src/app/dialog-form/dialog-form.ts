@@ -5,7 +5,9 @@ import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
 import {CustomerInfoLabels} from '../constants/CustomerInfoLabels';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
-import {MAT_DIALOG_DATA} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {DataStorageService} from '../services/data-storage-service.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dialog-form',
@@ -15,16 +17,24 @@ import {MAT_DIALOG_DATA} from '@angular/material';
 export class DialogFormComponent {
 
   privateCustomer: boolean;
+  checkingLeasingStatus: boolean;
+  showingUserId: boolean;
 
   leasingModel: LeasingModel;
   privateCustomerInfo: PrivateCustomerInfo;
   businessCustomerInfo: BusinessCustomerInfo;
-  checkingLeasingStatus: boolean;
+
   leasingStatus: string;
+  receivedUserId: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-              private backendService: BackendService) {
+              public dialogRef: MatDialogRef<DialogFormComponent>,
+              private backendService: BackendService,
+              private dataService: DataStorageService,
+              private router: Router
+  ) {
 
+    this.showingUserId = false;
     this.leasingModel = this.data.leasingModel;
     this.checkingLeasingStatus = this.data.checkingLeasingStatus;
     this.leasingStatus = this.data.leasingStatus;
@@ -38,10 +48,22 @@ export class DialogFormComponent {
   }
 
   sendFormToBackend() {
-    this.backendService.sendCompletedForm();
+    this.backendService.sendCompletedForm().then(returnedId => {
+      this.dataService.deleteAllLeasingData();
+
+      const returnedUserIdObject: any = returnedId;
+      this.receivedUserId = returnedUserIdObject.id;
+
+      this.showingUserId = true;
+    });
   }
 
   private isCustomerPrivate() {
     this.privateCustomer = this.leasingModel.customerType === 'Private';
+  }
+
+
+  goBack() {
+    this.router.navigate(['/customerInfoForm']);
   }
 }

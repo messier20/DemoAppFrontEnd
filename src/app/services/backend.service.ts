@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {DataStorageService} from './data-storage-service.service';
 import {LeasingModel} from '../models/LeasingModel';
 import {CheckStatusInfo} from '../models/CheckStatusInfo';
+import {LeasingCalculator} from '../models/LeasingCalculator';
 
 @Injectable()
 export class BackendService {
@@ -10,6 +11,8 @@ export class BackendService {
   httpLink = 'http://localhost:8080/';
   businessCustomerLink = 'user/business';
   privateCustomerLink = 'user/private';
+  repaymentScheduleLink = 'user/calculator/loan/vehicle';
+
 
   constructor(private http: HttpClient,
               private dataStorage: DataStorageService) {
@@ -17,10 +20,10 @@ export class BackendService {
 
   sendCompletedForm() {
     if (this.dataStorage.getLeasingModel().customerType === 'Private') {
-      this.sendPrivateForm();
+      return this.sendPrivateForm();
 
     } else if (this.dataStorage.getLeasingModel().customerType === 'Business') {
-      this.sendBusinessForm();
+      return this.sendBusinessForm();
 
     } else {
       console.log('Error in backendService, could not determine customerType of form');
@@ -41,6 +44,7 @@ export class BackendService {
       customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
       privateCustomer: this.dataStorage.getPrivateInfo()
     };
+    console.log(postBody);
 
     return this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
   }
@@ -52,5 +56,48 @@ export class BackendService {
   getPrivateFormById(checkData: CheckStatusInfo) {
     return this.http.get(this.httpLink + this.privateCustomerLink + '/' + checkData.id).toPromise();
   }
+
+  sendLeasingCalculatorInput(leasingCalculatorInput: LeasingCalculator) {
+    return this.http.post(this.httpLink + this.repaymentScheduleLink, leasingCalculatorInput).toPromise();
+  }
+
+  getAllPrivateUserApplicationsByStatus(status) {
+    return this.http
+      .get(this.httpLink + '/user/private/status/' + status)
+      .toPromise();
+  }
+
+  getAllBusinessUserApplicationsByStatus(status) {
+    return this.http
+      .get(this.httpLink + '/user/business/status/' + status)
+      .toPromise();
+  }
+
+  getAllPrivateUserApplications() {
+    return this.http
+      .get(this.httpLink + '/user/private')
+      .toPromise();
+  }
+
+  getAllBusinessUserApplications() {
+    return this.http
+      .get(this.httpLink + '/user/business')
+      .toPromise();
+  }
+
+  updatePrivateCustomerStatus(id, postBody) {
+
+    return this.http
+      .put(this.httpLink + '/user/private/update/' + id, postBody ).toPromise();
+    // .toPromise()
+  }
+
+  updateBusinessCustomerStatus(id, postBody) {
+
+    return this.http
+      .put(this.httpLink + '/user/business/update/' + id, postBody ).toPromise();
+    // .toPromise()
+  }
+
 
 }

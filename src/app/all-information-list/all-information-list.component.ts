@@ -43,6 +43,7 @@ export class AllInformationListComponent implements OnInit {
 
   private isCustomerPrivate() {
     this.privateCustomer = this.leasingModel.customerType === 'Private';
+
   }
 
   private setupPrivateCustomerInfoArray() {
@@ -73,9 +74,9 @@ export class AllInformationListComponent implements OnInit {
     this.leasingModelArray.push({heading: this.leasingLabels[6], value: this.leasingModel.assetPrice.toString()});
     this.leasingModelArray.push({heading: this.leasingLabels[7], value: this.leasingModel.advancePaymentPercentage.toString()});
     this.leasingModelArray.push({heading: this.leasingLabels[8], value: this.leasingModel.advancePaymentAmount});
-    this.leasingModelArray.push({heading: this.leasingLabels[9], value: this.leasingModel.leasePeriodInMonths.toString()});
+    this.leasingModelArray.push({heading: this.leasingLabels[9], value: this.leasingModel.contractFee});
     this.leasingModelArray.push({heading: this.leasingLabels[10], value: this.leasingModel.margin.toString()});
-    this.leasingModelArray.push({heading: this.leasingLabels[11], value: this.leasingModel.contractFee});
+    this.leasingModelArray.push({heading: this.leasingLabels[11], value: this.leasingModel.leasePeriodInMonths.toString()});
     this.leasingModelArray.push({heading: this.leasingLabels[12], value: this.leasingModel.paymentDate.toString()});
 
   }

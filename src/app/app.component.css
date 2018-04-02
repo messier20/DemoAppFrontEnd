@@ -1,11 +1,25 @@
-body {
-  mat-app-background: primary;
-  height: 100%;
-  color: #fff;
-  background: repeating-linear-gradient(-45deg, #a1d8f4 0, #a1d8f4 25%, #8ccae9 0, #8ccae9 38%) 0 / 20px 20px;
-}
-#upperbar{
-  height: 55px;
+.navbar-brand {
+  margin-left: 15px;
+  font-size: 20px;
 }
 
+.navbar {
+  color: #d5d5d5;
+  background: -ms-linear-gradient(left, #020027 0, #020079 100%);
+  background: linear-gradient(to right, #020027 0, #020079 100%);
+}
 
+.navbar .nav-link {
+  color: #d5d5d5;
+  font-weight: 600;
+  font-size: 20px;
+  margin-left: 10px;
+  /*word-wrap: break-word;*/
+  /*max-width: 125px;*/
+  text-align: center;
+
+}
+
+.navbar-toggler-icon {
+  color: #d5d5d5;
+}

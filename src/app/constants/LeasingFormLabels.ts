@@ -14,10 +14,10 @@ export class LeasingFormLabels {
   public readonly MARGIN = 'Margin(%)';
   public readonly LEASING_PERIOD = 'Leasing Period (months)';
   public readonly PAYMENT_DAY = 'Payment Day';
-  public readonly THE_REMAINING_AMOUNT = 'The remaining amount';
-  public readonly ASSET_PAYMENT_AMOUNT = 'Asset payment amount';
-  public readonly INTEREST_PAYMENT_AMOUNT = 'Interest payment amount';
-  public readonly TOTAL_PAYMENT_AMOUNT = 'Total payment amount';
+  public readonly THE_REMAINING_AMOUNT = 'The Remaining Amount(€)';
+  public readonly ASSET_PAYMENT_AMOUNT = 'Asset Payment Amount(€)';
+  public readonly INTEREST_PAYMENT_AMOUNT = 'Interest Payment Amount(€)';
+  public readonly TOTAL_PAYMENT_AMOUNT = 'Total Payment Amount(€)';
 
   private _leasingFormLabels = [this.CUSTOMER_TYPE, this.ASSET_TYPE, this.CAR_BRAND, this.CAR_MODEL, this.MANUFACTURED_DATE,
     this.ENGINE_POWER, this.ASSET_PRICE, this.ADVANCE_PAYMENT_PERCENTAGE, this.ADVANCE_PAYMENT_AMOUNT, this.CONTRACT_FEE,
