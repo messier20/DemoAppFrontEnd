@@ -35,7 +35,11 @@
         <label for="carBrand">{{leasingFormLabels.CAR_BRAND}}</label>
         <select class="form-control" id="carBrand" name="carBrandField" formControlName="carBrand"
                 (change)="selectBrandHandler()" required>
-          <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
+          <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">
+            <div><img src="./assets/images/CarLogos/{{selectedBrand.make}}.png"/>
+              {{selectedBrand.make}}
+            </div>
+          </option>
         </select>
         <div [hidden]="leasingForm.get('carBrand').valid || leasingForm.get('carBrand').untouched"
              class="alert-danger alert">
@@ -182,7 +186,8 @@
       </div>
     </div>
     <button type="button" class="btn btn-group btn-outline-secondary" (click)="goBack()">Back</button>
-    <button type="submit" class="btn btn-group btn-outline-success btn-outline-primary" (click)="setLeasingModel()">Submit
+    <button type="submit" class="btn btn-group btn-outline-success btn-outline-primary" (click)="setLeasingModel()">
+      Submit
       form
     </button>
   </form>
