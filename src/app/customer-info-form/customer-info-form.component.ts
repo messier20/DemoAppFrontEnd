@@ -47,6 +47,7 @@ export class CustomerInfoFormComponent implements OnInit {
         // }
         // else {
         this.privateCustomerInfo = new PrivateCustomerInfo();
+        this.infoForm.setValue(this.dataService.getPrivateInfo());
       }
     } else {
       this.formLabels = new CustomerInfoLabels().businessInfoLabels;
@@ -57,12 +58,13 @@ export class CustomerInfoFormComponent implements OnInit {
         console.log("data service not empty");
         document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
-
-        this.infoForm.get('name').setValue(this.dataService.getBusinessInfo().name);
-        this.infoForm.get('code').setValue(this.dataService.getBusinessInfo().code);
-        this.infoForm.get('email').setValue(this.dataService.getBusinessInfo().email);
-        this.infoForm.get('address').setValue(this.dataService.getBusinessInfo().address);
-        this.infoForm.get('phoneNumber').setValue(this.dataService.getBusinessInfo().phoneNumber);
+        this.infoForm.setValue(this.dataService.getBusinessInfo());
+        //
+        // this.infoForm.get('name').setValue(this.dataService.getBusinessInfo().name);
+        // this.infoForm.get('code').setValue(this.dataService.getBusinessInfo().code);
+        // this.infoForm.get('email').setValue(this.dataService.getBusinessInfo().email);
+        // this.infoForm.get('address').setValue(this.dataService.getBusinessInfo().address);
+        // this.infoForm.get('phoneNumber').setValue(this.dataService.getBusinessInfo().phoneNumber);
         // this.infoForm.setValue(this.dataService.getBusinessInfo());
 
         console.log("info form", this.infoForm);
@@ -71,7 +73,14 @@ export class CustomerInfoFormComponent implements OnInit {
         this.businessCustomerInfo = new BusinessCustomerInfo();
         document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
+        this.infoForm.setValue(this.dataService.getBusinessInfo());
+        // this.infoForm.setValue(this.dataService.getBusinessInfo());
 
+        // this.infoForm.get('name').setValue(this.dataService.getBusinessInfo().name);
+        // this.infoForm.get('code').setValue(this.dataService.getBusinessInfo().code);
+        // this.infoForm.get('email').setValue(this.dataService.getBusinessInfo().email);
+        // this.infoForm.get('address').setValue(this.dataService.getBusinessInfo().address);
+        // this.infoForm.get('phoneNumber').setValue(this.dataService.getBusinessInfo().phoneNumber);
         console.log("info form empty");
       }
     }
@@ -97,7 +106,17 @@ export class CustomerInfoFormComponent implements OnInit {
   }
 
   goBack() {
+
+    // if (this.isCustomerPrivate()) {
+      this.setCustomerInfo();
     this.router.navigate(['/privateForm']);
+      // this.dataService.setPrivateInfo(this.privateCustomerInfo);
+      // console.log("set data service private");
+    // }
+    // else {
+    //   this.dataService.setBusinessInfo(this.businessCustomerInfo);
+    //   console.log("set data service business");
+    // }
   }
 
   private createValidForm() {
