@@ -3,7 +3,7 @@ import {LeasingModel} from '../models/LeasingModel';
 import {CarList} from '../models/CarList';
 import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {CustomValidators} from '../constants/CustomValidators';
