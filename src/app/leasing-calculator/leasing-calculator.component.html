@@ -225,7 +225,9 @@
 
       </div>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="tile2.cols" [rowspan]="tile2.rows" [style.background]="tile2.color">
+
+    <div class="container">
+    <mat-grid-tile class="container" [colspan]="tile2.cols" [rowspan]="tile2.rows" [style.background]="tile2.color">
       <!--<mat-grid-tile-header>-->
       <!--{{tile2.text}}-->
       <!--</mat-grid-tile-header>-->
@@ -237,7 +239,7 @@
 
 
 
-      <div class="container" id="repaymentSchedule" hidden>
+      <div  id="repaymentSchedule" hidden>
         <form>
           <div class="form-row">
             <div class="form-group col-sm-2" *ngFor="let label of leasingCalculatorLabels">
@@ -295,10 +297,11 @@
       </div>
 
     </mat-grid-tile>
+    </div>
 
   </mat-grid-list>
 
-  <div class="container">
+  <!--<div class="container">-->
 
     <!--<h1>Leasing Application</h1>-->
 
@@ -485,6 +488,7 @@
       <!--</form>-->
     <!--</div>-->
 
-  </div>
+  <!--</div>-->
 </div>
   <!--</div>-->
+<!---->
