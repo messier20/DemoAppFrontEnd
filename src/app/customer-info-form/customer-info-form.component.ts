@@ -40,9 +40,11 @@ export class CustomerInfoFormComponent implements OnInit {
       this.formLabels = new CustomerInfoLabels().privateInfoLabels;
       if (this.dataService.getPrivateInfo() != null) {
         this.infoForm.setValue(this.dataService.getPrivateInfo());
+        this.infoForm.get('phoneNumber').setValue(this.infoForm.get('phoneNumber').value.substring(1));
+
       }
       else if (this.infoForm.get('name') === null) {
-        console.log("name", this.infoForm.get('name'));
+        console.log('name', this.infoForm.get('name'));
         // this.infoForm.setValue(this.infoForm.get('name'));
         // }
         // else {
@@ -50,11 +52,11 @@ export class CustomerInfoFormComponent implements OnInit {
       }
     } else {
       this.formLabels = new CustomerInfoLabels().businessInfoLabels;
-      console.log("should create form labels");
+      console.log('should create form labels');
 
 
       if (this.dataService.getBusinessInfo() != null) {
-        console.log("data service not empty");
+        console.log('data service not empty');
         document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
 
@@ -62,17 +64,16 @@ export class CustomerInfoFormComponent implements OnInit {
         this.infoForm.get('code').setValue(this.dataService.getBusinessInfo().code);
         this.infoForm.get('email').setValue(this.dataService.getBusinessInfo().email);
         this.infoForm.get('address').setValue(this.dataService.getBusinessInfo().address);
-        this.infoForm.get('phoneNumber').setValue(this.dataService.getBusinessInfo().phoneNumber);
-        // this.infoForm.setValue(this.dataService.getBusinessInfo());
+        this.infoForm.get('phoneNumber').setValue(this.infoForm.get('phoneNumber').value.substring(1));        // this.infoForm.setValue(this.dataService.getBusinessInfo());
 
-        console.log("info form", this.infoForm);
+        console.log('info form', this.infoForm);
 
-      } else  {
+      } else {
         this.businessCustomerInfo = new BusinessCustomerInfo();
         document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
 
-        console.log("info form empty");
+        console.log('info form empty');
       }
     }
 
@@ -97,6 +98,7 @@ export class CustomerInfoFormComponent implements OnInit {
   }
 
   goBack() {
+    this.setCustomerInfo();
     this.router.navigate(['/privateForm']);
   }
 
