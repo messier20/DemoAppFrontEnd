@@ -7,7 +7,7 @@ export class CustomValidators {
   static readonly carModelValidator = [Validators.required];
   static readonly manufacturedDateValidator = [Validators.required];
   static readonly enginePowerValidator = [Validators.required, Validators.min(1), Validators.max(9999)];
-  static readonly advancePaymentAmountPersonalValidator = [Validators.required, Validators.min(500), Validators.max(9999999)];
+  static readonly advancePaymentAmountPrivateValidator = [Validators.required, Validators.min(500), Validators.max(9999999)];
   static readonly advancePaymentAmountBusinessValidator = [Validators.required, Validators.min(1000), Validators.max(9999999)];
   static readonly leasePeriodInMonthsValidator = [Validators.required];
   static readonly contractFeeValidator = [Validators.required];

@@ -61,7 +61,7 @@ export class PrivateFormComponent implements OnInit {
       this.leasingForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountBusinessValidator);
     } else {
       this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
-      this.leasingForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountPersonalValidator);
+      this.leasingForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountPrivateValidator);
     }
     this.leasingForm.get('advancePaymentAmount').updateValueAndValidity();
     document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
@@ -143,7 +143,7 @@ export class PrivateFormComponent implements OnInit {
       carModel: ['', CustomValidators.carModelValidator],
       manufacturedDate: ['', CustomValidators.manufacturedDateValidator],
       enginePower: ['', CustomValidators.enginePowerValidator],
-      advancePaymentAmount: ['', CustomValidators.advancePaymentAmountPersonalValidator],
+      advancePaymentAmount: ['', CustomValidators.advancePaymentAmountPrivateValidator],
       leasePeriodInMonths: ['', CustomValidators.leasePeriodInMonthsValidator],
       contractFee: ['', CustomValidators.contractFeeValidator],
       paymentDate: ['', CustomValidators.paymentDateValidator],

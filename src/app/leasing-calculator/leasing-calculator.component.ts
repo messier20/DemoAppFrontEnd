@@ -58,7 +58,7 @@ export class LeasingCalculatorComponent implements OnInit {
       this.leasingCalculatorForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountBusinessValidator);
     } else {
       this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
-      this.leasingCalculatorForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountPersonalValidator);
+      this.leasingCalculatorForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountPrivateValidator);
     }
     this.leasingCalculatorForm.get('advancePaymentAmount').updateValueAndValidity();
     document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
@@ -148,7 +148,7 @@ export class LeasingCalculatorComponent implements OnInit {
   createValidForm() {
     this.leasingCalculatorForm = this.formBuilder.group({
       customerType: ['', CustomValidators.customerTypeValidator],
-      advancePaymentAmount: ['', CustomValidators.advancePaymentAmountPersonalValidator],
+      advancePaymentAmount: ['', CustomValidators.advancePaymentAmountPrivateValidator],
       leasePeriodInMonths: ['', CustomValidators.leasePeriodInMonthsValidator],
       contractFee: ['', CustomValidators.contractFeeValidator],
       paymentDate: ['', CustomValidators.paymentDateValidator],

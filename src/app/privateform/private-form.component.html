@@ -128,7 +128,8 @@
         <div
           [hidden]="leasingForm.get('advancePaymentAmount').valid || leasingForm.get('advancePaymentAmount').untouched"
           class="alert alert-danger">
-          Advance payment amount must be {{this.minAdvancePaymentAmount.toFixed(2)}}€ and {{this.maxAdvancePaymentAmount.toFixed(2)}}€
+          Advance payment amount must be {{this.minAdvancePaymentAmount.toFixed(2)}}€ and
+          {{this.maxAdvancePaymentAmount.toFixed(2)}}€
         </div>
       </div>
 
