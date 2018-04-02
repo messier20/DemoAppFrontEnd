@@ -129,11 +129,6 @@ export class CustomerInfoFormComponent implements OnInit {
     }
   }
 
-  goBack() {
-    this.setCustomerInfo();
-    this.router.navigate(['/privateForm']);
-  }
-
   _keyPress(event: any) {
     const pattern = /[0-9\+\-\ ]/;
     const inputChar = String.fromCharCode(event.charCode);
