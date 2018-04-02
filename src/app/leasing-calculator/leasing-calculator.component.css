@@ -33,6 +33,7 @@
 }
 
 .btn:active:focus {
+  color: #d5d5d5;
   background: #020029;
   background-image: -webkit-linear-gradient(top, #020029, #020027);
   background-image: -moz-linear-gradient(top, #020029, #020027);
