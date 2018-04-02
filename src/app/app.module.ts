@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppRoutingModule} from './app-routing.module';
 
 import {BackendService} from './services/backend.service';
@@ -72,7 +72,7 @@ import { DialogForm2Component } from './dialog-form2/dialog-form2.component';
     MatMenuModule,
     MatSelectModule,
     MatGridListModule,
-
+    FlexLayoutModule,
     NgbModule.forRoot()
   ],
   providers: [DataStorageService, BackendService],

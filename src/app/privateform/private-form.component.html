@@ -190,7 +190,7 @@
 <!--</div>-->
 
 <section>
-  <form [formGroup]="leasingForm" (ngSubmit)="submitForm()">
+  <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="leasingForm" (ngSubmit)="submitForm()">
     <mat-form-field>
       <mat-select placeholder="{{leasingFormLabels.CUSTOMER_TYPE}}" class="form-control" id="customerType" name="customerTypeField"
                   formControlName="customerType" (change)="setMinAssetPrice()">
