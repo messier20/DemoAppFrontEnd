@@ -38,12 +38,43 @@ export class CustomerInfoFormComponent implements OnInit {
   ngOnInit() {
     if (this.isCustomerPrivate()) {
       this.formLabels = new CustomerInfoLabels().privateInfoLabels;
-      this.privateCustomerInfo = new PrivateCustomerInfo();
+      if (this.dataService.getPrivateInfo() != null) {
+        this.infoForm.setValue(this.dataService.getPrivateInfo());
+        this.infoForm.get('phoneNumber').setValue(this.infoForm.get('phoneNumber').value.substring(1));
+
+      }
+      else if (this.infoForm.get('name') === null) {
+        console.log('name', this.infoForm.get('name'));
+        // this.infoForm.setValue(this.infoForm.get('name'));
+        // }
+        // else {
+        this.privateCustomerInfo = new PrivateCustomerInfo();
+      }
     } else {
       this.formLabels = new CustomerInfoLabels().businessInfoLabels;
-      this.businessCustomerInfo = new BusinessCustomerInfo();
-      document.getElementById('hiddenName').hidden = true;
-      this.infoForm.get('lastName').disable();
+      console.log('should create form labels');
+
+
+      if (this.dataService.getBusinessInfo() != null) {
+        console.log('data service not empty');
+        document.getElementById('hiddenName').hidden = true;
+        this.infoForm.get('lastName').disable();
+
+        this.infoForm.get('name').setValue(this.dataService.getBusinessInfo().name);
+        this.infoForm.get('code').setValue(this.dataService.getBusinessInfo().code);
+        this.infoForm.get('email').setValue(this.dataService.getBusinessInfo().email);
+        this.infoForm.get('address').setValue(this.dataService.getBusinessInfo().address);
+        this.infoForm.get('phoneNumber').setValue(this.infoForm.get('phoneNumber').value.substring(1));        // this.infoForm.setValue(this.dataService.getBusinessInfo());
+
+        console.log('info form', this.infoForm);
+
+      } else {
+        this.businessCustomerInfo = new BusinessCustomerInfo();
+        document.getElementById('hiddenName').hidden = true;
+        this.infoForm.get('lastName').disable();
+
+        console.log('info form empty');
+      }
     }
 
   }
@@ -64,6 +95,11 @@ export class CustomerInfoFormComponent implements OnInit {
         }
       });
     }
+  }
+
+  goBack() {
+    this.setCustomerInfo();
+    this.router.navigate(['/privateForm']);
   }
 
   private createValidForm() {

@@ -7,3 +7,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.mat-tab-label-content  {
+  background-color: red;
+}
