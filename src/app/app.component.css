@@ -9,20 +9,24 @@
 /*}*/
 
 .navbar-brand {
+  margin-left: 15px;
   font-size: 20px;
 }
 
 .navbar {
-  color: #f1ffeb;
+  color: #d5d5d5;
   background: -ms-linear-gradient(left, #020027 0, #020079 100%);
   background: linear-gradient(to right, #020027 0, #020079 100%);
 }
 
 .navbar .nav-link {
-  color: #f1ffeb;
+  color: #d5d5d5;
+  font-weight: 600;
+  font-size: 20px;
+  margin-left: 10px;
   /*word-wrap: break-word;*/
   /*max-width: 125px;*/
   text-align: center;
-  
+
 }
 
