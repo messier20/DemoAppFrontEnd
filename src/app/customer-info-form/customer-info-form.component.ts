@@ -38,22 +38,33 @@ export class CustomerInfoFormComponent implements OnInit {
   ngOnInit() {
     if (this.isCustomerPrivate()) {
       this.formLabels = new CustomerInfoLabels().privateInfoLabels;
-      if (this.dataService.getPrivateInfo() != null || (this.infoForm != null && this.dataService.getLeasingModel().customerType === 'Private')){
+      if (this.dataService.getPrivateInfo() != null) {
         this.infoForm.setValue(this.dataService.getPrivateInfo());
       }
-      else
-      this.privateCustomerInfo = new PrivateCustomerInfo();
+      else if (this.infoForm.get('name') === null) {
+        console.log("name", this.infoForm.get('name'));
+        // this.infoForm.setValue(this.infoForm.get('name'));
+        // }
+        // else {
+        this.privateCustomerInfo = new PrivateCustomerInfo();
+      }
     } else {
       this.formLabels = new CustomerInfoLabels().businessInfoLabels;
+      console.log("should create form labels");
 
-      if (this.dataService.getBusinessInfo() != null || (this.infoForm != null && this.dataService.getLeasingModel().customerType === 'Business')) {
+
+      if (this.dataService.getBusinessInfo() != null) {
+        console.log("data service not empty");
         this.infoForm.setValue(this.dataService.getBusinessInfo());
         document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
-      } else {
+
+      } else  {
         this.businessCustomerInfo = new BusinessCustomerInfo();
         document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
+
+        console.log("info form empty");
       }
     }
 
@@ -77,7 +88,7 @@ export class CustomerInfoFormComponent implements OnInit {
     }
   }
 
-  goBack(){
+  goBack() {
     this.router.navigate(['/privateForm']);
   }
 
