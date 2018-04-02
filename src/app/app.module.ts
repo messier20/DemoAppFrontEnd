@@ -8,13 +8,16 @@ import {AppComponent} from './app.component';
 import {PrivateFormComponent} from './privateform/private-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
+  MatButtonModule,
   MatCardModule,
-  MatDatepickerModule, MatDialogModule, MatExpansionPanel, MatFormFieldModule, MatIconModule, MatInputModule,
-  MatNativeDateModule,
+  MatDatepickerModule, MatDialogModule, MatExpansionPanel, MatFormFieldModule, MatGridListModule, MatIconModule,
+  MatInputModule, MatMenuModule,
+  MatNativeDateModule, MatSelectModule, MatTabLabel,
   MatTabsModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 // import {MatExpansionModule} from '@angular/material/expansion';
+// import {MatButtonModule} from '@angular/material/button';
 
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -65,6 +68,10 @@ import { DialogForm2Component } from './dialog-form2/dialog-form2.component';
     MatNativeDateModule,
     MatInputModule,
     MatCardModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatGridListModule,
 
     NgbModule.forRoot()
   ],

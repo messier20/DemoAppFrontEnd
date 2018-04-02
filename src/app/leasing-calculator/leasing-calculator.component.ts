@@ -163,4 +163,15 @@ export class LeasingCalculatorComponent implements OnInit {
     this.dataService.setLeasingCalculator(this.leasingCalculator);
     this.router.navigate(['/privateForm']);
   }
+
+
+  // tiles = [
+  //   {text: 'One', cols: 3, rows: 2, color: 'lightblue'},
+  //   {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'}
+  //   // {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+  //   // {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  // ];
+  tile1 = {text: 'Leasing Calculator', cols: 2, rows: 5.5, color: 'linear-gradient(#ADD8E6, white)'};
+  tile2 = {text: 'Calculate', cols: 2, rows: 5.5, color: 'linear-gradient(#b4c3c7, white)'};
+
 }

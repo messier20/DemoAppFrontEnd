@@ -8,6 +8,7 @@ import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
 import {LeasingFormLabels} from "../constants/LeasingFormLabels";
 import {LeaseInfoOfPrivate} from "../models/LeaseInfoOfPrivate";
 import {LeaseInfoOfBusiness} from "../models/LeaseInfoOfBusiness";
+import {ThemePalette} from "@angular/material";
 
 
 @Component({
@@ -16,6 +17,10 @@ import {LeaseInfoOfBusiness} from "../models/LeaseInfoOfBusiness";
   styleUrls: ['./officer-view.component.css']
 })
 export class OfficerViewComponent implements OnInit {
+
+  @Input()
+  backgroundColor: ThemePalette;
+  @Input() color: ThemePalette;
 
   leases;
 
