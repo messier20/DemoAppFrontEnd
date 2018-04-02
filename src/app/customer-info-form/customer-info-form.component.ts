@@ -55,9 +55,17 @@ export class CustomerInfoFormComponent implements OnInit {
 
       if (this.dataService.getBusinessInfo() != null) {
         console.log("data service not empty");
-        this.infoForm.setValue(this.dataService.getBusinessInfo());
         document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
+
+        this.infoForm.get('name').setValue(this.dataService.getBusinessInfo().name);
+        this.infoForm.get('code').setValue(this.dataService.getBusinessInfo().code);
+        this.infoForm.get('email').setValue(this.dataService.getBusinessInfo().email);
+        this.infoForm.get('address').setValue(this.dataService.getBusinessInfo().address);
+        this.infoForm.get('phoneNumber').setValue(this.dataService.getBusinessInfo().phoneNumber);
+        // this.infoForm.setValue(this.dataService.getBusinessInfo());
+
+        console.log("info form", this.infoForm);
 
       } else  {
         this.businessCustomerInfo = new BusinessCustomerInfo();
