@@ -1,15 +1,28 @@
-#swed {
-  position: relative;
-  height: 14px;
-  border-width: 20px;
-  background: -ms-linear-gradient(left, #030035 0, #0300ff 100%);
-  background: linear-gradient(to right, #030035 0, #0300ff 100%);
+/*#swed {*/
+/*position: relative;*/
+/*height: 14px;*/
+/*border-width: 20px;*/
+/*background: -ms-linear-gradient(left, #030035 0, #0300ff 100%);*/
+/*background: linear-gradient(to right, #030035 0, #0300ff 100%);*/
 
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb661d', endColorstr='#f4ba44', GradientType=1);
+/*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb661d', endColorstr='#f4ba44', GradientType=1);*/
+/*}*/
+
+.navbar-brand {
+  font-size: 20px;
 }
-.navbar-light .navbar-nav .nav-link {
-  color: #512b2b;
+
+.navbar {
+  color: #f1ffeb;
+  background: -ms-linear-gradient(left, #020027 0, #020079 100%);
+  background: linear-gradient(to right, #020027 0, #020079 100%);
 }
 
-
+.navbar .nav-link {
+  color: #f1ffeb;
+  /*word-wrap: break-word;*/
+  /*max-width: 125px;*/
+  text-align: center;
+  
+}
 
