@@ -36,6 +36,10 @@ export class ApplicationInfoComponent implements OnInit {
   @Input() stepIndex;
 
 
+
+  @Output() updates: EventEmitter <boolean> =
+    new EventEmitter();
+
   statusChanged = false;
   choice = "no";
   visible: boolean;
@@ -109,6 +113,9 @@ export class ApplicationInfoComponent implements OnInit {
 
         (<HTMLInputElement>document.getElementById('approved')).disabled = true;
         (<HTMLInputElement>document.getElementById('denied')).disabled = true;
+
+        this.updates.emit(true);
+
 
         this.isPrivate();
         console.log("subscribe working: ${data}", data);
