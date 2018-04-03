@@ -50,6 +50,7 @@ export class OfficerViewComponent implements OnInit {
           this.leases = data;
           this.leases.forEach(lease => {
             // console.log("lease id", lease.id);
+            lease.id.date = (lease.id.date).substr(0, 10);
             lease.customerLeasing = DataStorageService.refactorCustomerType(lease.customerLeasing);
             this.id.push(lease.idHex);
             // console.log("lease id2", lease.id.toString());

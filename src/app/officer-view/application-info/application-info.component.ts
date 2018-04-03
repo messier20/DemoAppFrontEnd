@@ -34,6 +34,7 @@ export class ApplicationInfoComponent implements OnInit {
   @Input() statusEl;
   @Input() pending;
   @Input() stepIndex;
+  @Input() refresh();
 
 
   statusChanged = false;
@@ -88,57 +89,85 @@ export class ApplicationInfoComponent implements OnInit {
       this.sendToBackendBusiness();
     }
   }
+  //
+  // setApprovedStatus() {
+  //   this.lease.status = "APPROVED";
+  //   this.statusChanged = true;
+  //
+  //
+  //   this.dialog.open(DialogForm2Component, {
+  //     data: {
+  //       status: this.lease.status,
+  //       choice: this.choice
+  //     }
+  //
+  //
+  //   }).afterClosed().subscribe(data => {
+  //     this.choice = data;
+  //     console.log("choice", this.choice);
+  //
+  //     if (this.choice === "APPROVED") {
+  //
+  //       (<HTMLInputElement>document.getElementById('approved')).disabled = true;
+  //       (<HTMLInputElement>document.getElementById('denied')).disabled = true;
+  //
+  //       this.isPrivate();
+  //       console.log("subscribe working: ${data}", data);
+  //
+  //     }
+  //   });
+  //
+  // }
 
-  setApprovedStatus() {
-    this.lease.status = "APPROVED";
-    this.statusChanged = true;
-
-
+  openModal(status){
     this.dialog.open(DialogForm2Component, {
       data: {
-        status: this.lease.status,
-        choice: this.choice
+        status: status
       }
+  }).afterClosed().subscribe(data => {
+    if(data){
+      this.status = "APPROVED";
+      console.log("data", data);
+      console.log("approved", this.status);
+    }
+    else if (data===false) {
+      this.status = "DENIED";
+      console.log("data", data);
+      console.log("denied", this.status);
+    }
 
+    if(data || data===false) {
 
-    }).afterClosed().subscribe(data => {
-      this.choice = data;
-      console.log("choice", this.choice);
+      (<HTMLInputElement>document.getElementById('approved')).disabled = true;
+      (<HTMLInputElement>document.getElementById('denied')).disabled = true;
+      console.log("should be approved or denied", this.status);
 
-      if (this.choice === "APPROVED") {
-
-        (<HTMLInputElement>document.getElementById('approved')).disabled = true;
-        (<HTMLInputElement>document.getElementById('denied')).disabled = true;
-
-        this.isPrivate();
-        console.log("subscribe working: ${data}", data);
-
-      }
+      this.isPrivate();
+    }
     });
-
   }
 
-  setDeniedStatus() {
-    this.lease.status = "DENIED";
-    this.statusChanged = true;
-
-    this.dialog.open(DialogForm2Component, {
-      data: {
-        status: this.lease.status,
-        choice: this.choice
-      }
-    }).afterClosed().subscribe(data => {
-      this.choice = data;
-      if (this.choice === "DENIED") {
-        (<HTMLInputElement>document.getElementById('approved')).disabled = true;
-        (<HTMLInputElement>document.getElementById('denied')).disabled = true;
-
-        this.isPrivate();
-      }
-    });
-
-
-  }
+  // setDeniedStatus() {
+  //   this.lease.status = "DENIED";
+  //   this.statusChanged = true;
+  //
+  //   this.dialog.open(DialogForm2Component, {
+  //     data: {
+  //       status: this.lease.status,
+  //       choice: this.choice
+  //     }
+  //   }).afterClosed().subscribe(data => {
+  //     this.choice = data;
+  //     if (this.choice === "DENIED") {
+  //       (<HTMLInputElement>document.getElementById('approved')).disabled = true;
+  //       (<HTMLInputElement>document.getElementById('denied')).disabled = true;
+  //
+  //       this.isPrivate();
+  //     }
+  //   });
+  //
+  //
+  // }
 
   sendToBackendPrivate() {
 
