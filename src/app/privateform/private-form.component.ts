@@ -11,8 +11,8 @@ import {LeasingCalculator} from '../models/LeasingCalculator';
 import {LoanUtils} from '../utils/LoanUtils';
 import {PaymentSize} from '../constants/PaymentSize';
 import {Observable} from 'rxjs/Observable';
-import {startWith} from 'rxjs/operator/startWith';
-import {map} from 'rxjs/operator/map';
+import {startWith} from 'rxjs/operators/startWith';
+import {map} from 'rxjs/operators/map';
 
 @Component({
   selector: 'app-privateform',
@@ -29,6 +29,7 @@ export class PrivateFormComponent implements OnInit {
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
   cars;
+  carBrands: string[];
   leasePeriods;
   model: String[];
   availableDays = [15, 30];
@@ -36,12 +37,12 @@ export class PrivateFormComponent implements OnInit {
   minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
   maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
 
-  car = ['AUDI', 'BMW', 'FIAT'];
   filteredOptions: Observable<string[]>;
 
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
     this.cars = new CarList().cars;
+    this.carBrands = new CarList().carBrands;
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
     this.leasingForm.get('assetType').setValue('Vehicle');
@@ -52,21 +53,20 @@ export class PrivateFormComponent implements OnInit {
 
   }
 
-  ngOnInit() {
 
+  ngOnInit() {
     if (this.dataService.getLeasingModel() != null) {
       this.leasingForm.setValue(this.dataService.getLeasingModel());
       console.log('form', this.leasingForm);
     } else {
       this.leasingModel = new LeasingModel();
     }
-    //
-    // this.filteredOptions = this.leasingForm.get('carBrand').valueChanges
-    //   .pipe(startWith(''), map(val => this.filter(val)));
+    this.filteredOptions = this.leasingForm.get('carBrand').valueChanges
+      .pipe(startWith(''), map(val => this.filter(val)));
   }
 
   filter(val: string): string[] {
-    return (this.cars.make).filter(option =>
+    return this.carBrands.filter(option =>
       option.toLowerCase().indexOf(val.toLowerCase()) === 0);
   }
 

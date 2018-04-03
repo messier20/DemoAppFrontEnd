@@ -1,5 +1,6 @@
 export class CarList {
   cars;
+  carBrands;
 
   constructor() {
     this.cars = [{make: 'ACURA', model: ['ILX', 'MDX', 'RDX', 'RLX', 'TLX']}, {make: 'ALFA ROMEO', model: ['4C', 'MITO']}, {
@@ -99,5 +100,10 @@ export class CarList {
       make: 'VOLKSWAGEN',
       model: ['AMAROK', 'BEETLE', 'CADDY', 'CC', 'CRAFTER', 'E-GOLF', 'EOS', 'GOLF', 'GTI', 'JETTA', 'PASSAT', 'TIGUAN', 'TOUAREG']
     }, {make: 'VOLVO', model: ['S60', 'S80', 'V60', 'V60 CROSS COUNTRY', 'XC60', 'XC70']}];
+
+    this.carBrands = ['ACURA', 'ALFA ROMEO', 'AUDI', 'BENTLEY', 'BMW', 'BUICK', 'CADILLAC', 'CHEVROLET', 'CHRYSLER', 'DODGE', 'FIAT', 'FORD',
+      'GMC', 'HONDA', 'HYUNDAI', 'INFINITI', 'JAGUAR', 'JEEP', 'KIA', 'LAND ROVER', 'LEXUS', 'MASERATI', 'MAZDA', 'MERCEDES-BENZ', 'MINI',
+      'MITSUBISHI', 'NISSAN', 'PEUGEOT', 'PORSCHE', 'RENAULT', 'ROLLS ROYCE', 'SEAT', 'SUBARU', 'TESLA', 'TOYOTA', 'VOLKSWAGEN', 'VOLVO'];
+
   }
 }

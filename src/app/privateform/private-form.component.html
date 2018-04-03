@@ -35,12 +35,11 @@
       <mat-form-field class="example-full-width">
         <input class="form-control" type="text" placeholder="Select car brand"
                matInput
-               formControlName="carBrand" [matAutocomplete]="auto"
-               stateChanges="selectBrandHandler()">
+               formControlName="carBrand" [matAutocomplete]="auto" aria-label="carBrand">
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of cars" [value]="option.make">
-            <img src="./assets/images/CarLogos/{{option.make}}.png" id="smallCarLogo"/>
-            {{ option.make }}
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            <img src="./assets/images/CarLogos/{{option}}.png" id="smallCarLogo"/>
+            {{ option }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
