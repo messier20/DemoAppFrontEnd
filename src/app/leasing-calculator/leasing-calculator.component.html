@@ -3,11 +3,12 @@
 
   <form [formGroup]="leasingCalculatorForm" (ngSubmit)="submitForm()">
 
+
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
         <label for="customerType">{{leasingFormLabels.CUSTOMER_TYPE}}</label>
         <select class="form-control" id="customerType" required name="customerTypeField"
-                formControlName="customerType" (change)="setMinAssetPrice()">
+                formControlName="customerType" (change)="updateMinValues()">
           <option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>
         </select>
 
@@ -27,12 +28,13 @@
                formControlName="assetPrice"
                name="assetPriceField"
                min="5000" max="9999999"
-               (keyup)=calcAdvancePaymentAmountAndContractFee() (change)=calcAdvancePaymentAmountAndContractFee()>
+               (keyup)="manageDependantFields()"
+               (change)="manageDependantFields()">
 
         <div
           [hidden]="leasingCalculatorForm.get('assetPrice').valid || leasingCalculatorForm.get('assetPrice').untouched"
           class="alert alert-danger">
-          Asset price must be between {{this.minAssetPrice}} and 9999999
+          Asset price must be between {{this.minAssetPrice.toFixed(2)}}€ and 9999999.00€
         </div>
       </div>
       <div class="form-group col-md-4 col-sm-6">
@@ -41,8 +43,8 @@
                formControlName="advancePaymentPercentage"
                name="advancePaymentPercentageField"
                min="10" max="100"
-               (keyup)=calcAdvancePaymentAmountAndContractFee()
-               (change)="calcAdvancePaymentAmountAndContractFee()">
+               (keyup)="calcAdvancePaymentAmount()"
+               (change)="calcAdvancePaymentAmount()">
 
         <div
           [hidden]="leasingCalculatorForm.get('advancePaymentPercentage').valid || leasingCalculatorForm.get('advancePaymentPercentage').untouched"
@@ -58,7 +60,16 @@
       <div class="form-group col-md-4 col-sm-6">
         <label for="advancePaymentAmount">{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}</label>
         <input type="text" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField"
-               formControlName="advancePaymentAmount" disabled>
+               formControlName="advancePaymentAmount"
+               min="500" max="9999999"
+               (keyup)="calcAdvancePaymentPercentage()"
+               (change)="calcAdvancePaymentPercentage()">
+
+        <div
+          [hidden]="leasingCalculatorForm.get('advancePaymentAmount').valid || leasingCalculatorForm.get('advancePaymentAmount').untouched"
+          class="alert alert-danger">
+          Advance payment amount must be {{this.minAdvancePaymentAmount.toFixed(2)}}€ and {{this.maxAdvancePaymentAmount.toFixed(2)}}€
+        </div>
       </div>
 
       <div class="form-group col-md-4 col-sm-6">
@@ -111,9 +122,8 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-success" (click)="setLeasingCalculator()">Submit
-      form
-    </button>
+    <button type="submit" class="btn btn-success">Calculate</button>
+    <button type="button" class="btn btn-success" (click)="setLeasingCalculator()">Apply Now</button>
   </form>
 </div>
 

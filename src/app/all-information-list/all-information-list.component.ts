@@ -43,6 +43,7 @@ export class AllInformationListComponent implements OnInit {
 
   private isCustomerPrivate() {
     this.privateCustomer = this.leasingModel.customerType === 'Private';
+
   }
 
   private setupPrivateCustomerInfoArray() {

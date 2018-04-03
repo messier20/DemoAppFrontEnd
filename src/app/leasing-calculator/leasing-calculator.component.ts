@@ -1,20 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {LeasingCalculator} from '../models/LeasingCalculator';
-import {Data, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
-import {Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {CustomValidators} from '../constants/CustomValidators';
 import {Repayment} from '../models/Repayment';
 import {BackendService} from '../services/backend.service';
-import {DialogFormComponent} from '../dialog-form/dialog-form';
+import {PaymentSize} from '../constants/PaymentSize';
+import {LoanUtils} from '../utils/LoanUtils';
 
 @Component({
   selector: 'app-leasing-calculator',
   templateUrl: './leasing-calculator.component.html',
   styleUrls: ['./leasing-calculator.component.css']
 })
+
 export class LeasingCalculatorComponent implements OnInit {
 
   leasingCalculator: LeasingCalculator;
@@ -26,7 +28,9 @@ export class LeasingCalculatorComponent implements OnInit {
 
   leasePeriods;
   availableDays = [15, 30];
-  minAssetPrice = 5000;
+  minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
+  minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
+  maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
   repaymentSchedule: Repayment[];
 
   constructor(private router: Router,
@@ -41,37 +45,99 @@ export class LeasingCalculatorComponent implements OnInit {
     this.leasingCalculator = new LeasingCalculator();
   }
 
+  updateMinValues() {
+    this.setMinAssetPrice();
+    if (!this.leasingCalculatorForm.get('assetPrice').valid) {
+      this.setMinAdvancePaymentAmount();
+    }
+  }
+
+  setMinAdvancePaymentAmount() {
+    if (this.leasingCalculatorForm.get('customerType').value === 'Business') {
+      this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_BUSINESS;
+      this.leasingCalculatorForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountBusinessValidator);
+    } else {
+      this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
+      this.leasingCalculatorForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountPrivateValidator);
+    }
+    this.leasingCalculatorForm.get('advancePaymentAmount').updateValueAndValidity();
+    document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
+  }
+
+
   setMinAssetPrice() {
     if (this.leasingCalculatorForm.get('customerType').value === 'Business') {
-      this.minAssetPrice = 10000;
+      this.minAssetPrice = PaymentSize.MIN_ASSET_PRICE_BUSINESS;
       this.leasingCalculatorForm.get('assetPrice').setValidators(CustomValidators.assetPriceBusinessValidator);
     } else {
-      this.minAssetPrice = 5000;
+      this.minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
       this.leasingCalculatorForm.get('assetPrice').setValidators(CustomValidators.assetPricePersonalValidator);
     }
     this.leasingCalculatorForm.get('assetPrice').updateValueAndValidity();
     document.getElementById('assetPrice').setAttribute('min', this.minAssetPrice.toString());
   }
 
-  calcAdvancePaymentAmountAndContractFee() {
-    this.leasingCalculatorForm.get('contractFee').setValue((this.leasingCalculatorForm.get('assetPrice').value * 0.01).toFixed(2));
-    if (Number.parseFloat(this.leasingCalculatorForm.get('contractFee').value) < 200) {
-      this.leasingCalculatorForm.get('contractFee').setValue((200).toFixed(2));
+  manageDependantFields() {
+    this.calcContractFee();
+    this.calcAdvancePaymentAmount();
+    this.adjustAdvancePaymentAmountValidators();
+  }
+
+  calcContractFee() {
+    this.leasingCalculatorForm.get('contractFee')
+      .setValue(LoanUtils.calculateContractFee(this.leasingCalculatorForm.get('assetPrice').value));
+  }
+
+  calcAdvancePaymentPercentage() {
+    this.leasingCalculatorForm.get('advancePaymentPercentage')
+      .setValue(LoanUtils
+        .calculateAdvancePaymentPercentage(this.leasingCalculatorForm.get('assetPrice').value,
+          this.leasingCalculatorForm.get('advancePaymentAmount').value));
+  }
+
+  calcAdvancePaymentAmount() {
+    this.leasingCalculatorForm.get('advancePaymentAmount')
+      .setValue(LoanUtils
+        .calculateAdvancePaymentAmount(this.leasingCalculatorForm.get('assetPrice').value,
+          this.leasingCalculatorForm.get('advancePaymentPercentage').value));
+  }
+
+  adjustAdvancePaymentAmountValidators() {
+    if (this.leasingCalculatorForm.get('assetPrice').valid) {
+      this.leasingCalculatorForm.get('advancePaymentAmount')
+        .setValidators(LoanUtils.calculateAdvancePaymentAmountValidators(this.leasingCalculatorForm.get('assetPrice').value));
+      this.leasingCalculatorForm.get('advancePaymentAmount').updateValueAndValidity();
+      this.minAdvancePaymentAmount = this.leasingCalculatorForm.get('assetPrice').value * 0.1;
+      this.maxAdvancePaymentAmount = this.leasingCalculatorForm.get('assetPrice').value;
+      document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
+      document.getElementById('advancePaymentAmount').setAttribute('max', this.maxAdvancePaymentAmount.toString());
+    } else {
+      this.minAdvancePaymentAmount = this.minAssetPrice;
+      this.maxAdvancePaymentAmount = 9999999;
+      this.leasingCalculatorForm.get('advancePaymentAmount').updateValueAndValidity();
+      document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
+      document.getElementById('advancePaymentAmount').setAttribute('max', this.maxAdvancePaymentAmount.toString());
     }
-    this.leasingCalculatorForm.get('advancePaymentAmount').setValue((this.leasingCalculatorForm.get('assetPrice').value
-      * this.leasingCalculatorForm.get('advancePaymentPercentage').value / 100).toFixed(2));
   }
 
   submitForm() {
-    this.backendService.sendLeasingCalculatorInput(this.leasingCalculator).then(
-      receivedData => {
-        const received: any = receivedData;
-        this.displayRepaymentSchedule(received.repaymentSchedule);
-      },
-      error => {
-        console.log('Error: ' + error);
-      }
-    );
+    if (!this.leasingCalculatorForm.valid) {
+      Object.keys(this.leasingCalculatorForm.controls).forEach(field => {
+        const control = this.leasingCalculatorForm.get(field);
+        control.markAsTouched({onlySelf: true});
+      });
+    } else {
+      this.leasingCalculator = this.leasingCalculatorForm.value;
+      this.backendService.sendLeasingCalculatorInput(this.leasingCalculator).then(
+        receivedData => {
+          const received: any = receivedData;
+          this.displayRepaymentSchedule(received.repaymentSchedule);
+        },
+        error => {
+          console.log('Error: ' + error);
+        }
+      );
+    }
   }
 
   private displayRepaymentSchedule(repaymentSchedule: Repayment[]) {
@@ -82,7 +148,7 @@ export class LeasingCalculatorComponent implements OnInit {
   createValidForm() {
     this.leasingCalculatorForm = this.formBuilder.group({
       customerType: ['', CustomValidators.customerTypeValidator],
-      advancePaymentAmount: ['', CustomValidators.advancePaymentAmountValidator],
+      advancePaymentAmount: ['', CustomValidators.advancePaymentAmountPrivateValidator],
       leasePeriodInMonths: ['', CustomValidators.leasePeriodInMonthsValidator],
       contractFee: ['', CustomValidators.contractFeeValidator],
       paymentDate: ['', CustomValidators.paymentDateValidator],
@@ -93,15 +159,8 @@ export class LeasingCalculatorComponent implements OnInit {
   }
 
   setLeasingCalculator() {
-    if (!this.leasingCalculatorForm.valid) {
-      Object.keys(this.leasingCalculatorForm.controls).forEach(field => {
-        const control = this.leasingCalculatorForm.get(field);
-        control.markAsTouched({onlySelf: true});
-      });
-    } else {
-      this.router.navigate(['/leasingCalculatorForm']);
-    }
     this.leasingCalculator = this.leasingCalculatorForm.value;
     this.dataService.setLeasingCalculator(this.leasingCalculator);
+    this.router.navigate(['/privateForm']);
   }
 }

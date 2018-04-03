@@ -10,7 +10,11 @@ import {MatDialogModule} from '@angular/material';
 import {AppRoutingModule} from '../app-routing.module';
 import {RouterModule} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
+import {CheckLeasingStatusComponent} from '../check-leasing-status/check-leasing-status.component';
+import {AllInformationListComponent} from '../all-information-list/all-information-list.component';
+import {BackendService} from '../services/backend.service';
 import {LeasingCalculatorComponent} from '../leasing-calculator/leasing-calculator.component';
+import {OfficerViewComponent} from '../officer-view/officer-view.component';
 
 describe('PrivateFormComponent', () => {
   let component: PrivateFormComponent;
@@ -18,7 +22,14 @@ describe('PrivateFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PrivateFormComponent, CustomerInfoFormComponent],
+      declarations: [
+        LeasingCalculatorComponent,
+        PrivateFormComponent,
+        CustomerInfoFormComponent,
+        AllInformationListComponent,
+        CheckLeasingStatusComponent,
+        OfficerViewComponent
+      ],
       imports: [
         BrowserModule,
         AppRoutingModule,
@@ -27,11 +38,11 @@ describe('PrivateFormComponent', () => {
         BrowserAnimationsModule,
         ReactiveFormsModule,
         FormsModule,
-        RouterModule,
-        LeasingCalculatorComponent
+        RouterModule
       ],
       providers: [
         DataStorageService,
+        BackendService,
         {provide: APP_BASE_HREF, useValue: '/'}
       ]
     })
@@ -51,7 +62,7 @@ describe('PrivateFormComponent', () => {
   it('should calculate AdvancePaymentAmount and ContractFee', () => {
     component.leasingForm.get('assetPrice').setValue(100);
     component.leasingForm.get('advancePaymentPercentage').setValue(10);
-    component.calcAdvancePaymentAmountAndContractFee();
+    component.calcAdvancePaymentAmount();
 
     expect(component.leasingForm.get('advancePaymentAmount').value).toEqual('10.00');
     expect(component.leasingForm.get('contractFee').value).toEqual('200.00');

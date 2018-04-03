@@ -38,7 +38,7 @@
       <div class="form-group col-md-4 col-sm-6">
         <label for="email">{{formLabels[4]}}</label>
         <input type="text" class="form-control" id="email" required
-               formControlName="email" name="email" placeholder="Ex: email@domain.com">
+               formControlName="email" name="email"  placeholder="Ex: email@domain.com">
         <div [hidden]="infoForm.get('email').valid || infoForm.get('email').untouched"
              class="alert alert-danger">
           Must be a valid {{formLabels[4]}} address
@@ -72,6 +72,7 @@
       </div>
     </div>
 
+    <button type="button" class="btn btn-group btn-outline-secondary" (click)="goBack()">Back</button>
     <button type="submit" class="btn btn-success" (click)="setCustomerInfo()">Submit form
     </button>
 

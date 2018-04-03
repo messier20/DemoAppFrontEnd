@@ -1,25 +1,24 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {CheckLeasingStatusComponent} from './check-leasing-status.component';
+import {OfficerViewComponent} from './officer-view.component';
+import {MatDialogModule} from '@angular/material';
+import {AllInformationListComponent} from '../all-information-list/all-information-list.component';
+import {LeasingCalculatorComponent} from '../leasing-calculator/leasing-calculator.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {APP_BASE_HREF} from '@angular/common';
+import {CustomerInfoFormComponent} from '../customer-info-form/customer-info-form.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AppRoutingModule} from '../app-routing.module';
+import {BackendService} from '../services/backend.service';
 import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {LeasingCalculatorComponent} from '../leasing-calculator/leasing-calculator.component';
-import {AllInformationListComponent} from '../all-information-list/all-information-list.component';
-import {AppRoutingModule} from '../app-routing.module';
+import {CheckLeasingStatusComponent} from '../check-leasing-status/check-leasing-status.component';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {PrivateFormComponent} from '../privateform/private-form.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
-import {MatDialogModule} from '@angular/material';
-import {CustomerInfoFormComponent} from '../customer-info-form/customer-info-form.component';
-import {APP_BASE_HREF} from '@angular/common';
-import {BackendService} from '../services/backend.service';
-import {HttpClientModule} from '@angular/common/http';
-import {OfficerViewComponent} from '../officer-view/officer-view.component';
 
-describe('CheckLeasingStatusComponent', () => {
-  let component: CheckLeasingStatusComponent;
-  let fixture: ComponentFixture<CheckLeasingStatusComponent>;
+describe('OfficerViewComponent', () => {
+  let component: OfficerViewComponent;
+  let fixture: ComponentFixture<OfficerViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -38,8 +37,8 @@ describe('CheckLeasingStatusComponent', () => {
         MatDialogModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        RouterModule,
-        HttpClientModule
+        FormsModule,
+        RouterModule
       ],
       providers: [
         DataStorageService,
@@ -51,7 +50,7 @@ describe('CheckLeasingStatusComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckLeasingStatusComponent);
+    fixture = TestBed.createComponent(OfficerViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -59,5 +58,4 @@ describe('CheckLeasingStatusComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });
