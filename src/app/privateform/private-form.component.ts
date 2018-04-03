@@ -50,6 +50,7 @@ export class PrivateFormComponent implements OnInit {
     if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
       console.log('form', this.leasingForm);
       this.leasingForm.setValue(this.dataService.getLeasingModel());
+      this.selectBrandHandler();
     } else {
       this.leasingModel = new LeasingModel();
     }
