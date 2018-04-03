@@ -27,6 +27,8 @@ export class CheckLeasingStatusComponent implements OnInit {
               private dataService: DataStorageService,
               private backend: BackendService,
               private dialog: MatDialog) {
+
+    this.dataService.deleteAllLeasingData();
   }
 
   ngOnInit() {
