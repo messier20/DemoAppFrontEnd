@@ -11,7 +11,8 @@
 
             <mat-expansion-panel-header id="header">
               <mat-panel-title>
-                Application {{lease.id}} submited on {{lease.date}}
+                Application {{lease.id}} {{lease.privateCustomerInfo?.name}} {{lease.businessCustomerInfo?.name}} submited on {{lease.date}}
+
               </mat-panel-title>
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"

@@ -92,27 +92,19 @@ export class OfficerViewComponent implements OnInit {
         let a: any = this.leasesInfoOfPrivate;
         let b: any = this.leasesInfoOfBusiness;
 
-        this.leasesInfoOfPrivate.forEach(data => {
-          this.names.push(data.privateCustomerInfo.name);
-          data.date = (data.date).substr(0, 10);
-        });
 
-        this.leasesInfoOfBusiness.forEach(data => {
-          data.date = (data.date).substr(0, 10);
-          this.names.push(data.businessCustomerInfo.name);
-        });
 
 
         this.combined = a.concat(b);
         console.log("combined", this.combined);
-        this.combined.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        this.combined.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
         console.log("combinned after sort", this.combined);
 
         this.combined.forEach(comb => {
 
           if (comb.status === "PENDING") {
             this.pending.push(comb);
-            console.log("in pending")
+            console.log("in pending", this.pending);
           }
           else if (comb.status === "APPROVED") {
             this.approved.push(comb);
@@ -123,6 +115,20 @@ export class OfficerViewComponent implements OnInit {
           }
 
         })
+
+        // this.combined.forEach( data => {
+        //   data.a.forEach(data => {
+        //     this.names.push(data.a.name + " " + data.a.lastName);
+        //     data.date = (data.date).substr(0, 10);
+        //   });
+        // });
+        //
+        // this.combined.forEach( data => {
+        //   data.b.forEach(data => {
+        //     this.names.push(data.b.name + " " + data.b.lastName);
+        //     data.date = (data.date).substr(0, 10);
+        //   });
+        // });
 
 
 

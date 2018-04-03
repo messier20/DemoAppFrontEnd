@@ -11,6 +11,8 @@
                                   [businessCustomerInfo]="lease.businessCustomerInfo"></app-all-information-list>
         {{lease.status}} status
         {{choice}} choice
+{{lease.leasingModel.customerType}}
+{{lease.id}}
       <!--</div>-->
 <!--*ngIf="choice==='no'&&lease.status==='PENDING'"      -->
 <div *ngIf="visible">
