@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navibar" hidden>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navibar">
   <a class="navbar-brand"><img src="../assets/images/BLUE_LEASING_LOGO.png"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
           aria-expanded="false" aria-label="Toggle navigation">
@@ -22,17 +22,6 @@
   </div>
 </nav>
 
-<mat-grid-list [cols]="3" class="container-fluid" [rowHeight]="500" id="list">
-  <mat-grid-tile>
-    <mat-card>aaa</mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card>bbb
-      <mat-card-actions>
-        <button mat-button (click)="onclick()">click</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+
 <router-outlet></router-outlet>
 
