@@ -1,9 +1,106 @@
-#swed {
-  position: relative;
-  height: 14px;
-  border-width: 20px;
-  background: -ms-linear-gradient(left, #f58322 0, #ffcb13 100%);
-  background: linear-gradient(to right, #f58322 0, #ffcb13 100%);
+.btn-outline-primary {
+  background: #020027;
+  background-image: -webkit-linear-gradient(top, #020027, #020079);
+  background-image: -moz-linear-gradient(top, #020027, #020079);
+  background-image: -ms-linear-gradient(top, #020027, #020079);
+  background-image: -o-linear-gradient(top, #020027, #020079);
+  background-image: linear-gradient(to bottom, #020027, #020079);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 4px 4px 10px #020079;
+  -moz-box-shadow: 4px 4px 10px #020079;
+  box-shadow: 4px 4px 10px #020079;
+  font-family: Arial, serif;
+  color: #d5d5d5;
+  font-size: 15px;
+  padding: 5px 10px 5px 10px;
+  border: 1px solid #020027;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+  text-decoration: none;
+  margin-right: 5px;
+}
 
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb661d', endColorstr='#f4ba44', GradientType=1);
+.btn-outline-primary:hover {
+  background: #020079;
+  background-image: -webkit-linear-gradient(top, #020079, #020027);
+  background-image: -moz-linear-gradient(top, #020079, #020027);
+  background-image: -ms-linear-gradient(top, #020079, #020027);
+  background-image: -o-linear-gradient(top, #020079, #020027);
+  background-image: linear-gradient(to bottom, #020079, #020027);
+  text-decoration: none;
+}
+
+.btn-outline-primary:active:focus {
+  color: #d5d5d5;
+  background: #020079;
+  background-image: -webkit-linear-gradient(top, #020079, #020027);
+  background-image: -moz-linear-gradient(top, #020079, #020027);
+  background-image: -ms-linear-gradient(top, #020079, #020027);
+  background-image: -o-linear-gradient(top, #020079, #020027);
+  background-image: linear-gradient(to bottom, #020079, #020027);
+  text-decoration: none;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 4px 4px 10px #020079;
+  -moz-box-shadow: 4px 4px 10px #020079;
+  box-shadow: 4px 4px 10px #020079;
+  border: 1px solid #020027;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+}
+
+.btn-outline-secondary {
+  background: #d5d5d5;
+  background-image: -webkit-linear-gradient(top, #d5d5d5, #aaaaaa);
+  background-image: -moz-linear-gradient(top, #d5d5d5, #aaaaaa);
+  background-image: -ms-linear-gradient(top, #d5d5d5, #aaaaaa);
+  background-image: -o-linear-gradient(top, #d5d5d5, #aaaaaa);
+  background-image: linear-gradient(to bottom, #d5d5d5, #aaaaaa);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 4px 4px 10px #aaaaaa;
+  -moz-box-shadow: 4px 4px 10px #aaaaaa;
+  box-shadow: 4px 4px 10px #aaaaaa;
+  font-family: Arial;
+  color: #020027;
+  font-size: 15px;
+  padding: 5px 10px 5px 10px;
+  border: 1px solid #9f9f9f;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+  text-decoration: none;
+}
+
+.btn-outline-secondary:hover {
+  background: #aaaaaa;
+  background-image: -webkit-linear-gradient(top, #aaaaaa, #d5d5d5);
+  background-image: -moz-linear-gradient(top, #aaaaaa, #d5d5d5);
+  background-image: -ms-linear-gradient(top, #aaaaaa, #d5d5d5);
+  background-image: -o-linear-gradient(top, #aaaaaa, #d5d5d5);
+  background-image: linear-gradient(to bottom, #aaaaaa, #d5d5d5);
+  text-decoration: none;
+}
+
+.btn-outline-secondary:active:focus {
+  color: #020027;
+  background: #aaaaaa;
+  background-image: -webkit-linear-gradient(top, #aaaaaa, #d5d5d5);
+  background-image: -moz-linear-gradient(top, #aaaaaa, #d5d5d5);
+  background-image: -ms-linear-gradient(top, #aaaaaa, #d5d5d5);
+  background-image: -o-linear-gradient(top, #aaaaaa, #d5d5d5);
+  background-image: linear-gradient(to bottom, #aaaaaa, #d5d5d5);
+  text-decoration: none;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 4px 4px 10px #aaaaaa;
+  -moz-box-shadow: 4px 4px 10px #aaaaaa;
+  box-shadow: 4px 4px 10px #aaaaaa;
+  border: 1px solid #d5d5d5;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
 }

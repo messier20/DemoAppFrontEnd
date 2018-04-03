@@ -8,7 +8,6 @@ import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
 import {LeasingFormLabels} from "../constants/LeasingFormLabels";
 import {LeaseInfoOfPrivate} from "../models/LeaseInfoOfPrivate";
 import {LeaseInfoOfBusiness} from "../models/LeaseInfoOfBusiness";
-import {ThemePalette} from "@angular/material";
 
 
 @Component({
@@ -18,10 +17,6 @@ import {ThemePalette} from "@angular/material";
 })
 export class OfficerViewComponent implements OnInit {
 
-  @Input()
-  backgroundColor: ThemePalette;
-  @Input() color: ThemePalette;
-
   leases;
 
   leasesInfoOfPrivate: LeaseInfoOfPrivate[] = [];
@@ -30,7 +25,7 @@ export class OfficerViewComponent implements OnInit {
   idandDate: string[][] = [[], []];
   id: string[] = [];
   names: any [] = [];
-  statusEl: string[] = ["PENDING", "APPROVED", "DENIED"];
+  statusEl: string[] = ['PENDING', 'APPROVED', 'DENIED'];
   pending: any[] = [];
   approved: any[] = [];
   denied: any[] = [];
@@ -41,7 +36,10 @@ export class OfficerViewComponent implements OnInit {
   public isCollapsed2 = true;
   public isCollapsedHorizontal = false;
 
-  constructor(private backendService: BackendService) {
+  constructor(private backendService: BackendService,
+              private dataStorageService: DataStorageService) {
+
+    this.dataStorageService.deleteAllLeasingData();
   }
 
   ngOnInit() {
@@ -68,7 +66,7 @@ export class OfficerViewComponent implements OnInit {
 
           this.getBusiness();
         }
-      )
+      );
 
   }
 
@@ -109,26 +107,25 @@ export class OfficerViewComponent implements OnInit {
 
 
         this.combined = a.concat(b);
-        console.log("combined", this.combined);
+        console.log('combined', this.combined);
         this.combined.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        console.log("combinned after sort", this.combined);
+        console.log('combinned after sort', this.combined);
 
         this.combined.forEach(comb => {
 
-          if (comb.status === "PENDING") {
+          if (comb.status === 'PENDING') {
             this.pending.push(comb);
-            console.log("in pending")
+            console.log('in pending');
           }
-          else if (comb.status === "APPROVED") {
+          else if (comb.status === 'APPROVED') {
             this.approved.push(comb);
-            console.log("in approved")
+            console.log('in approved');
           }
-          else if (comb.status === "DENIED") {
-            this.denied.push(comb)
+          else if (comb.status === 'DENIED') {
+            this.denied.push(comb);
           }
 
-        })
-
+        });
 
 
       });
