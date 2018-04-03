@@ -254,8 +254,8 @@
              formControlName="assetPrice"
              name="assetPriceField"
              min="5000" max="9999999"
-             (keyup)=calcAdvancePaymentAmountAndContractFee()
-             (change)=calcAdvancePaymentAmountAndContractFee()>
+             (keyup)="manageDependantFields()"
+             (change)="manageDependantFields()">
       <mat-error *ngIf="leasingForm.get('assetPrice').valid || leasingForm.get('assetPrice').untouched">
         Asset price must be between {{this.minAssetPrice}} and 9999999
       </mat-error>
@@ -266,8 +266,8 @@
              formControlName="advancePaymentPercentage"
              name="advancePaymentPercentageField"
              min="10" max="100"
-             (keyup)="calcAdvancePaymentAmountAndContractFee()"
-             (change)="calcAdvancePaymentAmountAndContractFee()">
+             (keyup)="calcAdvancePaymentAmount()"
+             (change)="calcAdvancePaymentAmount()">
       <mat-error *ngIf="leasingForm.get('advancePaymentPercentage').valid || leasingForm.get('advancePaymentPercentage').untouched">
         Advance payment percentage must be between 10% and 100%
       </mat-error>

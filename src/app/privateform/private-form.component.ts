@@ -49,9 +49,8 @@ export class PrivateFormComponent implements OnInit {
 
     if (this.dataService.getLeasingModel() != null) {
       this.leasingForm.setValue(this.dataService.getLeasingModel());
-      console.log("form", this.leasingForm);
-    }
-    else this.leasingModel = new LeasingModel();
+      console.log('form', this.leasingForm);
+    } else { this.leasingModel = new LeasingModel(); }
   }
 
   updateMinValues() {

@@ -12,7 +12,7 @@ import {
   MatCardModule,
   MatDatepickerModule, MatDialogModule, MatExpansionPanel, MatFormFieldModule, MatGridListModule, MatIconModule,
   MatInputModule, MatMenuModule,
-  MatNativeDateModule, MatSelectModule, MatTabLabel,
+  MatNativeDateModule, MatSelectModule, MatTabLabel, MatStepperModule,
   MatTabsModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -72,6 +72,7 @@ import { DialogForm2Component } from './dialog-form2/dialog-form2.component';
     MatMenuModule,
     MatSelectModule,
     MatGridListModule,
+    MatStepperModule,
     FlexLayoutModule,
     NgbModule.forRoot()
   ],
