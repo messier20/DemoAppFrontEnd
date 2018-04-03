@@ -105,7 +105,7 @@ export class PrivateFormComponent implements OnInit {
   selectBrandHandler() {
     console.log(this.leasingForm.get('carBrand').value);
     for (let i = 0; i < this.cars.length; i++) {
-      if (this.cars[i].make === this.leasingForm.get('carBrand').value) {
+      if (this.cars[i].make.toLowerCase() === this.leasingForm.get('carBrand').value.toString().toLowerCase()) {
         this.model = this.cars[i].model;
         break;
       }
