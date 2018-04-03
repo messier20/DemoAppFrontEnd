@@ -7,3 +7,8 @@
 
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb661d', endColorstr='#f4ba44', GradientType=1);
 }
+
+#smallCarLogo {
+  width: 39px;
+  height: 26px;
+}
