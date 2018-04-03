@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {BackendService} from '../services/backend.service';
@@ -6,9 +6,6 @@ import {CheckStatusInfo} from '../models/CheckStatusInfo';
 import {DialogFormComponent} from '../dialog-form/dialog-form';
 import {MatDialog} from '@angular/material';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
-import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
-import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
-import {LeasingModel} from '../models/LeasingModel';
 
 @Component({
   selector: 'app-check-leasing-status',
@@ -21,6 +18,7 @@ export class CheckLeasingStatusComponent implements OnInit {
   leasingFormLabels = new LeasingFormLabels();
   checkStatusForm: FormGroup;
   checkStatusInfo: CheckStatusInfo;
+  noLeasingFound: boolean;
   availableCustomerTypes = ['Private', 'Business'];
 
   constructor(private formBuilder: FormBuilder,
@@ -32,6 +30,7 @@ export class CheckLeasingStatusComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.noLeasingFound = false;
     this.formLabels = ['Check leasing status', 'Leasing form id number'];
     this.createValidForm();
   }
@@ -68,8 +67,8 @@ export class CheckLeasingStatusComponent implements OnInit {
       receivedData => {
         const received: any = receivedData;
 
-        if (received.customerType !== undefined) {
-
+        if (received !== null) {
+          this.noLeasingFound = false;
           this.dialog.open(DialogFormComponent, {
             data: {
               leasingModel: DataStorageService.refactorCustomerType(received.customerLeasing),
@@ -81,6 +80,7 @@ export class CheckLeasingStatusComponent implements OnInit {
 
         } else {
           console.log('No data returned');
+          this.noLeasingFound = true;
         }
 
       },
@@ -95,8 +95,8 @@ export class CheckLeasingStatusComponent implements OnInit {
       receivedData => {
         const received: any = receivedData;
 
-        if (received.customerType !== undefined) {
-
+        if (received !== null) {
+          this.noLeasingFound = false;
           this.dialog.open(DialogFormComponent, {
             data: {
               leasingModel: DataStorageService.refactorCustomerType(received.customerLeasing),
@@ -108,6 +108,7 @@ export class CheckLeasingStatusComponent implements OnInit {
 
         } else {
           console.log('No data returned');
+          this.noLeasingFound = true;
         }
 
       },
