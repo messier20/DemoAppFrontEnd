@@ -1,11 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnInit} from '@angular/core';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {BackendService} from '../services/backend.service';
-import {LeasingModel} from '../models/LeasingModel';
-import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
-import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
-import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {LeaseInfoOfPrivate} from '../models/LeaseInfoOfPrivate';
 import {LeaseInfoOfBusiness} from '../models/LeaseInfoOfBusiness';
 
