@@ -34,7 +34,7 @@ export class ApplicationInfoComponent implements OnInit {
   @Input() statusEl;
   @Input() pending;
   @Input() stepIndex;
-  @Input() refresh();
+  // @Input() refresh();
 
 
   statusChanged = false;
