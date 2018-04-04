@@ -39,17 +39,17 @@ export class PrivateFormComponent implements OnInit {
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
     this.leasingForm.get('assetType').setValue('Vehicle');
-    if (this.dataService.getLeasingCalculator() != null) {
-      this.fillFieldsWithCalculatorInput();
-    }
+
 
   }
 
   ngOnInit() {
-
-    if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
+    if (this.dataService.getLeasingCalculator() !== null && this.dataService.getLeasingCalculator() !== undefined) {
+      this.fillFieldsWithCalculatorInput();
+    } else if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
       console.log('form', this.leasingForm);
       this.leasingForm.setValue(this.dataService.getLeasingModel());
+      this.selectBrandHandler();
     } else {
       this.leasingModel = new LeasingModel();
     }
@@ -176,6 +176,8 @@ export class PrivateFormComponent implements OnInit {
 
   goBack() {
     this.router.navigate(['/leasingCalculatorForm']);
+    this.leasingModel = this.leasingForm.value;
+    this.dataService.setLeasingModel(this.leasingModel);
   }
 
   fillFieldsWithCalculatorInput() {
@@ -189,6 +191,13 @@ export class PrivateFormComponent implements OnInit {
     this.leasingForm.get('leasePeriodInMonths').setValue(this.leasingCalculatorInput.leasePeriodInMonths);
     this.leasingForm.get('paymentDate').setValue(this.leasingCalculatorInput.paymentDate);
     this.dataService.setLeasingCalculator(null);
+    if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
+      this.leasingForm.get('carBrand').setValue(this.dataService.getLeasingModel().carBrand);
+      this.leasingForm.get('carModel').setValue(this.dataService.getLeasingModel().carModel);
+      this.leasingForm.get('manufacturedDate').setValue(this.dataService.getLeasingModel().manufacturedDate);
+      this.leasingForm.get('enginePower').setValue(this.dataService.getLeasingModel().enginePower);
+      this.selectBrandHandler();
+    }
   }
 
 }
