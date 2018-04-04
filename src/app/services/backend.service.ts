@@ -8,7 +8,7 @@ import {LeasingCalculator} from '../models/LeasingCalculator';
 @Injectable()
 export class BackendService {
 
-  // httpLink = 'https://the-blue-back-end.herokuapp.com/';
+  httpLink = 'https://the-blue-back-end.herokuapp.com/';
   httpLink = 'http://localhost:8080/';
 
   businessCustomerLink = 'user/business';
