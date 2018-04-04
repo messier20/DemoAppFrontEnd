@@ -9,7 +9,7 @@ import {LeasingCalculator} from '../models/LeasingCalculator';
 export class BackendService {
 
   httpLink = 'https://the-blue-back-end.herokuapp.com/';
-  httpLink = 'http://localhost:8080/';
+  // httpLink = 'http://localhost:8080/';
 
   businessCustomerLink = 'user/business';
   privateCustomerLink = 'user/private';
