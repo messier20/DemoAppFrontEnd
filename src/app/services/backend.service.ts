@@ -8,6 +8,7 @@ import {LeasingCalculator} from '../models/LeasingCalculator';
 @Injectable()
 export class BackendService {
 
+  // httpLink = 'https://the-blue-back-end.herokuapp.com/';
   httpLink = 'http://localhost:8080/';
   businessCustomerLink = 'user/business';
   privateCustomerLink = 'user/private';
@@ -26,7 +27,7 @@ export class BackendService {
       return this.sendBusinessForm();
 
     } else {
-      console.log('Error in backendService, could not determine customerType of form');
+      // console.log('Error in backendService, could not determine customerType of form');
     }
   }
 
@@ -44,7 +45,7 @@ export class BackendService {
       customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
       privateCustomer: this.dataStorage.getPrivateInfo()
     };
-    console.log(postBody);
+    // console.log(postBody);
 
     return this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
   }

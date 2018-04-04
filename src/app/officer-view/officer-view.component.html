@@ -1,7 +1,7 @@
-<mat-tab-group>
-  <mat-tab class="mat-tab-label-content " label="All Applications">
+<mat-tab-group color="warn">
+  <mat-tab class="mat-tab-label-content custom-theme"  label="All Applications">
     <div>
-      <h4>Pending Applications</h4>
+      <h4 color="primary">Pending Applications</h4>
       <div *ngFor="let lease of pending; let stepIndex = index">
 
 
@@ -18,7 +18,7 @@
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
                                       [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
-                                      [pending]="lease"></app-application-info>
+                                      [pending]="lease" (updates)="refresh($event)"  ></app-application-info>
               </ng-template>
 
             </mat-expansion-panel-header>
@@ -40,7 +40,7 @@
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
                                       [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
-                                      [pending]="lease"></app-application-info>
+                                      [pending]="lease" ></app-application-info>
 
               </ng-template>
 
@@ -65,7 +65,7 @@
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
                                       [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
-                                      [pending]="lease"></app-application-info>
+                                      [pending]="lease" ></app-application-info>
 
               </ng-template>
 
@@ -82,7 +82,7 @@
       <h4>All Applications</h4>
       <div *ngFor="let lease of leasesInfoOfPrivate; let stepIndex = index">
         <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
-                              [stepIndex]="stepIndex" [refresh]="refresh()"></app-application-info>
+                              [stepIndex]="stepIndex" ></app-application-info>
       </div>
     </div>
   </mat-tab>

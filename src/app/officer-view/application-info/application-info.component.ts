@@ -24,8 +24,9 @@ import {DialogForm2Component} from "../../dialog-form2/dialog-form2.component";
 export class ApplicationInfoComponent implements OnInit {
 
 
-  @Input() leasesInfoOfPrivate;
-  @Input() leasesInfoOfBusiness;
+  @Input() leasesInfoOfPrivate: LeaseInfoOfPrivate;
+  @Input() leasesInfoOfBusiness: LeaseInfoOfBusiness;
+  @Input() leasingModel: LeasingModel;
   @Input() lease;
   @Input() ida;
   @Output() updateApplication = new EventEmitter<Object>();
@@ -34,8 +35,14 @@ export class ApplicationInfoComponent implements OnInit {
   @Input() statusEl;
   @Input() pending;
   @Input() stepIndex;
-  // @Input() refresh();
 
+
+
+
+
+  @Output() updates: EventEmitter <Object> =
+    new EventEmitter();
+  // @Output() updates = new EventEmitter<Object>();
 
   statusChanged = false;
   choice = "no";
@@ -126,25 +133,36 @@ export class ApplicationInfoComponent implements OnInit {
       }
   }).afterClosed().subscribe(data => {
     if(data){
-      this.status = "APPROVED";
+      this.lease.status = "APPROVED";
       console.log("data", data);
-      console.log("approved", this.status);
+      console.log("approved", this.lease.status);
     }
     else if (data===false) {
-      this.status = "DENIED";
+      this.lease.status = "DENIED";
       console.log("data", data);
-      console.log("denied", this.status);
+      console.log("denied", this.lease.status);
     }
 
     if(data || data===false) {
 
       (<HTMLInputElement>document.getElementById('approved')).disabled = true;
       (<HTMLInputElement>document.getElementById('denied')).disabled = true;
-      console.log("should be approved or denied", this.status);
+      console.log("should be approved or denied", this.lease.status);
 
-      this.isPrivate();
-    }
+
+        // console.log("event emitter: ", this.updates.emit(true));
+
+
+        this.isPrivate();
+        console.log("subscribe working: ${data}", data);
+
+      // this.updates.emit();
+
+      }
+
+
     });
+
   }
 
   // setDeniedStatus() {
@@ -182,7 +200,8 @@ export class ApplicationInfoComponent implements OnInit {
     // this.disabled = true;
     this.backendService.updatePrivateCustomerStatus(this.lease.id, postBody)
       .then(data => {
-        this.updateApplication.emit()
+        // this.updateApplication.emit()
+        this.updates.emit(data);
       });
   }
 
@@ -198,7 +217,7 @@ export class ApplicationInfoComponent implements OnInit {
     // this.disabled = true;
     this.backendService.updateBusinessCustomerStatus(this.lease.id, postBody)
       .then(data => {
-        this.updateApplication.emit()
+        this.updates.emit(data);
       });
   }
 
