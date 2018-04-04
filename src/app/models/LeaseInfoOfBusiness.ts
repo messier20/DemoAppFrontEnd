@@ -14,8 +14,8 @@ export class LeaseInfoOfBusiness {
 
   constructor(leaseInfoOfBusiness?) {
     if(leaseInfoOfBusiness) {
-      this.leasingModel = leaseInfoOfBusiness.customerLeasing;
-      this.businessCustomerInfo = leaseInfoOfBusiness.businessCustomer;
+      this.leasingModel = leaseInfoOfBusiness.leasing;
+      this.businessCustomerInfo = leaseInfoOfBusiness.customer;
       this.status = leaseInfoOfBusiness.status;
       this.id = leaseInfoOfBusiness.idHex;
       this.date = leaseInfoOfBusiness.id.date;

@@ -71,21 +71,20 @@ export class CheckLeasingStatusComponent implements OnInit {
           this.noLeasingFound = false;
           this.dialog.open(DialogFormComponent, {
             data: {
-              leasingModel: DataStorageService.refactorCustomerType(received.customerLeasing),
-              privateInfo: received.privateCustomer,
+              leasingModel: DataStorageService.refactorCustomerType(received.leasing),
+              privateInfo: received.customer,
               checkingLeasingStatus: true,
               leasingStatus: received.status
             }
           });
 
         } else {
-          console.log('No data returned');
           this.noLeasingFound = true;
         }
 
       },
       error => {
-        console.log('Error: ' + error);
+        this.noLeasingFound = true;
       }
     );
   }
@@ -99,21 +98,20 @@ export class CheckLeasingStatusComponent implements OnInit {
           this.noLeasingFound = false;
           this.dialog.open(DialogFormComponent, {
             data: {
-              leasingModel: DataStorageService.refactorCustomerType(received.customerLeasing),
-              businessInfo: received.businessCustomer,
+              leasingModel: DataStorageService.refactorCustomerType(received.leasing),
+              businessInfo: received.customer,
               checkingLeasingStatus: true,
               leasingStatus: received.status
             }
           });
 
         } else {
-          console.log('No data returned');
           this.noLeasingFound = true;
         }
 
       },
       error => {
-        console.log('Error: ' + error);
+        this.noLeasingFound = true;
       }
     );
   }

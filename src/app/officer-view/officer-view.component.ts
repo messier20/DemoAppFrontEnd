@@ -60,8 +60,10 @@ export class OfficerViewComponent implements OnInit {
     this.backendService.getAllPrivateUserApplications()
       .then(data => {
           this.leases = data;
+          console.log("data", data);
           this.leases.forEach(lease => {
-            lease.customerLeasing = DataStorageService.refactorCustomerType(lease.customerLeasing);
+            console.log("lease", lease)
+            lease.leasing = DataStorageService.refactorCustomerType(lease.leasing);
             this.id.push(lease.idHex);
             this.leasesInfoOfPrivate.push(new LeaseInfoOfPrivate(lease));
           });
@@ -81,7 +83,7 @@ export class OfficerViewComponent implements OnInit {
         this.leases = data;
         this.leases.forEach(lease => {
           lease.id.date = (lease.id.date).substr(0, 10);
-          lease.customerLeasing = DataStorageService.refactorCustomerType(lease.customerLeasing);
+          lease.leasing = DataStorageService.refactorCustomerType(lease.leasing);
           this.id.push(lease.idHex);
 
           this.leasesInfoOfBusiness.push(new LeaseInfoOfBusiness(lease));
@@ -91,13 +93,13 @@ export class OfficerViewComponent implements OnInit {
         let b: any = this.leasesInfoOfBusiness;
 
         this.leasesInfoOfPrivate.forEach(data => {
-          this.names.push(data.privateCustomerInfo.name);
+          // this.names.push(data.privateCustomerInfo.name);
           data.date = (data.date).substr(0, 10);
         });
 
         this.leasesInfoOfBusiness.forEach(data => {
           data.date = (data.date).substr(0, 10);
-          this.names.push(data.businessCustomerInfo.name);
+          // this.names.push(data.businessCustomerInfo.name);
         });
 
         this.combined = [];

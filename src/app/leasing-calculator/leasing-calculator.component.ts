@@ -115,8 +115,8 @@ export class LeasingCalculatorComponent implements OnInit {
       document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
       document.getElementById('advancePaymentAmount').setAttribute('max', this.maxAdvancePaymentAmount.toString());
     } else {
-      this.minAdvancePaymentAmount = this.minAssetPrice;
-      this.maxAdvancePaymentAmount = 9999999;
+      this.minAdvancePaymentAmount = this.minAssetPrice * 0.1;
+      this.maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
       this.leasingCalculatorForm.get('advancePaymentAmount').updateValueAndValidity();
       document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
       document.getElementById('advancePaymentAmount').setAttribute('max', this.maxAdvancePaymentAmount.toString());
