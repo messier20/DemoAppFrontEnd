@@ -20,50 +20,21 @@ export class DialogForm2Component implements OnInit {
 
   }
 
-
   action;
 
   ngOnInit() {
-    console.log(this.status);
 
     if(this.status){
       this.action = "approve";
     }
     else this.action="deny"
 
-    // if (this.status === "DENIED") {
-    //   this.action = "deny";
-    //   console.log("in deny", this.status);
-    // }
-    // else {
-    //   this.action = "approve";
-    //   console.log(this.status);
-    // }
-
   }
 
   returnYes() {
 
       this.dialogRef.close(this.status);
-
-
-    // if (this.status === "APPROVED") {
-    //   this.choice = "APPROVED";
-    //   console.log("in return yes", this.choice);
-    //   this.dialogRef.close(this.choice);
-    // }
-    //
-    // else {
-    //   this.choice = "DENIED";
-    //   console.log("in return no", this.choice);
-    //   this.dialogRef.close(this.choice);
-    // }
   }
 
-  returnNo() {
-    // this.choice = "no";
-    // console.log("just retured no");
-    // this.dialogRef.close(this.choice);
-  }
 
 }

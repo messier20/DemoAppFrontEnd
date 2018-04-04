@@ -12,7 +12,6 @@ import {LeaseInfoOfBusiness} from "../models/LeaseInfoOfBusiness";
 
 @Component({
   selector: 'app-officer-view',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './officer-view.component.html',
   styleUrls: ['./officer-view.component.css']
 })
@@ -23,7 +22,6 @@ export class OfficerViewComponent implements OnInit {
   leasesInfoOfPrivate: LeaseInfoOfPrivate[] = [];
   leasesInfoOfBusiness: LeaseInfoOfBusiness[] = [];
   combined: any [] = [];
-  idandDate: string[][] = [[], []];
   id: string[] = [];
   names: any [] = [];
   statusEl: string[] = ['PENDING', 'APPROVED', 'DENIED'];
@@ -45,16 +43,10 @@ export class OfficerViewComponent implements OnInit {
 
   ngOnInit() {
     this.refresh();
-    console.log("reloded");
-
   }
 
 
-
   refresh() {
-
-
-    // console.count('>>> refresh()');
     this.leases = [];
     this.combined = [];
     this.id = [];
@@ -65,22 +57,13 @@ export class OfficerViewComponent implements OnInit {
     this.denied = [];
     this.names = [];
 
-
-
     this.backendService.getAllPrivateUserApplications()
       .then(data => {
           this.leases = data;
           this.leases.forEach(lease => {
-            // console.log("lease id", lease.id);
             lease.customerLeasing = DataStorageService.refactorCustomerType(lease.customerLeasing);
             this.id.push(lease.idHex);
-            // console.log("lease id2", lease.id.toString());
             this.leasesInfoOfPrivate.push(new LeaseInfoOfPrivate(lease));
-
-            // console.log("all data: ", lease);
-            // console.log("array", this.leasesInfoOfPrivate);
-            // console.log("id private", this.idandDate);
-            // console.log("id", this.id);
           });
 
           this.getBusiness();
@@ -89,32 +72,21 @@ export class OfficerViewComponent implements OnInit {
   }
 
 
-
   getBusiness() {
 
 
     this.backendService.getAllBusinessUserApplications()
       .then(data => {
 
-        // console.count('>>> getAllBusinessUserApplications()');
-
         this.leases = data;
         this.leases.forEach(lease => {
-          // console.log("lease id", lease.id);
           lease.id.date = (lease.id.date).substr(0, 10);
           lease.customerLeasing = DataStorageService.refactorCustomerType(lease.customerLeasing);
           this.id.push(lease.idHex);
 
           this.leasesInfoOfBusiness.push(new LeaseInfoOfBusiness(lease));
 
-          // console.log("all data: ", lease);
-          // console.log("array", this.leasesInfoOfBusiness);
-          // console.log("id private and business", this.idandDate);
-          // console.log("id", this.id);
-
-
         });
-        // console.log("all id", this.id);
         let a: any = this.leasesInfoOfPrivate;
         let b: any = this.leasesInfoOfBusiness;
 
@@ -132,28 +104,19 @@ export class OfficerViewComponent implements OnInit {
         this.pending = [];
 
         this.combined = a.concat(b);
-        // console.log('combined', this.combined);
         this.combined.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-        // console.log('combinned after sort', this.combined);
-
         this.combined.forEach(comb => {
 
           if (comb.status === 'PENDING') {
             this.pending.push(comb);
-            // console.log('in pending');
           }
           else if (comb.status === 'APPROVED') {
             this.approved.push(comb);
-            // console.log('in approved');
           }
           else if (comb.status === 'DENIED') {
             this.denied.push(comb);
           }
-
         })
-
-
-
       });
   }
 
@@ -206,14 +169,6 @@ export class OfficerViewComponent implements OnInit {
   setStep33(index: number) {
     this.step33 = index;
   }
-
-  // nextStep() {
-  //   this.step++;
-  // }
-  //
-  // prevStep() {
-  //   this.step--;
-  // }
 
 }
 

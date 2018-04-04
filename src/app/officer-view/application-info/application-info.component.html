@@ -1,26 +1,9 @@
-
-
        Customer id: {{lease.id}}
-
 
         <app-all-information-list style="margin: 4px" [leasingModel]="lease.leasingModel" [privateCustomerInfo]="lease.privateCustomerInfo"
                                   [businessCustomerInfo]="lease.businessCustomerInfo"></app-all-information-list>
-        <!--{{lease.status}} status-->
-        <!--{{choice}} choice-->
-<!--{{lease.leasingModel.customerType}}-->
-<!--{{lease.id}}-->
-      <!--</div>-->
-<!--*ngIf="choice==='no'&&lease.status==='PENDING'"      -->
+
 <div *ngIf="visible">
         <button class="btn btn-group btn-success" id="approved"  (click)="openModal(true)">Approve</button>
         <button class="btn btn-group btn-danger" id="denied" (click)="openModal(false)">Deny</button>
       </div >
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-<!----------------------------------------------------------------------------------->
-
-
-<!----------------------------------------------------------------------------------->
-
