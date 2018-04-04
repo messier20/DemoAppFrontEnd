@@ -115,8 +115,8 @@ export class ApplicationInfoComponent implements OnInit {
   sendToBackendPrivate() {
 
     let postBody = {
-      customerLeasing: DataStorageService.refactorCustomerType(this.lease.leasingModel),
-      privateCustomer: this.lease.privateCustomerInfo,
+      leasing: DataStorageService.refactorCustomerType(this.lease.leasingModel),
+      customer: this.lease.privateCustomerInfo,
       status: this.lease.status,
       idHex: this.lease.id
     };
@@ -129,8 +129,8 @@ export class ApplicationInfoComponent implements OnInit {
 
   sendToBackendBusiness() {
     let postBody = {
-      customerLeasing: DataStorageService.refactorCustomerType(this.lease.leasingModel),
-      businessCustomer: this.lease.businessCustomerInfo,
+      leasing: DataStorageService.refactorCustomerType(this.lease.leasingModel),
+      customer: this.lease.businessCustomerInfo,
       status: this.lease.status,
       idHex: this.lease.id
     };
