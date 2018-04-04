@@ -51,3 +51,7 @@
   border-right-width: 3px;
   border-bottom-width: 3px;
 }
+
+.alert-danger {
+  margin-top: 25px;
+}
