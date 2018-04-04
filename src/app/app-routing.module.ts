@@ -5,12 +5,15 @@ import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form
 import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
 import {CheckLeasingStatusComponent} from './check-leasing-status/check-leasing-status.component';
 import {OfficerViewComponent} from './officer-view/officer-view.component';
+import {OfficerLoginComponent} from './officer-login/officer-login.component';
+import {AuthGuardService} from './services/auth-guard.service';
 
 const routes: Routes = [
   {path: 'privateForm', component: PrivateFormComponent},
   {path: 'customerInfoForm', component: CustomerInfoFormComponent},
   {path: 'leasingCalculatorForm', component: LeasingCalculatorComponent},
-  {path: 'officerView', component: OfficerViewComponent},
+  {path: 'officerLogin', component: OfficerLoginComponent},
+  {path: 'officerView', component: OfficerViewComponent, canActivate: [AuthGuardService]},
   {path: 'checkLeasingStatus', component: CheckLeasingStatusComponent}
 ];
 

@@ -9,7 +9,6 @@ import {LeasingCalculator} from '../models/LeasingCalculator';
 export class BackendService {
 
   httpLink = 'https://the-blue-back-end.herokuapp.com/';
-
   businessCustomerLink = 'user/business';
   privateCustomerLink = 'user/private';
   repaymentScheduleLink = 'user/calculator/loan/vehicle';

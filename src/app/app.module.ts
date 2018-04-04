@@ -33,6 +33,8 @@ import {OfficerViewComponent} from './officer-view/officer-view.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ApplicationInfoComponent} from './officer-view/application-info/application-info.component';
 import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
+import { OfficerLoginComponent } from './officer-login/officer-login.component';
+import {AuthGuardService} from './services/auth-guard.service';
 
 
 
@@ -49,7 +51,8 @@ import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
     DialogFormComponent,
     OfficerViewComponent,
     ApplicationInfoComponent,
-    DialogForm2Component
+    DialogForm2Component,
+    OfficerLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,7 @@ import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
 
     NgbModule.forRoot()
   ],
-  providers: [DataStorageService, BackendService],
+  providers: [DataStorageService, BackendService, AuthGuardService],
   bootstrap: [AppComponent],
   entryComponents: [DialogFormComponent, DialogForm2Component]
 })
