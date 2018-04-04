@@ -10,6 +10,7 @@ import {CustomValidators} from '../constants/CustomValidators';
 })
 export class OfficerLoginComponent implements OnInit {
 
+  officerLoginModel: OfficerLoginComponent;
   officerLoginForm: FormGroup;
 
   constructor(private router: Router,
@@ -34,7 +35,7 @@ export class OfficerLoginComponent implements OnInit {
   }
 
   setLoginInfo() {
-
+    this.officerLoginModel = this.officerLoginForm.value;
   }
 
 }
