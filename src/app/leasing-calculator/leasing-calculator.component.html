@@ -59,7 +59,7 @@
 
       <div class="form-group col-md-4 col-sm-6">
         <label for="advancePaymentAmount">{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}</label>
-        <input type="text" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField"
+        <input type="number" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField"
                formControlName="advancePaymentAmount"
                min="500" max="9999999"
                (keyup)="calcAdvancePaymentPercentage()"
