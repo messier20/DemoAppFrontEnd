@@ -49,41 +49,12 @@ export class OfficerViewComponent implements OnInit {
 
   }
 
-  // refresh2() {
-  //   this.leases.splice(0,this.leases.length);
-  //   this.combined.splice(0,this.combined.length);
-  //   this.id.splice(0,this.id.length);
-  //   this.leasesInfoOfBusiness.splice(0,this.leasesInfoOfBusiness.length);
-  //   this.leasesInfoOfPrivate.splice(0,this.leasesInfoOfPrivate.length);
-  //   this.pending.splice(0,this.pending.length);
-  //   this.approved.splice(0,this.approved.length);
-  //   this.denied.splice(0,this.denied.length);
-  //   this.names.splice(0,this.names.length);
-  //
-  //   this.refresh();
-  // }
+
 
   refresh() {
 
-    // let leasesInfoOfPrivate: LeaseInfoOfPrivate[] = [];
-    // let leasesInfoOfBusiness: LeaseInfoOfBusiness[] = [];
 
-    // const index: number = this.leases.indexOf();
-    // if (index !== -1) {
-    //   this.data.splice(index, 1);
-    // }
-
-    // this.leases.splice(0,this.leases.length);
-    // this.combined.splice(0,this.combined.length);
-    // this.id.splice(0,this.id.length);
-    // this.leasesInfoOfBusiness.splice(0,this.leasesInfoOfBusiness.length);
-    // this.leasesInfoOfPrivate.splice(0,this.leasesInfoOfPrivate.length);
-    // this.pending.splice(0,this.pending.length);
-    // this.approved.splice(0,this.approved.length);
-    // this.denied.splice(0,this.denied.length);
-    // this.names.splice(0,this.names.length);
-
-    console.count('>>> refresh()');
+    // console.count('>>> refresh()');
     this.leases = [];
     this.combined = [];
     this.id = [];
@@ -94,16 +65,6 @@ export class OfficerViewComponent implements OnInit {
     this.denied = [];
     this.names = [];
 
-    //
-    // this.leases.length = 0;
-    // this.combined.length = 0;
-    // this.id.length = 0;
-    // this.leasesInfoOfBusiness.length = 0;
-    // this.leasesInfoOfPrivate.length = 0;
-    // this.pending.length = 0;
-    // this.approved.length = 0;
-    // this.denied.length = 0;
-    // this.names.length = 0;
 
 
     this.backendService.getAllPrivateUserApplications()
@@ -135,7 +96,7 @@ export class OfficerViewComponent implements OnInit {
     this.backendService.getAllBusinessUserApplications()
       .then(data => {
 
-        console.count('>>> getAllBusinessUserApplications()');
+        // console.count('>>> getAllBusinessUserApplications()');
 
         this.leases = data;
         this.leases.forEach(lease => {
@@ -171,19 +132,19 @@ export class OfficerViewComponent implements OnInit {
         this.pending = [];
 
         this.combined = a.concat(b);
-        console.log('combined', this.combined);
+        // console.log('combined', this.combined);
         this.combined.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-        console.log('combinned after sort', this.combined);
+        // console.log('combinned after sort', this.combined);
 
         this.combined.forEach(comb => {
 
           if (comb.status === 'PENDING') {
             this.pending.push(comb);
-            console.log('in pending');
+            // console.log('in pending');
           }
           else if (comb.status === 'APPROVED') {
             this.approved.push(comb);
-            console.log('in approved');
+            // console.log('in approved');
           }
           else if (comb.status === 'DENIED') {
             this.denied.push(comb);
@@ -196,30 +157,63 @@ export class OfficerViewComponent implements OnInit {
       });
   }
 
-  step;
-  step2;
-  step3;
+  step11;
+  step12;
+  step13;
+  step21;
+  step22;
+  step23;
+  step31;
+  step32;
+  step33;
+
   panelOpenState: boolean = false;
 
-  setStep(index: number) {
-    this.step = index;
+  setStep11(index: number) {
+    this.step11 = index;
   }
 
-  setStep2(index: number) {
-    this.step2 = index;
+  setStep12(index: number) {
+    this.step12 = index;
   }
 
-  setStep3(index: number) {
-    this.step3 = index;
+  setStep13(index: number) {
+    this.step13 = index;
   }
 
-  nextStep() {
-    this.step++;
+
+  setStep21(index: number) {
+    this.step21 = index;
   }
 
-  prevStep() {
-    this.step--;
+  setStep22(index: number) {
+    this.step22 = index;
   }
+
+  setStep23(index: number) {
+    this.step23 = index;
+  }
+
+
+  setStep31(index: number) {
+    this.step31 = index;
+  }
+
+  setStep32(index: number) {
+    this.step32 = index;
+  }
+
+  setStep33(index: number) {
+    this.step33 = index;
+  }
+
+  // nextStep() {
+  //   this.step++;
+  // }
+  //
+  // prevStep() {
+  //   this.step--;
+  // }
 
 }
 

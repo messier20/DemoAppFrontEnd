@@ -42,9 +42,7 @@ export class ApplicationInfoComponent implements OnInit {
 
   @Output() updates: EventEmitter <Object> =
     new EventEmitter();
-  // @Output() updates = new EventEmitter<Object>();
 
-  statusChanged = false;
   choice = "no";
   visible: boolean;
   public isCollapsed = true;
@@ -76,14 +74,7 @@ export class ApplicationInfoComponent implements OnInit {
     this.step--;
   }
 
-  // checkStatus(status, choice){
-  //   if(status==="PENDING" && choice ==="no") {
-  //     console.log("stat", status);
-  //     return true;
-  //   }
-  //   console.log("stat", status);
-  //   return false;
-  // }
+
 
 
 
@@ -96,37 +87,8 @@ export class ApplicationInfoComponent implements OnInit {
       this.sendToBackendBusiness();
     }
   }
-  //
-  // setApprovedStatus() {
-  //   this.lease.status = "APPROVED";
-  //   this.statusChanged = true;
-  //
-  //
-  //   this.dialog.open(DialogForm2Component, {
-  //     data: {
-  //       status: this.lease.status,
-  //       choice: this.choice
-  //     }
-  //
-  //
-  //   }).afterClosed().subscribe(data => {
-  //     this.choice = data;
-  //     console.log("choice", this.choice);
-  //
-  //     if (this.choice === "APPROVED") {
-  //
-  //       (<HTMLInputElement>document.getElementById('approved')).disabled = true;
-  //       (<HTMLInputElement>document.getElementById('denied')).disabled = true;
-  //
-  //       this.isPrivate();
-  //       console.log("subscribe working: ${data}", data);
-  //
-  //     }
-  //   });
-  //
-  // }
 
-  openModal(status){
+    openModal(status){
     this.dialog.open(DialogForm2Component, {
       data: {
         status: status
@@ -134,27 +96,27 @@ export class ApplicationInfoComponent implements OnInit {
   }).afterClosed().subscribe(data => {
     if(data){
       this.lease.status = "APPROVED";
-      console.log("data", data);
-      console.log("approved", this.lease.status);
+      // console.log("data", data);
+      // console.log("approved", this.lease.status);
     }
     else if (data===false) {
       this.lease.status = "DENIED";
-      console.log("data", data);
-      console.log("denied", this.lease.status);
+      // console.log("data", data);
+      // console.log("denied", this.lease.status);
     }
 
     if(data || data===false) {
 
       (<HTMLInputElement>document.getElementById('approved')).disabled = true;
       (<HTMLInputElement>document.getElementById('denied')).disabled = true;
-      console.log("should be approved or denied", this.lease.status);
+      // console.log("should be approved or denied", this.lease.status);
 
 
         // console.log("event emitter: ", this.updates.emit(true));
 
 
         this.isPrivate();
-        console.log("subscribe working: ${data}", data);
+        // console.log("subscribe working: ${data}", data);
 
       // this.updates.emit();
 
@@ -165,27 +127,6 @@ export class ApplicationInfoComponent implements OnInit {
 
   }
 
-  // setDeniedStatus() {
-  //   this.lease.status = "DENIED";
-  //   this.statusChanged = true;
-  //
-  //   this.dialog.open(DialogForm2Component, {
-  //     data: {
-  //       status: this.lease.status,
-  //       choice: this.choice
-  //     }
-  //   }).afterClosed().subscribe(data => {
-  //     this.choice = data;
-  //     if (this.choice === "DENIED") {
-  //       (<HTMLInputElement>document.getElementById('approved')).disabled = true;
-  //       (<HTMLInputElement>document.getElementById('denied')).disabled = true;
-  //
-  //       this.isPrivate();
-  //     }
-  //   });
-  //
-  //
-  // }
 
   sendToBackendPrivate() {
 
@@ -213,16 +154,12 @@ export class ApplicationInfoComponent implements OnInit {
       idHex: this.lease.id
     }
 
-    console.log("post body", postBody);
-    // this.disabled = true;
+    // console.log("post body", postBody);
     this.backendService.updateBusinessCustomerStatus(this.lease.id, postBody)
       .then(data => {
         this.updates.emit(data);
       });
   }
-
-
-
 
 
 }
