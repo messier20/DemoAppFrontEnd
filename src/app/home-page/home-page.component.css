@@ -1,0 +1,13 @@
+#back {
+  background: -ms-linear-gradient(left, #020027 0, #020079 100%);
+  background: linear-gradient(to right, #020027 0, #020079 100%);
+}
+
+#front {
+  background: #d5d5d5;
+}
+
+#welcomeMessage {
+  font-size: 25px;
+  text-align: center;
+}

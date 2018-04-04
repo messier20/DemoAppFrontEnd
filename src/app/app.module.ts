@@ -33,6 +33,7 @@ import {OfficerViewComponent} from './officer-view/officer-view.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ApplicationInfoComponent} from './officer-view/application-info/application-info.component';
 import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 
@@ -49,7 +50,8 @@ import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
     DialogFormComponent,
     OfficerViewComponent,
     ApplicationInfoComponent,
-    DialogForm2Component
+    DialogForm2Component,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
