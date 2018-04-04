@@ -79,13 +79,12 @@ export class CheckLeasingStatusComponent implements OnInit {
           });
 
         } else {
-          console.log('No data returned');
           this.noLeasingFound = true;
         }
 
       },
       error => {
-        console.log('Error: ' + error);
+        this.noLeasingFound = true;
       }
     );
   }
@@ -107,13 +106,12 @@ export class CheckLeasingStatusComponent implements OnInit {
           });
 
         } else {
-          console.log('No data returned');
           this.noLeasingFound = true;
         }
 
       },
       error => {
-        console.log('Error: ' + error);
+        this.noLeasingFound = true;
       }
     );
   }
