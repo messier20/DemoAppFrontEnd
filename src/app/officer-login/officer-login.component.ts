@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CustomValidators} from '../constants/CustomValidators';
 
 @Component({
   selector: 'app-officer-login',
@@ -8,13 +10,31 @@ import {Router} from '@angular/router';
 })
 export class OfficerLoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  officerLoginForm: FormGroup;
+
+  constructor(private router: Router,
+              private formBuilder: FormBuilder) {
+
+    this.createValidForm();
+  }
 
   ngOnInit() {
   }
 
+  createValidForm() {
+    this.officerLoginForm = this.formBuilder.group({
+      email: ['', CustomValidators.emailValidator],
+      passwordField: ['', [Validators.required]],
+    });
+  }
+
+
   attemptLogin() {
     this.router.navigate(['/officerView']);
+  }
+
+  setLoginInfo() {
+
   }
 
 }
