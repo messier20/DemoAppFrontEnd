@@ -16,7 +16,7 @@ export class LoanUtils {
   }
 
   static calculateAdvancePaymentAmountValidators(assetPrice: number) {
-    return [Validators.required, Validators.min(assetPrice * 0.1), Validators.max(assetPrice)];
+    return [Validators.required, Validators.min(Number.parseFloat((assetPrice * 0.1).toFixed(2))), Validators.max(assetPrice)];
   }
 
 }
