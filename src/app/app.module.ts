@@ -35,6 +35,7 @@ import {ApplicationInfoComponent} from './officer-view/application-info/applicat
 import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
 import { OfficerLoginComponent } from './officer-login/officer-login.component';
 import {AuthGuardService} from './services/auth-guard.service';
+import {AuthService} from './services/auth.service';
 
 
 
@@ -75,7 +76,7 @@ import {AuthGuardService} from './services/auth-guard.service';
 
     NgbModule.forRoot()
   ],
-  providers: [DataStorageService, BackendService, AuthGuardService],
+  providers: [DataStorageService, BackendService, AuthService, AuthGuardService],
   bootstrap: [AppComponent],
   entryComponents: [DialogFormComponent, DialogForm2Component]
 })
