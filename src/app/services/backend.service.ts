@@ -26,7 +26,7 @@ export class BackendService {
       return this.sendBusinessForm();
 
     } else {
-      console.log('Error in backendService, could not determine customerType of form');
+      // console.log('Error in backendService, could not determine customerType of form');
     }
   }
 
@@ -44,7 +44,7 @@ export class BackendService {
       customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
       privateCustomer: this.dataStorage.getPrivateInfo()
     };
-    console.log(postBody);
+    // console.log(postBody);
 
     return this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
   }

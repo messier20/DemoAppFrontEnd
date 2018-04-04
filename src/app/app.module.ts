@@ -34,7 +34,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ApplicationInfoComponent} from './officer-view/application-info/application-info.component';
 import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
 
-// import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
