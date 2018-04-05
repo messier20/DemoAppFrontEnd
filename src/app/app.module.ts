@@ -8,10 +8,14 @@ import {AppComponent} from './app.component';
 import {PrivateFormComponent} from './privateform/private-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
+  MatAutocompleteModule,
   MatCardModule,
   MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatNativeDateModule, MatOptionModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
@@ -34,6 +38,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ApplicationInfoComponent} from './officer-view/application-info/application-info.component';
 import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
 
+// import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -68,6 +73,8 @@ import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
     MatNativeDateModule,
     MatInputModule,
     MatCardModule,
+    MatAutocompleteModule,
+    MatOptionModule,
     MatGridListModule,
 
     NgbModule.forRoot()

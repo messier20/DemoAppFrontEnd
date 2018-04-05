@@ -104,3 +104,8 @@
   border-right-width: 3px;
   border-bottom-width: 3px;
 }
+
+#smallCarLogo {
+  width: 39px;
+  height: 26px;
+}

@@ -31,17 +31,39 @@
     </div>
 
     <div class="form-row">
-      <div class="form-group  col-md-4 col-sm-6">
-        <label for="carBrand">{{leasingFormLabels.CAR_BRAND}}</label>
-        <select class="form-control" id="carBrand" name="carBrandField" formControlName="carBrand"
-                (change)="selectBrandHandler()" required>
-          <option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>
-        </select>
-        <div [hidden]="leasingForm.get('carBrand').valid || leasingForm.get('carBrand').untouched"
-             class="alert-danger alert">
-          Car Brand is required
-        </div>
-      </div>
+
+      <mat-form-field class="example-full-width">
+        <input class="form-control" type="text" placeholder="Select car brand"
+               matInput #input
+               formControlName="carBrand" [matAutocomplete]="auto"
+               aria-label="carBrand"
+               (change)="selectBrandHandler()"
+               (keyup)="selectBrandHandler()"
+        >
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
+                      (click)="selectBrandHandler()">
+            <img src="./assets/images/CarLogos/{{option}}.png" id="smallCarLogo"/>
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <!--<div class="form-group  col-md-4 col-sm-6">-->
+      <!--<label for="carBrand">{{leasingFormLabels.CAR_BRAND}}</label>-->
+      <!--<select class="form-control" id="carBrand" name="carBrandField" formControlName="carBrand"-->
+      <!--(change)="selectBrandHandler()" required>-->
+      <!--<option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">-->
+      <!--<div><img src="./assets/images/CarLogos/{{selectedBrand.make}}.png"/>-->
+      <!--{{selectedBrand.make}}-->
+      <!--</div>-->
+      <!--</option>-->
+      <!--</select>-->
+      <!--<div [hidden]="leasingForm.get('carBrand').valid || leasingForm.get('carBrand').untouched"-->
+      <!--class="alert-danger alert">-->
+      <!--Car Brand is required-->
+      <!--</div>-->
+      <!--</div>-->
 
       <div class="form-group col-md-4 col-sm-6">
         <label for="carModel">{{leasingFormLabels.CAR_MODEL}}</label>
@@ -182,7 +204,8 @@
       </div>
     </div>
     <button type="button" class="btn btn-group btn-outline-secondary" (click)="goBack()">Back</button>
-    <button type="submit" class="btn btn-group btn-outline-success btn-outline-primary" (click)="setLeasingModel()">Submit
+    <button type="submit" class="btn btn-group btn-outline-success btn-outline-primary" (click)="setLeasingModel()">
+      Submit
       form
     </button>
   </form>
