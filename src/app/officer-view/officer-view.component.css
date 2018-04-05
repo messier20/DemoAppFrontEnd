@@ -1,13 +1,22 @@
-.example-headers-align .mat-expansion-panel-header-title,
-.example-headers-align .mat-expansion-panel-header-description {
-  flex-basis: 0;
-}
+/*.example-headers-align .mat-expansion-panel-header-title,*/
+/*.example-headers-align .mat-expansion-panel-header-description {*/
+  /*flex-basis: 0;*/
+/*}*/
 
-.example-headers-align .mat-expansion-panel-header-description {
-  justify-content: space-between;
-  align-items: center;
-}
+/*.example-headers-align .mat-expansion-panel-header-description {*/
+  /*justify-content: space-between;*/
+  /*align-items: center;*/
+/*}*/
 
-.mat-tab-label-content  {
-  background-color: red;
-}
+/*.mat-tab-label  {*/
+  /*background-color: red !important;*/
+/*}*/
+
+/*.myclasss {*/
+  /*color: red;*/
+/*}*/
+
+/*md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {*/
+  /*color: red !important;*/
+  /*background-color:red !important;*/
+/*}*/

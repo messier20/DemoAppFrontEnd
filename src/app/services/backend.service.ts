@@ -8,7 +8,9 @@ import {LeasingCalculator} from '../models/LeasingCalculator';
 @Injectable()
 export class BackendService {
 
+  // httpLink = 'https://the-blue-back-end.herokuapp.com/';
   httpLink = 'http://localhost:8080/';
+
   businessCustomerLink = 'user/business';
   privateCustomerLink = 'user/private';
   repaymentScheduleLink = 'user/calculator/loan/vehicle';
@@ -26,25 +28,44 @@ export class BackendService {
       return this.sendBusinessForm();
 
     } else {
-      console.log('Error in backendService, could not determine customerType of form');
+      // console.log('Error in backendService, could not determine customerType of form');
     }
   }
 
+  // sendBusinessForm() {
+  //   const postBody = {
+  //     customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
+  //     businessCustomer: this.dataStorage.getBusinessInfo()
+  //   };
+  //
+  //   return this.http.post(this.httpLink + this.businessCustomerLink, postBody).toPromise();
+  // }
+
   sendBusinessForm() {
     const postBody = {
-      customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
-      businessCustomer: this.dataStorage.getBusinessInfo()
+      leasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
+      customer: this.dataStorage.getBusinessInfo()
     };
 
     return this.http.post(this.httpLink + this.businessCustomerLink, postBody).toPromise();
   }
 
+  // sendPrivateForm() {
+  //   const postBody = {
+  //     customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
+  //     privateCustomer: this.dataStorage.getPrivateInfo()
+  //   };
+  //   // console.log(postBody);
+  //
+  //   return this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
+  // }
+
   sendPrivateForm() {
     const postBody = {
-      customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
-      privateCustomer: this.dataStorage.getPrivateInfo()
+      leasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
+      customer: this.dataStorage.getPrivateInfo()
     };
-    console.log(postBody);
+    // console.log(postBody);
 
     return this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
   }

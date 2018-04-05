@@ -16,6 +16,10 @@ import {
   MatIconModule,
   MatInputModule,
   MatNativeDateModule, MatOptionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatNativeDateModule,
   MatTabsModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -71,6 +75,7 @@ import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
     MatCardModule,
     MatAutocompleteModule,
     MatOptionModule,
+    MatGridListModule,
 
     NgbModule.forRoot()
   ],
