@@ -41,5 +41,5 @@ export class CustomValidators {
     Validators.maxLength(ValidationAmounts.PHONE_NUMBER_LENGTH_MAX),
     Validators.pattern('^\\d+$')];
   static readonly addressValidator = [Validators.required, Validators.maxLength(ValidationAmounts.ADDRESS_LENGTH_MAX)];
-  static readonly lastNameValidator = [Validators.required, Validators.maxLength(ValidationAmounts.NAME_LAST_LENTGTH_MAX)];
+  static readonly lastNameValidator = [Validators.required, Validators.maxLength(ValidationAmounts.NAME_LAST_LENGTH_MAX)];
 }

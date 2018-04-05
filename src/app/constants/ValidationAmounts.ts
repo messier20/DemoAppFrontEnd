@@ -14,7 +14,7 @@ export class ValidationAmounts {
   static readonly MARGIN_MIN = 3.2;
   static readonly MARGIN_MAX = 100;
   static readonly NAME_LENGTH_MAX = 40;
-  static readonly NAME_LAST_LENTGTH_MAX = 40;
+  static readonly NAME_LAST_LENGTH_MAX = 40;
   static readonly CODE_LENGTH = 11;
   static readonly EMAIL_LENGTH_MAX = 65;
   static readonly PHONE_NUMBER_LENGTH_MIN = 10;
