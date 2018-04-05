@@ -18,10 +18,10 @@
 
     <div class="form-row">
       <div class="form-group col-md-4 col-sm-6">
-        <label for="passwordField">Password</label>
-        <input type="password" class="form-control" id="passwordField" required
-               formControlName="passwordField" name="passwordField">
-        <div [hidden]="officerLoginForm.get('passwordField').valid || officerLoginForm.get('passwordField').untouched"
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" required
+               formControlName="password" name="password">
+        <div [hidden]="officerLoginForm.get('password').valid || officerLoginForm.get('password').untouched"
              class="alert alert-danger">
           Please enter a valid password
         </div>

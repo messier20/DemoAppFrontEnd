@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CustomValidators} from '../constants/CustomValidators';
+import {OfficerLoginModel} from '../models/OfficerLoginModel';
+import {AuthService} from '../services/auth.service';
+import {AuthGuardService} from '../services/auth-guard.service';
 
 @Component({
   selector: 'app-officer-login',
@@ -10,11 +13,13 @@ import {CustomValidators} from '../constants/CustomValidators';
 })
 export class OfficerLoginComponent implements OnInit {
 
-  officerLoginModel: OfficerLoginComponent;
+  officerLoginModel: OfficerLoginModel;
   officerLoginForm: FormGroup;
 
   constructor(private router: Router,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private authGuardService: AuthGuardService) {
 
     this.createValidForm();
   }
@@ -25,7 +30,7 @@ export class OfficerLoginComponent implements OnInit {
   createValidForm() {
     this.officerLoginForm = this.formBuilder.group({
       email: ['', CustomValidators.emailValidator],
-      passwordField: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
 
@@ -35,7 +40,7 @@ export class OfficerLoginComponent implements OnInit {
   }
 
   setLoginInfo() {
-    this.officerLoginModel = this.officerLoginForm.value;
+    this.authGuardService.officerLoginModel = this.officerLoginForm.value;
   }
 
 }

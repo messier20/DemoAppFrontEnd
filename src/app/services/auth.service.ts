@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {BackendService} from './backend.service';
+import {OfficerLoginModel} from '../models/OfficerLoginModel';
 
 @Injectable()
 export class AuthService {
@@ -6,13 +8,24 @@ export class AuthService {
   isLoggedIn = false;
   redirectUrl: string;
 
-  constructor() {
+  constructor(private backendService: BackendService) {
   }
 
-  // login(): Promise<boolean> {
-  // }
-  login() {
-    return true;
+  login(loginModel: OfficerLoginModel): Promise<Object> {
+    return this.backendService.loginUser(loginModel);
+
+      // .then(loginStatus => {
+      //
+      //   console.log('Server has returned');
+      //   console.log(loginStatus);
+      //
+      //   const loginReturn: any = loginStatus;
+      //   return loginReturn.hasLoggedIn;
+      //
+      // }, error => {
+      //   console.log('Error in BackendService.login()');
+      //   return false;
+      // });
   }
 
   logout() {
