@@ -3,13 +3,13 @@ import {LeasingModel} from '../models/LeasingModel';
 import {CarList} from '../models/CarList';
 import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {CustomValidators} from '../constants/CustomValidators';
 import {LeasingCalculator} from '../models/LeasingCalculator';
 import {LoanUtils} from '../utils/LoanUtils';
-import {PaymentSize} from '../constants/PaymentSize';
+import {ValidationAmounts} from '../constants/ValidationAmounts';
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
@@ -33,11 +33,13 @@ export class PrivateFormComponent implements OnInit {
   leasePeriods;
   model: String[];
   availableDays = [15, 30];
-  minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
-  minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
-  maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
+  minAssetPrice = ValidationAmounts.MIN_ASSET_PRICE_PRIVATE;
+  minAdvancePaymentAmount = ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
+  maxAdvancePaymentAmount = ValidationAmounts.MAX_ADVANCE_PAYMENT_AMOUNT;
 
   filteredOptions: Observable<string[]>;
+  PRIVATE = 'PRIVATE';
+  BUSINESS = 'BUSINESS';
 
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
@@ -47,10 +49,8 @@ export class PrivateFormComponent implements OnInit {
     this.createValidForm();
     this.leasingForm.get('assetType').setValue('Vehicle');
 
-
-
   }
-  
+
   ngOnInit() {
     if (this.dataService.getLeasingCalculator() !== null && this.dataService.getLeasingCalculator() !== undefined) {
       this.fillFieldsWithCalculatorInput();
@@ -61,13 +61,18 @@ export class PrivateFormComponent implements OnInit {
     } else {
       this.leasingModel = new LeasingModel();
     }
-  this.filteredOptions = this.leasingForm.get('carBrand').valueChanges
+    this.filteredOptions = this.leasingForm.get('carBrand').valueChanges
       .pipe(startWith(''), map(val => this.filter(val)));
   }
+
   filter(val: string): string[] {
     return this.carBrands.filter(option =>
       option.toLowerCase().indexOf(val.toLowerCase()) === 0);
 
+  }
+
+  getErrorMessage(formFieldControl: AbstractControl) {
+    return formFieldControl.hasError('required') ? 'You must enter a value' : '';
   }
 
   updateMinValues() {
@@ -79,10 +84,10 @@ export class PrivateFormComponent implements OnInit {
 
   setMinAdvancePaymentAmount() {
     if (this.leasingForm.get('customerType').value === 'Business') {
-      this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_BUSINESS;
+      this.minAdvancePaymentAmount = ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_BUSINESS;
       this.leasingForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountBusinessValidator);
     } else {
-      this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
+      this.minAdvancePaymentAmount = ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
       this.leasingForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountPrivateValidator);
     }
     this.leasingForm.get('advancePaymentAmount').updateValueAndValidity();
@@ -91,10 +96,10 @@ export class PrivateFormComponent implements OnInit {
 
   setMinAssetPrice() {
     if (this.leasingForm.get('customerType').value === 'Business') {
-      this.minAssetPrice = PaymentSize.MIN_ASSET_PRICE_BUSINESS;
+      this.minAssetPrice = ValidationAmounts.MIN_ASSET_PRICE_BUSINESS;
       this.leasingForm.get('assetPrice').setValidators(CustomValidators.assetPriceBusinessValidator);
     } else {
-      this.minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
+      this.minAssetPrice = ValidationAmounts.MIN_ASSET_PRICE_PRIVATE;
       this.leasingForm.get('assetPrice').setValidators(CustomValidators.assetPricePersonalValidator);
     }
     this.leasingForm.get('assetPrice').updateValueAndValidity();
@@ -147,7 +152,7 @@ export class PrivateFormComponent implements OnInit {
       document.getElementById('advancePaymentAmount').setAttribute('max', this.maxAdvancePaymentAmount.toString());
     } else {
       this.minAdvancePaymentAmount = this.minAssetPrice * 0.1;
-      this.maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
+      this.maxAdvancePaymentAmount = ValidationAmounts.MAX_ADVANCE_PAYMENT_AMOUNT;
       this.leasingForm.get('advancePaymentAmount').updateValueAndValidity();
       document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
       document.getElementById('advancePaymentAmount').setAttribute('max', this.maxAdvancePaymentAmount.toString());

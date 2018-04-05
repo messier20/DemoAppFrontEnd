@@ -1,4 +1,5 @@
 import {Validators} from '@angular/forms';
+import {ValidationAmounts} from './ValidationAmounts';
 
 export class CustomValidators {
   static readonly customerTypeValidator = [Validators.required];
@@ -6,13 +7,20 @@ export class CustomValidators {
   static readonly carBrandValidator = [Validators.required];
   static readonly carModelValidator = [Validators.required];
   static readonly manufacturedDateValidator = [Validators.required];
-  static readonly enginePowerValidator = [Validators.required, Validators.min(1), Validators.max(9999)];
-  static readonly advancePaymentAmountPrivateValidator = [Validators.required, Validators.min(500), Validators.max(9999999)];
-  static readonly advancePaymentAmountBusinessValidator = [Validators.required, Validators.min(1000), Validators.max(9999999)];
+  static readonly enginePowerValidator = [Validators.required,
+    Validators.min(ValidationAmounts.ENGINE_POWER_MIN),
+    Validators.max(ValidationAmounts.ENGINE_POWER_MAX)];
+  static readonly advancePaymentAmountPrivateValidator = [Validators.required,
+    Validators.min(ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE),
+    Validators.max(ValidationAmounts.MAX_ADVANCE_PAYMENT_AMOUNT)];
+  static readonly advancePaymentAmountBusinessValidator = [Validators.required,
+    Validators.min(ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_BUSINESS),
+    Validators.max(ValidationAmounts.MAX_ADVANCE_PAYMENT_AMOUNT)];
   static readonly leasePeriodInMonthsValidator = [Validators.required];
   static readonly contractFeeValidator = [Validators.required];
   static readonly paymentDateValidator = [Validators.required];
-  static readonly assetPricePersonalValidator = [Validators.required, Validators.min(5000), Validators.max(9999999)];
+  static readonly assetPricePersonalValidator = [Validators.required,
+    Validators.min(ValidationAmounts.MIN_ASSET_PRICE_PRIVATE), Validators.max(9999999)];
   static readonly assetPriceBusinessValidator = [Validators.required, Validators.min(10000), Validators.max(9999999)];
   static readonly advancePaymentPercentageValidator = [Validators.required, Validators.min(10), Validators.max(100)];
   static readonly marginValidator = [Validators.required, Validators.min(3.2), Validators.max(100)];

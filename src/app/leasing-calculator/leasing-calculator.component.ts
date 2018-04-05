@@ -8,7 +8,7 @@ import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {CustomValidators} from '../constants/CustomValidators';
 import {Repayment} from '../models/Repayment';
 import {BackendService} from '../services/backend.service';
-import {PaymentSize} from '../constants/PaymentSize';
+import {ValidationAmounts} from '../constants/ValidationAmounts';
 import {LoanUtils} from '../utils/LoanUtils';
 import {LeasingModel} from '../models/LeasingModel';
 
@@ -29,9 +29,9 @@ export class LeasingCalculatorComponent implements OnInit {
 
   leasePeriods;
   availableDays = [15, 30];
-  minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
-  minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
-  maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
+  minAssetPrice = ValidationAmounts.MIN_ASSET_PRICE_PRIVATE;
+  minAdvancePaymentAmount = ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
+  maxAdvancePaymentAmount = ValidationAmounts.MAX_ADVANCE_PAYMENT_AMOUNT;
   repaymentSchedule: Repayment[];
 
   constructor(private router: Router,
@@ -58,10 +58,10 @@ export class LeasingCalculatorComponent implements OnInit {
 
   setMinAdvancePaymentAmount() {
     if (this.leasingCalculatorForm.get('customerType').value === 'Business') {
-      this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_BUSINESS;
+      this.minAdvancePaymentAmount = ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_BUSINESS;
       this.leasingCalculatorForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountBusinessValidator);
     } else {
-      this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
+      this.minAdvancePaymentAmount = ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
       this.leasingCalculatorForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountPrivateValidator);
     }
     this.leasingCalculatorForm.get('advancePaymentAmount').updateValueAndValidity();
@@ -70,10 +70,10 @@ export class LeasingCalculatorComponent implements OnInit {
 
   setMinAssetPrice() {
     if (this.leasingCalculatorForm.get('customerType').value === 'Business') {
-      this.minAssetPrice = PaymentSize.MIN_ASSET_PRICE_BUSINESS;
+      this.minAssetPrice = ValidationAmounts.MIN_ASSET_PRICE_BUSINESS;
       this.leasingCalculatorForm.get('assetPrice').setValidators(CustomValidators.assetPriceBusinessValidator);
     } else {
-      this.minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
+      this.minAssetPrice = ValidationAmounts.MIN_ASSET_PRICE_PRIVATE;
       this.leasingCalculatorForm.get('assetPrice').setValidators(CustomValidators.assetPricePersonalValidator);
     }
     this.leasingCalculatorForm.get('assetPrice').updateValueAndValidity();
@@ -116,7 +116,7 @@ export class LeasingCalculatorComponent implements OnInit {
       document.getElementById('advancePaymentAmount').setAttribute('max', this.maxAdvancePaymentAmount.toString());
     } else {
       this.minAdvancePaymentAmount = this.minAssetPrice * 0.1;
-      this.maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
+      this.maxAdvancePaymentAmount = ValidationAmounts.MAX_ADVANCE_PAYMENT_AMOUNT;
       this.leasingCalculatorForm.get('advancePaymentAmount').updateValueAndValidity();
       document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
       document.getElementById('advancePaymentAmount').setAttribute('max', this.maxAdvancePaymentAmount.toString());

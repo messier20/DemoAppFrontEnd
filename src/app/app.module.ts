@@ -13,13 +13,11 @@ import {
   MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatNativeDateModule, MatOptionModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatNativeDateModule,
+  MatOptionModule, MatSelectModule,
   MatTabsModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -37,6 +35,7 @@ import {OfficerViewComponent} from './officer-view/officer-view.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ApplicationInfoComponent} from './officer-view/application-info/application-info.component';
 import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 // import {MatExpansionModule} from '@angular/material/expansion';
 
@@ -76,6 +75,8 @@ import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
     MatAutocompleteModule,
     MatOptionModule,
     MatGridListModule,
+    MatSelectModule,
+    FlexLayoutModule,
 
     NgbModule.forRoot()
   ],
