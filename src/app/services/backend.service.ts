@@ -120,5 +120,11 @@ export class BackendService {
     // .toPromise()
   }
 
+  getAllCustomer() {
+    return this.http
+      .get(this.httpLink + 'users')
+      .toPromise();
+  }
+
 
 }
