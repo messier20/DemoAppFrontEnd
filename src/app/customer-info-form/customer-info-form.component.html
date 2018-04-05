@@ -99,9 +99,10 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" matInput placeholder="{{formLabels[3]}}" class="form-control"
+      <input type="text" #message matInput placeholder="{{formLabels[3]}}" class="form-control"
              id="code" required
              formControlName="code" name="code">
+      <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
       <mat-error *ngIf="infoForm.get('code').valid || infoForm.get('code').untouched">
         {{formLabels[3]}} field is required
       </mat-error>
