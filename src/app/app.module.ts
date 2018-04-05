@@ -8,17 +8,20 @@ import {AppComponent} from './app.component';
 import {PrivateFormComponent} from './privateform/private-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule,
   MatCardModule,
-  MatDatepickerModule, MatDialogModule, MatExpansionPanel, MatFormFieldModule, MatGridListModule, MatIconModule,
-  MatInputModule, MatMenuModule,
-  MatNativeDateModule, MatSelectModule, MatTabLabel,
-  MatTabsModule
+  MatDatepickerModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatNativeDateModule,
+  // MatDatepickerModule, MatDialogModule, MatExpansionPanel, MatFormFieldModule, MatGridListModule, MatIconModule,
+  MatMenuModule,
+   MatSelectModule, MatTabLabel,
+  MatTabsModule, MatButtonModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
-// import {MatExpansionModule} from '@angular/material/expansion';
-// import {MatButtonModule} from '@angular/material/button';
-
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -27,12 +30,12 @@ import {DataStorageService} from './services/data-storage-service.service';
 import {CustomerInfoFormComponent} from './customer-info-form/customer-info-form.component';
 import {DialogFormComponent} from './dialog-form/dialog-form';
 import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculator.component';
-import { AllInformationListComponent } from './all-information-list/all-information-list.component';
-import {CheckLeasingStatusComponent} from "./check-leasing-status/check-leasing-status.component";
-import {OfficerViewComponent} from "./officer-view/officer-view.component";
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import { ApplicationInfoComponent } from './officer-view/application-info/application-info.component';
-import { DialogForm2Component } from './dialog-form2/dialog-form2.component';
+import {AllInformationListComponent} from './all-information-list/all-information-list.component';
+import {CheckLeasingStatusComponent} from './check-leasing-status/check-leasing-status.component';
+import {OfficerViewComponent} from './officer-view/officer-view.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ApplicationInfoComponent} from './officer-view/application-info/application-info.component';
+import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
 
 
 
@@ -68,6 +71,7 @@ import { DialogForm2Component } from './dialog-form2/dialog-form2.component';
     MatNativeDateModule,
     MatInputModule,
     MatCardModule,
+    MatGridListModule,
     MatButtonModule,
     MatMenuModule,
     MatSelectModule,

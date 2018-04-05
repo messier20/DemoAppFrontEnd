@@ -39,19 +39,20 @@ export class PrivateFormComponent implements OnInit {
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
     this.leasingForm.get('assetType').setValue('Vehicle');
-    if (this.dataService.getLeasingCalculator() != null) {
-      this.fillFieldsWithCalculatorInput();
-    }
+
 
   }
 
   ngOnInit() {
-
-    if (this.dataService.getLeasingModel() != null) {
+    if (this.dataService.getLeasingCalculator() !== null && this.dataService.getLeasingCalculator() !== undefined) {
+      this.fillFieldsWithCalculatorInput();
+    } else if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
+      console.log('form', this.leasingForm);
       this.leasingForm.setValue(this.dataService.getLeasingModel());
-      console.log("form", this.leasingForm);
+      this.selectBrandHandler();
+    } else {
+      this.leasingModel = new LeasingModel();
     }
-    else this.leasingModel = new LeasingModel();
   }
 
   updateMinValues() {
@@ -72,7 +73,6 @@ export class PrivateFormComponent implements OnInit {
     this.leasingForm.get('advancePaymentAmount').updateValueAndValidity();
     document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
   }
-
 
   setMinAssetPrice() {
     if (this.leasingForm.get('customerType').value === 'Business') {
@@ -130,8 +130,8 @@ export class PrivateFormComponent implements OnInit {
       document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
       document.getElementById('advancePaymentAmount').setAttribute('max', this.maxAdvancePaymentAmount.toString());
     } else {
-      this.minAdvancePaymentAmount = this.minAssetPrice;
-      this.maxAdvancePaymentAmount = 9999999;
+      this.minAdvancePaymentAmount = this.minAssetPrice * 0.1;
+      this.maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
       this.leasingForm.get('advancePaymentAmount').updateValueAndValidity();
       document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
       document.getElementById('advancePaymentAmount').setAttribute('max', this.maxAdvancePaymentAmount.toString());
@@ -175,6 +175,8 @@ export class PrivateFormComponent implements OnInit {
 
   goBack() {
     this.router.navigate(['/leasingCalculatorForm']);
+    this.leasingModel = this.leasingForm.value;
+    this.dataService.setLeasingModel(this.leasingModel);
   }
 
   fillFieldsWithCalculatorInput() {
@@ -188,6 +190,13 @@ export class PrivateFormComponent implements OnInit {
     this.leasingForm.get('leasePeriodInMonths').setValue(this.leasingCalculatorInput.leasePeriodInMonths);
     this.leasingForm.get('paymentDate').setValue(this.leasingCalculatorInput.paymentDate);
     this.dataService.setLeasingCalculator(null);
+    if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
+      this.leasingForm.get('carBrand').setValue(this.dataService.getLeasingModel().carBrand);
+      this.leasingForm.get('carModel').setValue(this.dataService.getLeasingModel().carModel);
+      this.leasingForm.get('manufacturedDate').setValue(this.dataService.getLeasingModel().manufacturedDate);
+      this.leasingForm.get('enginePower').setValue(this.dataService.getLeasingModel().enginePower);
+      this.selectBrandHandler();
+    }
   }
 
 }
