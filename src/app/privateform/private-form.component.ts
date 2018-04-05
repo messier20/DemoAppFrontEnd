@@ -13,6 +13,7 @@ import {ValidationAmounts} from '../constants/ValidationAmounts';
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
+import {InputFormsErrorStateMatcher} from '../utils/InputFormsErrorStateMatcher';
 
 @Component({
   selector: 'app-privateform',
@@ -25,7 +26,7 @@ export class PrivateFormComponent implements OnInit {
   leasingForm: FormGroup;
   leasingFormLabels = new LeasingFormLabels();
   leasingCalculatorInput: LeasingCalculator;
-
+  validationAmounts = ValidationAmounts;
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
   cars;
@@ -38,8 +39,9 @@ export class PrivateFormComponent implements OnInit {
   maxAdvancePaymentAmount = ValidationAmounts.MAX_ADVANCE_PAYMENT_AMOUNT;
 
   filteredOptions: Observable<string[]>;
-  PRIVATE = 'PRIVATE';
-  BUSINESS = 'BUSINESS';
+  PRIVATE = 'Private';
+  BUSINESS = 'Business';
+  errorMatcher = new InputFormsErrorStateMatcher();
 
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
