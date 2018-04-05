@@ -45,7 +45,7 @@ export class OfficerViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.refresh();
+    // this.refresh();
     this.refresh2();
   }
 
@@ -54,10 +54,10 @@ export class OfficerViewComponent implements OnInit {
     this.backendService.getAllCustomer().then(data => {
       this.leases2 = data;
       this.leases2.forEach(lease => {
-        lease.leasing = DataStorageService.refactorCustomerType(lease.leasing);
+        // lease.leasing = DataStorageService.refactorCustomerType(lease.leasing);
         this.leasesPrivateAndBusiness.push(new LeasesPrivateAndBusiness(lease));
-        console.log("data", lease);
-        console.log("model", this.leasesPrivateAndBusiness);
+        // console.log("data", lease);
+        // console.log("model", this.leasesPrivateAndBusiness);
       });
     });
   }
@@ -83,7 +83,7 @@ export class OfficerViewComponent implements OnInit {
           console.log("data", data);
           this.leases.forEach(lease => {
             console.log("lease", lease)
-            lease.leasing = DataStorageService.refactorCustomerType(lease.leasing);
+            // lease.leasing = DataStorageService.refactorCustomerType(lease.leasing);
             this.id.push(lease.idHex);
             this.leasesInfoOfPrivate.push(new LeaseInfoOfPrivate(lease));
           });
@@ -103,7 +103,7 @@ export class OfficerViewComponent implements OnInit {
         this.leases = data;
         this.leases.forEach(lease => {
           lease.id.date = (lease.id.date).substr(0, 10);
-          lease.leasing = DataStorageService.refactorCustomerType(lease.leasing);
+          // lease.leasing = DataStorageService.refactorCustomerType(lease.leasing);
           this.id.push(lease.idHex);
 
           this.leasesInfoOfBusiness.push(new LeaseInfoOfBusiness(lease));

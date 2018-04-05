@@ -9,7 +9,9 @@
         <label for="customerType">{{leasingFormLabels.CUSTOMER_TYPE}}</label>
         <select class="form-control" id="customerType" required name="customerTypeField"
                 formControlName="customerType" (change)="updateMinValues()">
-          <option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>
+          <!--<option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>-->
+          <option [value]="PRIVATE">Private</option>
+          <option [value]="BUSINESS">Business</option>
         </select>
 
         <div

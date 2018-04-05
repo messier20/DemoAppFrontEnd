@@ -32,7 +32,8 @@ export class CustomerInfoFormComponent implements OnInit {
   }
 
   isCustomerPrivate() {
-    return this.leasingModel.customerType === 'Private';
+    console.log("tt", this.leasingModel.customerType);
+    return this.leasingModel.customerType === 'PRIVATE';
   }
 
   ngOnInit() {

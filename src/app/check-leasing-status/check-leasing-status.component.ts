@@ -54,9 +54,9 @@ export class CheckLeasingStatusComponent implements OnInit {
       });
     } else {
 
-      if (this.checkStatusInfo.customerType === 'Private') {
+      if (this.checkStatusInfo.customerType === 'PRIVATE') {
         this.submitPrivateSearch();
-      } else if (this.checkStatusInfo.customerType === 'Business') {
+      } else if (this.checkStatusInfo.customerType === 'BUSINESS') {
         this.submitBusinessSearch();
       }
     }
@@ -71,7 +71,7 @@ export class CheckLeasingStatusComponent implements OnInit {
           this.noLeasingFound = false;
           this.dialog.open(DialogFormComponent, {
             data: {
-              leasingModel: DataStorageService.refactorCustomerType(received.leasing),
+              leasingModel: received.leasing,
               privateInfo: received.customer,
               checkingLeasingStatus: true,
               leasingStatus: received.status
@@ -98,7 +98,7 @@ export class CheckLeasingStatusComponent implements OnInit {
           this.noLeasingFound = false;
           this.dialog.open(DialogFormComponent, {
             data: {
-              leasingModel: DataStorageService.refactorCustomerType(received.leasing),
+              leasingModel: received.leasing,
               businessInfo: received.customer,
               checkingLeasingStatus: true,
               leasingStatus: received.status

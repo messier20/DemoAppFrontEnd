@@ -93,7 +93,7 @@
       <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex = index" >
 
 
-        <mat-accordion class="example-headers-align" *ngIf="lease.leasingModel.customerType==='Private'&&lease.status==='PENDING'" >
+        <mat-accordion class="example-headers-align" *ngIf="lease.leasingModel.customerType==='PRIVATE'&&lease.status==='PENDING'" >
           <mat-expansion-panel [expanded]="step21 === stepIndex" (opened)="setStep21(stepIndex)" hideToggle="true">
 
 
@@ -119,7 +119,7 @@
     <div>
       <h4>Approved Applications</h4>
       <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex2 = index">
-        <mat-accordion class="example-headers-align" *ngIf="lease.leasingModel.customerType==='Private'&&lease.status==='APPROVED'" >
+        <mat-accordion class="example-headers-align" *ngIf="lease.leasingModel.customerType==='PRIVATE'&&lease.status==='APPROVED'" >
           <mat-expansion-panel [expanded]="step22 === stepIndex2" (opened)="setStep22(stepIndex2)" hideToggle="true">
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -143,7 +143,7 @@
       <h4>Denied applications</h4>
       <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex3 = index">
 
-        <mat-accordion class="example-headers-align" *ngIf="lease.leasingModel.customerType==='Private'&&lease.status==='DENIED'" >
+        <mat-accordion class="example-headers-align" *ngIf="lease.leasingModel.customerType==='PRIVATE'&&lease.status==='DENIED'" >
 
           <mat-expansion-panel [expanded]="step23 === stepIndex3" (opened)="setStep23(stepIndex3)" hideToggle="true">
             <mat-expansion-panel-header>
