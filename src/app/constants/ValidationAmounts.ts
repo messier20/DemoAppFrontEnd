@@ -9,5 +9,15 @@ export class ValidationAmounts {
   static readonly CONTRACT_FEE_SIZE = 0.01;
   static readonly ENGINE_POWER_MIN = 1;
   static readonly ENGINE_POWER_MAX = 9999;
-
+  static readonly ADVANCE_PAYMENT_PERCENTAGE_MIN = 10;
+  static readonly ADVANCE_PAYMENT_PERCENTAGE_MAX = 100;
+  static readonly MARGIN_MIN = 3.2;
+  static readonly MARGIN_MAX = 100;
+  static readonly NAME_LENGTH_MAX = 40;
+  static readonly NAME_LAST_LENTGTH_MAX = 40;
+  static readonly CODE_LENGTH = 11;
+  static readonly EMAIL_LENGTH_MAX = 65;
+  static readonly PHONE_NUMBER_LENGTH_MIN = 10;
+  static readonly PHONE_NUMBER_LENGTH_MAX = 15;
+  static readonly ADDRESS_LENGTH_MAX = 80;
 }

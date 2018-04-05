@@ -20,17 +20,26 @@ export class CustomValidators {
   static readonly contractFeeValidator = [Validators.required];
   static readonly paymentDateValidator = [Validators.required];
   static readonly assetPricePersonalValidator = [Validators.required,
-    Validators.min(ValidationAmounts.MIN_ASSET_PRICE_PRIVATE), Validators.max(9999999)];
-  static readonly assetPriceBusinessValidator = [Validators.required, Validators.min(10000), Validators.max(9999999)];
-  static readonly advancePaymentPercentageValidator = [Validators.required, Validators.min(10), Validators.max(100)];
-  static readonly marginValidator = [Validators.required, Validators.min(3.2), Validators.max(100)];
-  static readonly nameValidator = [Validators.required, Validators.maxLength(40)];
-  static readonly codeValidator = [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^\\d+$')];
-  static readonly emailValidator = [Validators.required, Validators.maxLength(65),
+    Validators.min(ValidationAmounts.MIN_ASSET_PRICE_PRIVATE), Validators.max(ValidationAmounts.MAX_ASSET_PRICE)];
+  static readonly assetPriceBusinessValidator = [Validators.required,
+    Validators.min(ValidationAmounts.MIN_ASSET_PRICE_BUSINESS),
+    Validators.max(ValidationAmounts.MAX_ASSET_PRICE)];
+  static readonly advancePaymentPercentageValidator = [Validators.required,
+    Validators.min(ValidationAmounts.ADVANCE_PAYMENT_PERCENTAGE_MIN),
+    Validators.max(ValidationAmounts.ADVANCE_PAYMENT_PERCENTAGE_MAX)];
+  static readonly marginValidator = [Validators.required,
+    Validators.min(ValidationAmounts.MARGIN_MIN),
+    Validators.max(ValidationAmounts.MARGIN_MAX)];
+  static readonly nameValidator = [Validators.required, Validators.maxLength(ValidationAmounts.NAME_LENGTH_MAX)];
+  static readonly codeValidator = [Validators.required, Validators.minLength(ValidationAmounts.CODE_LENGTH),
+    Validators.maxLength(ValidationAmounts.CODE_LENGTH), Validators.pattern('^\\d+$')];
+  static readonly emailValidator = [Validators.required, Validators.maxLength(ValidationAmounts.EMAIL_LENGTH_MAX),
     Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.' +
       '[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')];
-  static readonly phoneNumberValidator = [Validators.required, Validators.minLength(10),
-    Validators.maxLength(15), Validators.pattern('^\\d+$')];
-  static readonly addressValidator = [Validators.required, Validators.maxLength(80)];
-  static readonly lastNameValidator = [Validators.required, Validators.maxLength(40)];
+  static readonly phoneNumberValidator = [Validators.required,
+    Validators.minLength(ValidationAmounts.PHONE_NUMBER_LENGTH_MIN),
+    Validators.maxLength(ValidationAmounts.PHONE_NUMBER_LENGTH_MAX),
+    Validators.pattern('^\\d+$')];
+  static readonly addressValidator = [Validators.required, Validators.maxLength(ValidationAmounts.ADDRESS_LENGTH_MAX)];
+  static readonly lastNameValidator = [Validators.required, Validators.maxLength(ValidationAmounts.NAME_LAST_LENTGTH_MAX)];
 }
