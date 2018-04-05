@@ -13,7 +13,7 @@ export class AuthGuardService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let url: string = state.url;
+    const url: string = state.url;
 
     return this.checkLogin(url);
   }
@@ -23,25 +23,36 @@ export class AuthGuardService implements CanActivate {
       return true;
     }
 
-    // Store the attempted URL for redirecting
-    this.authService.redirectUrl = url;
-
     if (this.officerLoginModel === undefined || this.officerLoginModel === null) {
       this.navigateToLogin();
       return false;
-    }
-
-    // Navigate to the login page with extras
-    if (this.authService.login(this.officerLoginModel)) {
-      return true;
 
     } else {
-      this.navigateToLogin();
-      return false;
+      this.callBackendForLogin(url);
     }
+
   }
 
   navigateToLogin() {
     this.router.navigate(['/officerLogin']);
+  }
+
+  callBackendForLogin(url: string) {
+    this.authService.login(this.officerLoginModel).then(loginStatus => {
+      const loginReturn: any = loginStatus;
+
+      if (loginReturn.hasLoggedIn) {
+        this.authService.isLoggedIn = true;
+        this.router.navigate([url]);
+
+      } else {
+        this.authService.isLoggedIn = false;
+      }
+
+    }, error => {
+      console.log('Error in auth-guard.service checkLogin()');
+      this.navigateToLogin();
+      return false;
+    });
   }
 }

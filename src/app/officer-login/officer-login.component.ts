@@ -15,6 +15,7 @@ export class OfficerLoginComponent implements OnInit {
 
   officerLoginModel: OfficerLoginModel;
   officerLoginForm: FormGroup;
+  wrongLoginCredentials: boolean;
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -37,6 +38,7 @@ export class OfficerLoginComponent implements OnInit {
 
   attemptLogin() {
     this.router.navigate(['/officerView']);
+    this.wrongLoginCredentials = true;
   }
 
   setLoginInfo() {
