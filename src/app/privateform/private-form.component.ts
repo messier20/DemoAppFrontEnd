@@ -73,10 +73,6 @@ export class PrivateFormComponent implements OnInit {
 
   }
 
-  getErrorMessage(formFieldControl: AbstractControl) {
-    return formFieldControl.hasError('required') ? 'You must enter a value' : '';
-  }
-
   updateMinValues() {
     this.setMinAssetPrice();
     if (!this.leasingForm.get('assetPrice').valid) {
