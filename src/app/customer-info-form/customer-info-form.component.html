@@ -87,7 +87,7 @@
              [errorStateMatcher]="errorMatcher">
 
       <mat-error *ngIf="!infoForm.get('name').hasError('required')
-      && infoForm.get('name').hasError('max')">
+      && infoForm.get('name').hasError('maxLength')">
         {{formLabels[1]}} must be up to <strong>{{validationAmounts.NAME_LENGTH_MAX}}</strong> characters long
       </mat-error>
       <mat-error *ngIf="infoForm.get('name').hasError('required')">
