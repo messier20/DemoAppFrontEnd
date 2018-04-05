@@ -62,6 +62,10 @@ export class OfficerViewComponent implements OnInit {
     });
   }
 
+  // check(lease) {
+  //   if(lease.privateCustomerInfo )
+  // }
+
   refresh() {
     this.leases = [];
     this.combined = [];
