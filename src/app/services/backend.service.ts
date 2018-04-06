@@ -15,6 +15,7 @@ export class BackendService {
   businessCustomerLink = 'user/business';
   privateCustomerLink = 'user/private';
   repaymentScheduleLink = 'user/calculator/loan/vehicle';
+  officerLink = '';
 
 
   constructor(private http: HttpClient,
@@ -85,45 +86,45 @@ export class BackendService {
 
   getAllPrivateUserApplicationsByStatus(status) {
     return this.http
-      .get(this.httpLink + '/user/private/status/' + status)
+      .get(this.httpLink + this.officerLink + '/user/private/status/' + status)
       .toPromise();
   }
 
   getAllBusinessUserApplicationsByStatus(status) {
     return this.http
-      .get(this.httpLink + '/user/business/status/' + status)
+      .get(this.httpLink + this.officerLink + '/user/business/status/' + status)
       .toPromise();
   }
 
   getAllPrivateUserApplications() {
     return this.http
-      .get(this.httpLink + '/user/private')
+      .get(this.httpLink + this.officerLink + '/user/private')
       .toPromise();
   }
 
   getAllBusinessUserApplications() {
     return this.http
-      .get(this.httpLink + '/user/business')
+      .get(this.httpLink + this.officerLink + '/user/business')
       .toPromise();
   }
 
   updatePrivateCustomerStatus(id, postBody) {
 
     return this.http
-      .put(this.httpLink + '/user/private/update/' + id, postBody ).toPromise();
+      .put(this.httpLink + this.officerLink + '/user/private/update/' + id, postBody ).toPromise();
     // .toPromise()
   }
 
   updateBusinessCustomerStatus(id, postBody) {
 
     return this.http
-      .put(this.httpLink + '/user/business/update/' + id, postBody ).toPromise();
+      .put(this.httpLink + this.officerLink + '/user/business/update/' + id, postBody ).toPromise();
     // .toPromise()
   }
 
   getAllCustomer() {
     return this.http
-      .get(this.httpLink + 'users')
+      .get(this.httpLink + this.officerLink + '/users')
       .toPromise();
   }
 
