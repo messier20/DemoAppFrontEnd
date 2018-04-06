@@ -77,11 +77,12 @@
 
 <!--</form>-->
 <!--</div>-->
-<mat-card>
+<div id="top-space"></div>
+<mat-card id="testcard">
   <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="infoForm" (ngSubmit)="submitForm()">
     <h3>{{formLabels[0]}}</h3>
 
-    <mat-form-field>
+    <mat-form-field class="example-full-width">
       <input type="text" matInput placeholder="{{formLabels[1]}}" class="form-control"
              id="name" required formControlName="name" name="name"
              [errorStateMatcher]="errorMatcher">
@@ -96,7 +97,7 @@
 
     </mat-form-field>
 
-    <mat-form-field *ngIf="leasingModel.customerType === 'Private'">
+    <mat-form-field class="example-full-width" *ngIf="leasingModel.customerType === 'Private'">
       <input type="text" matInput placeholder="{{formLabels[2]}}" class="form-control"
              id="lastName" required
              formControlName="lastName" name="lastName">
@@ -105,7 +106,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="example-full-width">
       <input type="text" #message matInput placeholder="{{formLabels[3]}}" class="form-control"
              id="code" required
              formControlName="code" name="code">
@@ -115,7 +116,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="example-full-width">
       <input type="text" matInput placeholder="Ex: email@domain.com" class="form-control"
              id="email" required
              formControlName="email" name="email">
@@ -124,7 +125,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="example-full-width">
       <input type="text" matInput placeholder="{{formLabels[5]}}" class="form-control"
              id="phoneNumber" required
              formControlName="phoneNumber" name="phoneNumber" (keypress)="_keyPress($event)">
@@ -134,7 +135,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="example-full-width">
       <input type="text" matInput placeholder="{{formLabels[6]}}" class="form-control"
              id="address" required
              formControlName="address" name="address">
@@ -142,5 +143,16 @@
         {{formLabels[6]}} field is required
       </mat-error>
     </mat-form-field>
+
+    <table><tr>
+      <td>
+    <button type="button" class="btn btn-group btn-outline-secondary" (click)="goBack()">Back</button>
+      </td>
+      <td>
+    <button type="submit" class="btn btn-success btn-outline-primary" (click)="setCustomerInfo()">Submit form
+    </button>
+      </td>
+    </tr>
+    </table>
   </form>
 </mat-card>

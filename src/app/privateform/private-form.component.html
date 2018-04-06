@@ -1,6 +1,7 @@
+<div id="top-space"></div>
 <mat-card id="testcard">
   <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="leasingForm" (ngSubmit)="submitForm()">
-    <h3 style="align-content: left">Leasing Application</h3>
+    <h5 style="align-content: left">Leasing Application</h5>
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td><mat-form-field class="example-full-width">
@@ -30,8 +31,8 @@
         </td>
        </tr>
     </table>
-    <br>
-    <h3>Car Information</h3>
+    <hr>
+    <h5>Car Information</h5>
     <table class="example-full-width" cellspacing="0"><tr>
       <td>
     <mat-form-field class="example-full-width">
@@ -106,8 +107,8 @@
       </td>
 
     </tr></table>
-    <br>
-    <h3>Payment</h3>
+    <hr>
+    <h5>Payment</h5>
     <table class="example-full-width" cellspacing="0"><tr>
       <td>
     <mat-form-field class="example-full-width">
@@ -173,7 +174,7 @@
     <table class="example-full-width" cellspacing="0"><tr>
       <td>
     <mat-form-field class="example-full-width">
-      <input type="text" matInput placeholder={{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}" class="form-control"
+      <input type="text" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}" class="form-control"
              id="advancePaymentAmount" name="advancePaymentAmountField"
              formControlName="advancePaymentAmount"
              min="500" max="9999999"
@@ -261,10 +262,16 @@
     </mat-form-field>
       </td>
     </tr></table>
+    <table><tr>
+      <td>
     <button type="button" class="btn btn-group btn-outline-secondary" (click)="goBack()">Back</button>
+      </td>
+      <td>
     <button type="submit" class="btn btn-group btn-outline-primary" (click)="setLeasingModel()">
-      Submit
-      form
+      Submit form
     </button>
+      </td>
+    </tr>
+    </table>
   </form>
 </mat-card>

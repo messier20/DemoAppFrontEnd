@@ -127,3 +127,7 @@
 .example-full-width {
   width: 90%;
 }
+
+#top-space {
+  height: 50px;
+}

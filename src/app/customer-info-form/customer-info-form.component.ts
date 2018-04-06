@@ -56,7 +56,6 @@ export class CustomerInfoFormComponent implements OnInit {
 
       if (this.dataService.getBusinessInfo() != null) {
         console.log('data service not empty');
-        document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
 
         this.infoForm.get('name').setValue(this.dataService.getBusinessInfo().name);
@@ -69,7 +68,6 @@ export class CustomerInfoFormComponent implements OnInit {
 
       } else {
         this.businessCustomerInfo = new BusinessCustomerInfo();
-        document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
 
         console.log('info form empty');
