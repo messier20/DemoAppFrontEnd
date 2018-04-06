@@ -1,6 +1,6 @@
 <mat-card id="testcard">
   <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="leasingForm" (ngSubmit)="submitForm()">
-
+    <h3 style="align-content: left">Leasing Application</h3>
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td><mat-form-field class="example-full-width">
@@ -30,7 +30,8 @@
         </td>
        </tr>
     </table>
-
+    <br>
+    <h3>Car Information</h3>
     <table class="example-full-width" cellspacing="0"><tr>
       <td>
     <mat-form-field class="example-full-width">
@@ -103,9 +104,11 @@
       </td>
 
     </tr></table>
-
-
-    <mat-form-field>
+    <br>
+    <h3>Payment</h3>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td>
+    <mat-form-field class="example-full-width">
       <input type="number" matInput placeholder="{{leasingFormLabels.ASSET_PRICE}}" class="form-control"
              id="assetPrice" required
              formControlName="assetPrice"
@@ -129,8 +132,9 @@
       </mat-error>
 
     </mat-form-field>
-
-    <mat-form-field>
+      </td>
+      <td>
+    <mat-form-field class="example-full-width">
       <input type="number" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_PERCENTAGE}}"
              class="form-control" id="advancePaymentPercentage"
              formControlName="advancePaymentPercentage"
@@ -161,8 +165,10 @@
         Advance payment percentage must be between 10% and 100%
       </mat-error>
     </mat-form-field>
+      </td>
 
-    <mat-form-field>
+      <td>
+    <mat-form-field class="example-full-width">
       <input type="text" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}" class="form-control"
              id="advancePaymentAmount" name="advancePaymentAmountField"
              formControlName="advancePaymentAmount"
@@ -186,16 +192,22 @@
       <mat-error *ngIf="leasingForm.get('advancePaymentAmount').hasError('required')">
         Advance payment amount is <strong>required</strong>
       </mat-error>
-
     </mat-form-field>
+      </td>
 
-    <mat-form-field>
+      <td>
+    <mat-form-field class="example-full-width">
       <input type="text" matInput placeholder="{{leasingFormLabels.CONTRACT_FEE}}" class="form-control"
              id="contractFee" name="contractFeeField"
              formControlName="contractFee" disabled>
     </mat-form-field>
+      </td>
 
-    <mat-form-field>
+    </tr></table>
+
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td>
+    <mat-form-field class="example-full-width">
       <input type="number" matInput placeholder="{{leasingFormLabels.MARGIN}}"
              class="form-control" id="margin" required
              formControlName="margin" name="margin" step="0.1" min="3.2" max="100"
@@ -216,9 +228,10 @@
         Margin payment amount is <strong>required</strong>
       </mat-error>
 
-    </mat-form-field>
-
-    <mat-form-field>
+    </mat-form-field >
+      </td>
+      <td>
+    <mat-form-field class="example-full-width">
       <mat-select placeholder="{{leasingFormLabels.LEASING_PERIOD}}" class="form-control" id="leasePeriodInMonths"
                   required name="leasePeriodInMonthsField"
                   formControlName="leasePeriodInMonths">
@@ -228,7 +241,10 @@
         Lease Period is <strong>required</strong>
       </mat-error>
     </mat-form-field>
-
+      </td>
+    </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td>
     <mat-form-field>
       <mat-select placeholder="{{leasingFormLabels.PAYMENT_DAY}}" class="form-control" id="paymentDay"
                   name="paymentDateField" formControlName="paymentDate"
@@ -239,7 +255,8 @@
         Payment Date is <strong>required</strong>
       </mat-error>
     </mat-form-field>
-
+      </td>
+    </tr></table>
     <button type="button" class="btn btn-group btn-outline-secondary" (click)="goBack()">Back</button>
     <button type="submit" class="btn btn-group btn-outline-primary" (click)="setLeasingModel()">
       Submit
