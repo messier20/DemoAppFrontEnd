@@ -17,7 +17,7 @@
 
     <mat-form-field>
       <mat-select placeholder="{{leasingFormLabels.ASSET_TYPE}}" class="form-control" id="assetType"
-                  required name="assetTypeField" value="Vehicle">
+                  required name="assetTypeField" value="Vehicle" disabled>
         <mat-option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</mat-option>
         <mat-error *ngIf="leasingForm.get('assetType').invalid">
           Asset Type is <strong>required</strong>
@@ -28,7 +28,7 @@
     <mat-form-field>
       <input class="form-control" type="text" placeholder="{{leasingFormLabels.CAR_BRAND}}"
              matInput #input required
-             formControlName="carBrand" [matAutocomplete]="auto"
+             formControlName="carBrand" [matAutocomplete]="carBrand"
              aria-label="carBrand"
              (change)="selectBrandHandler()"
              (keyup)="selectBrandHandler()"
@@ -36,8 +36,8 @@
       <mat-error *ngIf="leasingForm.get('carBrand').invalid">
         Car Brand is <strong>required</strong>
       </mat-error>
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
+      <mat-autocomplete #carBrand="matAutocomplete">
+        <mat-option *ngFor="let option of filteredCarBrands | async" [value]="option"
                     (click)="selectBrandHandler()">
           <img src="./assets/images/CarLogos/{{option}}.png" id="smallCarLogo"/>
           {{ option }}
@@ -45,15 +45,23 @@
       </mat-autocomplete>
     </mat-form-field>
 
+
     <mat-form-field>
-      <mat-select placeholder="{{leasingFormLabels.CAR_MODEL}}" class="form-control" id="carModel"
-                  name="carModelField" required
-                  formControlName="carModel">
-        <mat-option *ngFor="let selectedModel of model" [value]="selectedModel">{{selectedModel}}</mat-option>
-      </mat-select>
+      <input class="form-control" type="text" placeholder="{{leasingFormLabels.CAR_MODEL}}"
+             matInput #input disabled
+             formControlName="carModel"
+             aria-label="carModel"
+             [matAutocomplete]="carModel">
+
       <mat-error *ngIf="leasingForm.get('carModel').invalid">
         Car Model is <strong>required</strong>
       </mat-error>
+      <mat-autocomplete #carModel="matAutocomplete">
+        <mat-option *ngFor="let option of filteredCarModels | async" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+
     </mat-form-field>
 
     <mat-form-field>

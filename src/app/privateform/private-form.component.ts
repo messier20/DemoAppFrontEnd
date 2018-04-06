@@ -32,13 +32,14 @@ export class PrivateFormComponent implements OnInit {
   cars;
   carBrands: string[];
   leasePeriods;
-  model: String[];
+  model: string[];
   availableDays = [15, 30];
   minAssetPrice = ValidationAmounts.MIN_ASSET_PRICE_PRIVATE;
   minAdvancePaymentAmount = ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
   maxAdvancePaymentAmount = ValidationAmounts.MAX_ADVANCE_PAYMENT_AMOUNT;
 
-  filteredOptions: Observable<string[]>;
+  filteredCarBrands: Observable<string[]>;
+  filteredCarModels: Observable<string[]>;
   PRIVATE = 'Private';
   BUSINESS = 'Business';
   errorMatcher = new InputFormsErrorStateMatcher();
@@ -57,20 +58,23 @@ export class PrivateFormComponent implements OnInit {
     if (this.dataService.getLeasingCalculator() !== null && this.dataService.getLeasingCalculator() !== undefined) {
       this.fillFieldsWithCalculatorInput();
     } else if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
-      console.log('form', this.leasingForm);
       this.leasingForm.setValue(this.dataService.getLeasingModel());
       this.selectBrandHandler();
     } else {
       this.leasingModel = new LeasingModel();
     }
-    this.filteredOptions = this.leasingForm.get('carBrand').valueChanges
-      .pipe(startWith(''), map(val => this.filter(val)));
+    this.filteredCarBrands = this.leasingForm.get('carBrand').valueChanges
+      .pipe(startWith(''), map(val => this.filterCarBrand(val)));
   }
 
-  filter(val: string): string[] {
+  filterCarBrand(val: string): string[] {
     return this.carBrands.filter(option =>
       option.toLowerCase().indexOf(val.toLowerCase()) === 0);
+  }
 
+  filterCarModel(val: string): string[] {
+    return this.model.filter(option =>
+      option.toLowerCase().indexOf(val.toLowerCase()) === 0);
   }
 
   updateMinValues() {
@@ -105,13 +109,15 @@ export class PrivateFormComponent implements OnInit {
   }
 
   selectBrandHandler() {
-    console.log(this.leasingForm.get('carBrand').value);
     for (let i = 0; i < this.cars.length; i++) {
       if (this.cars[i].make.toLowerCase() === this.leasingForm.get('carBrand').value.toString().toLowerCase()) {
         this.model = this.cars[i].model;
         break;
       }
     }
+    this.filteredCarModels = this.leasingForm.get('carModel').valueChanges
+      .pipe(startWith(''), map(val => this.filterCarModel(val)));
+
   }
 
   manageDependantFields() {
