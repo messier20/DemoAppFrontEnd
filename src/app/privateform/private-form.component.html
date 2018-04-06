@@ -1,253 +1,110 @@
-<!--<div class="container">-->
-  <!--<h1>{{leasingFormLabels.LEASING_APPLICATION}}</h1>-->
-
-  <!--<form [formGroup]="leasingForm" (ngSubmit)="submitForm()">-->
-
-    <!--<div class="form-row">-->
-      <!--<div class="form-group col-md-4 col-sm-6">-->
-        <!--<label for="customerType">{{leasingFormLabels.CUSTOMER_TYPE}}</label>-->
-        <!--<select class="form-control" id="customerType" required name="customerTypeField"-->
-                <!--formControlName="customerType" (change)="updateMinValues()">-->
-          <!--<option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>-->
-        <!--</select>-->
-
-        <!--<div [hidden]="leasingForm.get('customerType').valid || leasingForm.get('customerType').untouched"-->
-             <!--class="alert-danger alert">-->
-          <!--Customer type is required-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<div class="form-group col-md-4 col-sm-6">-->
-        <!--<label for="assetType">{{leasingFormLabels.ASSET_TYPE}}</label>-->
-        <!--<select class="form-control" id="assetType" required name="assetTypeField" formControlName="assetType">-->
-          <!--<option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</option>-->
-        <!--</select>-->
-
-        <!--<div [hidden]="leasingForm.get('assetType').valid || leasingForm.get('assetType').untouched"-->
-             <!--class="alert-danger alert">-->
-          <!--Customer type is required-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="form-row">-->
-      <!--<div class="form-group  col-md-4 col-sm-6">-->
-        <!--<label for="carBrand">{{leasingFormLabels.CAR_BRAND}}</label>-->
-        <!--<select class="form-control" id="carBrand" name="carBrandField" formControlName="carBrand"-->
-                <!--(change)="selectBrandHandler()" required>-->
-          <!--<option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</option>-->
-        <!--</select>-->
-        <!--<div [hidden]="leasingForm.get('carBrand').valid || leasingForm.get('carBrand').untouched"-->
-             <!--class="alert-danger alert">-->
-          <!--Car Brand is required-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<div class="form-group col-md-4 col-sm-6">-->
-        <!--<label for="carModel">{{leasingFormLabels.CAR_MODEL}}</label>-->
-        <!--<select class="form-control" id="carModel" name="carModelField" formControlName="carModel">-->
-          <!--<option *ngFor="let selectedModel of model" [value]="selectedModel">{{selectedModel}}</option>-->
-        <!--</select>-->
-
-        <!--<div [hidden]="leasingForm.get('carModel').valid || leasingForm.get('carModel').untouched"-->
-             <!--class="alert-danger alert">-->
-          <!--Car Model is required-->
-        <!--</div>-->
-
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-row">-->
-      <!--<div class="form-group  col-md-4 col-sm-6">-->
-        <!--<label for="manufacturedDate">{{leasingFormLabels.MANUFACTURED_DATE}}</label>-->
-        <!--<input type="date" class="form-control" id="manufacturedDate"-->
-               <!--formControlName="manufacturedDate"-->
-               <!--name="manufacturedDateForm">-->
-
-        <!--<div [hidden]="leasingForm.get('manufacturedDate').valid || leasingForm.get('manufacturedDate').untouched"-->
-             <!--class="alert-danger alert">-->
-          <!--Manufactured date is required.-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<div class="form-group col-md-4 col-sm-6">-->
-        <!--<label for="enginePower">{{leasingFormLabels.ENGINE_POWER}}</label>-->
-        <!--<input type="number" class="form-control" id="enginePower"-->
-               <!--formControlName="enginePower"-->
-               <!--name="enginePowerForm" min="1" max="9999">-->
-
-        <!--<div [hidden]="leasingForm.get('enginePower').valid || leasingForm.get('enginePower').untouched"-->
-             <!--class="alert-danger alert">-->
-          <!--Engine power must be between 1 and 9999-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="form-row">-->
-      <!--<div class="form-group col-md-4 col-sm-6">-->
-        <!--<label for="assetPrice">{{leasingFormLabels.ASSET_PRICE}}</label>-->
-        <!--<input type="number" class="form-control" id="assetPrice" required-->
-               <!--formControlName="assetPrice"-->
-               <!--name="assetPriceField"-->
-               <!--min="5000" max="9999999"-->
-               <!--(keyup)="manageDependantFields()"-->
-               <!--(change)="manageDependantFields()">-->
-
-        <!--<div [hidden]="leasingForm.get('assetPrice').valid || leasingForm.get('assetPrice').untouched"-->
-             <!--class="alert alert-danger">-->
-          <!--Asset price must be between {{this.minAssetPrice.toFixed(2)}}€ and 9999999.00€-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group col-md-4 col-sm-6">-->
-        <!--<label for="advancePaymentPercentage">{{leasingFormLabels.ADVANCE_PAYMENT_PERCENTAGE}}</label>-->
-        <!--<input type="number" class="form-control" id="advancePaymentPercentage"-->
-               <!--formControlName="advancePaymentPercentage"-->
-               <!--name="advancePaymentPercentageField"-->
-               <!--min="10" max="100" step="0.1"-->
-               <!--(keyup)="calcAdvancePaymentAmount()"-->
-               <!--(change)="calcAdvancePaymentAmount()">-->
-
-        <!--<div-->
-          <!--[hidden]="leasingForm.get('advancePaymentPercentage').valid || leasingForm.get('advancePaymentPercentage').untouched"-->
-          <!--class="alert alert-danger">-->
-          <!--Advance payment percentage must be between 10% and 100%-->
-        <!--</div>-->
-
-      <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="form-row">-->
-
-      <!--<div class="form-group col-md-4 col-sm-6">-->
-        <!--<label for="advancePaymentAmount">{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}</label>-->
-        <!--<input type="number" class="form-control" id="advancePaymentAmount" name="advancePaymentAmountField"-->
-               <!--formControlName="advancePaymentAmount"-->
-               <!--min="500" max="9999999"-->
-               <!--(keyup)="calcAdvancePaymentPercentage()"-->
-               <!--(change)="calcAdvancePaymentPercentage()">-->
-
-        <!--<div-->
-          <!--[hidden]="leasingForm.get('advancePaymentAmount').valid || leasingForm.get('advancePaymentAmount').untouched"-->
-          <!--class="alert alert-danger">-->
-          <!--Advance payment amount must be {{this.minAdvancePaymentAmount.toFixed(2)}}€ and-->
-          <!--{{this.maxAdvancePaymentAmount.toFixed(2)}}€-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<div class="form-group col-md-4 col-sm-6">-->
-        <!--<label for="contractFee">{{leasingFormLabels.CONTRACT_FEE}}</label>-->
-        <!--<input type="text" class="form-control" id="contractFee" name="contractFeeField"-->
-               <!--formControlName="contractFee" disabled>-->
-      <!--</div>-->
-
-    <!--</div>-->
-
-    <!--<div class="form-row">-->
-      <!--<div class="form-group col-md-4 col-sm-6">-->
-        <!--<label for="margin">{{leasingFormLabels.MARGIN}}</label>-->
-        <!--<input type="number" class="form-control" id="margin" required-->
-               <!--formControlName="margin" name="margin" step="0.1" min="3.2" max="100">-->
-
-        <!--<div [hidden]="leasingForm.get('margin').valid || leasingForm.get('margin').untouched"-->
-             <!--class="alert alert-danger">-->
-          <!--Margin must be between 3.2% and 100 %-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<div class="form-group col-md-4 col-sm-6">-->
-        <!--<label for="leasePeriodInMonths">{{leasingFormLabels.LEASING_PERIOD}}</label>-->
-        <!--<select class="form-control" id="leasePeriodInMonths" required name="leasePeriodInMonthsField"-->
-                <!--formControlName="leasePeriodInMonths">-->
-          <!--<option *ngFor="let type of leasePeriods" [value]="type">{{type}}</option>-->
-        <!--</select>-->
-
-        <!--<div [hidden]="leasingForm.get('leasePeriodInMonths').valid || leasingForm.get('leasePeriodInMonths').untouched"-->
-             <!--class="alert alert-danger">-->
-          <!--Lease period is required.-->
-        <!--</div>-->
-
-      <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="form-row">-->
-      <!--<div class="form-group col-md-4 col-sm-6">-->
-        <!--<label for="paymentDay">{{leasingFormLabels.PAYMENT_DAY}}</label>-->
-        <!--<select class="form-control" id="paymentDay" name="paymentDateField" formControlName="paymentDate"-->
-                <!--required>-->
-          <!--<option *ngFor="let currentDay of availableDays" [value]="currentDay">{{currentDay}}</option>-->
-        <!--</select>-->
-        <!--<div [hidden]="leasingForm.get('paymentDate').valid || leasingForm.get('paymentDate').untouched"-->
-             <!--class="alert alert-danger">-->
-          <!--Payment date is required.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<button type="button" class="btn btn-group btn-outline-secondary" (click)="goBack()">Back</button>-->
-    <!--<button type="submit" class="btn btn-group btn-outline-success btn-outline-primary" (click)="setLeasingModel()">Submit-->
-      <!--form-->
-    <!--</button>-->
-  <!--</form>-->
-
-<!--</div>-->
-
-<section>
+<mat-card id="testcard">
   <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="leasingForm" (ngSubmit)="submitForm()">
-    <mat-form-field>
-      <mat-select placeholder="{{leasingFormLabels.CUSTOMER_TYPE}}" class="form-control" id="customerType" name="customerTypeField"
-                  formControlName="customerType" (change)="setMinAssetPrice()">
-        <mat-option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="leasingForm.get('customerType').valid || leasingForm.get('customerType').untouched">
-        Customer Type is required
+
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td><mat-form-field class="example-full-width">
+          <mat-select placeholder="{{leasingFormLabels.CUSTOMER_TYPE}}"
+                      class="form-control" id="customerType"
+                      name="customerTypeField" formControlName="customerType"
+                      required
+                      (change)="updateMinValues()">
+            <mat-option [value]="PRIVATE">Private</mat-option>
+            <mat-option [value]="BUSINESS">Business</mat-option>
+          </mat-select>
+          <mat-error *ngIf="leasingForm.get('customerType').invalid">
+            Customer Type is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        </td>
+        <td>
+        <mat-form-field class="example-full-width">
+          <mat-select placeholder="{{leasingFormLabels.ASSET_TYPE}}" class="form-control" id="assetType"
+                      required name="assetTypeField" value="Vehicle">
+            <mat-option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</mat-option>
+            <mat-error *ngIf="leasingForm.get('assetType').invalid">
+              Asset Type is <strong>required</strong>
+            </mat-error>
+          </mat-select>
+        </mat-form-field>
+        </td>
+       </tr>
+    </table>
+
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td>
+    <mat-form-field class="example-full-width">
+      <input class="form-control" type="text" placeholder="{{leasingFormLabels.CAR_BRAND}}"
+             matInput #input required
+             formControlName="carBrand" [matAutocomplete]="auto"
+             aria-label="carBrand"
+             (change)="selectBrandHandler()"
+             (keyup)="selectBrandHandler()"
+      >
+      <mat-error *ngIf="leasingForm.get('carBrand').invalid">
+        Car Brand is <strong>required</strong>
       </mat-error>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
+                    (click)="selectBrandHandler()">
+          <img src="./assets/images/CarLogos/{{option}}.png" id="smallCarLogo"/>
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
-    <mat-form-field>
-      <mat-select placeholder="{{leasingFormLabels.ASSET_TYPE}}" class="form-control" id="assetType"
-                  name="assetTypeField">
-        <mat-option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</mat-option>
-        <mat-error *ngIf="leasingForm.get('assetType').valid || leasingForm.get('assetType').untouched">
-          Customer type is required
-        </mat-error>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-select placeholder="{{leasingFormLabels.CAR_BRAND}}" class="form-control" id="carBrand"
-                  name="carBrandField" formControlName="carBrand" (change)="selectBrandHandler()" required>
-        <mat-option *ngFor="let selectedBrand of cars" [value]="selectedBrand.make">{{selectedBrand.make}}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="leasingForm.get('carBrand').valid || leasingForm.get('carBrand').untouched">
-        Car Brand is required
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-select placeholder="{{leasingFormLabels.CAR_MODEL}}" class="form-control" id="carModel" name="carModelField"
+      </td>
+
+      <td>
+    <mat-form-field  class="example-full-width">
+      <mat-select placeholder="{{leasingFormLabels.CAR_MODEL}}" class="form-control" id="carModel"
+                  name="carModelField" required
                   formControlName="carModel">
         <mat-option *ngFor="let selectedModel of model" [value]="selectedModel">{{selectedModel}}</mat-option>
       </mat-select>
-      <mat-error *ngIf="leasingForm.get('carModel').valid || leasingForm.get('carModel').untouched">
-        Car Model is required
+      <mat-error *ngIf="leasingForm.get('carModel').invalid">
+        Car Model is <strong>required</strong>
       </mat-error>
     </mat-form-field>
-    <mat-form-field>
+      </td>
+
+      <td>
+    <mat-form-field class="example-full-width">
       <input type="date" matInput placeholder="{{leasingFormLabels.MANUFACTURED_DATE}}" class="form-control"
-             id="manufacturedDate"
+             id="manufacturedDate" required
              formControlName="manufacturedDate"
              name="manufacturedDateForm">
-      <mat-error *ngIf="leasingForm.get('manufacturedDate').valid || leasingForm.get('manufacturedDate').untouched">
-        Manufactured date is required.
+      <mat-error *ngIf="leasingForm.get('manufacturedDate').invalid">
+        Manufactured Date is <strong>required</strong>
       </mat-error>
     </mat-form-field>
-    <!--<input matInput [matDatepicker]="picker" placeholder="Choose a date">-->
-    <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
-    <!--<mat-datepicker #picker></mat-datepicker>-->
-    <mat-form-field>
+      </td>
+
+      <td>
+    <mat-form-field class="example-full-width">
       <input type="number" matInput placeholder="{{leasingFormLabels.ENGINE_POWER}}" class="form-control"
-             id="enginePower"
+             id="enginePower" required
              formControlName="enginePower"
-             name="enginePowerForm" min="1" max="9999">
-      <mat-error *ngIf="leasingForm.get('enginePower').valid || leasingForm.get('enginePower').untouched">
-        Engine power must be between 1 and 9999
+             name="enginePowerForm" min="1" max="9999"
+             [errorStateMatcher]="errorMatcher"
+      >
+      <mat-error *ngIf="leasingForm.get('enginePower').hasError('min')
+      && !leasingForm.get('enginePower').hasError('required')
+      && !leasingForm.get('enginePower').hasError('max')">
+        Engine Power must be above <strong>{{validationAmounts.ENGINE_POWER_MIN}}</strong>
+      </mat-error>
+      <mat-error *ngIf="!leasingForm.get('enginePower').hasError('required')
+      && leasingForm.get('enginePower').hasError('max')">
+        Engine Power must be below <strong>{{validationAmounts.ENGINE_POWER_MAX}}</strong>
+      </mat-error>
+      <mat-error *ngIf="leasingForm.get('enginePower').hasError('required')">
+        Engine Power is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+      </td>
+
+    </tr></table>
+
+
     <mat-form-field>
       <input type="number" matInput placeholder="{{leasingFormLabels.ASSET_PRICE}}" class="form-control"
              id="assetPrice" required
@@ -255,66 +112,138 @@
              name="assetPriceField"
              min="5000" max="9999999"
              (keyup)="manageDependantFields()"
-             (change)="manageDependantFields()">
-      <mat-error *ngIf="leasingForm.get('assetPrice').valid || leasingForm.get('assetPrice').untouched">
-        Asset price must be between {{this.minAssetPrice}} and 9999999
+             (change)="manageDependantFields()"
+             [errorStateMatcher]="errorMatcher">
+
+      <mat-error *ngIf="leasingForm.get('assetPrice').hasError('min')
+      && !leasingForm.get('assetPrice').hasError('required')
+      && !leasingForm.get('assetPrice').hasError('max')">
+        Asset Price must be above <strong>{{this.minAssetPrice}}€</strong>
       </mat-error>
+      <mat-error *ngIf="!leasingForm.get('assetPrice').hasError('required')
+      && leasingForm.get('assetPrice').hasError('max')">
+        Asset Price must be below <strong>{{validationAmounts.MAX_ASSET_PRICE}}€</strong>
+      </mat-error>
+      <mat-error *ngIf="leasingForm.get('assetPrice').hasError('required')">
+        Asset Price is <strong>required</strong>
+      </mat-error>
+
     </mat-form-field>
+
     <mat-form-field>
       <input type="number" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_PERCENTAGE}}"
              class="form-control" id="advancePaymentPercentage"
              formControlName="advancePaymentPercentage"
              name="advancePaymentPercentageField"
              min="10" max="100"
+             required
              (keyup)="calcAdvancePaymentAmount()"
-             (change)="calcAdvancePaymentAmount()">
-      <mat-error *ngIf="leasingForm.get('advancePaymentPercentage').valid || leasingForm.get('advancePaymentPercentage').untouched">
+             (change)="calcAdvancePaymentAmount()"
+             [errorStateMatcher]="errorMatcher">
+
+      <mat-error *ngIf="leasingForm.get('advancePaymentPercentage').hasError('min')
+      && !leasingForm.get('advancePaymentPercentage').hasError('required')
+      && !leasingForm.get('advancePaymentPercentage').hasError('max')">
+        Advance payment percentage must be above
+        <strong>{{validationAmounts.ADVANCE_PAYMENT_PERCENTAGE_MIN}}%</strong>
+      </mat-error>
+      <mat-error *ngIf="!leasingForm.get('advancePaymentPercentage').hasError('required')
+      && leasingForm.get('advancePaymentPercentage').hasError('max')">
+        Advance payment percentage must be below
+        <strong>{{validationAmounts.ADVANCE_PAYMENT_PERCENTAGE_MAX}}%</strong>
+      </mat-error>
+      <mat-error *ngIf="leasingForm.get('advancePaymentPercentage').hasError('required')">
+        Advance payment percentage is <strong>required</strong>
+      </mat-error>
+
+      <mat-error
+        *ngIf="leasingForm.get('advancePaymentPercentage').valid || leasingForm.get('advancePaymentPercentage').untouched">
         Advance payment percentage must be between 10% and 100%
       </mat-error>
     </mat-form-field>
+
     <mat-form-field>
       <input type="text" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}" class="form-control"
              id="advancePaymentAmount" name="advancePaymentAmountField"
-             formControlName="advancePaymentAmount" disabled>
+             formControlName="advancePaymentAmount"
+             min="500" max="9999999"
+             required
+             (keyup)="calcAdvancePaymentPercentage()"
+             (change)="calcAdvancePaymentPercentage()"
+             [errorStateMatcher]="errorMatcher">
+
+      <mat-error *ngIf="leasingForm.get('advancePaymentAmount').hasError('min')
+      && !leasingForm.get('advancePaymentAmount').hasError('required')
+      && !leasingForm.get('advancePaymentAmount').hasError('max')">
+        Advance payment amount must be above
+        <strong>{{this.minAdvancePaymentAmount.toFixed(2)}}€</strong>
+      </mat-error>
+      <mat-error *ngIf="!leasingForm.get('advancePaymentAmount').hasError('required')
+      && leasingForm.get('advancePaymentAmount').hasError('max')">
+        Advance payment amount must be below
+        <strong>{{this.maxAdvancePaymentAmount.toFixed(2)}}€</strong>
+      </mat-error>
+      <mat-error *ngIf="leasingForm.get('advancePaymentAmount').hasError('required')">
+        Advance payment amount is <strong>required</strong>
+      </mat-error>
+
     </mat-form-field>
+
     <mat-form-field>
       <input type="text" matInput placeholder="{{leasingFormLabels.CONTRACT_FEE}}" class="form-control"
              id="contractFee" name="contractFeeField"
              formControlName="contractFee" disabled>
     </mat-form-field>
+
     <mat-form-field>
       <input type="number" matInput placeholder="{{leasingFormLabels.MARGIN}}"
              class="form-control" id="margin" required
-             formControlName="margin" name="margin" step="0.1" min="3.2" max="100">
-      <mat-error *ngIf="leasingForm.get('margin').valid || leasingForm.get('margin').untouched">
-        Margin must be between 3.2% and 100 %
+             formControlName="margin" name="margin" step="0.1" min="3.2" max="100"
+             [errorStateMatcher]="errorMatcher">
+
+      <mat-error *ngIf="leasingForm.get('margin').hasError('min')
+      && !leasingForm.get('margin').hasError('required')
+      && !leasingForm.get('margin').hasError('max')">
+        Margin must be above
+        <strong>{{validationAmounts.MARGIN_MIN}}%</strong>
       </mat-error>
+      <mat-error *ngIf="!leasingForm.get('margin').hasError('required')
+      && leasingForm.get('margin').hasError('max')">
+        Margin payment amount must be below
+        <strong>{{validationAmounts.MARGIN_MAX}}%</strong>
+      </mat-error>
+      <mat-error *ngIf="leasingForm.get('margin').hasError('required')">
+        Margin payment amount is <strong>required</strong>
+      </mat-error>
+
     </mat-form-field>
+
     <mat-form-field>
       <mat-select placeholder="{{leasingFormLabels.LEASING_PERIOD}}" class="form-control" id="leasePeriodInMonths"
                   required name="leasePeriodInMonthsField"
                   formControlName="leasePeriodInMonths">
         <mat-option *ngFor="let type of leasePeriods" [value]="type">{{type}}</mat-option>
       </mat-select>
-      <mat-error *ngIf="leasingForm.get('leasePeriodInMonths').valid || leasingForm.get('leasePeriodInMonths').untouched"
-                 class="alert alert-danger">
-        Lease period is required.
+      <mat-error *ngIf="leasingForm.get('leasePeriodInMonths').invalid">
+        Lease Period is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+
     <mat-form-field>
       <mat-select placeholder="{{leasingFormLabels.PAYMENT_DAY}}" class="form-control" id="paymentDay"
                   name="paymentDateField" formControlName="paymentDate"
                   required>
         <mat-option *ngFor="let currentDay of availableDays" [value]="currentDay">{{currentDay}}</mat-option>
       </mat-select>
-      <mat-error *ngIf="leasingForm.get('paymentDate').valid || leasingForm.get('paymentDate').untouched"
-                 class="alert alert-danger">
-        Payment date is required.
+      <mat-error *ngIf="leasingForm.get('paymentDate').invalid">
+        Payment Date is <strong>required</strong>
       </mat-error>
     </mat-form-field>
-    <button type="button" (click)="goBack()">Back</button>
-    <button type="submit" class="btn btn-group btn-outline-success btn-outline-primary" (click)="setLeasingModel()">Submit
+
+    <button type="button" class="btn btn-group btn-outline-secondary" (click)="goBack()">Back</button>
+    <button type="submit" class="btn btn-group btn-outline-primary" (click)="setLeasingModel()">
+      Submit
       form
     </button>
   </form>
-</section>
+</mat-card>

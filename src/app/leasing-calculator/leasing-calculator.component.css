@@ -1,30 +1,53 @@
-/*.mycolor {*/
-  /*color: red;*/
-/*}*/
-
-/*.mat-button {*/
-  /*color: red;*/
-  /*background-color: #512b2b;*/
-/*}*/
-
-#grid {
-  margin: 1em;
-  margin-left: 2.5em;
-  margin-right: 2.5em;
+.btn {
+  background: #020027;
+  background-image: -webkit-linear-gradient(top, #020027, #020079);
+  background-image: -moz-linear-gradient(top, #020027, #020079);
+  background-image: -ms-linear-gradient(top, #020027, #020079);
+  background-image: -o-linear-gradient(top, #020027, #020079);
+  background-image: linear-gradient(to bottom, #020027, #020079);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 4px 4px 10px #020079;
+  -moz-box-shadow: 4px 4px 10px #020079;
+  box-shadow: 4px 4px 10px #020079;
+  font-family: Arial, serif;
+  color: #d5d5d5;
+  font-size: 15px;
+  padding: 5px 10px 5px 10px;
+  border: 1px solid #020027;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+  text-decoration: none;
+  margin-right: 5px;
 }
 
-.inline-form {
-  align-items: center;
+.btn:hover {
+  background: #020079;
+  background-image: -webkit-linear-gradient(top, #020079, #020027);
+  background-image: -moz-linear-gradient(top, #020079, #020027);
+  background-image: -ms-linear-gradient(top, #020079, #020027);
+  background-image: -o-linear-gradient(top, #020079, #020027);
+  background-image: linear-gradient(to bottom, #020079, #020027);
+  text-decoration: none;
 }
 
-#repaymentSchedule {
-  /*overflow: scroll;*/
-  margin: 5px;
-  width: 100%;
-  height: 100%;
-}
-.container {
-  overflow: scroll;
-  width: 100%;
-  height: 100%;
+.btn:active:focus {
+  color: #d5d5d5;
+  background: #020079;
+  background-image: -webkit-linear-gradient(top, #020079, #020027);
+  background-image: -moz-linear-gradient(top, #020079, #020027);
+  background-image: -ms-linear-gradient(top, #020079, #020027);
+  background-image: -o-linear-gradient(top, #020079, #020027);
+  background-image: linear-gradient(to bottom, #020079, #020027);
+  text-decoration: none;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 4px 4px 10px #020079;
+  -moz-box-shadow: 4px 4px 10px #020079;
+  box-shadow: 4px 4px 10px #020079;
+  border: 1px solid #020027;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
 }

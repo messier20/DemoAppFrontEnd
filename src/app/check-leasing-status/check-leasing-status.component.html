@@ -33,5 +33,11 @@
     <button type="submit" class="btn btn-success" (click)="setCheckingInfo()">Check status
     </button>
 
+    <div class="form-row" >
+      <div *ngIf="noLeasingFound" id="noLeasingFoundError" class="alert alert-danger">
+        No leasing with this ID found.
+      </div>
+    </div>
+
   </form>
 </div>

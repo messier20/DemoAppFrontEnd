@@ -104,3 +104,26 @@
   border-right-width: 3px;
   border-bottom-width: 3px;
 }
+
+#smallCarLogo {
+  width: 39px;
+  height: 26px;
+}
+
+#testcard{
+
+  /*background: #d5d5d5;*/
+  /*background-image: -webkit-linear-gradient(top, #d5d5d5, #aaaaaa);*/
+  /*background-image: -moz-linear-gradient(top, #d5d5d5, #aaaaaa);*/
+  /*background-image: -ms-linear-gradient(top, #d5d5d5, #aaaaaa);*/
+  /*background-image: -o-linear-gradient(top, #d5d5d5, #aaaaaa);*/
+  /*background-image: linear-gradient(to bottom, #d5d5d5, #aaaaaa);  width: auto;*/
+  position: center;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+
+.example-full-width {
+  width: 90%;
+}

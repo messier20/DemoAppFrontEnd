@@ -1,10 +1,10 @@
 import {Validators} from '@angular/forms';
-import {PaymentSize} from '../constants/PaymentSize';
+import {ValidationAmounts} from '../constants/ValidationAmounts';
 
 export class LoanUtils {
   static calculateContractFee(assetPrice: number) {
-    return assetPrice * PaymentSize.CONTRACT_FEE_SIZE > PaymentSize.MIN_CONTRACT_FEE ?
-      (assetPrice * PaymentSize.CONTRACT_FEE_SIZE).toFixed(2) : (PaymentSize.MIN_CONTRACT_FEE).toFixed(2);
+    return assetPrice * ValidationAmounts.CONTRACT_FEE_SIZE > ValidationAmounts.MIN_CONTRACT_FEE ?
+      (assetPrice * ValidationAmounts.CONTRACT_FEE_SIZE).toFixed(2) : (ValidationAmounts.MIN_CONTRACT_FEE).toFixed(2);
   }
 
   static calculateAdvancePaymentAmount(assetPrice: number, advancePaymentPercentage: number) {
@@ -16,7 +16,7 @@ export class LoanUtils {
   }
 
   static calculateAdvancePaymentAmountValidators(assetPrice: number) {
-    return [Validators.required, Validators.min(assetPrice * 0.1), Validators.max(assetPrice)];
+    return [Validators.required, Validators.min(Number.parseFloat((assetPrice * 0.1).toFixed(2))), Validators.max(assetPrice)];
   }
 
 }

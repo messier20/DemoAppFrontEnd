@@ -17,7 +17,7 @@
 
     <div mat-dialog-actions>
       <div class="float-xl-right">
-        <button mat-button mat-dialog-close class="btn btn-default" (click)="goBack()" style="margin-right: 10px">Go Back</button>
+        <button mat-button mat-dialog-close class="btn btn-default" style="margin-right: 10px">Cancel</button>
         <button mat-button cdkFocusInitial
                 class="btn btn-primary"
                 (click)="sendFormToBackend()"
@@ -28,11 +28,12 @@
     </div>
   </div>
 </div>
+
 <div *ngIf="showingUserId">
   <div mat-dialog-content>
     Your application has been accepted and is being processed right now. You should receive decision within 3 days. <br />
     <br />
-    You can always check your application status with application ID= {{receivedUserId}}
+    You can always check your application status with application ID: {{receivedUserId}}
   </div>
 
   <div mat-dialog-actions>

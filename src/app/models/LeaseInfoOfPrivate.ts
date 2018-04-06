@@ -13,8 +13,8 @@ export class LeaseInfoOfPrivate {
 
   constructor(leaseInfoOfPrivate?) {
     if(leaseInfoOfPrivate) {
-      this.leasingModel = leaseInfoOfPrivate.customerLeasing;
-      this.privateCustomerInfo = leaseInfoOfPrivate.privateCustomer;
+      this.leasingModel = leaseInfoOfPrivate.leasing;
+      this.privateCustomerInfo = leaseInfoOfPrivate.customer;
       this.status = leaseInfoOfPrivate.status;
       this.id = leaseInfoOfPrivate.idHex;
       this.date = leaseInfoOfPrivate.id.date;
