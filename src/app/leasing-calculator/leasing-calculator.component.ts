@@ -33,6 +33,8 @@ export class LeasingCalculatorComponent implements OnInit {
   minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
   maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
   repaymentSchedule: Repayment[];
+  PRIVATE = 'PRIVATE';
+  BUSINESS = 'BUSINESS';
 
   constructor(private router: Router,
               private dataService: DataStorageService,
@@ -57,7 +59,7 @@ export class LeasingCalculatorComponent implements OnInit {
   }
 
   setMinAdvancePaymentAmount() {
-    if (this.leasingCalculatorForm.get('customerType').value === 'Business') {
+    if (this.leasingCalculatorForm.get('customerType').value === 'BUSINESS') {
       this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_BUSINESS;
       this.leasingCalculatorForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountBusinessValidator);
     } else {
