@@ -1,6 +1,7 @@
+<head><link href="https://fonts.googleapis.com/css?family=Crimson+Text|Roboto" rel="stylesheet"></head>
 <div id="top-space"></div>
 <mat-card id="testcard">
-  <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="leasingForm" (ngSubmit)="submitForm()">
+  <form fxLayout="column" fxLayoutAlign="center center"  [formGroup]="leasingForm" (ngSubmit)="submitForm()">
     <h5 style="align-content: left">Leasing Application</h5>
     <table class="example-full-width" cellspacing="0">
       <tr>
@@ -265,12 +266,11 @@
     <table><tr>
       <td>
     <button type="button" class="btn btn-group btn-outline-secondary" (click)="goBack()">Back</button>
-      </td>
-      <td>
+      </td><td>
     <button type="submit" class="btn btn-group btn-outline-primary" (click)="setLeasingModel()">
       Submit form
     </button>
-      </td>
+    </td>
     </tr>
     </table>
   </form>
