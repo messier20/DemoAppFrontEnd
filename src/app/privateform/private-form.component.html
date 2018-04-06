@@ -67,7 +67,9 @@
       </mat-error>
     </mat-form-field>
       </td>
-
+    </tr>
+    </table>
+    <table class="example-full-width" cellspacing="0"><tr>
       <td>
     <mat-form-field class="example-full-width">
       <input type="date" matInput placeholder="{{leasingFormLabels.MANUFACTURED_DATE}}" class="form-control"
@@ -166,10 +168,12 @@
       </mat-error>
     </mat-form-field>
       </td>
+    </tr></table>
 
+    <table class="example-full-width" cellspacing="0"><tr>
       <td>
     <mat-form-field class="example-full-width">
-      <input type="text" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}" class="form-control"
+      <input type="text" matInput placeholder={{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}" class="form-control"
              id="advancePaymentAmount" name="advancePaymentAmountField"
              formControlName="advancePaymentAmount"
              min="500" max="9999999"
