@@ -2,9 +2,12 @@
 
 @include mat-core();
 
-$custom-theme-primary: mat-palette($mat-light-blue);
-$custom-theme-accent: mat-palette($mat-orange, A200, A100, A400);
-$custom-theme-warn: mat-palette($mat-yellow);
+//$custom-theme-primary: mat-palette($mat-indigo);
+$custom-theme-primary: mat-palette($mat-indigo);
+
+$custom-theme-accent: mat-palette($mat-amber);
+//$custom-theme-accent: mat-palette(#FFCA28, A200, A100, A400);
+$custom-theme-warn: mat-palette($mat-pink);
 
 $custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
 
