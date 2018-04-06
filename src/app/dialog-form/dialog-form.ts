@@ -59,7 +59,7 @@ export class DialogFormComponent {
   }
 
   private isCustomerPrivate() {
-    this.privateCustomer = this.leasingModel.customerType === 'Private';
+    this.privateCustomer = this.leasingModel.customerType === 'PRIVATE';
   }
 
 

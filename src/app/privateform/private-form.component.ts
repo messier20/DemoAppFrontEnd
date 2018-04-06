@@ -32,6 +32,8 @@ export class PrivateFormComponent implements OnInit {
   minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
   minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
   maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
+  PRIVATE = 'PRIVATE';
+  BUSINESS = 'BUSINESS';
 
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
@@ -56,6 +58,8 @@ export class PrivateFormComponent implements OnInit {
   }
 
   updateMinValues() {
+    console.log("customer type", this.leasingForm.get('customerType').value);
+
     this.setMinAssetPrice();
     if (!this.leasingForm.get('assetPrice').valid) {
       this.setMinAdvancePaymentAmount();
@@ -63,7 +67,7 @@ export class PrivateFormComponent implements OnInit {
   }
 
   setMinAdvancePaymentAmount() {
-    if (this.leasingForm.get('customerType').value === 'Business') {
+    if (this.leasingForm.get('customerType').value === 'BUSINESS') {
       this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_BUSINESS;
       this.leasingForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountBusinessValidator);
     } else {
@@ -75,7 +79,7 @@ export class PrivateFormComponent implements OnInit {
   }
 
   setMinAssetPrice() {
-    if (this.leasingForm.get('customerType').value === 'Business') {
+    if (this.leasingForm.get('customerType').value === 'BUSINESS') {
       this.minAssetPrice = PaymentSize.MIN_ASSET_PRICE_BUSINESS;
       this.leasingForm.get('assetPrice').setValidators(CustomValidators.assetPriceBusinessValidator);
     } else {
@@ -171,6 +175,7 @@ export class PrivateFormComponent implements OnInit {
     }
     this.leasingModel = this.leasingForm.value;
     this.dataService.setLeasingModel(this.leasingModel);
+    console.log("customer type leasing", this.leasingModel.customerType);
   }
 
   goBack() {
@@ -180,6 +185,7 @@ export class PrivateFormComponent implements OnInit {
   }
 
   fillFieldsWithCalculatorInput() {
+    console.log("customer type", this.leasingForm.get('customerType').value);
     this.leasingCalculatorInput = this.dataService.getLeasingCalculator();
     this.leasingForm.get('customerType').setValue(this.leasingCalculatorInput.customerType);
     this.leasingForm.get('assetPrice').setValue(this.leasingCalculatorInput.assetPrice);
@@ -197,6 +203,8 @@ export class PrivateFormComponent implements OnInit {
       this.leasingForm.get('enginePower').setValue(this.dataService.getLeasingModel().enginePower);
       this.selectBrandHandler();
     }
+
+
   }
 
 }

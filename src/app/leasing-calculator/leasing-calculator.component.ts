@@ -33,6 +33,10 @@ export class LeasingCalculatorComponent implements OnInit {
   minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
   maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
   repaymentSchedule: Repayment[];
+  PRIVATE = 'PRIVATE';
+  BUSINESS = 'BUSINESS';
+  visible = false;
+
 
   constructor(private router: Router,
               private dataService: DataStorageService,
@@ -47,6 +51,8 @@ export class LeasingCalculatorComponent implements OnInit {
     if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
       this.fillFieldsWithLeasingFormInput();
     }
+
+    (<HTMLInputElement>document.getElementById('matcard2')).hidden = true;
   }
 
   updateMinValues() {
@@ -57,7 +63,7 @@ export class LeasingCalculatorComponent implements OnInit {
   }
 
   setMinAdvancePaymentAmount() {
-    if (this.leasingCalculatorForm.get('customerType').value === 'Business') {
+    if (this.leasingCalculatorForm.get('customerType').value === 'BUSINESS') {
       this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_BUSINESS;
       this.leasingCalculatorForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountBusinessValidator);
     } else {
@@ -183,4 +189,12 @@ export class LeasingCalculatorComponent implements OnInit {
 
   tile1 = {text: 'Leasing Calculator', cols: 2, rows: 5.5, color: 'linear-gradient(#ADD8E6, white)'};
   tile2 = {text: 'Calculate', cols: 2, rows: 5.5, color: 'linear-gradient(#b4c3c7, white)'};
+
+  isVisible(){
+    console.log("false", this.visible);
+    this.visible = true;
+    console.log("true", this.visible);
+    // (<HTMLInputElement>document.getElementById('matcard2')).disabled = true;
+    (<HTMLInputElement>document.getElementById('matcard2')).hidden = false;
+  }
 }
