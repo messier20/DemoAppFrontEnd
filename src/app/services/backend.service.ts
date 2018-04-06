@@ -5,6 +5,7 @@ import {LeasingModel} from '../models/LeasingModel';
 import {CheckStatusInfo} from '../models/CheckStatusInfo';
 import {LeasingCalculator} from '../models/LeasingCalculator';
 import {OfficerLoginModel} from '../models/OfficerLoginModel';
+import {AuthGuardService} from './auth-guard.service';
 
 @Injectable()
 export class BackendService {
@@ -30,18 +31,9 @@ export class BackendService {
       return this.sendBusinessForm();
 
     } else {
-      // console.log('Error in backendService, could not determine customerType of form');
+      console.log('Error in backendService, could not determine customerType of form');
     }
   }
-
-  // sendBusinessForm() {
-  //   const postBody = {
-  //     customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
-  //     businessCustomer: this.dataStorage.getBusinessInfo()
-  //   };
-  //
-  //   return this.http.post(this.httpLink + this.businessCustomerLink, postBody).toPromise();
-  // }
 
   sendBusinessForm() {
     const postBody = {
@@ -52,22 +44,11 @@ export class BackendService {
     return this.http.post(this.httpLink + this.businessCustomerLink, postBody).toPromise();
   }
 
-  // sendPrivateForm() {
-  //   const postBody = {
-  //     customerLeasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
-  //     privateCustomer: this.dataStorage.getPrivateInfo()
-  //   };
-  //   // console.log(postBody);
-  //
-  //   return this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
-  // }
-
   sendPrivateForm() {
     const postBody = {
       leasing: this.dataStorage.getLeasingModel(),
       customer: this.dataStorage.getPrivateInfo()
     };
-    // console.log(postBody);
 
     return this.http.post(this.httpLink + this.privateCustomerLink, postBody).toPromise();
   }
@@ -96,37 +77,32 @@ export class BackendService {
   //     .toPromise();
   // }
 
-  getAllPrivateUserApplications() {
-    return this.http
-      .get(this.httpLink + this.officerLink + '/user/private')
-      .toPromise();
-  }
-
-  getAllBusinessUserApplications() {
-    console.log('Business');
-
-    return this.http
-      .get(this.httpLink + '/user/business')
-      .toPromise();
-  }
+  // getAllPrivateUserApplications() {
+  //   return this.http
+  //     .get(this.httpLink + this.officerLink + '/user/private')
+  //     .toPromise();
+  // }
+  //
+  // getAllBusinessUserApplications() {
+  //   return this.http
+  //     .get(this.httpLink + '/user/business')
+  //     .toPromise();
+  // }
 
   updatePrivateCustomerStatus(id, postBody) {
-
     return this.http
       .put(this.httpLink + this.officerLink + '/user/private/update/' + id, postBody ).toPromise();
     // .toPromise()
   }
 
   updateBusinessCustomerStatus(id, postBody) {
-
     return this.http
       .put(this.httpLink + this.officerLink + '/user/business/update/' + id, postBody ).toPromise();
-    // .toPromise()
   }
 
   getAllCustomer() {
     return this.http
-      .get(this.httpLink + this.officerLink + 'users')
+      .post(this.httpLink + this.officerLink + 'users', this.dataStorage.officerLoginModel)
       .toPromise();
   }
 
@@ -136,13 +112,6 @@ export class BackendService {
 
     return this.http.put(this.httpLink + 'login', loginModel).toPromise();
 
-    // if (loginModel.email === 'officer@blueleasing.com' && loginModel.password === '123') {
-    //   console.log('Login successful');
-    //   return true;
-    // } else {
-    //   console.log('Login denied');
-    //   return false;
-    // }
   }
 
 

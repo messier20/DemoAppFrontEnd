@@ -5,6 +5,7 @@ import {CustomValidators} from '../constants/CustomValidators';
 import {OfficerLoginModel} from '../models/OfficerLoginModel';
 import {AuthService} from '../services/auth.service';
 import {AuthGuardService} from '../services/auth-guard.service';
+import {DataStorageService} from '../services/data-storage-service.service';
 
 @Component({
   selector: 'app-officer-login',
@@ -19,8 +20,7 @@ export class OfficerLoginComponent implements OnInit {
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
-              private authService: AuthService,
-              private authGuardService: AuthGuardService) {
+              private dataStorage: DataStorageService) {
 
     this.createValidForm();
   }
@@ -42,7 +42,7 @@ export class OfficerLoginComponent implements OnInit {
   }
 
   setLoginInfo() {
-    this.authGuardService.officerLoginModel = this.officerLoginForm.value;
+    this.dataStorage.officerLoginModel = this.officerLoginForm.value;
   }
 
 }

@@ -2,14 +2,14 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {AuthService} from './auth.service';
 import {OfficerLoginModel} from '../models/OfficerLoginModel';
+import {DataStorageService} from './data-storage-service.service';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
-  officerLoginModel: OfficerLoginModel;
-
   constructor(private router: Router,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private dataStorage: DataStorageService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -23,7 +23,7 @@ export class AuthGuardService implements CanActivate {
       return true;
     }
 
-    if (this.officerLoginModel === undefined || this.officerLoginModel === null) {
+    if (this.dataStorage.officerLoginModel === undefined || this.dataStorage.officerLoginModel === null) {
       this.navigateToLogin();
       return false;
 
@@ -38,7 +38,7 @@ export class AuthGuardService implements CanActivate {
   }
 
   callBackendForLogin(url: string) {
-    this.authService.login(this.officerLoginModel).then(loginStatus => {
+    this.authService.login(this.dataStorage.officerLoginModel).then(loginStatus => {
       const loginReturn: any = loginStatus;
 
       if (loginReturn.hasLoggedIn) {

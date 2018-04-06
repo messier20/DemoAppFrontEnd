@@ -4,15 +4,17 @@ import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
 import {LeasingCalculator} from '../models/LeasingCalculator';
 import {Repayment} from '../models/Repayment';
+import {OfficerLoginModel} from '../models/OfficerLoginModel';
 
 @Injectable()
 export class DataStorageService {
 
-  private leasingModel: LeasingModel;
+  private _leasingModel: LeasingModel;
   private businessCustomerInfo: BusinessCustomerInfo;
   private privateCustomerInfo: PrivateCustomerInfo;
   private leasingCalculator: LeasingCalculator;
   private repaymentPlan: Repayment[];
+  private _officerLoginModel: OfficerLoginModel;
 
 
   // static refactorCustomerType(form) {
@@ -38,17 +40,17 @@ export class DataStorageService {
   // }
 
   deleteAllLeasingData() {
-    this.leasingModel = undefined;
+    this._leasingModel = undefined;
     this.businessCustomerInfo = undefined;
     this.privateCustomerInfo = undefined;
   }
 
   setLeasingModel(givenLeasingModel) {
-    this.leasingModel = givenLeasingModel;
+    this._leasingModel = givenLeasingModel;
   }
 
   getLeasingModel() {
-    return this.leasingModel;
+    return this._leasingModel;
   }
 
   setBusinessInfo(givenBusinessInfo) {
@@ -81,5 +83,13 @@ export class DataStorageService {
 
   getRepaymentPlan() {
     return this.repaymentPlan;
+  }
+
+  get officerLoginModel(): OfficerLoginModel {
+    return this._officerLoginModel;
+  }
+
+  set officerLoginModel(value: OfficerLoginModel) {
+    this._officerLoginModel = value;
   }
 }

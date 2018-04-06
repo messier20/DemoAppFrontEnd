@@ -1,17 +1,16 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {LeasingModel} from "../../models/LeasingModel";
+import {LeasingModel} from '../../models/LeasingModel';
 import {BusinessCustomerInfo} from '../../models/BusinessCustomerInfo';
 import {PrivateCustomerInfo} from '../../models/PrivateCustomerInfo';
-import {DataStorageService} from "../../services/data-storage-service.service";
-import {BackendService} from "../../services/backend.service";
-import {CustomerInfoLabels} from "../../constants/CustomerInfoLabels";
-import {LeasingFormLabels} from "../../constants/LeasingFormLabels";
-import {DialogFormComponent} from "../../dialog-form/dialog-form";
-import {MatDialog} from "@angular/material";
-import {LeaseInfoOfPrivate} from "../../models/LeaseInfoOfPrivate";
-import {LeaseInfoOfBusiness} from "../../models/LeaseInfoOfBusiness";
-import {DialogForm2Component} from "../../dialog-form2/dialog-form2.component";
-
+import {DataStorageService} from '../../services/data-storage-service.service';
+import {BackendService} from '../../services/backend.service';
+import {CustomerInfoLabels} from '../../constants/CustomerInfoLabels';
+import {LeasingFormLabels} from '../../constants/LeasingFormLabels';
+import {DialogFormComponent} from '../../dialog-form/dialog-form';
+import {MatDialog} from '@angular/material';
+import {LeaseInfoOfPrivate} from '../../models/LeaseInfoOfPrivate';
+import {LeaseInfoOfBusiness} from '../../models/LeaseInfoOfBusiness';
+import {DialogForm2Component} from '../../dialog-form2/dialog-form2.component';
 
 
 @Component({
@@ -35,24 +34,22 @@ export class ApplicationInfoComponent implements OnInit {
   @Input() stepIndex;
 
 
-
-
-
-  @Output() updates: EventEmitter <Object> =
+  @Output() updates: EventEmitter<Object> =
     new EventEmitter();
 
-  choice = "no";
+  choice = 'no';
   visible: boolean;
   public isCollapsed = true;
 
 
   constructor(private backendService: BackendService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private dataStorage: DataStorageService) {
   }
 
   ngOnInit() {
 
-    if(this.lease.status==="PENDING"){
+    if (this.lease.status === 'PENDING') {
       this.visible = true;
     }
     else this.visible = false;
@@ -73,10 +70,6 @@ export class ApplicationInfoComponent implements OnInit {
   }
 
 
-
-
-
-
   isPrivate() {
     if (this.lease.leasingModel.customerType === 'PRIVATE') {
       this.sendToBackendPrivate();
@@ -86,27 +79,27 @@ export class ApplicationInfoComponent implements OnInit {
     }
   }
 
-    openModal(status){
+  openModal(status) {
 
-      console.log("lease before submit", this.lease);
+    console.log('lease before submit', this.lease);
     this.dialog.open(DialogForm2Component, {
       data: {
         status: status
       }
-  }).afterClosed().subscribe(status => {
-    if(status){
-      this.lease.status = "APPROVED";
-    }
-    else if (status===false) {
-      this.lease.status = "DENIED";
-    }
+    }).afterClosed().subscribe(status => {
+      if (status) {
+        this.lease.status = 'APPROVED';
+      }
+      else if (status === false) {
+        this.lease.status = 'DENIED';
+      }
 
-    if(status || status===false) {
+      if (status || status === false) {
 
-      console.log("lease after submit", this.lease);
+        console.log('lease after submit', this.lease);
 
-      (<HTMLInputElement>document.getElementById('approved')).disabled = true;
-      (<HTMLInputElement>document.getElementById('denied')).disabled = true;
+        (<HTMLInputElement>document.getElementById('approved')).disabled = true;
+        (<HTMLInputElement>document.getElementById('denied')).disabled = true;
 
         this.isPrivate();
       }
@@ -122,7 +115,8 @@ export class ApplicationInfoComponent implements OnInit {
       leasing: this.lease.leasingModel,
       customer: this.lease.privateCustomerInfo,
       status: this.lease.status,
-      idHex: this.lease.id
+      idHex: this.lease.id,
+      leasingModel: this.dataStorage.officerLoginModel
     };
 
     this.backendService.updatePrivateCustomerStatus(this.lease.id, postBody)
@@ -136,10 +130,12 @@ export class ApplicationInfoComponent implements OnInit {
       leasing: this.lease.leasingModel,
       customer: this.lease.businessCustomerInfo,
       status: this.lease.status,
-      idHex: this.lease.id
+      idHex: this.lease.id,
+      leasingModel: this.dataStorage.officerLoginModel
     };
 
-
+    console.log('to backend');
+    console.log(postBody);
 
 
     this.backendService.updateBusinessCustomerStatus(this.lease.id, postBody)
