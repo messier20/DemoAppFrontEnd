@@ -1,82 +1,3 @@
-<!--<div class="container">-->
-<!--<h1>{{formLabels[0]}}</h1>-->
-
-<!--<form (ngSubmit)="submitForm()" [formGroup]="infoForm">-->
-
-<!--<div class="form-row">-->
-<!--<div class="form-group col-md-4 col-sm-6">-->
-<!--<label for="name">{{formLabels[1]}}</label>-->
-<!--<input type="text" class="form-control" id="name" required-->
-<!--formControlName="name" name="name">-->
-<!--<div [hidden]="infoForm.get('name').valid || infoForm.get('name').untouched"-->
-<!--class="alert alert-danger">-->
-<!--{{formLabels[1]}} field is required-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-group col-md-4 col-sm-6" id="hiddenName">-->
-<!--<label for="lastName">{{formLabels[2]}}</label>-->
-<!--<input type="text" class="form-control" id="lastName" required-->
-<!--formControlName="lastName" name="lastName">-->
-<!--<div [hidden]="infoForm.get('lastName').valid || infoForm.get('lastName').untouched"-->
-<!--class="alert alert-danger">-->
-<!--{{formLabels[2]}} field is required-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-
-<!--<div class="form-row">-->
-<!--<div class="form-group col-md-4 col-sm-6">-->
-<!--<label for="code">{{formLabels[3]}}</label>-->
-<!--<input type="text" class="form-control" id="code" required-->
-<!--formControlName="code" name="code" (keypress)="_keyPress($event)">-->
-<!--<div [hidden]="infoForm.get('code').valid || infoForm.get('code').untouched"-->
-<!--class="alert alert-danger">-->
-<!--{{formLabels[3]}} must be 11 digits long-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-group col-md-4 col-sm-6">-->
-<!--<label for="email">{{formLabels[4]}}</label>-->
-<!--<input type="text" class="form-control" id="email" required-->
-<!--formControlName="email" name="email"  placeholder="Ex: email@domain.com">-->
-<!--<div [hidden]="infoForm.get('email').valid || infoForm.get('email').untouched"-->
-<!--class="alert alert-danger">-->
-<!--Must be a valid {{formLabels[4]}} address-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="form-row">-->
-<!--<div class="form-group col-md-4 col-sm-6">-->
-<!--<label for="phoneNumber">{{formLabels[5]}}</label>-->
-<!--<div class="input-group mb-3">-->
-<!--<div class="input-group-prepend">-->
-<!--<span class="input-group-text" id="plusSign">+</span>-->
-<!--</div>-->
-<!--<input type="text" class="form-control" id="phoneNumber" required-->
-<!--formControlName="phoneNumber" name="phoneNumber" (keypress)="_keyPress($event)">-->
-<!--</div>-->
-<!--<div [hidden]="infoForm.get('phoneNumber').valid || infoForm.get('phoneNumber').untouched"-->
-<!--class="alert alert-danger">-->
-<!--{{formLabels[5]}} must be 10-15 digits long-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-group col-md-4 col-sm-6">-->
-<!--<label for="address">{{formLabels[6]}}</label>-->
-<!--<input type="text" class="form-control" id="address" required-->
-<!--formControlName="address" name="address">-->
-<!--<div [hidden]="infoForm.get('address').valid || infoForm.get('address').untouched"-->
-<!--class="alert alert-danger">-->
-<!--{{formLabels[6]}} field is required-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<button type="button" class="btn btn-group btn-outline-secondary" (click)="goBack()">Back</button>-->
-<!--<button type="submit" class="btn btn-success btn-outline-primary" (click)="setCustomerInfo()">Submit form-->
-<!--</button>-->
-
-<!--</form>-->
-<!--</div>-->
 <mat-card>
   <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="infoForm" (ngSubmit)="submitForm()">
     <h3>{{formLabels[0]}}</h3>
@@ -100,8 +21,12 @@
       <input type="text" matInput placeholder="{{formLabels[2]}}" class="form-control"
              id="lastName" required
              formControlName="lastName" name="lastName">
-      <mat-error *ngIf="infoForm.get('lastName').valid || infoForm.get('lastName').untouched">
-        {{formLabels[2]}} field is required
+      <mat-error *ngIf="infoForm.get('lastName').hasError('maxLength')
+      && !infoForm.get('lastName').hasError('required')">
+        {{formLabels[2]}} can be up to <strong>{{validationAmounts.NAME_LAST_LENGTH_MAX}}</strong> characters long
+      </mat-error>
+      <mat-error *ngIf="infoForm.get('lastName').hasError('required')">
+        {{formLabels[2]}} is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
@@ -110,8 +35,12 @@
              id="code" required
              formControlName="code" name="code">
       <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
-      <mat-error *ngIf="infoForm.get('code').valid || infoForm.get('code').untouched">
-        {{formLabels[3]}} field is required
+      <mat-error *ngIf="infoForm.get('code').hasError('maxLength')
+      && !infoForm.get('code').hasError('required')">
+        {{formLabels[3]}} must be <strong>{{validationAmounts.CODE_LENGTH}}</strong> characters long
+      </mat-error>
+      <mat-error *ngIf="infoForm.get('code').hasError('required')">
+        {{formLabels[3]}} is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 

@@ -97,7 +97,7 @@
                    id="enginePower" required
                    formControlName="enginePower"
                    name="enginePowerForm" min="1" max="9999"
-                   [errorStateMatcher]="errorMatcher"
+                   [errorStateMatcher]="leasingFormErrorMatcher"
             >
             <mat-error *ngIf="leasingForm.get('enginePower').hasError('min')
       && !leasingForm.get('enginePower').hasError('required')
@@ -129,7 +129,7 @@
                    min="5000" max="9999999"
                    (keyup)="manageDependantFields()"
                    (change)="manageDependantFields()"
-                   [errorStateMatcher]="errorMatcher">
+                   [errorStateMatcher]="leasingFormErrorMatcher">
 
             <mat-error *ngIf="leasingForm.get('assetPrice').hasError('min')
       && !leasingForm.get('assetPrice').hasError('required')
@@ -156,7 +156,7 @@
                    required
                    (keyup)="calcAdvancePaymentAmount()"
                    (change)="calcAdvancePaymentAmount()"
-                   [errorStateMatcher]="errorMatcher">
+                   [errorStateMatcher]="leasingFormErrorMatcher">
 
             <mat-error *ngIf="leasingForm.get('advancePaymentPercentage').hasError('min')
       && !leasingForm.get('advancePaymentPercentage').hasError('required')
@@ -184,14 +184,14 @@
     <table class="example-full-width" cellspacing="0"><tr>
       <td>
     <mat-form-field class="example-full-width">
-      <input type="text" matInput placeholder={{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}" class="form-control"
+      <input type="text" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}" class="form-control"
              id="advancePaymentAmount" name="advancePaymentAmountField"
              formControlName="advancePaymentAmount"
              min="500" max="9999999"
              required
              (keyup)="calcAdvancePaymentPercentage()"
              (change)="calcAdvancePaymentPercentage()"
-             [errorStateMatcher]="errorMatcher">
+             [errorStateMatcher]="leasingFormErrorMatcher">
 
             <mat-error *ngIf="leasingForm.get('advancePaymentAmount').hasError('min')
       && !leasingForm.get('advancePaymentAmount').hasError('required')
@@ -214,7 +214,7 @@
           <mat-form-field class="example-full-width">
             <input type="text" matInput placeholder="{{leasingFormLabels.CONTRACT_FEE}}" class="form-control"
                    id="contractFee" name="contractFeeField"
-                   formControlName="contractFee" disabled>
+                   formControlName="contractFee">
           </mat-form-field>
         </td>
 
@@ -227,7 +227,7 @@
             <input type="number" matInput placeholder="{{leasingFormLabels.MARGIN}}"
                    class="form-control" id="margin" required
                    formControlName="margin" name="margin" step="0.1" min="3.2" max="100"
-                   [errorStateMatcher]="errorMatcher">
+                   [errorStateMatcher]="leasingFormErrorMatcher">
 
             <mat-error *ngIf="leasingForm.get('margin').hasError('min')
       && !leasingForm.get('margin').hasError('required')
