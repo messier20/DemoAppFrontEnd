@@ -2,7 +2,7 @@
   <mat-card>
 
     <mat-card-header>
-      <mat-card-title>Leasing Calculator</mat-card-title>
+      <mat-card-title><h2 class="text-color">Leasing Calculator</h2></mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="leasingCalculatorForm" (ngSubmit)="submitForm()">
@@ -137,8 +137,8 @@
           class="alert alert-danger">
           Payment date is required.
         </div>
-        <button mat-button type="submit" color="primary" (click)="isVisible()">Calculate</button>
-        <button mat-button type="button" color="accent" (click)="setLeasingCalculator()">Apply Now</button>
+        <button mat-raised-button type="submit" color="primary" (click)="isVisible()">Calculate</button>
+        <button mat-raised-button type="button" color="accent" (click)="setLeasingCalculator()">Apply Now</button>
 
       </form>
     </mat-card-content>

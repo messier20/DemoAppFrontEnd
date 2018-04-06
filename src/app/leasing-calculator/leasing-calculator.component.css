@@ -139,10 +139,18 @@ form {
   align-content: center;
   justify-content: center;
 }
+mat-card-title{
+  position: relative;
+  left: 2.1em;
+}
+button {
+  margin: 0.5em;
+}
 
 mat-form-field {
-  margin: 0.1em 0.6em;
+  margin: 0.1em 0.4em;
   max-width: 15em;
+  width: 240px;
 }
 
 mat-card-content {
@@ -152,6 +160,9 @@ mat-card-content {
   align-content: center;
 }
 
+.text-color {
+  color:  #FFC400;
+}
 
 /*@media (min-width: 768px)*/
 /*<style>…</style>*/
