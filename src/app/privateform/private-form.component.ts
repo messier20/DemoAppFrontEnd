@@ -51,6 +51,9 @@ export class PrivateFormComponent implements OnInit {
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
     this.leasingForm.get('assetType').setValue('Vehicle');
+    if (this.dataService.getLeasingCalculator() != null) {
+      this.fillFieldsWithCalculatorInput();
+    }
 
   }
 
@@ -95,6 +98,7 @@ export class PrivateFormComponent implements OnInit {
     this.leasingForm.get('advancePaymentAmount').updateValueAndValidity();
     document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
   }
+
 
   setMinAssetPrice() {
     if (this.leasingForm.get('customerType').value === 'Business') {

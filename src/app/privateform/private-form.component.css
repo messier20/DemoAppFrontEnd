@@ -123,6 +123,7 @@
   margin-right: 20%;
 }
 
-mat-form-field {
-  width: 50%;
+
+.example-full-width {
+  width: 90%;
 }
