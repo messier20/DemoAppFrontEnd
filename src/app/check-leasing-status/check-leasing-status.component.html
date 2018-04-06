@@ -8,7 +8,8 @@
         <label for="customerType">{{leasingFormLabels.CUSTOMER_TYPE}}</label>
         <select class="form-control" id="customerType" required name="customerTypeField"
                 formControlName="customerType">
-          <option *ngFor="let type of availableCustomerTypes" [value]="type">{{type}}</option>
+          <option [value]="PRIVATE">Private</option>
+          <option [value]="BUSINESS">Business</option>
         </select>
 
         <div [hidden]="checkStatusForm.get('customerType').valid || checkStatusForm.get('customerType').untouched"

@@ -84,17 +84,17 @@ export class BackendService {
     return this.http.post(this.httpLink + this.repaymentScheduleLink, leasingCalculatorInput).toPromise();
   }
 
-  getAllPrivateUserApplicationsByStatus(status) {
-    return this.http
-      .get(this.httpLink + this.officerLink + '/user/private/status/' + status)
-      .toPromise();
-  }
-
-  getAllBusinessUserApplicationsByStatus(status) {
-    return this.http
-      .get(this.httpLink + this.officerLink + '/user/business/status/' + status)
-      .toPromise();
-  }
+  // getAllPrivateUserApplicationsByStatus(status) {
+  //   return this.http
+  //     .get(this.httpLink + this.officerLink + '/user/private/status/' + status)
+  //     .toPromise();
+  // }
+  //
+  // getAllBusinessUserApplicationsByStatus(status) {
+  //   return this.http
+  //     .get(this.httpLink + this.officerLink + '/user/business/status/' + status)
+  //     .toPromise();
+  // }
 
   getAllPrivateUserApplications() {
     return this.http
@@ -103,8 +103,10 @@ export class BackendService {
   }
 
   getAllBusinessUserApplications() {
+    console.log('Business');
+
     return this.http
-      .get(this.httpLink + this.officerLink + '/user/business')
+      .get(this.httpLink + '/user/business')
       .toPromise();
   }
 
@@ -124,7 +126,7 @@ export class BackendService {
 
   getAllCustomer() {
     return this.http
-      .get(this.httpLink + this.officerLink + '/users')
+      .get(this.httpLink + this.officerLink + 'users')
       .toPromise();
   }
 
