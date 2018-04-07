@@ -33,18 +33,18 @@ h1.example-app-name {
 }
 
 
-.background-color {
-  /*background-color: #FFFF00;*/
-  background-color: #3F51B5;
-  color: #ffffff;
-}
-a.mat-list-item {
-  color: #ffffff;
-}
+/*.background-color {*/
+  /*!*background-color: #FFFF00;*!*/
+  /*background-color: #3F51B5;*/
+  /*color: #ffffff;*/
+/*}*/
+/*a.mat-list-item {*/
+  /*color: #ffffff;*/
+/*}*/
 
-a.mat-list-item:hover, a.mat-list-item:focus {
-  background-color: #FFC400;
-}
+/*a.mat-list-item:hover, a.mat-list-item:focus {*/
+  /*background-color: #FFC400;*/
+/*}*/
 
 
 /*a.mat-list-item:visited{*/
