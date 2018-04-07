@@ -42,6 +42,7 @@ import {ApplicationInfoComponent} from './officer-view/application-info/applicat
 import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import {MediaMatcher} from "@angular/cdk/layout";
+import { MatThemingComponent } from './mat-theming/mat-theming.component';
 
 
 
@@ -59,7 +60,8 @@ import {MediaMatcher} from "@angular/cdk/layout";
     OfficerViewComponent,
     ApplicationInfoComponent,
     DialogForm2Component,
-    SideNavComponent
+    SideNavComponent,
+    MatThemingComponent
   ],
   imports: [
     BrowserModule,

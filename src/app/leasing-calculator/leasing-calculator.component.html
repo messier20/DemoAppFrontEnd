@@ -1,10 +1,12 @@
-<div class="card-container background my-style">
-  <mat-card class="my-style">
+
+
+<div class="card-container background ">
+  <mat-card  id="inputFormCard">
 
     <mat-card-header>
-      <mat-card-title class="my-style"><h2 class="text-color">Leasing Calculator</h2></mat-card-title>
+      <mat-card-title ><h2 class="text-color">Leasing Calculator</h2></mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content id="inputCardContent">
       <form [formGroup]="leasingCalculatorForm" (ngSubmit)="submitForm()" class="forform">
         <mat-form-field class="inline-form">
           <mat-select id="customerType" required name="customerTypeField" placeholder="Customer type"
@@ -193,13 +195,13 @@
                 </div>
               </div>
             </div>
-            <div class="form-group col-sm-2">
-              <div class="panel panel-info">
-                <div class="panel-body" *ngIf="repayment.contractFee != 0">
-                  <i>{{repayment.contractFee.toFixed(2)}}</i>
-                </div>
-              </div>
-            </div>
+            <!--<div class="form-group col-sm-2">-->
+              <!--<div class="panel panel-info">-->
+                <!--<div class="panel-body" *ngIf="repayment.contractFee != 0">-->
+                  <!--<i>{{repayment.contractFee.toFixed(2)}}</i>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
             <div class="form-group col-sm-2">
               <div class="panel panel-info">
                 <div class="panel-body">

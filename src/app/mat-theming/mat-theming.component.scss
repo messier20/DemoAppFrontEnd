@@ -1,0 +1,29 @@
+@import '~@angular/material/theming';
+
+@mixin app-mat-theming-theme($theme) {
+  $primary: map_get($theme, primary);
+  $accent: map_get($theme, accent);
+  $warn: map_get($theme, warn);
+  $foreground: map_get($theme, foreground);
+  $background: map_get($theme, background);
+
+  app-mat-theming {
+    >div    >h1 {
+      color: mat-color($primary);
+    }
+  }
+
+  //Example if we'd use in one class all styles
+  //Then we should define styles for separate components, but functions also available so might be useful
+  //app-leasing-calculator {
+  //  form {
+  //    background-color: mat-color($primary);
+  //  }
+  //}
+
+  //We could use this class anywhere in the app! (Because app-mat-theming tag is in app.module.html)
+
+  .background-class {
+    background-color: mat-color($primary);
+  }
+}

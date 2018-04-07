@@ -24,7 +24,7 @@ export class LeasingFormLabels {
     this.MARGIN, this.LEASING_PERIOD, this.PAYMENT_DAY];
 
   private _leasingCalculatorLabels = [this.PAYMENT_DAY, this.THE_REMAINING_AMOUNT, this.ASSET_PAYMENT_AMOUNT,
-    this.INTEREST_PAYMENT_AMOUNT, this.CONTRACT_FEE, this.TOTAL_PAYMENT_AMOUNT];
+    this.INTEREST_PAYMENT_AMOUNT, this.TOTAL_PAYMENT_AMOUNT];
   constructor() {
   }
 
