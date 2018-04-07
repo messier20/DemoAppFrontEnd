@@ -156,62 +156,102 @@
       <mat-card-title>Leasing Payment Schedule</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div id="repaymentSchedule" hidden>
-        <form>
-          <div class="form-row my-style">
-            <div class="form-group col-sm-2" *ngFor="let label of leasingCalculatorLabels">
-              <div class="panel panel-info">
-                <div class="panel-body"><b>{{label}}</b>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-row" *ngFor="let repayment of repaymentSchedule">
-            <div class="form-group col-sm-2">
-              <div class="panel panel-info">
-                <div class="panel-body">
-                  <i>{{repayment.repaymentDate}}</i>
-                </div>
-              </div>
-            </div>
-            <div class="form-group col-sm-2">
-              <div class="panel panel-info">
-                <div class="panel-body">
-                  <i>{{repayment.remainingAmountToRepay.toFixed(2)}}</i>
-                </div>
-              </div>
-            </div>
-            <div class="form-group col-sm-2">
-              <div class="panel panel-info">
-                <div class="panel-body">
-                  <i>{{repayment.assetValuePaymentAmount.toFixed(2)}}</i>
-                </div>
-              </div>
-            </div>
-            <div class="form-group col-sm-2">
-              <div class="panel panel-info">
-                <div class="panel-body">
-                  <i>{{repayment.interestPaymentAmount.toFixed(2)}}</i>
-                </div>
-              </div>
-            </div>
-            <!--<div class="form-group col-sm-2">-->
+
+      <!--<div id="repaymentSchedule" hidden>-->
+        <!--<form>-->
+          <!--<div class="form-row my-style">-->
+            <!--<div class="form-group col-sm-2" *ngFor="let label of leasingCalculatorLabels">-->
               <!--<div class="panel panel-info">-->
-                <!--<div class="panel-body" *ngIf="repayment.contractFee != 0">-->
-                  <!--<i>{{repayment.contractFee.toFixed(2)}}</i>-->
+                <!--<div class="panel-body"><b>{{label}}</b>-->
                 <!--</div>-->
               <!--</div>-->
             <!--</div>-->
-            <div class="form-group col-sm-2">
-              <div class="panel panel-info">
-                <div class="panel-body">
-                  <i>{{repayment.totalPaymentAmount.toFixed(2)}}</i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+          <!--</div>-->
+          <!--<div class="form-row" *ngFor="let repayment of repaymentSchedule">-->
+            <!--<div class="form-group col-sm-2">-->
+              <!--<div class="panel panel-info">-->
+                <!--<div class="panel-body">-->
+                  <!--<i>{{repayment.repaymentDate}}</i>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group col-sm-2">-->
+              <!--<div class="panel panel-info">-->
+                <!--<div class="panel-body">-->
+                  <!--<i>{{repayment.remainingAmountToRepay.toFixed(2)}}</i>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group col-sm-2">-->
+              <!--<div class="panel panel-info">-->
+                <!--<div class="panel-body">-->
+                  <!--<i>{{repayment.assetValuePaymentAmount.toFixed(2)}}</i>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group col-sm-2">-->
+              <!--<div class="panel panel-info">-->
+                <!--<div class="panel-body">-->
+                  <!--<i>{{repayment.interestPaymentAmount.toFixed(2)}}</i>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<div class="form-group col-sm-2">&ndash;&gt;-->
+              <!--&lt;!&ndash;<div class="panel panel-info">&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="panel-body" *ngIf="repayment.contractFee != 0">&ndash;&gt;-->
+                  <!--&lt;!&ndash;<i>{{repayment.contractFee.toFixed(2)}}</i>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+              <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--<div class="form-group col-sm-2">-->
+              <!--<div class="panel panel-info">-->
+                <!--<div class="panel-body">-->
+                  <!--<i>{{repayment.totalPaymentAmount.toFixed(2)}}</i>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</form>-->
+      <!--</div>-->
+
+      <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+        </div>
+
+        <mat-table #table [dataSource]="dataSource">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="weight">
+            <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="symbol">
+            <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
       </div>
+
     </mat-card-content>
 
   </mat-card>

@@ -12,5 +12,11 @@
       color:  mat-color($primary);
     }
 
+    .background {
+      background-color: mat-color($background, app-bar) !important;
+    }
+
   }
 }
+
+

@@ -23,7 +23,7 @@ import {
   // MatDatepickerModule, MatDialogModule, MatExpansionPanel, MatFormFieldModule, MatGridListModule, MatIconModule,
   MatMenuModule,
   MatSelectModule, MatTabLabel,
-  MatTabsModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule
+  MatTabsModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatTableModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {HttpClientModule} from '@angular/common/http';
@@ -70,6 +70,7 @@ import { MatThemingComponent } from './mat-theming/mat-theming.component';
     MatListModule,
     AppRoutingModule,
     MatCheckboxModule,
+    MatTableModule,
     FormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
