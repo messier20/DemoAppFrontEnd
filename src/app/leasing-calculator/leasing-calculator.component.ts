@@ -15,7 +15,7 @@ import {LeasingModel} from '../models/LeasingModel';
 @Component({
   selector: 'app-leasing-calculator',
   templateUrl: './leasing-calculator.component.html',
-  styleUrls: ['./leasing-calculator.component.css']
+  styleUrls: ['./leasing-calculator.component.css', './leasing-calulator.component.scss']
 })
 
 export class LeasingCalculatorComponent implements OnInit {

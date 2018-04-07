@@ -1,0 +1,49 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+//$custom-theme-primary: mat-palette($mat-indigo);
+$custom-theme-primary: mat-palette($mat-indigo);
+
+$custom-theme-accent: mat-palette($mat-amber);
+//$custom-theme-accent: mat-palette(#FFCA28, A200, A100, A400);
+$custom-theme-warn: mat-palette($mat-pink);
+
+$custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+
+@include angular-material-theme($custom-theme);
+
+
+@mixin leasing-calulator-theme($theme) {
+
+  $primary: map-get($theme, primary);
+  //$accent: map_get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .ml-file-list {
+    border-bottom: 1px solid mat-color($foreground, divider);
+  }
+
+  .my-style {
+    background-color: mat-color($warn, darker, 0.5);
+  }
+
+  .ml-file-list-item {
+
+    &:hover, &:active, &:focus {
+      background-color: mat-color($background, hover);
+    }
+
+    &.selected {
+      background-color: mat-color($primary, lighter, 0.5);
+      color: mat-color($foreground, text);
+    }
+  }
+}
+
+//.my-style2 {
+//  background-color: mat-color($base-palette, $lighter);
+//}
+

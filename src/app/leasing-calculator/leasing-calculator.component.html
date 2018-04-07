@@ -1,11 +1,11 @@
-<div class="card-container background">
-  <mat-card>
+<div class="card-container background my-style">
+  <mat-card class="my-style">
 
     <mat-card-header>
-      <mat-card-title><h2 class="text-color">Leasing Calculator</h2></mat-card-title>
+      <mat-card-title class="my-style"><h2 class="text-color">Leasing Calculator</h2></mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form [formGroup]="leasingCalculatorForm" (ngSubmit)="submitForm()">
+      <form [formGroup]="leasingCalculatorForm" (ngSubmit)="submitForm()" class="forform">
         <mat-form-field class="inline-form">
           <mat-select id="customerType" required name="customerTypeField" placeholder="Customer type"
                       formControlName="customerType" (change)="updateMinValues()">
@@ -94,9 +94,9 @@
 
         <div>
           <!--<label for="margin">{{leasingFormLabels.MARGIN}}</label>-->
-          <mat-form-field>
+          <mat-form-field >
             <input matInput #input type="number" class="form-control" placeholder="Margin" id="margin" required
-                   formControlName="margin" name="margin" step="0.1" min="3.2" max="100">
+                   formControlName="margin" name="margin" step="0.1" min="3.2" max="100" >
           </mat-form-field>
         </div>
 
@@ -137,7 +137,7 @@
           class="alert alert-danger">
           Payment date is required.
         </div>
-        <button mat-raised-button type="submit" color="primary" (click)="isVisible()">Calculate</button>
+        <button mat-raised-button type="submit"  (click)="isVisible()">Calculate</button>
         <button mat-raised-button type="button" color="accent" (click)="setLeasingCalculator()">Apply Now</button>
 
       </form>
@@ -156,7 +156,7 @@
     <mat-card-content>
       <div id="repaymentSchedule" hidden>
         <form>
-          <div class="form-row">
+          <div class="form-row my-style">
             <div class="form-group col-sm-2" *ngFor="let label of leasingCalculatorLabels">
               <div class="panel panel-info">
                 <div class="panel-body"><b>{{label}}</b>
