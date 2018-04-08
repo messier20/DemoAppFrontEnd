@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+
+@mixin app-leasing-calculator-theme($theme) {
+  $primary: map_get($theme, primary);
+  $accent: map_get($theme, accent);
+  $warn: map_get($theme, warn);
+  $foreground: map_get($theme, foreground);
+  $background: map_get($theme, background);
+
+  app-leasing-calculator {
+    .text-color {
+      color:  mat-color($primary);
+    }
+
+  }
+}

@@ -2,12 +2,13 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
-
+import {MatListModule} from '@angular/material/list';
 import {BackendService} from './services/backend.service';
 import {AppComponent} from './app.component';
 import {PrivateFormComponent} from './privateform/private-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
+  MatAutocompleteModule,
   MatCardModule,
   MatDatepickerModule,
   MatDialogModule,
@@ -16,7 +17,10 @@ import {
   MatIconModule,
   MatInputModule,
   MatNativeDateModule,
-  MatTabsModule
+  // MatDatepickerModule, MatDialogModule, MatExpansionPanel, MatFormFieldModule, MatGridListModule, MatIconModule,
+  MatMenuModule,
+  MatSelectModule, MatTabLabel,
+  MatTabsModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {HttpClientModule} from '@angular/common/http';
@@ -36,6 +40,10 @@ import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
 import { OfficerLoginComponent } from './officer-login/officer-login.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import {MediaMatcher} from "@angular/cdk/layout";
+import { MatThemingComponent } from './mat-theming/mat-theming.component';
 
 
 
@@ -53,11 +61,17 @@ import {AuthService} from './services/auth.service';
     OfficerViewComponent,
     ApplicationInfoComponent,
     DialogForm2Component,
+    SideNavComponent,
+    MatThemingComponent,
     OfficerLoginComponent
   ],
   imports: [
     BrowserModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
     AppRoutingModule,
+    MatCheckboxModule,
     FormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
@@ -73,10 +87,18 @@ import {AuthService} from './services/auth.service';
     MatInputModule,
     MatCardModule,
     MatGridListModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatSelectModule,
+    // ChangeDetectorRefModule,
+    MatAutocompleteModule,
+    MatGridListModule,
+    MatSelectModule,
+    FlexLayoutModule,
 
     NgbModule.forRoot()
   ],
-  providers: [DataStorageService, BackendService, AuthService, AuthGuardService],
+  providers: [DataStorageService, BackendService, AuthService, AuthGuardService, MediaMatcher],
   bootstrap: [AppComponent],
   entryComponents: [DialogFormComponent, DialogForm2Component]
 })

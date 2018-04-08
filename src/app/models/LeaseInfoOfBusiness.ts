@@ -1,5 +1,6 @@
-import {LeasingModel} from "./LeasingModel";
-import {BusinessCustomerInfo} from "./BusinessCustomerInfo";
+
+import {LeasingModel} from './LeasingModel';
+import {BusinessCustomerInfo} from './BusinessCustomerInfo';
 
 
 export class LeaseInfoOfBusiness {

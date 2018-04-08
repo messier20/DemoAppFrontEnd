@@ -15,7 +15,7 @@ import {LeasingModel} from '../models/LeasingModel';
 @Component({
   selector: 'app-leasing-calculator',
   templateUrl: './leasing-calculator.component.html',
-  styleUrls: ['./leasing-calculator.component.css']
+  styleUrls: ['./leasing-calculator.component.css', './leasing-calculator.component.scss']
 })
 
 export class LeasingCalculatorComponent implements OnInit {
@@ -35,6 +35,8 @@ export class LeasingCalculatorComponent implements OnInit {
   repaymentSchedule: Repayment[];
   PRIVATE = 'PRIVATE';
   BUSINESS = 'BUSINESS';
+  visible = false;
+
 
   constructor(private router: Router,
               private dataService: DataStorageService,
@@ -49,6 +51,8 @@ export class LeasingCalculatorComponent implements OnInit {
     if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
       this.fillFieldsWithLeasingFormInput();
     }
+
+    (<HTMLInputElement>document.getElementById('matcard2')).hidden = true;
   }
 
   updateMinValues() {
@@ -69,6 +73,7 @@ export class LeasingCalculatorComponent implements OnInit {
     this.leasingCalculatorForm.get('advancePaymentAmount').updateValueAndValidity();
     document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
   }
+
 
   setMinAssetPrice() {
     if (this.leasingCalculatorForm.get('customerType').value === 'Business') {
@@ -179,5 +184,17 @@ export class LeasingCalculatorComponent implements OnInit {
     this.leasingCalculatorForm.get('margin').setValue(this.leasingFormInput.margin);
     this.leasingCalculatorForm.get('leasePeriodInMonths').setValue(this.leasingFormInput.leasePeriodInMonths);
     this.leasingCalculatorForm.get('paymentDate').setValue(this.leasingFormInput.paymentDate);
+  }
+
+
+  tile1 = {text: 'Leasing Calculator', cols: 2, rows: 5.5, color: 'linear-gradient(#ADD8E6, white)'};
+  tile2 = {text: 'Calculate', cols: 2, rows: 5.5, color: 'linear-gradient(#b4c3c7, white)'};
+
+  isVisible(){
+    console.log('false', this.visible);
+    this.visible = true;
+    console.log('true', this.visible);
+    // (<HTMLInputElement>document.getElementById('matcard2')).disabled = true;
+    (<HTMLInputElement>document.getElementById('matcard2')).hidden = false;
   }
 }

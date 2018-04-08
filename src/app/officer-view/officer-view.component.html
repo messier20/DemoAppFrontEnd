@@ -172,8 +172,8 @@
       <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex = index" >
 
 
-        <mat-accordion class="example-headers-align" *ngIf=" lease.leasingModel.customerType === 'Business' ">
-          <mat-expansion-panel *ngIf="lease.status === 'PENDING'" [expanded]="step31 === stepIndex" (opened)="setStep31(stepIndex)" hideToggle="true">
+        <mat-accordion class="example-headers-align" *ngIf=" lease.leasingModel.customerType === 'BUSINESS' && lease.status === 'PENDING'">
+          <mat-expansion-panel [expanded]="step31 === stepIndex" (opened)="setStep31(stepIndex)" hideToggle="true">
 
 
             <mat-expansion-panel-header >
@@ -198,8 +198,8 @@
     <div>
       <h4>Approved Applications</h4>
       <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex2 = index">
-        <mat-accordion class="example-headers-align" *ngIf="lease.leasingModel.customerType === 'Business' ">
-          <mat-expansion-panel *ngIf="lease.status === 'APPROVED'" [expanded]="step32 === stepIndex2" (opened)="setStep32(stepIndex2)" hideToggle="true">
+        <mat-accordion class="example-headers-align" *ngIf="lease.leasingModel.customerType === 'BUSINESS' && lease.status === 'APPROVED' ">
+          <mat-expansion-panel  [expanded]="step32 === stepIndex2" (opened)="setStep32(stepIndex2)" hideToggle="true">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Application {{lease.privateCustomerInfo?.name}} {{lease.businessCustomerInfo?.name}}
@@ -222,8 +222,8 @@
       <h4>Denied applications</h4>
       <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex3 = index">
 
-        <mat-accordion class="example-headers-align" *ngIf=" lease.status === 'DENIED'">
-          <mat-expansion-panel *ngIf="lease.status === 'DENIED'"[expanded]="step33 === stepIndex3" (opened)="setStep33(stepIndex3)" hideToggle="true">
+        <mat-accordion class="example-headers-align" *ngIf=" lease.leasingModel.customerType === 'BUSINESS' && lease.status === 'DENIED'">
+          <mat-expansion-panel [expanded]="step33 === stepIndex3" (opened)="setStep33(stepIndex3)" hideToggle="true">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Application {{lease.privateCustomerInfo?.name}} {{lease.businessCustomerInfo?.name}}

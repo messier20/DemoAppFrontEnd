@@ -9,6 +9,8 @@ import {DialogFormComponent} from '../dialog-form/dialog-form';
 import {MatDialog} from '@angular/material';
 import {LeasingModel} from '../models/LeasingModel';
 import {CustomValidators} from '../constants/CustomValidators';
+import {InputFormsErrorStateMatcher} from '../utils/InputFormsErrorStateMatcher';
+import {ValidationAmounts} from '../constants/ValidationAmounts';
 
 @Component({
   selector: 'app-customer-info-form',
@@ -22,6 +24,8 @@ export class CustomerInfoFormComponent implements OnInit {
   businessCustomerInfo: BusinessCustomerInfo;
   privateCustomerInfo: PrivateCustomerInfo;
   leasingModel: LeasingModel;
+  errorMatcher = new InputFormsErrorStateMatcher();
+  validationAmounts = ValidationAmounts;
 
   constructor(private router: Router,
               private dataService: DataStorageService,
@@ -43,12 +47,7 @@ export class CustomerInfoFormComponent implements OnInit {
         this.infoForm.setValue(this.dataService.getPrivateInfo());
         this.infoForm.get('phoneNumber').setValue(this.infoForm.get('phoneNumber').value.substring(1));
 
-      }
-      else if (this.infoForm.get('name') === null) {
-        console.log('name', this.infoForm.get('name'));
-        // this.infoForm.setValue(this.infoForm.get('name'));
-        // }
-        // else {
+      } else if (this.infoForm.get('name') === null) {
         this.privateCustomerInfo = new PrivateCustomerInfo();
       }
     } else {
@@ -58,7 +57,6 @@ export class CustomerInfoFormComponent implements OnInit {
 
       if (this.dataService.getBusinessInfo() != null) {
         console.log('data service not empty');
-        document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
 
         this.infoForm.get('name').setValue(this.dataService.getBusinessInfo().name);
@@ -71,7 +69,6 @@ export class CustomerInfoFormComponent implements OnInit {
 
       } else {
         this.businessCustomerInfo = new BusinessCustomerInfo();
-        document.getElementById('hiddenName').hidden = true;
         this.infoForm.get('lastName').disable();
 
         console.log('info form empty');

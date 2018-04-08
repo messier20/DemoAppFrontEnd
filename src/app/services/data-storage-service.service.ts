@@ -11,11 +11,12 @@ import 'rxjs/add/observable/of';
 @Injectable()
 export class DataStorageService {
 
-  private _leasingModel: LeasingModel;
+  private leasingModel: LeasingModel;
   private businessCustomerInfo: BusinessCustomerInfo;
   private privateCustomerInfo: PrivateCustomerInfo;
   private leasingCalculator: LeasingCalculator;
   private repaymentPlan: Repayment[];
+  private customerId: string;
   private _officerLoginModel: OfficerLoginModel;
   private _wrongLoginCredentials = false;
 
@@ -42,17 +43,17 @@ export class DataStorageService {
   // }
 
   deleteAllLeasingData() {
-    this._leasingModel = undefined;
+    this.leasingModel = undefined;
     this.businessCustomerInfo = undefined;
     this.privateCustomerInfo = undefined;
   }
 
   setLeasingModel(givenLeasingModel) {
-    this._leasingModel = givenLeasingModel;
+    this.leasingModel = givenLeasingModel;
   }
 
   getLeasingModel() {
-    return this._leasingModel;
+    return this.leasingModel;
   }
 
   setBusinessInfo(givenBusinessInfo) {
@@ -85,6 +86,14 @@ export class DataStorageService {
 
   getRepaymentPlan() {
     return this.repaymentPlan;
+  }
+
+  setCustomerId(givenCustomerId) {
+    this.customerId = givenCustomerId;
+  }
+
+  getCustomerId() {
+    return this.customerId;
   }
 
   get officerLoginModel(): OfficerLoginModel {

@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+@mixin app-side-nav-theme($theme) {
+  $primary: map_get($theme, primary);
+  $accent: map_get($theme, accent);
+  $warn: map_get($theme, warn);
+  $foreground: map_get($theme, foreground);
+  $background: map_get($theme, background);
+
+  app-side-nav {
+
+    a.mat-list-item {
+      color: mat-color($primary, lighter) !important;
+    }
+
+  }
+}

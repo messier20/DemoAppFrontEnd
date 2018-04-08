@@ -1,1 +1,30 @@
-//@import './custom-theme';
+@import '../node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import './custom-theme';
+@import 'app/mat-theming/mat-theming.component';
+@import 'app/leasing-calculator/leasing-calculator.component.scss';
+@import 'app/side-nav/side-nav.component.scss';
+
+@include mat-core();
+
+//Here you should pic material colors using $mat tag. Hex or other type colors don't work.
+//If you want to try other color, find function in angular material and implement color (ex. using hex codes) as other colors
+//$custom-theme-accent: mat-palette(#FFCA28, A200, A100, A400); <---example for shades and opacity/transparency or smth
+$blue-theme-primary: mat-palette($mat-indigo);
+$blue-theme-accent: mat-palette($mat-amber);
+$blue-theme-warn: mat-palette($mat-pink);
+
+$blue-theme: mat-light-theme($blue-theme-primary, $blue-theme-accent, $blue-theme-warn);
+
+
+
+@mixin my-components-theme($theme) {
+  //Here goes custom components themes
+  @include app-mat-theming-theme($theme);
+  @include app-leasing-calculator-theme($theme);
+  @include app-side-nav-theme($theme);
+}
+ //Here goes themes mixins
+ @include angular-material-theme($blue-theme);
+ @include my-components-theme($blue-theme);
+
+
