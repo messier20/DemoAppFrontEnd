@@ -20,6 +20,8 @@ export class CheckLeasingStatusComponent implements OnInit {
   checkStatusInfo: CheckStatusInfo;
   noLeasingFound: boolean;
   availableCustomerTypes = ['Private', 'Business'];
+  PRIVATE = 'PRIVATE';
+  BUSINESS = 'BUSINESS';
 
   constructor(private formBuilder: FormBuilder,
               private dataService: DataStorageService,
