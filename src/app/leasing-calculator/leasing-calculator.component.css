@@ -87,6 +87,7 @@ form {
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
+  -webkit-mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
 }
 mat-card-title{
   position: relative;
@@ -110,6 +111,7 @@ button {
   flex-wrap: wrap;
   align-content: center;
   align-self: flex-start;
+
 }
 
 
@@ -124,16 +126,6 @@ button {
   display: flex;
   flex-direction: column;
   min-width: 300px;
-}
-
-.example-header {
-  min-height: 64px;
-  padding: 8px 24px 0;
-}
-
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
 }
 
 .mat-table {

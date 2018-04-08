@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {LeasingCalculator} from '../models/LeasingCalculator';
 import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
@@ -11,7 +11,11 @@ import {BackendService} from '../services/backend.service';
 import {PaymentSize} from '../constants/PaymentSize';
 import {LoanUtils} from '../utils/LoanUtils';
 import {LeasingModel} from '../models/LeasingModel';
-import {MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
+import {DataSource} from "@angular/cdk/collections";
+import {Repayments} from "../models/Repayments";
+import {Observable} from "rxjs/Observable";
+import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-leasing-calculator',
@@ -33,10 +37,21 @@ export class LeasingCalculatorComponent implements OnInit {
   minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
   minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
   maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
+
+  displayedColumns = [
+    'repaymentDate',
+    'remainingAmountToRepay',
+    'assetValuePaymentAmount',
+    'interestPaymentAmount',
+    'totalPaymentAmount'
+  ];
+
   repaymentSchedule: Repayment[];
+
   PRIVATE = 'PRIVATE';
   BUSINESS = 'BUSINESS';
   visible = false;
+  ELEMENT_DATA: Element[];
 
 
   constructor(private router: Router,
@@ -45,6 +60,7 @@ export class LeasingCalculatorComponent implements OnInit {
               private backendService: BackendService) {
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
+
   }
 
   ngOnInit() {
@@ -59,14 +75,22 @@ export class LeasingCalculatorComponent implements OnInit {
 
   //------------------------------------
 
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  // dataSource = new ScheduleDataSource(this.backendService);
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+  repaymentScheduleDataStream = new Subject();
+
+  length = 84;
+  pageSize = 6;
+  pageSizeOptions = [6, 84];
+  pageEvent: PageEvent;
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
+
+  // dataSource = new MatTableDataSource<Repayment>(this.repaymentSchedule);
+
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
   //-------------------------------------
 
   updateMinValues() {
@@ -144,29 +168,55 @@ export class LeasingCalculatorComponent implements OnInit {
     }
   }
 
+  // submitForm() {
+  //   if (!this.leasingCalculatorForm.valid) {
+  //     Object.keys(this.leasingCalculatorForm.controls).forEach(field => {
+  //       const control = this.leasingCalculatorForm.get(field);
+  //       control.markAsTouched({onlySelf: true});
+  //     });
+  //   } else {
+  //     this.leasingCalculator = this.leasingCalculatorForm.value;
+  //     this.backendService.sendLeasingCalculatorInput(this.leasingCalculator).then(
+  //       receivedData => {
+  //         const received: any = receivedData;
+  //         this.displayRepaymentSchedule(received.repaymentSchedule);
+  //       },
+  //       error => {
+  //         console.log('Error: ' + error);
+  //       }
+  //     );
+  //   }
+  // }
+
   submitForm() {
     if (!this.leasingCalculatorForm.valid) {
       Object.keys(this.leasingCalculatorForm.controls).forEach(field => {
         const control = this.leasingCalculatorForm.get(field);
         control.markAsTouched({onlySelf: true});
+        return null;
       });
     } else {
       this.leasingCalculator = this.leasingCalculatorForm.value;
-      this.backendService.sendLeasingCalculatorInput(this.leasingCalculator).then(
-        receivedData => {
-          const received: any = receivedData;
-          this.displayRepaymentSchedule(received.repaymentSchedule);
+      this.backendService.getRepaymentShedule(this.leasingCalculator).then((receivedData: any) => {
+          this.repaymentSchedule = receivedData.repaymentSchedule;
+
+          // this.repaymentSchedule = [
+          //   {repaymentDate: '1', remainingAmountToRepay: '234'},
+          //   {repaymentDate: '441', remainingAmountToRepay: '234'},
+          // ];
+
+          this.repaymentScheduleDataStream.next(this.repaymentSchedule);
+
+
+
+
         },
         error => {
           console.log('Error: ' + error);
         }
       );
     }
-  }
 
-  private displayRepaymentSchedule(repaymentSchedule: Repayment[]) {
-    this.repaymentSchedule = repaymentSchedule;
-    document.getElementById('repaymentSchedule').hidden = false;
   }
 
   createValidForm() {
@@ -213,32 +263,40 @@ export class LeasingCalculatorComponent implements OnInit {
   }
 }
 
-export interface Element {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+// export interface Element {
+//   // name: string;
+//   // position: number;
+//   // weight: number;
+//   // symbol: string;
+//
+//   repaymentDate: string;
+//   remainingAmountToRepay: number;
+//   assetValuePaymentAmount: number;
+//   interestPaymentAmount: number;
+//   // private _contractFee: number;
+//   totalPaymentAmount: number;
+// }
 
-const ELEMENT_DATA: Element[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-];
+// const ELEMENT_DATA: Element[] = [
+  // {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+  // {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+  // {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+  // {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
+  // {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
+  // {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+  // {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
+  // {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
+  // {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
+  // {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  // {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
+  // {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
+  // {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
+  // {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
+  // {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
+  // {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
+  // {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
+  // {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
+  // {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
+  // {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
+// ];
+
