@@ -13,7 +13,7 @@ export class DataStorageService {
   private privateCustomerInfo: PrivateCustomerInfo;
   private leasingCalculator: LeasingCalculator;
   private repaymentPlan: Repayment[];
-
+  private customerId: string;
 
   // static refactorCustomerType(form) {
   //   if (form.customerType === 'Private') {
@@ -81,5 +81,13 @@ export class DataStorageService {
 
   getRepaymentPlan() {
     return this.repaymentPlan;
+  }
+
+  setCustomerId(givenCustomerId) {
+    this.customerId = givenCustomerId;
+  }
+
+  getCustomerId() {
+    return this.customerId;
   }
 }

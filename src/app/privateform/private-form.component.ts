@@ -3,13 +3,17 @@ import {LeasingModel} from '../models/LeasingModel';
 import {CarList} from '../models/CarList';
 import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup} from '@angular/forms';
 import {LeasePeriods} from '../models/LeasePeriods';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
 import {CustomValidators} from '../constants/CustomValidators';
 import {LeasingCalculator} from '../models/LeasingCalculator';
 import {LoanUtils} from '../utils/LoanUtils';
-import {PaymentSize} from '../constants/PaymentSize';
+import {ValidationAmounts} from '../constants/ValidationAmounts';
+import {Observable} from 'rxjs/Observable';
+import {startWith} from 'rxjs/operators/startWith';
+import {map} from 'rxjs/operators/map';
+import {InputFormsErrorStateMatcher} from '../utils/InputFormsErrorStateMatcher';
 
 @Component({
   selector: 'app-privateform',
@@ -22,26 +26,34 @@ export class PrivateFormComponent implements OnInit {
   leasingForm: FormGroup;
   leasingFormLabels = new LeasingFormLabels();
   leasingCalculatorInput: LeasingCalculator;
-
+  validationAmounts = ValidationAmounts;
   availableCustomerTypes = ['Private', 'Business'];
   availableAssetTypes = ['Vehicle'];
   cars;
+  carBrands: string[];
   leasePeriods;
-  model: String[];
+  model: string[] = [''];
   availableDays = [15, 30];
-  minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
-  minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
-  maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
-  PRIVATE = 'PRIVATE';
-  BUSINESS = 'BUSINESS';
+  minAssetPrice = ValidationAmounts.MIN_ASSET_PRICE_PRIVATE;
+  minAdvancePaymentAmount = ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
+  maxAdvancePaymentAmount = ValidationAmounts.MAX_ADVANCE_PAYMENT_AMOUNT;
+
+  filteredCarBrands: Observable<string[]>;
+  filteredCarModels: Observable<string[]>;
+  PRIVATE = 'Private';
+  BUSINESS = 'Business';
+  leasingFormErrorMatcher = new InputFormsErrorStateMatcher();
 
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
     this.cars = new CarList().cars;
+    this.carBrands = new CarList().carBrands;
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
     this.leasingForm.get('assetType').setValue('Vehicle');
-
+    if (this.dataService.getLeasingCalculator() != null) {
+      this.fillFieldsWithCalculatorInput();
+    }
 
   }
 
@@ -49,17 +61,26 @@ export class PrivateFormComponent implements OnInit {
     if (this.dataService.getLeasingCalculator() !== null && this.dataService.getLeasingCalculator() !== undefined) {
       this.fillFieldsWithCalculatorInput();
     } else if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
-      console.log('form', this.leasingForm);
       this.leasingForm.setValue(this.dataService.getLeasingModel());
       this.selectBrandHandler();
     } else {
       this.leasingModel = new LeasingModel();
     }
+    this.filteredCarBrands = this.leasingForm.get('carBrand').valueChanges
+      .pipe(startWith(''), map(val => this.filterCarBrand(val)));
+  }
+
+  filterCarBrand(val: string): string[] {
+    return this.carBrands.filter(option =>
+      option.toLowerCase().indexOf(val.toLowerCase()) === 0);
+  }
+
+  filterCarModel(val: string): string[] {
+    return this.model.filter(option =>
+      option.toLowerCase().indexOf(val.toLowerCase()) === 0);
   }
 
   updateMinValues() {
-    console.log("customer type", this.leasingForm.get('customerType').value);
-
     this.setMinAssetPrice();
     if (!this.leasingForm.get('assetPrice').valid) {
       this.setMinAdvancePaymentAmount();
@@ -67,11 +88,11 @@ export class PrivateFormComponent implements OnInit {
   }
 
   setMinAdvancePaymentAmount() {
-    if (this.leasingForm.get('customerType').value === 'BUSINESS') {
-      this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_BUSINESS;
+    if (this.leasingForm.get('customerType').value === 'Business') {
+      this.minAdvancePaymentAmount = ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_BUSINESS;
       this.leasingForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountBusinessValidator);
     } else {
-      this.minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
+      this.minAdvancePaymentAmount = ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
       this.leasingForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountPrivateValidator);
     }
     this.leasingForm.get('advancePaymentAmount').updateValueAndValidity();
@@ -79,11 +100,11 @@ export class PrivateFormComponent implements OnInit {
   }
 
   setMinAssetPrice() {
-    if (this.leasingForm.get('customerType').value === 'BUSINESS') {
-      this.minAssetPrice = PaymentSize.MIN_ASSET_PRICE_BUSINESS;
+    if (this.leasingForm.get('customerType').value === 'Business') {
+      this.minAssetPrice = ValidationAmounts.MIN_ASSET_PRICE_BUSINESS;
       this.leasingForm.get('assetPrice').setValidators(CustomValidators.assetPriceBusinessValidator);
     } else {
-      this.minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
+      this.minAssetPrice = ValidationAmounts.MIN_ASSET_PRICE_PRIVATE;
       this.leasingForm.get('assetPrice').setValidators(CustomValidators.assetPricePersonalValidator);
     }
     this.leasingForm.get('assetPrice').updateValueAndValidity();
@@ -91,11 +112,16 @@ export class PrivateFormComponent implements OnInit {
   }
 
   selectBrandHandler() {
+    this.leasingForm.get('carModel').setValue(null);
     for (let i = 0; i < this.cars.length; i++) {
-      if (this.cars[i].make === this.leasingForm.get('carBrand').value) {
+      if (this.cars[i].make.toLowerCase() === this.leasingForm.get('carBrand').value.toString().toLowerCase()) {
         this.model = this.cars[i].model;
         break;
       }
+    }
+    if (this.leasingForm.get('carModel') !== null) {
+      this.filteredCarModels = this.leasingForm.get('carModel').valueChanges
+        .pipe(startWith(''), map(val => this.filterCarModel(val)));
     }
   }
 
@@ -135,7 +161,7 @@ export class PrivateFormComponent implements OnInit {
       document.getElementById('advancePaymentAmount').setAttribute('max', this.maxAdvancePaymentAmount.toString());
     } else {
       this.minAdvancePaymentAmount = this.minAssetPrice * 0.1;
-      this.maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
+      this.maxAdvancePaymentAmount = ValidationAmounts.MAX_ADVANCE_PAYMENT_AMOUNT;
       this.leasingForm.get('advancePaymentAmount').updateValueAndValidity();
       document.getElementById('advancePaymentAmount').setAttribute('min', this.minAdvancePaymentAmount.toString());
       document.getElementById('advancePaymentAmount').setAttribute('max', this.maxAdvancePaymentAmount.toString());
@@ -175,7 +201,6 @@ export class PrivateFormComponent implements OnInit {
     }
     this.leasingModel = this.leasingForm.value;
     this.dataService.setLeasingModel(this.leasingModel);
-    console.log("customer type leasing", this.leasingModel.customerType);
   }
 
   goBack() {
@@ -185,7 +210,6 @@ export class PrivateFormComponent implements OnInit {
   }
 
   fillFieldsWithCalculatorInput() {
-    console.log("customer type", this.leasingForm.get('customerType').value);
     this.leasingCalculatorInput = this.dataService.getLeasingCalculator();
     this.leasingForm.get('customerType').setValue(this.leasingCalculatorInput.customerType);
     this.leasingForm.get('assetPrice').setValue(this.leasingCalculatorInput.assetPrice);
@@ -203,8 +227,6 @@ export class PrivateFormComponent implements OnInit {
       this.leasingForm.get('enginePower').setValue(this.dataService.getLeasingModel().enginePower);
       this.selectBrandHandler();
     }
-
-
   }
 
 }

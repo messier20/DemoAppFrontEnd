@@ -55,11 +55,11 @@
           </mat-form-field>
         </div>
 
-        <div
-          [hidden]="leasingCalculatorForm.get('advancePaymentPercentage').valid || leasingCalculatorForm.get('advancePaymentPercentage').untouched"
-          class="alert alert-danger">
-          Advance payment percentage must be between 10% and 100%
-        </div>
+          <div
+            [hidden]="leasingCalculatorForm.get('advancePaymentPercentage').valid || leasingCalculatorForm.get('advancePaymentPercentage').untouched"
+            class="alert alert-danger">
+            Advance payment percentage must be between 10% and 100%
+          </div>
 
         <!--</div>-->
 
