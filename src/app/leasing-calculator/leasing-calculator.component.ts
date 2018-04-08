@@ -191,9 +191,9 @@ export class LeasingCalculatorComponent implements OnInit {
   tile2 = {text: 'Calculate', cols: 2, rows: 5.5, color: 'linear-gradient(#b4c3c7, white)'};
 
   isVisible(){
-    console.log("false", this.visible);
+    console.log('false', this.visible);
     this.visible = true;
-    console.log("true", this.visible);
+    console.log('true', this.visible);
     // (<HTMLInputElement>document.getElementById('matcard2')).disabled = true;
     (<HTMLInputElement>document.getElementById('matcard2')).hidden = false;
   }
