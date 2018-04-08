@@ -26,6 +26,7 @@ export class OfficerLoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.wrongLoginCredentials = this.dataStorage.wrongLoginCredentials;
   }
 
   createValidForm() {
@@ -37,8 +38,10 @@ export class OfficerLoginComponent implements OnInit {
 
 
   attemptLogin() {
-    this.router.navigate(['/officerView']);
-    this.wrongLoginCredentials = true;
+    this.router.navigate(['/officerView']).then(() => {
+      console.log(this.dataStorage.wrongLoginCredentials);
+      this.wrongLoginCredentials = true; // this.dataStorage.wrongLoginCredentials;
+    });
   }
 
   setLoginInfo() {

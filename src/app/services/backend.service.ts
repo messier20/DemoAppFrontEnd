@@ -107,11 +107,7 @@ export class BackendService {
   }
 
   loginUser(loginModel: OfficerLoginModel) {
-    console.log('Login in backend');
-    console.log(loginModel);
-
     return this.http.put(this.httpLink + 'login', loginModel).toPromise();
-
   }
 
 

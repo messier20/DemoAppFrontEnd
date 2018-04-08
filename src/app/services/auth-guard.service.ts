@@ -43,14 +43,18 @@ export class AuthGuardService implements CanActivate {
 
       if (loginReturn.hasLoggedIn) {
         this.authService.isLoggedIn = true;
+        this.dataStorage.wrongLoginCredentials = false;
         this.router.navigate([url]);
 
       } else {
+        this.dataStorage.wrongLoginCredentials = true;
         this.authService.isLoggedIn = false;
+        this.navigateToLogin();
       }
 
     }, error => {
       console.log('Error in auth-guard.service checkLogin()');
+      this.dataStorage.wrongLoginCredentials = true;
       this.navigateToLogin();
       return false;
     });

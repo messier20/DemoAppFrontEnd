@@ -112,11 +112,11 @@ export class ApplicationInfoComponent implements OnInit {
   sendToBackendPrivate() {
 
     let postBody = {
+      loginModel: this.dataStorage.officerLoginModel,
       leasing: this.lease.leasingModel,
       customer: this.lease.privateCustomerInfo,
       status: this.lease.status,
-      idHex: this.lease.id,
-      leasingModel: this.dataStorage.officerLoginModel
+      idHex: this.lease.id
     };
 
     this.backendService.updatePrivateCustomerStatus(this.lease.id, postBody)
@@ -127,11 +127,11 @@ export class ApplicationInfoComponent implements OnInit {
 
   sendToBackendBusiness() {
     let postBody = {
+      loginModel: this.dataStorage.officerLoginModel,
       leasing: this.lease.leasingModel,
       customer: this.lease.businessCustomerInfo,
       status: this.lease.status,
-      idHex: this.lease.id,
-      leasingModel: this.dataStorage.officerLoginModel
+      idHex: this.lease.id
     };
 
     console.log('to backend');
