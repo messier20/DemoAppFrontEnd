@@ -67,7 +67,7 @@ mat-card{
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   /*position: absolute;*/
 
@@ -87,10 +87,7 @@ form {
   align-content: center;
   justify-content: center;
 }
-mat-card-title{
-  position: relative;
-  left: 2.1em;
-}
+
 button {
   margin: 0.5em;
 }
@@ -116,3 +113,8 @@ mat-form-field {
           /*.container {*/
             /*max-width: 720px;*/
           /*}*/
+mat-card-header, div.mat-card-header-text{
+  display: inline-flex !important;
+  justify-content: center;
+  width: 100%;
+}
