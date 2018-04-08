@@ -13,5 +13,10 @@
       color: mat-color($primary, lighter) !important;
     }
 
+    a.mat-list-item:hover, a.mat-list-item:focus {
+      color: mat-color($foreground, base) !important;
+      background-color: mat-color($accent, 400) !important;
+    }
+
   }
 }

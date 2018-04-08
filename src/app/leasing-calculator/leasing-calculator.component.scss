@@ -12,5 +12,9 @@
       color:  mat-color($primary);
     }
 
+    .button-calculate {
+      background-color: mat-color($primary, A100);
+    }
+
   }
 }
