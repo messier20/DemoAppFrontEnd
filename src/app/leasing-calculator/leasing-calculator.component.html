@@ -1,10 +1,8 @@
-
-
 <div class="card-container background ">
-  <mat-card  id="inputFormCard">
+  <mat-card id="inputFormCard">
 
     <mat-card-header>
-      <mat-card-title ><h2 class="text-color">Leasing Calculator</h2></mat-card-title>
+      <mat-card-title><h2 class="text-color">Leasing Calculator</h2></mat-card-title>
     </mat-card-header>
     <mat-card-content id="inputCardContent">
       <form [formGroup]="leasingCalculatorForm" (ngSubmit)="submitForm()" class="forform">
@@ -96,9 +94,9 @@
 
         <div>
           <!--<label for="margin">{{leasingFormLabels.MARGIN}}</label>-->
-          <mat-form-field >
+          <mat-form-field>
             <input matInput #input type="number" class="form-control" placeholder="Margin" id="margin" required
-                   formControlName="margin" name="margin" step="0.1" min="3.2" max="100" >
+                   formControlName="margin" name="margin" step="0.1" min="3.2" max="100">
           </mat-form-field>
         </div>
 
@@ -139,7 +137,7 @@
           class="alert alert-danger">
           Payment date is required.
         </div>
-        <button mat-raised-button type="submit"  (click)="isVisible()">Calculate</button>
+        <button mat-raised-button type="submit" (click)="isVisible()">Calculate</button>
         <button mat-raised-button type="button" color="accent" (click)="setLeasingCalculator()">Apply Now</button>
 
       </form>
@@ -157,45 +155,67 @@
     </mat-card-header>
     <mat-card-content>
 
-      <div class="example-container mat-elevation-z8" id="repaymentSchedule"  *ngIf="repaymentScheduleDataStream">
-        <mat-table #table [dataSource]="repaymentScheduleDataStream" >
+      <div class="example-container mat-elevation-z8" id="repaymentSchedule" *ngIf="dataSource">
+        <mat-table #table [dataSource]="dataSource">
 
           <!-- Position Column -->
           <ng-container matColumnDef="repaymentDate">
-            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[1]}} </mat-header-cell>
-            <mat-cell  *matCellDef="let element"> {{element.repaymentDate}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[1]}}</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.repaymentDate}}</mat-cell>
           </ng-container>
 
-
-          <!-- Name Column -->
           <ng-container matColumnDef="remainingAmountToRepay">
-            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[2]}} </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.remainingAmountToRepay}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[2]}}</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.remainingAmountToRepay}}</mat-cell>
           </ng-container>
-
-          <!--'assetValuePaymentAmount',-->
-          <!--'interestPaymentAmount',-->
-          <!--'totalPaymentAmount'-->
 
           <ng-container matColumnDef="assetValuePaymentAmount">
-            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[3]}} </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.assetValuePaymentAmount}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[3]}}</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.assetValuePaymentAmount}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="interestPaymentAmount">
-            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[4]}} </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.interestPaymentAmount}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[4]}}</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.interestPaymentAmount}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="totalPaymentAmount">
-            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[4]}} </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.totalPaymentAmount}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[4]}}</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.totalPaymentAmount}}</mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
         </mat-table>
+
+        <mat-paginator [length]="(repaymentScheduleDataStream | async)?.length" (page)="($event)"
+                       [pageSize]="7"
+                       [pageSizeOptions]="[7]"
+                       [showFirstLastButtons]="true"
+
+        >
+        </mat-paginator>
+
+        <!--<mat-paginator #paginator [length]="(repaymentScheduleDataStream | async)?.length"-->
+        <!--[pageSize]="pageSize"-->
+        <!--[pageSizeOptions]="pageSizeOptions"-->
+        <!--(page)="pageEvent = $event">-->
+        <!--</mat-paginator>-->
+        <!--<div *ngIf="pageEvent">-->
+        <!--<h5>Page Change Event Properties</h5>-->
+        <!--<div>List length: {{pageEvent.length}}</div>-->
+        <!--<div>Page size: {{pageEvent.pageSize}}</div>-->
+        <!--<div>Page index: {{pageEvent.pageIndex}}</div>-->
+        <!--</div>-->
+
+        <!--<div *ngIf="pageEvent">-->
+        <!--<h5>Page Change Event Properties</h5>-->
+        <!--<div>List length: {{pageEvent.length}}</div>-->
+        <!--<div>Page size: {{pageEvent.pageSize}}</div>-->
+        <!--<div>Page index: {{pageEvent.pageIndex}}</div>-->
+        <!--</div>-->
+
       </div>
 
     </mat-card-content>
