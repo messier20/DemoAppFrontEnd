@@ -1,8 +1,11 @@
-<mat-card>
-  <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="infoForm" (ngSubmit)="submitForm()">
-    <h3>{{formLabels[0]}}</h3>
-
-    <mat-form-field>
+<div class="card-container background">
+<mat-card id="inputFormCard">
+  <mat-card-header>
+    <mat-card-title> <h2 class="text-color">{{formLabels[0]}}</h2></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="infoForm" (ngSubmit)="submitForm()">
+    <mat-form-field class="inline-form">
       <input type="text" matInput placeholder="{{formLabels[1]}}" class="form-control"
              id="name" required formControlName="name" name="name"
              [errorStateMatcher]="errorMatcher">
@@ -17,6 +20,8 @@
 
     </mat-form-field>
 
+
+    <div>
     <mat-form-field *ngIf="leasingModel.customerType === 'Private'">
       <input type="text" matInput placeholder="{{formLabels[2]}}" class="form-control"
              id="lastName" required
@@ -29,6 +34,11 @@
         {{formLabels[2]}} is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+
+
+    </div>
+
+    <div>
 
     <mat-form-field>
       <input type="text" #message matInput placeholder="{{formLabels[3]}}" class="form-control"
@@ -44,6 +54,10 @@
       </mat-error>
     </mat-form-field>
 
+    </div>
+
+    <div>
+
     <mat-form-field>
       <input type="text" matInput placeholder="Ex: email@domain.com" class="form-control"
              id="email" required
@@ -52,6 +66,10 @@
         {{formLabels[4]}} field is required
       </mat-error>
     </mat-form-field>
+
+
+    </div>
+    <div>
 
     <mat-form-field>
       <input type="text" matInput placeholder="{{formLabels[5]}}" class="form-control"
@@ -63,6 +81,11 @@
       </mat-error>
     </mat-form-field>
 
+
+    </div>
+    <div>
+
+
     <mat-form-field>
       <input type="text" matInput placeholder="{{formLabels[6]}}" class="form-control"
              id="address" required
@@ -71,5 +94,13 @@
         {{formLabels[6]}} field is required
       </mat-error>
     </mat-form-field>
-  </form>
+
+    </div>
+
+      <button mat-raised-button type="submit" (click)="goBack()">Back</button>
+      <button  mat-raised-button type="submit" color="accent" (click)="setCustomerInfo()">Submit form
+      </button>
+    </form>
+  </mat-card-content>
 </mat-card>
+</div>

@@ -1,25 +1,27 @@
-<mat-card id="testcard">
-  <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="leasingForm" (ngSubmit)="submitForm()">
-    <h3 style="align-content: left">Leasing Application</h3>
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <mat-select placeholder="{{leasingFormLabels.CUSTOMER_TYPE}}"
-                        class="form-control" id="customerType"
-                        name="customerTypeField" formControlName="customerType"
-                        required
-                        (change)="updateMinValues()">
-              <mat-option [value]="PRIVATE">Private</mat-option>
-              <mat-option [value]="BUSINESS">Business</mat-option>
-            </mat-select>
-            <mat-error *ngIf="leasingForm.get('customerType').invalid">
-              Customer Type is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="example-full-width">
+<div class="card-container background ">
+  <mat-card id="inputFormCard">
+    <mat-card-header>
+      <mat-card-title ><h2 class="text-color">Leasing Application</h2></mat-card-title>
+    </mat-card-header>
+    <mat-card-content id="inputCardContent">
+      <form [formGroup]="leasingForm" (ngSubmit)="submitForm()">
+        <mat-form-field class="inline-form">
+          <mat-select placeholder="{{leasingFormLabels.CUSTOMER_TYPE}}"
+                      class="form-control" id="customerType"
+                      name="customerTypeField" formControlName="customerType"
+                      required
+                      (change)="updateMinValues()">
+            <mat-option [value]="PRIVATE">Private</mat-option>
+            <mat-option [value]="BUSINESS">Business</mat-option>
+          </mat-select>
+          <mat-error *ngIf="leasingForm.get('customerType').invalid">
+            Customer Type is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <div>
+
+          <mat-form-field>
             <mat-select placeholder="{{leasingFormLabels.ASSET_TYPE}}" class="form-control" id="assetType"
                         required name="assetTypeField" value="Vehicle">
               <mat-option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</mat-option>
@@ -28,14 +30,11 @@
               </mat-error>
             </mat-select>
           </mat-form-field>
-        </td>
-      </tr>
-    </table>
-    <br>
-    <h3>Car Information</h3>
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-        <td>
+
+        </div>
+
+        <div>
+
           <mat-form-field>
             <input class="form-control" type="text" placeholder="{{leasingFormLabels.CAR_BRAND}}"
                    matInput #input required
@@ -55,43 +54,51 @@
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-        </td>
 
-      <td>
-        <mat-form-field>
-          <input class="form-control" type="text" placeholder="{{leasingFormLabels.CAR_MODEL}}"
-                 matInput #input disabled
-                 formControlName="carModel"
-                 aria-label="carModel"
-                 [matAutocomplete]="carModel">
+        </div>
 
-          <mat-error *ngIf="leasingForm.get('carModel').invalid">
-            Car Model is <strong>required</strong>
-          </mat-error>
-          <mat-autocomplete #carModel="matAutocomplete">
-            <mat-option *ngFor="let option of filteredCarModels | async" [value]="option">
-              {{ option }}
-            </mat-option>
-          </mat-autocomplete>
 
-        </mat-form-field>
-      </td>
-    </tr>
-    </table>
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td>
-    <mat-form-field class="example-full-width">
-      <input type="date" matInput placeholder="{{leasingFormLabels.MANUFACTURED_DATE}}" class="form-control"
-             id="manufacturedDate" required
-             formControlName="manufacturedDate"
-             name="manufacturedDateForm">
-      <mat-error *ngIf="leasingForm.get('manufacturedDate').invalid">
-        Manufactured Date is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-      </td>
+        <div>
 
-        <td>
+          <mat-form-field>
+            <input class="form-control" type="text" placeholder="{{leasingFormLabels.CAR_MODEL}}"
+                   matInput #input disabled
+                   formControlName="carModel"
+                   aria-label="carModel"
+                   [matAutocomplete]="carModel">
+
+            <mat-error *ngIf="leasingForm.get('carModel').invalid">
+              Car Model is <strong>required</strong>
+            </mat-error>
+            <mat-autocomplete #carModel="matAutocomplete">
+              <mat-option *ngFor="let option of filteredCarModels | async" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+
+          </mat-form-field>
+
+        </div>
+
+
+
+        <div>
+
+          <mat-form-field>
+            <input type="date" matInput placeholder="{{leasingFormLabels.MANUFACTURED_DATE}}" class="form-control"
+                   id="manufacturedDate" required
+                   formControlName="manufacturedDate"
+                   name="manufacturedDateForm">
+            <mat-error *ngIf="leasingForm.get('manufacturedDate').invalid">
+              Manufactured Date is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+
+        <div>
+
           <mat-form-field class="example-full-width">
             <input type="number" matInput placeholder="{{leasingFormLabels.ENGINE_POWER}}" class="form-control"
                    id="enginePower" required
@@ -100,28 +107,26 @@
                    [errorStateMatcher]="leasingFormErrorMatcher"
             >
             <mat-error *ngIf="leasingForm.get('enginePower').hasError('min')
-      && !leasingForm.get('enginePower').hasError('required')
-      && !leasingForm.get('enginePower').hasError('max')">
+        && !leasingForm.get('enginePower').hasError('required')
+        && !leasingForm.get('enginePower').hasError('max')">
               Engine Power must be above <strong>{{validationAmounts.ENGINE_POWER_MIN}}</strong>
             </mat-error>
             <mat-error *ngIf="!leasingForm.get('enginePower').hasError('required')
-      && leasingForm.get('enginePower').hasError('max')">
+        && leasingForm.get('enginePower').hasError('max')">
               Engine Power must be below <strong>{{validationAmounts.ENGINE_POWER_MAX}}</strong>
             </mat-error>
             <mat-error *ngIf="leasingForm.get('enginePower').hasError('required')">
               Engine Power is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-        </td>
 
-      </tr>
-    </table>
-    <br>
-    <h3>Payment</h3>
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
+        </div>
+
+
+
+        <div>
+
+          <mat-form-field>
             <input type="number" matInput placeholder="{{leasingFormLabels.ASSET_PRICE}}" class="form-control"
                    id="assetPrice" required
                    formControlName="assetPrice"
@@ -132,12 +137,12 @@
                    [errorStateMatcher]="leasingFormErrorMatcher">
 
             <mat-error *ngIf="leasingForm.get('assetPrice').hasError('min')
-      && !leasingForm.get('assetPrice').hasError('required')
-      && !leasingForm.get('assetPrice').hasError('max')">
+        && !leasingForm.get('assetPrice').hasError('required')
+        && !leasingForm.get('assetPrice').hasError('max')">
               Asset Price must be above <strong>{{this.minAssetPrice}}€</strong>
             </mat-error>
             <mat-error *ngIf="!leasingForm.get('assetPrice').hasError('required')
-      && leasingForm.get('assetPrice').hasError('max')">
+        && leasingForm.get('assetPrice').hasError('max')">
               Asset Price must be below <strong>{{validationAmounts.MAX_ASSET_PRICE}}€</strong>
             </mat-error>
             <mat-error *ngIf="leasingForm.get('assetPrice').hasError('required')">
@@ -145,9 +150,14 @@
             </mat-error>
 
           </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="example-full-width">
+
+
+        </div>
+
+
+        <div>
+
+          <mat-form-field>
             <input type="number" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_PERCENTAGE}}"
                    class="form-control" id="advancePaymentPercentage"
                    formControlName="advancePaymentPercentage"
@@ -159,13 +169,13 @@
                    [errorStateMatcher]="leasingFormErrorMatcher">
 
             <mat-error *ngIf="leasingForm.get('advancePaymentPercentage').hasError('min')
-      && !leasingForm.get('advancePaymentPercentage').hasError('required')
-      && !leasingForm.get('advancePaymentPercentage').hasError('max')">
+        && !leasingForm.get('advancePaymentPercentage').hasError('required')
+        && !leasingForm.get('advancePaymentPercentage').hasError('max')">
               Advance payment percentage must be above
               <strong>{{validationAmounts.ADVANCE_PAYMENT_PERCENTAGE_MIN}}%</strong>
             </mat-error>
             <mat-error *ngIf="!leasingForm.get('advancePaymentPercentage').hasError('required')
-      && leasingForm.get('advancePaymentPercentage').hasError('max')">
+        && leasingForm.get('advancePaymentPercentage').hasError('max')">
               Advance payment percentage must be below
               <strong>{{validationAmounts.ADVANCE_PAYMENT_PERCENTAGE_MAX}}%</strong>
             </mat-error>
@@ -173,34 +183,36 @@
               Advance payment percentage is <strong>required</strong>
             </mat-error>
 
-      <mat-error
-        *ngIf="leasingForm.get('advancePaymentPercentage').valid || leasingForm.get('advancePaymentPercentage').untouched">
-        Advance payment percentage must be between 10% and 100%
-      </mat-error>
-    </mat-form-field>
-      </td>
-    </tr></table>
+            <mat-error
+              *ngIf="leasingForm.get('advancePaymentPercentage').valid || leasingForm.get('advancePaymentPercentage').untouched">
+              Advance payment percentage must be between 10% and 100%
+            </mat-error>
+          </mat-form-field>
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td>
-    <mat-form-field class="example-full-width">
-      <input type="text" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}" class="form-control"
-             id="advancePaymentAmount" name="advancePaymentAmountField"
-             formControlName="advancePaymentAmount"
-             min="500" max="9999999"
-             required
-             (keyup)="calcAdvancePaymentPercentage()"
-             (change)="calcAdvancePaymentPercentage()"
-             [errorStateMatcher]="leasingFormErrorMatcher">
+
+        </div>
+
+
+        <div>
+
+          <mat-form-field>
+            <input type="text" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}" class="form-control"
+                   id="advancePaymentAmount" name="advancePaymentAmountField"
+                   formControlName="advancePaymentAmount"
+                   min="500" max="9999999"
+                   required
+                   (keyup)="calcAdvancePaymentPercentage()"
+                   (change)="calcAdvancePaymentPercentage()"
+                   [errorStateMatcher]="leasingFormErrorMatcher">
 
             <mat-error *ngIf="leasingForm.get('advancePaymentAmount').hasError('min')
-      && !leasingForm.get('advancePaymentAmount').hasError('required')
-      && !leasingForm.get('advancePaymentAmount').hasError('max')">
+        && !leasingForm.get('advancePaymentAmount').hasError('required')
+        && !leasingForm.get('advancePaymentAmount').hasError('max')">
               Advance payment amount must be above
               <strong>{{this.minAdvancePaymentAmount.toFixed(2)}}€</strong>
             </mat-error>
             <mat-error *ngIf="!leasingForm.get('advancePaymentAmount').hasError('required')
-      && leasingForm.get('advancePaymentAmount').hasError('max')">
+        && leasingForm.get('advancePaymentAmount').hasError('max')">
               Advance payment amount must be below
               <strong>{{this.maxAdvancePaymentAmount.toFixed(2)}}€</strong>
             </mat-error>
@@ -208,35 +220,36 @@
               Advance payment amount is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-        </td>
 
-        <td>
-          <mat-form-field class="example-full-width">
+
+        </div>
+        <div>
+
+          <mat-form-field>
             <input type="text" matInput placeholder="{{leasingFormLabels.CONTRACT_FEE}}" class="form-control"
                    id="contractFee" name="contractFeeField"
                    formControlName="contractFee">
           </mat-form-field>
-        </td>
 
-      </tr>
-    </table>
+        </div>
 
-    <table class="example-full-width" cellspacing="0">
-        <td>
-          <mat-form-field class="example-full-width">
+
+        <div>
+
+          <mat-form-field>
             <input type="number" matInput placeholder="{{leasingFormLabels.MARGIN}}"
                    class="form-control" id="margin" required
                    formControlName="margin" name="margin" step="0.1" min="3.2" max="100"
                    [errorStateMatcher]="leasingFormErrorMatcher">
 
             <mat-error *ngIf="leasingForm.get('margin').hasError('min')
-      && !leasingForm.get('margin').hasError('required')
-      && !leasingForm.get('margin').hasError('max')">
+        && !leasingForm.get('margin').hasError('required')
+        && !leasingForm.get('margin').hasError('max')">
               Margin must be above
               <strong>{{validationAmounts.MARGIN_MIN}}%</strong>
             </mat-error>
             <mat-error *ngIf="!leasingForm.get('margin').hasError('required')
-      && leasingForm.get('margin').hasError('max')">
+        && leasingForm.get('margin').hasError('max')">
               Margin payment amount must be below
               <strong>{{validationAmounts.MARGIN_MAX}}%</strong>
             </mat-error>
@@ -245,9 +258,14 @@
             </mat-error>
 
           </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="example-full-width">
+
+
+        </div>
+
+
+        <div>
+
+          <mat-form-field>
             <mat-select placeholder="{{leasingFormLabels.LEASING_PERIOD}}" class="form-control" id="leasePeriodInMonths"
                         required name="leasePeriodInMonthsField"
                         formControlName="leasePeriodInMonths">
@@ -257,12 +275,13 @@
               Lease Period is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-        </td>
-    </table>
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-        <td>
-          <mat-form-field>
+
+        </div>
+
+
+        <div>
+
+          <mat-form-field style="align-content: left">
             <mat-select placeholder="{{leasingFormLabels.PAYMENT_DAY}}" class="form-control" id="paymentDay"
                         name="paymentDateField" formControlName="paymentDate"
                         required>
@@ -272,13 +291,15 @@
               Payment Date is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-        </td>
-      </tr>
-    </table>
-    <button type="button" class="btn btn-group btn-outline-secondary" (click)="goBack()">Back</button>
-    <button type="submit" class="btn btn-group btn-outline-primary" (click)="setLeasingModel()">
-      Submit
-      form
-    </button>
-  </form>
-</mat-card>
+
+        </div>
+
+
+        <button mat-raised-button type="submit" (click)="goBack()">Back</button>
+        <button mat-raised-button type="submit" color="accent" (click)="setLeasingModel()">
+          Submit form
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
