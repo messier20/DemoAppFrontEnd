@@ -89,6 +89,15 @@ export class LeasingCalculatorComponent implements OnInit {
       this.fillFieldsWithLeasingFormInput();
     }
 
+    this.leasingCalculatorForm.disabled;
+    if(this.leasingCalculatorForm.enabled){
+      console.log("on init enabled", this.leasingCalculatorForm.enabled);
+    }
+    if(this.leasingCalculatorForm.disabled){
+      console.log("on init disabled", this.leasingCalculatorForm.disabled);
+    }
+    this.onChanges();
+
     (<HTMLInputElement>document.getElementById('matcard2')).hidden = true;
   }
 
@@ -245,5 +254,11 @@ export class LeasingCalculatorComponent implements OnInit {
     console.log('true', this.visible);
     // (<HTMLInputElement>document.getElementById('matcard2')).disabled = true;
     (<HTMLInputElement>document.getElementById('matcard2')).hidden = false;
+  }
+
+  onChanges() {
+    this.leasingCalculatorForm.valueChanges.subscribe(val => {
+      this.leasingCalculatorForm.enable();
+    })
   }
 }
