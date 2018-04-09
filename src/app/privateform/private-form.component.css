@@ -127,8 +127,8 @@ mat-card{
 
   /*margin: 1em 2.5% 0 2.5%;*/
   margin-top: 1em;
-  min-width: 20em;
-  width: 45%;
+  /*min-width: 25em;*/
+  width: 40em;
   max-height: 30em;
   /*height: 100%;*/
   height: auto;
