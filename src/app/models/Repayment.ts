@@ -4,7 +4,6 @@ export class Repayment {
   private _remainingAmountToRepay: number;
   private _assetValuePaymentAmount: number;
   private _interestPaymentAmount: number;
-  // private _contractFee: number;
   private _totalPaymentAmount: number;
 
   constructor() {

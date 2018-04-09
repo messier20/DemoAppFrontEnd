@@ -12,6 +12,10 @@
       color:  mat-color($primary);
     }
 
+    .background {
+      background-color: mat-color($background, app-bar) !important;
+    }
+
     .button-calculate {
       background-color: mat-color($primary, A100);
     }

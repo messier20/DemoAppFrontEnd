@@ -23,7 +23,7 @@ import {
   MatNativeDateModule,
   // MatDatepickerModule, MatDialogModule, MatExpansionPanel, MatFormFieldModule, MatGridListModule, MatIconModule,
   MatMenuModule,
-  MatSelectModule, MatTabLabel,
+  MatSelectModule, MatTabLabel, MatPaginatorModule, MatTableModule,
   MatTabsModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatSnackBarModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -45,6 +45,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import {MediaMatcher} from "@angular/cdk/layout";
 import { MatThemingComponent } from './mat-theming/mat-theming.component';
+import { ScheduleComponent } from './schedule/schedule.component';
 
 
 
@@ -63,7 +64,8 @@ import { MatThemingComponent } from './mat-theming/mat-theming.component';
     ApplicationInfoComponent,
     DialogForm2Component,
     SideNavComponent,
-    MatThemingComponent
+    MatThemingComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +74,8 @@ import { MatThemingComponent } from './mat-theming/mat-theming.component';
     MatListModule,
     AppRoutingModule,
     MatCheckboxModule,
+    MatTableModule,
+    MatPaginatorModule,
     MatSnackBarModule,
     FormsModule,
     MatDialogModule,

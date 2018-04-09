@@ -4,6 +4,10 @@ import {DataStorageService} from './data-storage-service.service';
 import {LeasingModel} from '../models/LeasingModel';
 import {CheckStatusInfo} from '../models/CheckStatusInfo';
 import {LeasingCalculator} from '../models/LeasingCalculator';
+import {ObserveOnMessage} from "rxjs/operators/observeOn";
+import {Observable} from "rxjs/Observable";
+import {Repayment} from "../models/Repayment";
+import {Repayments} from "../models/Repayments";
 
 @Injectable()
 export class BackendService {
@@ -80,6 +84,10 @@ export class BackendService {
 
   sendLeasingCalculatorInput(leasingCalculatorInput: LeasingCalculator) {
     return this.http.post(this.httpLink + this.repaymentScheduleLink, leasingCalculatorInput).toPromise();
+  }
+
+  getRepaymentShedule(leasingCalculatorInput: LeasingCalculator): Promise<Repayments[]> {
+    return this.http.post<Repayments[]>(this.httpLink + this.repaymentScheduleLink, leasingCalculatorInput).toPromise();
   }
 
   getAllPrivateUserApplicationsByStatus(status) {
