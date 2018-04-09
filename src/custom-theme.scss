@@ -3,9 +3,9 @@
 @include mat-core();
 
 //$custom-theme-primary: mat-palette($mat-indigo);
-$custom-theme-primary: mat-palette($mat-indigo);
+$custom-theme-primary: mat-palette($mat-pink);
 
-$custom-theme-accent: mat-palette($mat-amber);
+$custom-theme-accent: mat-palette($mat-green);
 //$custom-theme-accent: mat-palette(#FFCA28, A200, A100, A400);
 $custom-theme-warn: mat-palette($mat-pink);
 
