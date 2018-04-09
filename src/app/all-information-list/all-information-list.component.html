@@ -2,19 +2,19 @@
   <div class="form-group col-md-6">
     <div class="container">
       <div class="panel panel-info">
-        <div class="panel-body" id="label"><b color="primary">Vehicle Information</b></div>
-          <div><i>{{leasingLabels[2]}}: </i> {{leasingModel.carBrand}}</div>
-          <div><i>{{leasingLabels[3]}}: </i> {{leasingModel.carModel}}</div>
-          <div><i>{{leasingLabels[4]}}: </i> {{leasingModel.manufacturedDate}}</div>
-          <div><i>{{leasingLabels[5]}}: </i> {{leasingModel.enginePower}}</div>
-        <div class="panel-body" id="label"><b color="primary">Payment Information</b></div>
-          <div><i>{{leasingLabels[6]}}: </i> {{leasingModel.assetPrice}}</div>
-          <div><i>{{leasingLabels[7]}}: </i> {{leasingModel.advancePaymentPercentage}}</div>
-          <div><i>{{leasingLabels[8]}}: </i> {{leasingModel.advancePaymentAmount}}</div>
-          <div><i>{{leasingLabels[9]}}: </i> {{leasingModel.contractFee}}</div>
-          <div><i>{{leasingLabels[10]}}: </i> {{leasingModel.margin}}</div>
-          <div><i>{{leasingLabels[11]}}: </i> {{leasingModel.leasePeriodInMonths}}</div>
-          <div><i>{{leasingLabels[12]}}: </i> {{leasingModel.paymentDate}}</div>
+        <div class="panel-body" id="label"><b>Vehicle Information</b></div>
+        <mat-list-item>{{leasingLabels[2]}}: <b class="markup"> {{leasingModel.carBrand}}</b></mat-list-item>
+        <mat-list-item>{{leasingLabels[3]}}: <b class="markup"> {{leasingModel.carModel}}</b></mat-list-item>
+        <mat-list-item>{{leasingLabels[4]}}: <b class="markup">{{leasingModel.manufacturedDate}}</b></mat-list-item>
+        <mat-list-item>{{leasingLabels[5]}}: <b class="markup">{{leasingModel.enginePower}}</b></mat-list-item>
+        <div class="panel-body" id="label"><b>Payment Information</b></div>
+        <mat-list-item>{{leasingLabels[6]}}: <b class="markup"> {{leasingModel.assetPrice}}</b></mat-list-item>
+        <mat-list-item>{{leasingLabels[7]}}: <b class="markup"> {{leasingModel.advancePaymentPercentage}}</b></mat-list-item>
+        <mat-list-item>{{leasingLabels[8]}}: <b class="markup"> {{leasingModel.advancePaymentAmount}}</b></mat-list-item>
+        <mat-list-item>{{leasingLabels[9]}}: <b class="markup"> {{leasingModel.contractFee}}</b></mat-list-item>
+        <mat-list-item>{{leasingLabels[10]}}: <b class="markup"> {{leasingModel.margin}}</b></mat-list-item>
+        <mat-list-item>{{leasingLabels[11]}}: <b class="markup"> {{leasingModel.leasePeriodInMonths}}</b></mat-list-item>
+        <mat-list-item>{{leasingLabels[12]}}: <b class="markup"> {{leasingModel.paymentDate}}</b></mat-list-item>
       </div>
     </div>
   </div>
@@ -22,9 +22,10 @@
     <div class="container">
       <div class="panel panel-info">
         <div class="panel-body" id="labelis"><b color="primary">{{customerInfoLabels[0]}}</b></div>
-        <div class><i>{{leasingLabels[0]}}: </i>{{leasingModel.customerType}} </div>
-        <div class="panel-body" *ngFor="let element of customerInfoArray"><i>{{element.heading}}: </i>{{element.value}}
-        </div>
+        <mat-list-item>{{leasingLabels[0]}}: <b class="markup">{{leasingModel.customerType}} </b></mat-list-item>
+        <mat-list-item class="panel-body" *ngFor="let element of customerInfoArray">{{element.heading}}:<b class="markup">
+          {{element.value}}</b>
+        </mat-list-item>
       </div>
     </div>
   </div>

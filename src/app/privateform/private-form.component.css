@@ -195,7 +195,7 @@ button {
 
 mat-form-field {
   margin: 0.1em 0.4em;
-  max-width: 15em;
+  max-width: 15.8em;
   width: 240px;
 }
 
@@ -214,4 +214,10 @@ mat-form-field {
 h5 {
   font-family: 'Roboto', sans-serif;
 }
-
+.text-color {
+  color: #3f51b5;
+}
+mat-card-header {
+  text-align: center;
+  justify-content: center;
+}
