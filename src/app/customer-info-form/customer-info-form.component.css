@@ -131,7 +131,8 @@ mat-card{
   max-height: 40em;
   /*height: 100%;*/
   height: auto;
-  overflow-y: auto ;
+  overflow-y: auto;
+  overflow-x: hidden;
   /*background-color: #8C9EFF;*/
 
   /*overflow: scroll;*/
@@ -176,7 +177,6 @@ mat-card{
 }
 
 form {
-  margin: 2em ;
   width: 100%;
   display: inline-flex;
   flex-wrap: wrap;
@@ -194,8 +194,8 @@ button {
 
 mat-form-field {
   margin: 0.1em 0.4em;
-  max-width: 15em;
-  width: 240px;
+  max-width: 15.8em;
+  width: 400px;
 }
 
 
@@ -204,4 +204,12 @@ mat-form-field {
   display: inline-flex;
   flex-wrap: wrap;
   align-content: center;
+}
+
+.text-color {
+  color: #3f51b5;
+}
+mat-card-header {
+  text-align: center;
+  justify-content: center;
 }
