@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
@@ -27,6 +27,12 @@ export class CustomerInfoFormComponent implements OnInit {
   errorMatcher = new InputFormsErrorStateMatcher();
   validationAmounts = ValidationAmounts;
 
+  @Input()
+  customerType;
+
+  @Output()
+  formSubmitted = new EventEmitter<Object>();
+
   constructor(private router: Router,
               private dataService: DataStorageService,
               private formBuilder: FormBuilder,
@@ -39,13 +45,20 @@ export class CustomerInfoFormComponent implements OnInit {
     if (this.dataService.getLeasingModel() === null || this.dataService.getLeasingModel() === undefined) {
       return true;
     }
-    return this.dataService.getLeasingModel().customerType === 'PRIVATE';
+    if (this.customerType === 'PRIVATE') {
+      this.formLabels = new CustomerInfoLabels().privateInfoLabels;
+      return true;
+    } else {
+      this.formLabels = new CustomerInfoLabels().businessInfoLabels;
+      return false;
+    }
   }
 
   ngOnInit() {
-    if (this.dataService.getLeasingModel() === null || this.dataService.getLeasingModel() === undefined) {
-      document.getElementById('submitButton').hidden = true;
-    }
+    // if (this.dataService.getLeasingModel() === null || this.dataService.getLeasingModel() === undefined) {
+    //   document.getElementById('submitButton').hidden = true;
+    // }
+    console.log('ngOnInit');
     if (this.isCustomerPrivate()) {
       this.formLabels = new CustomerInfoLabels().privateInfoLabels;
       if (this.dataService.getPrivateInfo() != null) {
@@ -102,7 +115,7 @@ export class CustomerInfoFormComponent implements OnInit {
 
   goBack() {
     this.setCustomerInfo();
-    this.router.navigate(['/privateForm']);
+    this.formSubmitted.emit();
   }
 
   private createValidForm() {
