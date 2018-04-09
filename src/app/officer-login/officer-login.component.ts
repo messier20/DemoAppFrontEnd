@@ -38,10 +38,10 @@ export class OfficerLoginComponent implements OnInit {
 
 
   attemptLogin() {
-    this.router.navigate(['/officerView']).then(() => {
-      console.log(this.dataStorage.wrongLoginCredentials);
+    this.router.navigate(['/officerView']);
+    setTimeout(() => {
       this.wrongLoginCredentials = true; // this.dataStorage.wrongLoginCredentials;
-    });
+    }, 500);
   }
 
   setLoginInfo() {
