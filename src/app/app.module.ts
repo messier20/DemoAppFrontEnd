@@ -44,6 +44,7 @@ import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import {MediaMatcher} from "@angular/cdk/layout";
 import { MatThemingComponent } from './mat-theming/mat-theming.component';
+import { ScheduleComponent } from './schedule/schedule.component';
 
 
 
@@ -62,7 +63,8 @@ import { MatThemingComponent } from './mat-theming/mat-theming.component';
     ApplicationInfoComponent,
     DialogForm2Component,
     SideNavComponent,
-    MatThemingComponent
+    MatThemingComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,

@@ -54,6 +54,7 @@ export class LeasingCalculatorComponent implements OnInit {
   setPageSizeOptionsInput = [7];
   repaymentScheduleDataStream = new Subject();
 
+
   dataSource = {
     connect: () => {
       return this.repaymentScheduleDataStream
@@ -228,9 +229,9 @@ export class LeasingCalculatorComponent implements OnInit {
   }
 }
 
-
+//
 // export class MyDataSource implements DataSource<Repayments>{
-//   pageChanges = new BehaviorSubject<PageEvent>({pageIndex: 0, pageSize: 7, length: 85});
+//   pageChanges = new BehaviorSubject<PageEvent>({pageIndex: 0, pageSize: 7});
 //
 //   constructor(private myObserver) {
 //     // super();

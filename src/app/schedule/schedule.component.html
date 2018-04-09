@@ -1,0 +1,47 @@
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataStream">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="repaymentDate">
+      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.repaymentDate}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="remainingAmountToRepay">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.remainingAmountToRepay}} </mat-cell>
+    </ng-container>
+
+    <!--'repaymentDate',-->
+    <!--'remainingAmountToRepay',-->
+    <!--'assetValuePaymentAmount',-->
+    <!--'interestPaymentAmount',-->
+    <!--'totalPaymentAmount'-->
+    <!-- Weight Column -->
+    <ng-container matColumnDef="assetValuePaymentAmount">
+      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.assetValuePaymentAmount}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="interestPaymentAmount">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.interestPaymentAmount}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="totalPaymentAmount">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.totalPaymentAmount}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="7"
+                 [pageSizeOptions]="[7, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>

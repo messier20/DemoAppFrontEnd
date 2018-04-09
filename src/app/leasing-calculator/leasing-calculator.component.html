@@ -218,6 +218,11 @@
 
       </div>
 
+      <div *ngIf="repaymentScheduleDataStream.asObservable()">
+      <app-schedule  [dataStream]="repaymentScheduleDataStream">
+
+      </app-schedule>
+      </div>
     </mat-card-content>
 
   </mat-card>
