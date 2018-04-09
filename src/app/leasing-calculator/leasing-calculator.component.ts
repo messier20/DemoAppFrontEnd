@@ -113,7 +113,7 @@ export class LeasingCalculatorComponent implements OnInit {
 
 
   setMinAssetPrice() {
-    if (this.leasingCalculatorForm.get('customerType').value === 'Business') {
+    if (this.leasingCalculatorForm.get('customerType').value === 'BUSINESS') {
       this.minAssetPrice = PaymentSize.MIN_ASSET_PRICE_BUSINESS;
       this.leasingCalculatorForm.get('assetPrice').setValidators(CustomValidators.assetPriceBusinessValidator);
     } else {
