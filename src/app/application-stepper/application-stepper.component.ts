@@ -9,7 +9,10 @@ import {CustomerInfoFormComponent} from '../customer-info-form/customer-info-for
 })
 export class ApplicationStepperComponent implements OnInit {
 
+  stepOneComplete = false;
+
   constructor(private dataService: DataStorageService) {
+    this.stepOneComplete = false;
   }
 
   customerType;
@@ -18,13 +21,17 @@ export class ApplicationStepperComponent implements OnInit {
   }
 
   toSecondStep() {
-    document.getElementById('toSecondStep').click();
+    this.stepOneComplete = true;
+    this.stepOneComplete = true;
     this.customerType = this.dataService.getLeasingModel().customerType;
+    document.getElementById('toSecondStep').click();
+    document.getElementById('toSecondStep').click();
 
   }
 
   toFirstStep() {
     document.getElementById('toFirstStep').click();
+    this.stepOneComplete = false;
   }
 
 }

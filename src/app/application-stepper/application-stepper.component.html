@@ -1,5 +1,5 @@
 <mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
-  <mat-step>
+  <mat-step completed="{{stepOneComplete}}">
     <ng-template matStepLabel>Leasing Info</ng-template>
     <app-privateform (formSubmitted)="toSecondStep()">
     </app-privateform>
