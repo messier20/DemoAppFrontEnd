@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {LeasingCalculator} from '../models/LeasingCalculator';
 import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
@@ -36,6 +36,13 @@ export class LeasingCalculatorComponent implements OnInit {
   minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
   minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
   maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
+  flag = false;
+  flag2 = false;
+
+  random;
+  @Output() change = new EventEmitter<Object>();
+
+
 
   displayedColumns = [
     'repaymentDate',
@@ -168,13 +175,19 @@ export class LeasingCalculatorComponent implements OnInit {
       });
     } else {
       this.leasingCalculator = this.leasingCalculatorForm.value;
+      this.flag = false;
       this.backendService.getRepaymentShedule(this.leasingCalculator).then((receivedData: any) => {
+
           this.repaymentSchedule = receivedData.repaymentSchedule;
+
 
           // const pag = new MatTableDataSource(this.repaymentSchedule);
           // pag.paginator = this.paginator;
           // this.repaymentScheduleDataStream.next(pag);
+        console.log("schedule", this.repaymentSchedule);
         this.repaymentScheduleDataStream.next(this.repaymentSchedule);
+          this.flag = true;
+
 
         },
         error => {
@@ -182,6 +195,10 @@ export class LeasingCalculatorComponent implements OnInit {
         }
       );
     }
+    return this.repaymentSchedule;
+
+
+
 
   }
 
@@ -227,6 +244,7 @@ export class LeasingCalculatorComponent implements OnInit {
     // (<HTMLInputElement>document.getElementById('matcard2')).disabled = true;
     (<HTMLInputElement>document.getElementById('matcard2')).hidden = false;
   }
+
 }
 
 //
@@ -248,3 +266,5 @@ export class LeasingCalculatorComponent implements OnInit {
 //     return this.myObserver.slice().splice(startIndex, currentPage.pageSize)
 //   }
 // }
+
+

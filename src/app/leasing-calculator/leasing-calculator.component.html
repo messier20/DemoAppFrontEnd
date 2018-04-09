@@ -137,7 +137,7 @@
           class="alert alert-danger">
           Payment date is required.
         </div>
-        <button mat-raised-button type="submit" (click)="isVisible()">Calculate</button>
+        <button mat-raised-button type="submit"  (click)="isVisible()">Calculate</button>
         <button mat-raised-button type="button" color="accent" (click)="setLeasingCalculator()">Apply Now</button>
 
       </form>
@@ -155,47 +155,6 @@
     </mat-card-header>
     <mat-card-content>
 
-      <div class="example-container mat-elevation-z8" id="repaymentSchedule" *ngIf="dataSource">
-        <mat-table #table [dataSource]="dataSource">
-
-          <!-- Position Column -->
-          <ng-container matColumnDef="repaymentDate">
-            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[1]}}</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.repaymentDate}}</mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="remainingAmountToRepay">
-            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[2]}}</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.remainingAmountToRepay}}</mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="assetValuePaymentAmount">
-            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[3]}}</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.assetValuePaymentAmount}}</mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="interestPaymentAmount">
-            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[4]}}</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.interestPaymentAmount}}</mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="totalPaymentAmount">
-            <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[4]}}</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.totalPaymentAmount}}</mat-cell>
-          </ng-container>
-
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-        </mat-table>
-
-        <mat-paginator [length]="(repaymentScheduleDataStream | async)?.length" (page)="($event)"
-                       [pageSize]="7"
-                       [pageSizeOptions]="[7]"
-                       [showFirstLastButtons]="true"
-
-        >
-        </mat-paginator>
 
         <!--<mat-paginator #paginator [length]="(repaymentScheduleDataStream | async)?.length"-->
         <!--[pageSize]="pageSize"-->
@@ -216,10 +175,8 @@
         <!--<div>Page index: {{pageEvent.pageIndex}}</div>-->
         <!--</div>-->
 
-      </div>
-
-      <div *ngIf="repaymentScheduleDataStream.asObservable()">
-      <app-schedule  [dataStream]="repaymentScheduleDataStream">
+      <div *ngIf="flag">
+      <app-schedule [dataStream]="repaymentSchedule" >
 
       </app-schedule>
       </div>
