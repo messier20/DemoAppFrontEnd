@@ -56,13 +56,11 @@ export class PrivateFormComponent implements OnInit {
     this.leasingModel = new LeasingModel();
     if (this.dataService.getLeasingCalculator() !== null && this.dataService.getLeasingCalculator() !== undefined) {
       this.fillFieldsWithCalculatorInput();
-      console.log('fillcalcfields');
     } else if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
       this.leasingForm.setValue(this.dataService.getLeasingModel());
       this.selectBrandHandler();
-      console.log('fillformfields');
+      this.leasingForm.get('carModel').setValue(this.dataService.getLeasingModel().carModel);
     } else {
-      console.log('third if');
       this.leasingModel = new LeasingModel();
     }
     this.filteredCarBrands = this.leasingForm.get('carBrand').valueChanges
@@ -223,9 +221,9 @@ export class PrivateFormComponent implements OnInit {
       this.leasingForm.get('carBrand').setValue(this.dataService.getLeasingModel().carBrand);
       this.selectBrandHandler();
       this.leasingForm.get('carModel').setValue(this.dataService.getLeasingModel().carModel);
+      console.log(this.leasingForm.get('carModel').value);
       this.leasingForm.get('manufacturedDate').setValue(this.dataService.getLeasingModel().manufacturedDate);
       this.leasingForm.get('enginePower').setValue(this.dataService.getLeasingModel().enginePower);
-      this.selectBrandHandler();
     }
   }
 }
