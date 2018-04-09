@@ -38,7 +38,7 @@ export class OfficerLoginComponent implements OnInit {
 
 
   attemptLogin() {
-    this.router.navigate(['/officerView']);
+    this.router.navigate(['/officerView']).then();
     setTimeout(() => {
       this.wrongLoginCredentials = true; // this.dataStorage.wrongLoginCredentials;
     }, 500);
