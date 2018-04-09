@@ -7,7 +7,7 @@ export class CustomerInfoLabels {
   public readonly EMAIL = 'Email';
   public readonly PHONE_NUMBER = 'Phone no.';
   public readonly ADDRESS = 'Address';
-  public readonly COMPANY_NAME = 'Company Details';
+  public readonly COMPANY_NAME = 'Company Name';
   public readonly COMPANY_DETAILS = 'Company Details';
   public readonly COMPANY_CODE = 'Company Code';
 

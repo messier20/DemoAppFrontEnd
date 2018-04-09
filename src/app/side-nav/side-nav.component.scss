@@ -1,0 +1,22 @@
+@import '~@angular/material/theming';
+
+@mixin app-side-nav-theme($theme) {
+  $primary: map_get($theme, primary);
+  $accent: map_get($theme, accent);
+  $warn: map_get($theme, warn);
+  $foreground: map_get($theme, foreground);
+  $background: map_get($theme, background);
+
+  app-side-nav {
+
+    a.mat-list-item {
+      color: mat-color($primary, lighter) !important;
+    }
+
+    a.mat-list-item:hover, a.mat-list-item:focus {
+      color: mat-color($foreground, base) !important;
+      background-color: mat-color($accent, 400) !important;
+    }
+
+  }
+}

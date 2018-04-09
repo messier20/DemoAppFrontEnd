@@ -21,10 +21,10 @@ export class BackendService {
   }
 
   sendCompletedForm() {
-    if (this.dataStorage.getLeasingModel().customerType === 'Private') {
+    if (this.dataStorage.getLeasingModel().customerType === 'PRIVATE') {
       return this.sendPrivateForm();
 
-    } else if (this.dataStorage.getLeasingModel().customerType === 'Business') {
+    } else if (this.dataStorage.getLeasingModel().customerType === 'BUSINESS') {
       return this.sendBusinessForm();
 
     } else {
@@ -43,7 +43,7 @@ export class BackendService {
 
   sendBusinessForm() {
     const postBody = {
-      leasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
+      leasing: this.dataStorage.getLeasingModel(),
       customer: this.dataStorage.getBusinessInfo()
     };
 
@@ -62,7 +62,7 @@ export class BackendService {
 
   sendPrivateForm() {
     const postBody = {
-      leasing: DataStorageService.refactorCustomerType(this.dataStorage.getLeasingModel()),
+      leasing: this.dataStorage.getLeasingModel(),
       customer: this.dataStorage.getPrivateInfo()
     };
     // console.log(postBody);
@@ -118,6 +118,12 @@ export class BackendService {
     return this.http
       .put(this.httpLink + '/user/business/update/' + id, postBody ).toPromise();
     // .toPromise()
+  }
+
+  getAllCustomer() {
+    return this.http
+      .get(this.httpLink + 'users')
+      .toPromise();
   }
 
 

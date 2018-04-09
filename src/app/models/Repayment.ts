@@ -4,7 +4,7 @@ export class Repayment {
   private _remainingAmountToRepay: number;
   private _assetValuePaymentAmount: number;
   private _interestPaymentAmount: number;
-  private _contractFee: number;
+  // private _contractFee: number;
   private _totalPaymentAmount: number;
 
   constructor() {
@@ -42,13 +42,13 @@ export class Repayment {
     this._interestPaymentAmount = value;
   }
 
-  get contractFee(): number {
-    return this._contractFee;
-  }
-
-  set contractFee(value: number) {
-    this._contractFee = value;
-  }
+  // get contractFee(): number {
+  //   return this._contractFee;
+  // }
+  //
+  // set contractFee(value: number) {
+  //   this._contractFee = value;
+  // }
 
   get totalPaymentAmount(): number {
     return this._totalPaymentAmount;

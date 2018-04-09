@@ -1,24 +1,25 @@
 <mat-tab-group >
   <mat-tab class="mat-tab-label-content "  label="All Applications">
+    <mat-card>
     <div>
       <h4 color="primary">Pending Applications</h4>
-      <div *ngFor="let lease of pending; let stepIndex = index">
+      <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex = index">
 
 
-        <mat-accordion class="example-headers-align">
+        <mat-accordion class="example-headers-align" *ngIf="lease.status==='PENDING'">
           <mat-expansion-panel [expanded]="step11 === stepIndex" (opened)="setStep11(stepIndex)" hideToggle="true">
 
 
             <mat-expansion-panel-header id="header">
               <mat-panel-title>
-                Application {{lease.privateCustomerInfo?.name}} {{lease.businessCustomerInfo?.name}}
-                submitted on {{lease.date}}
+                Application submitted on {{(lease.date).substr(0, 10)}} by {{lease.privateCustomerInfo?.name}} {{lease.privateCustomerInfo?.lastName}}
+
 
               </mat-panel-title>
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
                                       [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
-                                      [pending]="lease" (updates)="refresh($event)"  ></app-application-info>
+                                      [pending]="lease" (updates)="refresh2($event)"  ></app-application-info>
               </ng-template>
 
             </mat-expansion-panel-header>
@@ -30,18 +31,17 @@
     </div>
     <div>
       <h4>Approved Applications</h4>
-      <div *ngFor="let lease of approved; let stepIndex2 = index">
-        <mat-accordion class="example-headers-align">
+      <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex2 = index">
+        <mat-accordion class="example-headers-align" *ngIf="lease.status==='APPROVED'">
           <mat-expansion-panel [expanded]="step12 === stepIndex2" (opened)="setStep12(stepIndex2)" hideToggle="true">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Application {{lease.privateCustomerInfo?.name}} {{lease.businessCustomerInfo?.name}}
-                submitted on {{lease.date}}
+                Application submitted on {{(lease.date).substr(0, 10)}} by {{lease.privateCustomerInfo?.name}} {{lease.privateCustomerInfo?.lastName}}
               </mat-panel-title>
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
                                       [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
-                                      [pending]="lease" (updates)="refresh($event)"></app-application-info>
+                                      [pending]="lease" (updates)="refresh2($event)"></app-application-info>
 
               </ng-template>
 
@@ -55,19 +55,18 @@
     </div>
     <div>
       <h4>Denied applications</h4>
-      <div *ngFor="let lease of denied; let stepIndex3 = index">
+      <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex3 = index">
 
-        <mat-accordion class="example-headers-align">
+        <mat-accordion class="example-headers-align" *ngIf="lease.status==='DENIED'">
           <mat-expansion-panel [expanded]="step13 === stepIndex3" (opened)="setStep13(stepIndex3)" hideToggle="true">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Application {{lease.privateCustomerInfo?.name}} {{lease.businessCustomerInfo?.name}}
-                submitted on {{lease.date}}
+                Application submitted on {{(lease.date).substr(0, 10)}} by {{lease.privateCustomerInfo?.name}} {{lease.privateCustomerInfo?.lastName}}
               </mat-panel-title>
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
                                       [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
-                                      [pending]="lease" (updates)="refresh($event)"></app-application-info>
+                                      [pending]="lease" (updates)="refresh2($event)"></app-application-info>
 
               </ng-template>
 
@@ -78,22 +77,16 @@
       </div>
     </div>
 
+    </mat-card>
   </mat-tab>
   <mat-tab label="Private Customers Applications">
-    <!--<div>-->
-      <!--<h4>All Applications</h4>-->
-      <!--<div *ngFor="let lease of leasesInfoOfPrivate; let stepIndex = index">-->
-        <!--<app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"-->
-                              <!--[stepIndex]="stepIndex" ></app-application-info>-->
-      <!--</div>-->
-    <!--</div>-->
+    <mat-card>
 
     <div>
       <h4 color="primary">Pending Applications</h4>
-      <div *ngFor="let lease of pending; let stepIndex = index" >
+      <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex = index" >
 
-
-        <mat-accordion class="example-headers-align" *ngIf="lease.privateCustomerInfo">
+        <mat-accordion class="example-headers-align" *ngIf="lease.leasingModel.customerType==='PRIVATE'&&lease.status==='PENDING'" >
           <mat-expansion-panel [expanded]="step21 === stepIndex" (opened)="setStep21(stepIndex)" hideToggle="true">
 
 
@@ -106,7 +99,7 @@
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
                                       [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
-                                      [pending]="lease" (updates)="refresh($event)"  ></app-application-info>
+                                      [pending]="lease" (updates)="refresh2($event)"  ></app-application-info>
               </ng-template>
 
             </mat-expansion-panel-header>
@@ -118,8 +111,8 @@
     </div>
     <div>
       <h4>Approved Applications</h4>
-      <div *ngFor="let lease of approved; let stepIndex2 = index">
-        <mat-accordion class="example-headers-align" *ngIf="lease.privateCustomerInfo">
+      <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex2 = index">
+        <mat-accordion class="example-headers-align" *ngIf="lease.leasingModel.customerType==='PRIVATE'&&lease.status==='APPROVED'" >
           <mat-expansion-panel [expanded]="step22 === stepIndex2" (opened)="setStep22(stepIndex2)" hideToggle="true">
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -129,7 +122,7 @@
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
                                       [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
-                                      [pending]="lease" (updates)="refresh($event)"></app-application-info>
+                                      [pending]="lease" (updates)="refresh2($event)"></app-application-info>
 
               </ng-template>
 
@@ -141,9 +134,10 @@
     </div>
     <div>
       <h4>Denied applications</h4>
-      <div *ngFor="let lease of denied; let stepIndex3 = index">
+      <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex3 = index">
 
-        <mat-accordion class="example-headers-align" *ngIf="lease.privateCustomerInfo">
+        <mat-accordion class="example-headers-align" *ngIf="lease.leasingModel.customerType==='PRIVATE'&&lease.status==='DENIED'" >
+
           <mat-expansion-panel [expanded]="step23 === stepIndex3" (opened)="setStep23(stepIndex3)" hideToggle="true">
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -153,7 +147,7 @@
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
                                       [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
-                                      [pending]="lease" (updates)="refresh($event)"></app-application-info>
+                                      [pending]="lease" (updates)="refresh2($event)"></app-application-info>
 
               </ng-template>
 
@@ -163,15 +157,16 @@
         </mat-accordion>
       </div>
     </div>
-
+    </mat-card>
   </mat-tab>
   <mat-tab label="Business Customers Applications">
+    <mat-card>
     <div>
       <h4 color="primary">Pending Applications</h4>
-      <div *ngFor="let lease of pending; let stepIndex = index" >
+      <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex = index" >
 
 
-        <mat-accordion class="example-headers-align" *ngIf="lease.businessCustomerInfo">
+        <mat-accordion class="example-headers-align" *ngIf=" lease.leasingModel.customerType === 'BUSINESS' && lease.status === 'PENDING'">
           <mat-expansion-panel [expanded]="step31 === stepIndex" (opened)="setStep31(stepIndex)" hideToggle="true">
 
 
@@ -184,7 +179,7 @@
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
                                       [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
-                                      [pending]="lease" (updates)="refresh($event)"  ></app-application-info>
+                                      [pending]="lease" (updates)="refresh2($event)"  ></app-application-info>
               </ng-template>
 
             </mat-expansion-panel-header>
@@ -196,9 +191,9 @@
     </div>
     <div>
       <h4>Approved Applications</h4>
-      <div *ngFor="let lease of approved; let stepIndex2 = index">
-        <mat-accordion class="example-headers-align" *ngIf="lease.businessCustomerInfo">
-          <mat-expansion-panel [expanded]="step32 === stepIndex2" (opened)="setStep32(stepIndex2)" hideToggle="true">
+      <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex2 = index">
+        <mat-accordion class="example-headers-align" *ngIf="lease.leasingModel.customerType === 'BUSINESS' && lease.status === 'APPROVED' ">
+          <mat-expansion-panel  [expanded]="step32 === stepIndex2" (opened)="setStep32(stepIndex2)" hideToggle="true">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Application {{lease.privateCustomerInfo?.name}} {{lease.businessCustomerInfo?.name}}
@@ -207,7 +202,7 @@
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
                                       [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
-                                      [pending]="lease" (updates)="refresh($event)"></app-application-info>
+                                      [pending]="lease" (updates)="refresh2($event)"></app-application-info>
 
               </ng-template>
 
@@ -219,9 +214,9 @@
     </div>
     <div>
       <h4>Denied applications</h4>
-      <div *ngFor="let lease of denied; let stepIndex3 = index">
+      <div *ngFor="let lease of leasesPrivateAndBusiness; let stepIndex3 = index">
 
-        <mat-accordion class="example-headers-align" *ngIf="lease.businessCustomerInfo">
+        <mat-accordion class="example-headers-align" *ngIf=" lease.leasingModel.customerType === 'BUSINESS' && lease.status === 'DENIED'">
           <mat-expansion-panel [expanded]="step33 === stepIndex3" (opened)="setStep33(stepIndex3)" hideToggle="true">
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -231,7 +226,7 @@
               <ng-template matExpansionPanelContent>
                 <app-application-info [lease]="lease" [leasesInfoOfPrivate]="leasesInfoOfPrivate"
                                       [leasesInfoOfBusiness]="leasesInfoOfBusiness" [names]="names"
-                                      [pending]="lease" (updates)="refresh($event)"></app-application-info>
+                                      [pending]="lease" (updates)="refresh2($event)"></app-application-info>
 
               </ng-template>
 
@@ -241,8 +236,7 @@
         </mat-accordion>
       </div>
     </div>
-
-
+    </mat-card>
   </mat-tab>
 
 </mat-tab-group>

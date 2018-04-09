@@ -7,7 +7,7 @@ import {BackendService} from "../../services/backend.service";
 import {CustomerInfoLabels} from "../../constants/CustomerInfoLabels";
 import {LeasingFormLabels} from "../../constants/LeasingFormLabels";
 import {DialogFormComponent} from "../../dialog-form/dialog-form";
-import {MatDialog} from "@angular/material";
+import {MatDialog, MatSnackBar} from "@angular/material";
 import {LeaseInfoOfPrivate} from "../../models/LeaseInfoOfPrivate";
 import {LeaseInfoOfBusiness} from "../../models/LeaseInfoOfBusiness";
 import {DialogForm2Component} from "../../dialog-form2/dialog-form2.component";
@@ -47,7 +47,8 @@ export class ApplicationInfoComponent implements OnInit {
 
 
   constructor(private backendService: BackendService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              public snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -78,7 +79,7 @@ export class ApplicationInfoComponent implements OnInit {
 
 
   isPrivate() {
-    if (this.lease.leasingModel.customerType === 'Private') {
+    if (this.lease.leasingModel.customerType === 'PRIVATE') {
       this.sendToBackendPrivate();
     }
     else {
@@ -87,19 +88,23 @@ export class ApplicationInfoComponent implements OnInit {
   }
 
     openModal(status){
+
+      console.log("lease before submit", this.lease);
     this.dialog.open(DialogForm2Component, {
       data: {
         status: status
       }
-  }).afterClosed().subscribe(data => {
-    if(data){
+  }).afterClosed().subscribe(status => {
+    if(status){
       this.lease.status = "APPROVED";
     }
-    else if (data===false) {
+    else if (status===false) {
       this.lease.status = "DENIED";
     }
 
-    if(data || data===false) {
+    if(status || status===false) {
+
+      console.log("lease after submit", this.lease);
 
       (<HTMLInputElement>document.getElementById('approved')).disabled = true;
       (<HTMLInputElement>document.getElementById('denied')).disabled = true;
@@ -115,7 +120,7 @@ export class ApplicationInfoComponent implements OnInit {
   sendToBackendPrivate() {
 
     let postBody = {
-      leasing: DataStorageService.refactorCustomerType(this.lease.leasingModel),
+      leasing: this.lease.leasingModel,
       customer: this.lease.privateCustomerInfo,
       status: this.lease.status,
       idHex: this.lease.id
@@ -125,21 +130,33 @@ export class ApplicationInfoComponent implements OnInit {
       .then(data => {
         this.updates.emit(data);
       });
+    this.openSnackBar("The application moved to " + postBody.status.toLowerCase() + " applications", "close");
   }
 
   sendToBackendBusiness() {
     let postBody = {
-      leasing: DataStorageService.refactorCustomerType(this.lease.leasingModel),
+      leasing: this.lease.leasingModel,
       customer: this.lease.businessCustomerInfo,
       status: this.lease.status,
       idHex: this.lease.id
     };
 
 
+
+
     this.backendService.updateBusinessCustomerStatus(this.lease.id, postBody)
       .then(data => {
         this.updates.emit(data);
       });
+    this.openSnackBar("The application moved to " + postBody.status.toLowerCase() + " part", "close");
+
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      // duration: 2000,
+
+    });
   }
 
 }
