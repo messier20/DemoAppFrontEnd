@@ -129,7 +129,7 @@ mat-card{
   margin-top: 1em;
   min-width: 20em;
   width: 45%;
-  max-height: 40em;
+  max-height: 30em;
   /*height: 100%;*/
   height: auto;
   overflow-y: auto ;
@@ -141,10 +141,10 @@ mat-card{
 .card-container {
   /*max-width: 1400px;*/
   width: 100%;
-  height: 100%;
+  height: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   /*position: absolute;*/
 
