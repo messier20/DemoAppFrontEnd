@@ -53,7 +53,6 @@ export class PrivateFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.leasingModel = new LeasingModel();
     if (this.dataService.getLeasingCalculator() !== null && this.dataService.getLeasingCalculator() !== undefined) {
       this.fillFieldsWithCalculatorInput();
     } else if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
