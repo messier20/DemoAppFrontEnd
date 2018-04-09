@@ -31,6 +31,8 @@ export class CustomerInfoFormComponent implements OnInit {
   customerType;
 
   @Output()
+  formGoBack = new EventEmitter<Object>();
+  @Output()
   formSubmitted = new EventEmitter<Object>();
 
   constructor(private router: Router,
@@ -58,7 +60,6 @@ export class CustomerInfoFormComponent implements OnInit {
     // if (this.dataService.getLeasingModel() === null || this.dataService.getLeasingModel() === undefined) {
     //   document.getElementById('submitButton').hidden = true;
     // }
-    console.log('ngOnInit');
     if (this.isCustomerPrivate()) {
       this.formLabels = new CustomerInfoLabels().privateInfoLabels;
       if (this.dataService.getPrivateInfo() != null) {
@@ -102,20 +103,21 @@ export class CustomerInfoFormComponent implements OnInit {
         control.markAsTouched({onlySelf: true});
       });
     } else {
-      this.dialog.open(DialogFormComponent, {
-        data: {
-          leasingModel: this.dataService.getLeasingModel(),
-          privateInfo: this.privateCustomerInfo,
-          businessInfo: this.businessCustomerInfo,
-          checkingLeasingStatus: false
-        }
-      });
+      // this.dialog.open(DialogFormComponent, {
+      //   data: {
+      //     leasingModel: this.dataService.getLeasingModel(),
+      //     privateInfo: this.privateCustomerInfo,
+      //     businessInfo: this.businessCustomerInfo,
+      //     checkingLeasingStatus: false
+      //   }
+      // });
+      this.formSubmitted.emit();
     }
   }
 
   goBack() {
     this.setCustomerInfo();
-    this.formSubmitted.emit();
+    this.formGoBack.emit();
   }
 
   private createValidForm() {
