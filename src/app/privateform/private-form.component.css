@@ -119,20 +119,22 @@
   /*background-image: -o-linear-gradient(top, #d5d5d5, #aaaaaa);*/
   /*background-image: linear-gradient(to bottom, #d5d5d5, #aaaaaa);  width: auto;*/
   position: center;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 mat-card{
 
   /*margin: 1em 2.5% 0 2.5%;*/
   margin-top: 1em;
+  min-width: 20em;
   /*min-width: 25em;*/
-  width: 40em;
-  max-height: 30em;
+  width: 45%;
+  max-height: 40em;
   /*height: 100%;*/
   height: auto;
-  overflow-y: auto ;
+  overflow-y: hidden;
+  overflow-x: hidden;
   /*background-color: #8C9EFF;*/
 
   /*overflow: scroll;*/
@@ -144,7 +146,7 @@ mat-card{
   height: auto;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
   /*position: absolute;*/
 
@@ -196,7 +198,7 @@ button {
 mat-form-field {
   margin: 0.1em 0.4em;
   max-width: 15.8em;
-  width: 240px;
+  width: 400px;
 }
 
 

@@ -1,0 +1,102 @@
+.btn {
+  background: #020027;
+  background-image: -webkit-linear-gradient(top, #020027, #020079);
+  background-image: -moz-linear-gradient(top, #020027, #020079);
+  background-image: -ms-linear-gradient(top, #020027, #020079);
+  background-image: -o-linear-gradient(top, #020027, #020079);
+  background-image: linear-gradient(to bottom, #020027, #020079);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 4px 4px 10px #020079;
+  -moz-box-shadow: 4px 4px 10px #020079;
+  box-shadow: 4px 4px 10px #020079;
+  font-family: Arial, serif;
+  color: #d5d5d5;
+  font-size: 15px;
+  padding: 5px 10px 5px 10px;
+  border: 1px solid #020027;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.btn:hover {
+  background: #020029;
+  background-image: -webkit-linear-gradient(top, #020029, #020027);
+  background-image: -moz-linear-gradient(top, #020029, #020027);
+  background-image: -ms-linear-gradient(top, #020029, #020027);
+  background-image: -o-linear-gradient(top, #020029, #020027);
+  background-image: linear-gradient(to bottom, #020029, #020027);
+  text-decoration: none;
+}
+
+.btn:active:focus {
+  color: #d5d5d5;
+  background: #020029;
+  background-image: -webkit-linear-gradient(top, #020029, #020027);
+  background-image: -moz-linear-gradient(top, #020029, #020027);
+  background-image: -ms-linear-gradient(top, #020029, #020027);
+  background-image: -o-linear-gradient(top, #020029, #020027);
+  background-image: linear-gradient(to bottom, #020029, #020027);
+  text-decoration: none;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 4px 4px 10px #020079;
+  -moz-box-shadow: 4px 4px 10px #020079;
+  box-shadow: 4px 4px 10px #020079;
+  border: 1px solid #020027;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+}
+
+.alert-danger {
+  margin-top: 25px;
+}
+
+div.card-container {
+  margin: 0 !important;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+mat-card {
+  margin: 1em;
+  max-width: 30em;
+
+}
+
+form {
+  display: flex;
+  align-content: center;
+
+  padding: 2em ;
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+mat-card-header, div.mat-card-header-text{
+  display: inline-flex !important;
+  justify-content: center;
+  width: 100%;
+}
+
+mat-form-field {
+  margin: 0.4em 1em;
+  max-width: 17em;
+  width: 19em;
+}
+
+#loginButton {
+  margin-left: 25%;
+  margin-right: 25%;
+}
