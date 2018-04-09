@@ -24,7 +24,8 @@ import {
   // MatDatepickerModule, MatDialogModule, MatExpansionPanel, MatFormFieldModule, MatGridListModule, MatIconModule,
   MatMenuModule,
   MatSelectModule, MatTabLabel, MatPaginatorModule, MatTableModule,
-  MatTabsModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatSnackBarModule
+  MatTabsModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatSnackBarModule,
+  MatTooltipModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {HttpClientModule} from '@angular/common/http';
@@ -93,6 +94,7 @@ import {SideNavComponent} from "./side-nav/side-nav.component";
     MatInputModule,
     MatCardModule,
     MatGridListModule,
+    MatTooltipModule,
     MatButtonModule,
     MatMenuModule,
     MatSelectModule,
