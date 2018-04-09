@@ -11,6 +11,8 @@ import {BackendService} from '../services/backend.service';
 import {PaymentSize} from '../constants/PaymentSize';
 import {LoanUtils} from '../utils/LoanUtils';
 import {LeasingModel} from '../models/LeasingModel';
+import {InputFormsErrorStateMatcher} from '../utils/InputFormsErrorStateMatcher';
+import {ValidationAmounts} from '../constants/ValidationAmounts';
 
 @Component({
   selector: 'app-leasing-calculator',
@@ -36,6 +38,8 @@ export class LeasingCalculatorComponent implements OnInit {
   PRIVATE = 'PRIVATE';
   BUSINESS = 'BUSINESS';
   visible = false;
+  leasingCalculatorErrorMatcher = new InputFormsErrorStateMatcher();
+  validationAmounts = ValidationAmounts;
 
 
   constructor(private router: Router,
@@ -171,6 +175,7 @@ export class LeasingCalculatorComponent implements OnInit {
   setLeasingCalculator() {
     this.leasingCalculator = this.leasingCalculatorForm.value;
     this.dataService.setLeasingCalculator(this.leasingCalculator);
+    console.log(this.dataService.getLeasingCalculator().assetPrice);
     this.router.navigate(['/privateForm']);
   }
 
