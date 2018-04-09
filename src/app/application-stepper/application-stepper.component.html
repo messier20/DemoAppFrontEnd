@@ -1,0 +1,14 @@
+<mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
+  <mat-step>
+    <ng-template matStepLabel>Leasing Info</ng-template>
+    <app-privateform>
+
+    </app-privateform>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Customer Info</ng-template>
+    <app-customer-info-form>
+
+    </app-customer-info-form>
+  </mat-step>
+</mat-horizontal-stepper>

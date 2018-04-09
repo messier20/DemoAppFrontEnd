@@ -1,10 +1,8 @@
-
-
 <div class="card-container background ">
   <mat-card id="inputFormCard">
 
     <mat-card-header>
-      <mat-card-title ><h2 class="text-color">Leasing Calculator</h2></mat-card-title>
+      <mat-card-title><h2 class="text-color">Leasing Calculator</h2></mat-card-title>
     </mat-card-header>
     <mat-card-content id="inputCardContent">
       <form [formGroup]="leasingCalculatorForm" (ngSubmit)="submitForm()" class="forform">
@@ -169,7 +167,7 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <button mat-raised-button type="submit"  (click)="isVisible()">Calculate</button>
+        <button mat-raised-button type="submit" (click)="isVisible()">Calculate</button>
         <button mat-raised-button type="button" color="accent" (click)="setLeasingCalculator()">Apply Now</button>
 
       </form>
@@ -188,29 +186,29 @@
     <mat-card-content>
 
 
-        <!--<mat-paginator #paginator [length]="(repaymentScheduleDataStream | async)?.length"-->
-        <!--[pageSize]="pageSize"-->
-        <!--[pageSizeOptions]="pageSizeOptions"-->
-        <!--(page)="pageEvent = $event">-->
-        <!--</mat-paginator>-->
-        <!--<div *ngIf="pageEvent">-->
-        <!--<h5>Page Change Event Properties</h5>-->
-        <!--<div>List length: {{pageEvent.length}}</div>-->
-        <!--<div>Page size: {{pageEvent.pageSize}}</div>-->
-        <!--<div>Page index: {{pageEvent.pageIndex}}</div>-->
-        <!--</div>-->
+      <!--<mat-paginator #paginator [length]="(repaymentScheduleDataStream | async)?.length"-->
+      <!--[pageSize]="pageSize"-->
+      <!--[pageSizeOptions]="pageSizeOptions"-->
+      <!--(page)="pageEvent = $event">-->
+      <!--</mat-paginator>-->
+      <!--<div *ngIf="pageEvent">-->
+      <!--<h5>Page Change Event Properties</h5>-->
+      <!--<div>List length: {{pageEvent.length}}</div>-->
+      <!--<div>Page size: {{pageEvent.pageSize}}</div>-->
+      <!--<div>Page index: {{pageEvent.pageIndex}}</div>-->
+      <!--</div>-->
 
-        <!--<div *ngIf="pageEvent">-->
-        <!--<h5>Page Change Event Properties</h5>-->
-        <!--<div>List length: {{pageEvent.length}}</div>-->
-        <!--<div>Page size: {{pageEvent.pageSize}}</div>-->
-        <!--<div>Page index: {{pageEvent.pageIndex}}</div>-->
-        <!--</div>-->
+      <!--<div *ngIf="pageEvent">-->
+      <!--<h5>Page Change Event Properties</h5>-->
+      <!--<div>List length: {{pageEvent.length}}</div>-->
+      <!--<div>Page size: {{pageEvent.pageSize}}</div>-->
+      <!--<div>Page index: {{pageEvent.pageIndex}}</div>-->
+      <!--</div>-->
 
       <div *ngIf="flag">
-      <app-schedule [dataStream]="repaymentSchedule" >
+        <app-schedule [dataStream]="repaymentSchedule">
 
-      </app-schedule>
+        </app-schedule>
       </div>
     </mat-card-content>
 

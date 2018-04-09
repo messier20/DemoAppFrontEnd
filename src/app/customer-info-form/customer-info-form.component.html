@@ -21,7 +21,7 @@
 
 
         <div>
-          <mat-form-field *ngIf="leasingModel.customerType === 'PRIVATE'">
+          <mat-form-field *ngIf="isCustomerPrivate()">
             <input type="text" matInput placeholder="{{formLabels[2]}}" class="form-control"
                    id="lastName" required
                    formControlName="lastName" name="lastName">
@@ -124,7 +124,7 @@
         </div>
 
         <button mat-raised-button type="submit" (click)="goBack()">Back</button>
-        <button mat-raised-button type="submit" color="accent" (click)="setCustomerInfo()">Submit form
+        <button mat-raised-button type="submit" color="accent" id="submitButton" (click)="setCustomerInfo()">Submit form
         </button>
       </form>
     </mat-card-content>
