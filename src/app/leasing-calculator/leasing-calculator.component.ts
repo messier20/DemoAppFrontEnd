@@ -17,6 +17,8 @@ import {Repayments} from "../models/Repayments";
 import {Observable} from "rxjs/Observable";
 import {Subject} from 'rxjs/Subject';
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {InputFormsErrorStateMatcher} from '../utils/InputFormsErrorStateMatcher';
+import {ValidationAmounts} from '../constants/ValidationAmounts';
 
 @Component({
   selector: 'app-leasing-calculator',
@@ -31,6 +33,8 @@ export class LeasingCalculatorComponent implements OnInit {
   leasingFormLabels = new LeasingFormLabels();
   leasingCalculatorLabels = this.leasingFormLabels.leasingCalculatorLabels;
   leasingFormInput: LeasingModel;
+  availableCustomerTypes = ['Private', 'Business'];
+
   leasePeriods;
   availableDays = [15, 30];
   minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
@@ -53,10 +57,11 @@ export class LeasingCalculatorComponent implements OnInit {
   ];
 
   repaymentSchedule: Repayment[];
-
   PRIVATE = 'PRIVATE';
   BUSINESS = 'BUSINESS';
   visible = false;
+  leasingCalculatorErrorMatcher = new InputFormsErrorStateMatcher();
+  validationAmounts = ValidationAmounts;
   ELEMENT_DATA: Element[];
   setPageSizeOptionsInput = [7];
   repaymentScheduleDataStream = new Subject();
@@ -76,9 +81,7 @@ export class LeasingCalculatorComponent implements OnInit {
               private backendService: BackendService) {
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
-
   }
-
 
   ngOnInit() {
     this.leasingCalculator = new LeasingCalculator();
@@ -88,7 +91,6 @@ export class LeasingCalculatorComponent implements OnInit {
 
     (<HTMLInputElement>document.getElementById('matcard2')).hidden = true;
   }
-
 
   updateMinValues() {
     this.setMinAssetPrice();
@@ -165,7 +167,6 @@ export class LeasingCalculatorComponent implements OnInit {
     }
   }
 
-
   submitForm() {
     if (!this.leasingCalculatorForm.valid) {
       Object.keys(this.leasingCalculatorForm.controls).forEach(field => {
@@ -218,6 +219,7 @@ export class LeasingCalculatorComponent implements OnInit {
   setLeasingCalculator() {
     this.leasingCalculator = this.leasingCalculatorForm.value;
     this.dataService.setLeasingCalculator(this.leasingCalculator);
+    console.log(this.dataService.getLeasingCalculator().assetPrice);
     this.router.navigate(['/privateForm']);
   }
 
@@ -244,27 +246,4 @@ export class LeasingCalculatorComponent implements OnInit {
     // (<HTMLInputElement>document.getElementById('matcard2')).disabled = true;
     (<HTMLInputElement>document.getElementById('matcard2')).hidden = false;
   }
-
 }
-
-//
-// export class MyDataSource implements DataSource<Repayments>{
-//   pageChanges = new BehaviorSubject<PageEvent>({pageIndex: 0, pageSize: 7});
-//
-//   constructor(private myObserver) {
-//     // super();
-//   }
-//
-//   connect() {
-//     return this.myObserver.combineLatest(this.myObserver, this.pageChanges).map(result => this.getPagedData(result[0]));
-//   }
-//
-//   disconnect() {}
-//
-//   private getPagedData(currentPage: PageEvent) {
-//     const startIndex = currentPage.pageIndex* currentPage.pageSize;
-//     return this.myObserver.slice().splice(startIndex, currentPage.pageSize)
-//   }
-// }
-
-

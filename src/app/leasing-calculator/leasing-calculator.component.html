@@ -15,10 +15,8 @@
             <mat-option [value]="PRIVATE">Private</mat-option>
             <mat-option [value]="BUSINESS">Business</mat-option>
           </mat-select>
-          <mat-error
-            *ngIf="leasingCalculatorForm.get('customerType').valid || leasingCalculatorForm.get('customerType').untouched"
-            class="alert-danger alert">
-            Customer type is required
+          <mat-error *ngIf="leasingCalculatorForm.get('customerType').invalid">
+            Customer Type is <strong>required</strong>
           </mat-error>
         </mat-form-field>
 
@@ -27,16 +25,30 @@
           <!--<label>{{leasingFormLabels.ASSET_PRICE}}</label>-->
           <mat-form-field>
             <input matInput #input type="number" class="form-control" id="assetPrice" required
-                   formControlName="assetPrice" placeholder='Asset price'
+                   formControlName="assetPrice" placeholder='{{leasingFormLabels.ASSET_PRICE}}'
                    name="assetPriceField"
                    min="5000" max="9999999"
+                   [errorStateMatcher]="leasingCalculatorErrorMatcher"
                    (keyup)="manageDependantFields()"
                    (change)="manageDependantFields()">
-            <mat-error
-              *ngIf="leasingCalculatorForm.get('assetPrice').valid || leasingCalculatorForm.get('assetPrice').untouched"
-              class="alert alert-danger">
-              Asset price must be between {{this.minAssetPrice.toFixed(2)}}€ and 9999999.00€
+
+            <mat-error *ngIf="leasingCalculatorForm.get('assetPrice').hasError('min')
+        && !leasingCalculatorForm.get('assetPrice').hasError('required')
+        && !leasingCalculatorForm.get('assetPrice').hasError('max')">
+              Asset Price must be above <strong>{{this.minAssetPrice}}€</strong>
             </mat-error>
+            <mat-error *ngIf="!leasingCalculatorForm.get('assetPrice').hasError('required')
+        && leasingCalculatorForm.get('assetPrice').hasError('max')">
+              Asset Price must be below <strong>{{validationAmounts.MAX_ASSET_PRICE}}€</strong>
+            </mat-error>
+            <mat-error *ngIf="leasingCalculatorForm.get('assetPrice').hasError('required')">
+              Asset Price is <strong>required</strong>
+            </mat-error>
+            <!--<mat-error-->
+            <!--*ngIf="leasingCalculatorForm.get('assetPrice').valid || leasingCalculatorForm.get('assetPrice').untouched"-->
+            <!--class="alert alert-danger">-->
+            <!--Asset price must be between {{this.minAssetPrice.toFixed(2)}}€ and 9999999.00€-->
+            <!--</mat-error>-->
           </mat-form-field>
         </div>
         <!--</div>-->
@@ -49,11 +61,21 @@
                    name="advancePaymentPercentageField"
                    min="10" max="100"
                    (keyup)="calcAdvancePaymentAmount()"
-                   (change)="calcAdvancePaymentAmount()">
-            <mat-error
-              *ngIf="leasingCalculatorForm.get('advancePaymentPercentage').valid || leasingCalculatorForm.get('advancePaymentPercentage').untouched"
-              class="alert alert-danger">
-              Advance payment percentage must be between 10% and 100%
+                   (change)="calcAdvancePaymentAmount()"
+                   [errorStateMatcher]="leasingCalculatorErrorMatcher">
+            <mat-error *ngIf="leasingCalculatorForm.get('advancePaymentPercentage').hasError('min')
+        && !leasingCalculatorForm.get('advancePaymentPercentage').hasError('required')
+        && !leasingCalculatorForm.get('advancePaymentPercentage').hasError('max')">
+              Advance payment percentage must be above
+              <strong>{{validationAmounts.ADVANCE_PAYMENT_PERCENTAGE_MIN}}%</strong>
+            </mat-error>
+            <mat-error *ngIf="!leasingCalculatorForm.get('advancePaymentPercentage').hasError('required')
+        && leasingCalculatorForm.get('advancePaymentPercentage').hasError('max')">
+              Advance payment percentage must be below
+              <strong>{{validationAmounts.ADVANCE_PAYMENT_PERCENTAGE_MAX}}%</strong>
+            </mat-error>
+            <mat-error *ngIf="leasingCalculatorForm.get('advancePaymentPercentage').hasError('required')">
+              Advance payment percentage is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -68,12 +90,21 @@
                    formControlName="advancePaymentAmount"
                    min="500" max="9999999"
                    (keyup)="calcAdvancePaymentPercentage()"
-                   (change)="calcAdvancePaymentPercentage()">
-            <mat-error
-              *ngIf="leasingCalculatorForm.get('advancePaymentAmount').valid || leasingCalculatorForm.get('advancePaymentAmount').untouched"
-              class="alert alert-danger">
-              Advance payment amount must be {{this.minAdvancePaymentAmount.toFixed(2)}}€ and
-              {{this.maxAdvancePaymentAmount.toFixed(2)}}€
+                   (change)="calcAdvancePaymentPercentage()"
+                   [errorStateMatcher]="leasingCalculatorErrorMatcher">
+            <mat-error *ngIf="leasingCalculatorForm.get('advancePaymentAmount').hasError('min')
+        && !leasingCalculatorForm.get('advancePaymentAmount').hasError('required')
+        && !leasingCalculatorForm.get('advancePaymentAmount').hasError('max')">
+              Advance payment amount must be above
+              <strong>{{this.minAdvancePaymentAmount.toFixed(2)}}€</strong>
+            </mat-error>
+            <mat-error *ngIf="!leasingCalculatorForm.get('advancePaymentAmount').hasError('required')
+        && leasingCalculatorForm.get('advancePaymentAmount').hasError('max')">
+              Advance payment amount must be below
+              <strong>{{this.maxAdvancePaymentAmount.toFixed(2)}}€</strong>
+            </mat-error>
+            <mat-error *ngIf="leasingCalculatorForm.get('advancePaymentAmount').hasError('required')">
+              Advance payment amount is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -93,11 +124,21 @@
           <!--<label for="margin">{{leasingFormLabels.MARGIN}}</label>-->
           <mat-form-field>
             <input matInput #input type="number" class="form-control" placeholder="Margin" id="margin" required
-                   formControlName="margin" name="margin" step="0.1" min="3.2" max="100">
-            <mat-error
-              *ngIf="leasingCalculatorForm.get('margin').valid || leasingCalculatorForm.get('margin').untouched"
-              class="alert alert-danger">
-              Margin must be between 3.2% and 100 %
+                   formControlName="margin" name="margin" step="0.1" min="3.2" max="100"
+                   [errorStateMatcher]="leasingCalculatorErrorMatcher">
+            <mat-error *ngIf="leasingCalculatorForm.get('margin').hasError('min')
+        && !leasingCalculatorForm.get('margin').hasError('required')
+        && !leasingCalculatorForm.get('margin').hasError('max')">
+              Margin must be above
+              <strong>{{validationAmounts.MARGIN_MIN}}%</strong>
+            </mat-error>
+            <mat-error *ngIf="!leasingCalculatorForm.get('margin').hasError('required')
+        && leasingCalculatorForm.get('margin').hasError('max')">
+              Margin payment amount must be below
+              <strong>{{validationAmounts.MARGIN_MAX}}%</strong>
+            </mat-error>
+            <mat-error *ngIf="leasingCalculatorForm.get('margin').hasError('required')">
+              Margin payment amount is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -110,10 +151,8 @@
             <mat-select formControlName="leasePeriodInMonths" placeholder="Leasing period">
               <mat-option *ngFor="let type of leasePeriods" required [value]="type">{{type}}</mat-option>
             </mat-select>
-            <mat-error
-              *ngIf="leasingCalculatorForm.get('leasePeriodInMonths').valid || leasingCalculatorForm.get('leasePeriodInMonths').untouched"
-              class="alert alert-danger">
-              Lease period is required.
+            <mat-error *ngIf="leasingCalculatorForm.get('leasePeriodInMonths').invalid">
+              Lease Period is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -125,10 +164,8 @@
               <mat-option *ngFor="let currentDay of availableDays" required [value]="currentDay"> {{currentDay}}
               </mat-option>
             </mat-select>
-            <mat-error
-              *ngIf="leasingCalculatorForm.get('paymentDate').valid || leasingCalculatorForm.get('paymentDate').untouched"
-              class="alert alert-danger">
-              Payment date is required.
+            <mat-error *ngIf="leasingCalculatorForm.get('paymentDate').invalid">
+              Payment Date is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
