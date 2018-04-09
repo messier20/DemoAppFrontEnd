@@ -36,7 +36,6 @@ export class CustomerInfoFormComponent implements OnInit {
   }
 
   isCustomerPrivate() {
-    console.log("tt", this.leasingModel.customerType);
     return this.leasingModel.customerType === 'PRIVATE';
   }
 
@@ -58,12 +57,12 @@ export class CustomerInfoFormComponent implements OnInit {
       if (this.dataService.getBusinessInfo() != null) {
         console.log('data service not empty');
         this.infoForm.get('lastName').disable();
-
         this.infoForm.get('name').setValue(this.dataService.getBusinessInfo().name);
         this.infoForm.get('code').setValue(this.dataService.getBusinessInfo().code);
         this.infoForm.get('email').setValue(this.dataService.getBusinessInfo().email);
         this.infoForm.get('address').setValue(this.dataService.getBusinessInfo().address);
-        this.infoForm.get('phoneNumber').setValue(this.infoForm.get('phoneNumber').value.substring(1));        // this.infoForm.setValue(this.dataService.getBusinessInfo());
+        this.infoForm.get('phoneNumber').setValue(this.infoForm.get('phoneNumber').value.substring(1));
+        // this.infoForm.setValue(this.dataService.getBusinessInfo());
 
         console.log('info form', this.infoForm);
 

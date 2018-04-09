@@ -3,103 +3,106 @@
   <mat-card-header>
     <mat-card-title> <h2 class="text-color">{{formLabels[0]}}</h2></mat-card-title>
   </mat-card-header>
-  <mat-card-content>
+  <mat-card-content id="inputCardContent">
     <form [formGroup]="infoForm" (ngSubmit)="submitForm()">
-    <mat-form-field class="inline-form">
-      <input type="text" matInput placeholder="{{formLabels[1]}}" class="form-control"
-             id="name" required formControlName="name" name="name"
-             [errorStateMatcher]="errorMatcher">
-
-      <mat-error *ngIf="!infoForm.get('name').hasError('required')
-      && infoForm.get('name').hasError('maxLength')">
-        {{formLabels[1]}} must be up to <strong>{{validationAmounts.NAME_LENGTH_MAX}}</strong> characters long
-      </mat-error>
-      <mat-error *ngIf="infoForm.get('name').hasError('required')">
-        {{formLabels[1]}} is <strong>required</strong>
-      </mat-error>
-
-    </mat-form-field>
 
 
-    <div>
-    <mat-form-field *ngIf="leasingModel.customerType === 'Private'">
-      <input type="text" matInput placeholder="{{formLabels[2]}}" class="form-control"
-             id="lastName" required
-             formControlName="lastName" name="lastName">
-      <mat-error *ngIf="infoForm.get('lastName').hasError('maxLength')
-      && !infoForm.get('lastName').hasError('required')">
-        {{formLabels[2]}} can be up to <strong>{{validationAmounts.NAME_LAST_LENGTH_MAX}}</strong> characters long
-      </mat-error>
-      <mat-error *ngIf="infoForm.get('lastName').hasError('required')">
-        {{formLabels[2]}} is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field class="inline-form">
+        <input type="text" matInput placeholder="{{formLabels[1]}}" class="form-control"
+               id="name" required formControlName="name" name="name"
+               [errorStateMatcher]="errorMatcher">
+
+        <mat-error *ngIf="!infoForm.get('name').hasError('required')
+        && infoForm.get('name').hasError('maxLength')">
+          {{formLabels[1]}} must be up to <strong>{{validationAmounts.NAME_LENGTH_MAX}}</strong> characters long
+        </mat-error>
+        <mat-error *ngIf="infoForm.get('name').hasError('required')">
+          {{formLabels[1]}} is <strong>required</strong>
+        </mat-error>
+
+      </mat-form-field>
 
 
-    </div>
-
-    <div>
-
-    <mat-form-field>
-      <input type="text" #message matInput placeholder="{{formLabels[3]}}" class="form-control"
-             id="code" required
-             formControlName="code" name="code">
-      <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
-      <mat-error *ngIf="infoForm.get('code').hasError('maxLength')
-      && !infoForm.get('code').hasError('required')">
-        {{formLabels[3]}} must be <strong>{{validationAmounts.CODE_LENGTH}}</strong> characters long
-      </mat-error>
-      <mat-error *ngIf="infoForm.get('code').hasError('required')">
-        {{formLabels[3]}} is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-
-    </div>
-
-    <div>
-
-    <mat-form-field>
-      <input type="text" matInput placeholder="Ex: email@domain.com" class="form-control"
-             id="email" required
-             formControlName="email" name="email">
-      <mat-error *ngIf="infoForm.get('email').valid || infoForm.get('email').untouched">
-        {{formLabels[4]}} field is required
-      </mat-error>
-    </mat-form-field>
+      <div>
+      <mat-form-field *ngIf="leasingModel.customerType === 'Private'">
+        <input type="text" matInput placeholder="{{formLabels[2]}}" class="form-control"
+               id="lastName" required
+               formControlName="lastName" name="lastName">
+        <mat-error *ngIf="infoForm.get('lastName').hasError('maxLength')
+        && !infoForm.get('lastName').hasError('required')">
+          {{formLabels[2]}} can be up to <strong>{{validationAmounts.NAME_LAST_LENGTH_MAX}}</strong> characters long
+        </mat-error>
+        <mat-error *ngIf="infoForm.get('lastName').hasError('required')">
+          {{formLabels[2]}} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
 
 
-    </div>
-    <div>
+      </div>
 
-    <mat-form-field>
-      <input type="text" matInput placeholder="{{formLabels[5]}}" class="form-control"
-             id="phoneNumber" required
-             formControlName="phoneNumber" name="phoneNumber" (keypress)="_keyPress($event)">
-      <span matPrefix>+&nbsp;</span>
-      <mat-error *ngIf="infoForm.get('phoneNumber').valid || infoForm.get('phoneNumber').untouched">
-        {{formLabels[5]}} field is required
-      </mat-error>
-    </mat-form-field>
+      <div>
+
+      <mat-form-field>
+        <input type="text" #message matInput placeholder="{{formLabels[3]}}" class="form-control"
+               id="code" required
+               formControlName="code" name="code">
+        <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+        <mat-error *ngIf="infoForm.get('code').hasError('maxLength')
+        && !infoForm.get('code').hasError('required')">
+          {{formLabels[3]}} must be <strong>{{validationAmounts.CODE_LENGTH}}</strong> characters long
+        </mat-error>
+        <mat-error *ngIf="infoForm.get('code').hasError('required')">
+          {{formLabels[3]}} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      </div>
+
+      <div>
+
+      <mat-form-field>
+        <input type="text" matInput placeholder="Ex: email@domain.com" class="form-control"
+               id="email" required
+               formControlName="email" name="email">
+        <mat-error *ngIf="infoForm.get('email').valid || infoForm.get('email').untouched">
+          {{formLabels[4]}} field is required
+        </mat-error>
+      </mat-form-field>
 
 
-    </div>
-    <div>
+      </div>
+      <div>
+
+      <mat-form-field>
+        <input type="text" matInput placeholder="{{formLabels[5]}}" class="form-control"
+               id="phoneNumber" required
+               formControlName="phoneNumber" name="phoneNumber" (keypress)="_keyPress($event)">
+        <span matPrefix>+&nbsp;</span>
+        <mat-error *ngIf="infoForm.get('phoneNumber').valid || infoForm.get('phoneNumber').untouched">
+          {{formLabels[5]}} field is required
+        </mat-error>
+      </mat-form-field>
 
 
-    <mat-form-field>
-      <input type="text" matInput placeholder="{{formLabels[6]}}" class="form-control"
-             id="address" required
-             formControlName="address" name="address">
-      <mat-error *ngIf="infoForm.get('address').valid || infoForm.get('address').untouched">
-        {{formLabels[6]}} field is required
-      </mat-error>
-    </mat-form-field>
+      </div>
+      <div>
 
-    </div>
 
-      <button mat-raised-button type="submit" (click)="goBack()">Back</button>
-      <button  mat-raised-button type="submit" color="accent" (click)="setCustomerInfo()">Submit form
-      </button>
+      <mat-form-field>
+        <input type="text" matInput placeholder="{{formLabels[6]}}" class="form-control"
+               id="address" required
+               formControlName="address" name="address">
+        <mat-error *ngIf="infoForm.get('address').valid || infoForm.get('address').untouched">
+          {{formLabels[6]}} field is required
+        </mat-error>
+      </mat-form-field>
+
+      </div>
+
+        <button mat-raised-button type="submit" (click)="goBack()">Back</button>
+        <button  mat-raised-button type="submit" color="accent" (click)="setCustomerInfo()">
+          Submit form
+        </button>
     </form>
   </mat-card-content>
 </mat-card>

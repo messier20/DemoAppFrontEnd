@@ -24,7 +24,8 @@
           <mat-form-field>
             <mat-select placeholder="{{leasingFormLabels.ASSET_TYPE}}" class="form-control" id="assetType"
                         required name="assetTypeField" value="Vehicle">
-              <mat-option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</mat-option>
+              <mat-option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}
+              </mat-option>
               <mat-error *ngIf="leasingForm.get('assetType').invalid">
                 Asset Type is <strong>required</strong>
               </mat-error>
@@ -85,7 +86,7 @@
         <div>
 
           <mat-form-field>
-            <input type="date" matInput placeholder="{{leasingFormLabels.MANUFACTURED_DATE}}" class="form-control"
+            <input type="date" matInput [matDatepicker] placeholder="{{leasingFormLabels.MANUFACTURED_DATE}}" class="form-control"
                    id="manufacturedDate" required
                    formControlName="manufacturedDate"
                    name="manufacturedDateForm">
