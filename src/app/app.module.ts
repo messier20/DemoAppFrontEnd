@@ -47,6 +47,7 @@ import {MediaMatcher} from "@angular/cdk/layout";
 import { MatThemingComponent } from './mat-theming/mat-theming.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import {SideNavComponent} from "./side-nav/side-nav.component";
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 
@@ -67,7 +68,8 @@ import {SideNavComponent} from "./side-nav/side-nav.component";
     SideNavComponent,
     MatThemingComponent,
     OfficerLoginComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
