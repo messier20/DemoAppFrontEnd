@@ -84,7 +84,7 @@ export class PrivateFormComponent implements OnInit {
   }
 
   setMinAdvancePaymentAmount() {
-    if (this.leasingForm.get('customerType').value === 'Business') {
+    if (this.leasingForm.get('customerType').value === 'BUSINESS') {
       this.minAdvancePaymentAmount = ValidationAmounts.MIN_ADVANCE_PAYMENT_AMOUNT_BUSINESS;
       this.leasingForm.get('advancePaymentAmount').setValidators(CustomValidators.advancePaymentAmountBusinessValidator);
     } else {
@@ -96,7 +96,7 @@ export class PrivateFormComponent implements OnInit {
   }
 
   setMinAssetPrice() {
-    if (this.leasingForm.get('customerType').value === 'Business') {
+    if (this.leasingForm.get('customerType').value === 'BUSINESS') {
       this.minAssetPrice = ValidationAmounts.MIN_ASSET_PRICE_BUSINESS;
       this.leasingForm.get('assetPrice').setValidators(CustomValidators.assetPriceBusinessValidator);
     } else {
