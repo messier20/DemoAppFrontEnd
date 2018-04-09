@@ -42,10 +42,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ApplicationInfoComponent} from './officer-view/application-info/application-info.component';
 import {DialogForm2Component} from './dialog-form2/dialog-form2.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { SideNavComponent } from './side-nav/side-nav.component';
+// import { SideNavComponent } from './side-nav/side-nav.component';
 import {MediaMatcher} from "@angular/cdk/layout";
 import { MatThemingComponent } from './mat-theming/mat-theming.component';
 import { ScheduleComponent } from './schedule/schedule.component';
+import {SideNavComponent} from "./side-nav/side-nav.component";
 
 
 
