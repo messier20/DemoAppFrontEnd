@@ -39,8 +39,8 @@ export class PrivateFormComponent implements OnInit {
 
   filteredCarBrands: Observable<string[]>;
   filteredCarModels: Observable<string[]>;
-  PRIVATE = 'Private';
-  BUSINESS = 'Business';
+  PRIVATE = 'PRIVATE';
+  BUSINESS = 'BUSINESS';
   leasingFormErrorMatcher = new InputFormsErrorStateMatcher();
 
   constructor(private router: Router,
@@ -50,10 +50,6 @@ export class PrivateFormComponent implements OnInit {
     this.leasePeriods = new LeasePeriods().leasePeriods;
     this.createValidForm();
     this.leasingForm.get('assetType').setValue('Vehicle');
-    if (this.dataService.getLeasingCalculator() != null) {
-      this.fillFieldsWithCalculatorInput();
-    }
-
   }
 
   ngOnInit() {
@@ -62,6 +58,7 @@ export class PrivateFormComponent implements OnInit {
     } else if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
       this.leasingForm.setValue(this.dataService.getLeasingModel());
       this.selectBrandHandler();
+      this.leasingForm.get('carModel').setValue(this.dataService.getLeasingModel().carModel);
     } else {
       this.leasingModel = new LeasingModel();
     }
@@ -111,7 +108,7 @@ export class PrivateFormComponent implements OnInit {
   }
 
   selectBrandHandler() {
-    this.leasingForm.get('carModel').setValue(null);
+    this.leasingForm.get('carModel').setValue('');
     for (let i = 0; i < this.cars.length; i++) {
       if (this.cars[i].make.toLowerCase() === this.leasingForm.get('carBrand').value.toString().toLowerCase()) {
         this.model = this.cars[i].model;
@@ -221,10 +218,11 @@ export class PrivateFormComponent implements OnInit {
     this.dataService.setLeasingCalculator(null);
     if (this.dataService.getLeasingModel() !== null && this.dataService.getLeasingModel() !== undefined) {
       this.leasingForm.get('carBrand').setValue(this.dataService.getLeasingModel().carBrand);
+      this.selectBrandHandler();
       this.leasingForm.get('carModel').setValue(this.dataService.getLeasingModel().carModel);
+      console.log(this.leasingForm.get('carModel').value);
       this.leasingForm.get('manufacturedDate').setValue(this.dataService.getLeasingModel().manufacturedDate);
       this.leasingForm.get('enginePower').setValue(this.dataService.getLeasingModel().enginePower);
-      this.selectBrandHandler();
     }
   }
 }

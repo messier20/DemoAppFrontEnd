@@ -42,9 +42,8 @@
   /*width: 1500px;*/
   /*background-color: #EDE7F6;*/
   /*background-color: rgba(140, 158, 255, 0.3);*/
-  background-color: rgba(192,192,192, 0.2);
+  /*background-color: rgba(192,192,192, 0.2);*/
 }
-
 
 
 mat-card{
@@ -93,7 +92,7 @@ button {
   margin: 0.5em;
 }
 
-mat-form-field {
+#inputCardContent .mat-form-field {
   margin: 0.1em 0.4em;
   max-width: 15em;
   width: 240px;
@@ -106,6 +105,8 @@ mat-form-field {
   display: inline-flex;
   flex-wrap: wrap;
   align-content: center;
+  align-self: flex-start;
+
 }
 
 
@@ -118,4 +119,16 @@ mat-card-header, div.mat-card-header-text{
   display: inline-flex !important;
   justify-content: center;
   width: 100%;
+}
+
+/*--------------------*/
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
 }

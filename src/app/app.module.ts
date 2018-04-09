@@ -19,7 +19,7 @@ import {
   MatNativeDateModule,
   // MatDatepickerModule, MatDialogModule, MatExpansionPanel, MatFormFieldModule, MatGridListModule, MatIconModule,
   MatMenuModule,
-  MatSelectModule, MatTabLabel,
+  MatSelectModule, MatTabLabel, MatPaginatorModule, MatTableModule,
   MatTabsModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatSnackBarModule
 } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -41,9 +41,11 @@ import { OfficerLoginComponent } from './officer-login/officer-login.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { SideNavComponent } from './side-nav/side-nav.component';
+// import { SideNavComponent } from './side-nav/side-nav.component';
 import {MediaMatcher} from "@angular/cdk/layout";
 import { MatThemingComponent } from './mat-theming/mat-theming.component';
+import { ScheduleComponent } from './schedule/schedule.component';
+import {SideNavComponent} from "./side-nav/side-nav.component";
 
 
 
@@ -63,7 +65,8 @@ import { MatThemingComponent } from './mat-theming/mat-theming.component';
     DialogForm2Component,
     SideNavComponent,
     MatThemingComponent,
-    OfficerLoginComponent
+    OfficerLoginComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +75,8 @@ import { MatThemingComponent } from './mat-theming/mat-theming.component';
     MatListModule,
     AppRoutingModule,
     MatCheckboxModule,
+    MatTableModule,
+    MatPaginatorModule,
     MatSnackBarModule,
     FormsModule,
     MatDialogModule,

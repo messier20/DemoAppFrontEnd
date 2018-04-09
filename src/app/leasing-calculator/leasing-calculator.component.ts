@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {LeasingCalculator} from '../models/LeasingCalculator';
 import {Router} from '@angular/router';
 import {DataStorageService} from '../services/data-storage-service.service';
@@ -11,6 +11,14 @@ import {BackendService} from '../services/backend.service';
 import {PaymentSize} from '../constants/PaymentSize';
 import {LoanUtils} from '../utils/LoanUtils';
 import {LeasingModel} from '../models/LeasingModel';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
+import {DataSource} from "@angular/cdk/collections";
+import {Repayments} from "../models/Repayments";
+import {Observable} from "rxjs/Observable";
+import {Subject} from 'rxjs/Subject';
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {InputFormsErrorStateMatcher} from '../utils/InputFormsErrorStateMatcher';
+import {ValidationAmounts} from '../constants/ValidationAmounts';
 
 @Component({
   selector: 'app-leasing-calculator',
@@ -32,10 +40,39 @@ export class LeasingCalculatorComponent implements OnInit {
   minAssetPrice = PaymentSize.MIN_ASSET_PRICE_PRIVATE;
   minAdvancePaymentAmount = PaymentSize.MIN_ADVANCE_PAYMENT_AMOUNT_PRIVATE;
   maxAdvancePaymentAmount = PaymentSize.MAX_ADVANCE_PAYMENT_AMOUNT;
+  flag = false;
+  flag2 = false;
+
+  random;
+  @Output() change = new EventEmitter<Object>();
+
+
+
+  displayedColumns = [
+    'repaymentDate',
+    'remainingAmountToRepay',
+    'assetValuePaymentAmount',
+    'interestPaymentAmount',
+    'totalPaymentAmount'
+  ];
+
   repaymentSchedule: Repayment[];
   PRIVATE = 'PRIVATE';
   BUSINESS = 'BUSINESS';
   visible = false;
+  leasingCalculatorErrorMatcher = new InputFormsErrorStateMatcher();
+  validationAmounts = ValidationAmounts;
+  ELEMENT_DATA: Element[];
+  setPageSizeOptionsInput = [7];
+  repaymentScheduleDataStream = new Subject();
+
+
+  dataSource = {
+    connect: () => {
+      return this.repaymentScheduleDataStream
+    },
+    disconect() {}
+  };
 
 
   constructor(private router: Router,
@@ -135,24 +172,35 @@ export class LeasingCalculatorComponent implements OnInit {
       Object.keys(this.leasingCalculatorForm.controls).forEach(field => {
         const control = this.leasingCalculatorForm.get(field);
         control.markAsTouched({onlySelf: true});
+        return null;
       });
     } else {
       this.leasingCalculator = this.leasingCalculatorForm.value;
-      this.backendService.sendLeasingCalculatorInput(this.leasingCalculator).then(
-        receivedData => {
-          const received: any = receivedData;
-          this.displayRepaymentSchedule(received.repaymentSchedule);
+      this.flag = false;
+      this.backendService.getRepaymentShedule(this.leasingCalculator).then((receivedData: any) => {
+
+          this.repaymentSchedule = receivedData.repaymentSchedule;
+
+
+          // const pag = new MatTableDataSource(this.repaymentSchedule);
+          // pag.paginator = this.paginator;
+          // this.repaymentScheduleDataStream.next(pag);
+        console.log("schedule", this.repaymentSchedule);
+        this.repaymentScheduleDataStream.next(this.repaymentSchedule);
+          this.flag = true;
+
+
         },
         error => {
           console.log('Error: ' + error);
         }
       );
     }
-  }
+    return this.repaymentSchedule;
 
-  private displayRepaymentSchedule(repaymentSchedule: Repayment[]) {
-    this.repaymentSchedule = repaymentSchedule;
-    document.getElementById('repaymentSchedule').hidden = false;
+
+
+
   }
 
   createValidForm() {
@@ -171,6 +219,7 @@ export class LeasingCalculatorComponent implements OnInit {
   setLeasingCalculator() {
     this.leasingCalculator = this.leasingCalculatorForm.value;
     this.dataService.setLeasingCalculator(this.leasingCalculator);
+    console.log(this.dataService.getLeasingCalculator().assetPrice);
     this.router.navigate(['/privateForm']);
   }
 

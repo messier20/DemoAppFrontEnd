@@ -6,6 +6,10 @@ import {CheckStatusInfo} from '../models/CheckStatusInfo';
 import {LeasingCalculator} from '../models/LeasingCalculator';
 import {OfficerLoginModel} from '../models/OfficerLoginModel';
 import {AuthGuardService} from './auth-guard.service';
+import {ObserveOnMessage} from "rxjs/operators/observeOn";
+import {Observable} from "rxjs/Observable";
+import {Repayment} from "../models/Repayment";
+import {Repayments} from "../models/Repayments";
 
 @Injectable()
 export class BackendService {
@@ -65,6 +69,10 @@ export class BackendService {
     return this.http.post(this.httpLink + this.repaymentScheduleLink, leasingCalculatorInput).toPromise();
   }
 
+  getRepaymentShedule(leasingCalculatorInput: LeasingCalculator): Promise<Repayments[]> {
+    return this.http.post<Repayments[]>(this.httpLink + this.repaymentScheduleLink, leasingCalculatorInput).toPromise();
+  }
+
   // getAllPrivateUserApplicationsByStatus(status) {
   //   return this.http
   //     .get(this.httpLink + this.officerLink + '/user/private/status/' + status)
@@ -76,7 +84,6 @@ export class BackendService {
   //     .get(this.httpLink + this.officerLink + '/user/business/status/' + status)
   //     .toPromise();
   // }
-
   // getAllPrivateUserApplications() {
   //   return this.http
   //     .get(this.httpLink + this.officerLink + '/user/private')
