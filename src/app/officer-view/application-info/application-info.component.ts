@@ -7,7 +7,7 @@ import {BackendService} from '../../services/backend.service';
 import {CustomerInfoLabels} from '../../constants/CustomerInfoLabels';
 import {LeasingFormLabels} from '../../constants/LeasingFormLabels';
 import {DialogFormComponent} from '../../dialog-form/dialog-form';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {LeaseInfoOfPrivate} from '../../models/LeaseInfoOfPrivate';
 import {LeaseInfoOfBusiness} from '../../models/LeaseInfoOfBusiness';
 import {DialogForm2Component} from '../../dialog-form2/dialog-form2.component';
@@ -44,7 +44,8 @@ export class ApplicationInfoComponent implements OnInit {
 
   constructor(private backendService: BackendService,
               private dialog: MatDialog,
-              private dataStorage: DataStorageService) {
+              private dataStorage: DataStorageService,
+              public snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -123,6 +124,7 @@ export class ApplicationInfoComponent implements OnInit {
       .then(data => {
         this.updates.emit(data);
       });
+    this.openSnackBar("The application moved to " + postBody.status.toLowerCase() + " applications", "close");
   }
 
   sendToBackendBusiness() {
@@ -134,14 +136,22 @@ export class ApplicationInfoComponent implements OnInit {
       idHex: this.lease.id
     };
 
-    console.log('to backend');
-    console.log(postBody);
+
 
 
     this.backendService.updateBusinessCustomerStatus(this.lease.id, postBody)
       .then(data => {
         this.updates.emit(data);
       });
+    this.openSnackBar("The application moved to " + postBody.status.toLowerCase() + " part", "close");
+
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      // duration: 2000,
+
+    });
   }
 
 }
