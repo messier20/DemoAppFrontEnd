@@ -19,6 +19,7 @@ export class CheckLeasingStatusComponent implements OnInit {
   checkStatusForm: FormGroup;
   checkStatusInfo: CheckStatusInfo;
   noLeasingFound: boolean;
+  availableCustomerTypes = ['Private', 'Business'];
   PRIVATE = 'PRIVATE';
   BUSINESS = 'BUSINESS';
 

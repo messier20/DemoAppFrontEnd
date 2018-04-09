@@ -3,6 +3,7 @@
 @import 'app/mat-theming/mat-theming.component';
 @import 'app/leasing-calculator/leasing-calculator.component.scss';
 @import 'app/side-nav/side-nav.component.scss';
+@import 'app/check-leasing-status/check-leasing-status.component.scss';
 
 @include mat-core();
 
@@ -22,6 +23,7 @@ $blue-theme: mat-light-theme($blue-theme-primary, $blue-theme-accent, $blue-them
   @include app-mat-theming-theme($theme);
   @include app-leasing-calculator-theme($theme);
   @include app-side-nav-theme($theme);
+  @include app-check-leasing-status-theme($theme);
 }
  //Here goes themes mixins
  @include angular-material-theme($blue-theme);

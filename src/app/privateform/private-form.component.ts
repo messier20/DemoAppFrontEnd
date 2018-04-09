@@ -21,7 +21,6 @@ import {InputFormsErrorStateMatcher} from '../utils/InputFormsErrorStateMatcher'
   styleUrls: ['./private-form.component.css']
 })
 export class PrivateFormComponent implements OnInit {
-
   leasingModel: LeasingModel;
   leasingForm: FormGroup;
   leasingFormLabels = new LeasingFormLabels();
@@ -228,5 +227,4 @@ export class PrivateFormComponent implements OnInit {
       this.selectBrandHandler();
     }
   }
-
 }
