@@ -36,11 +36,16 @@ export class CustomerInfoFormComponent implements OnInit {
   }
 
   isCustomerPrivate() {
+    if (this.dataService.getLeasingModel() === null || this.dataService.getLeasingModel() === undefined) {
+      return true;
+    }
     return this.dataService.getLeasingModel().customerType === 'PRIVATE';
   }
 
   ngOnInit() {
-    console.log(this.dataService.getLeasingModel().customerType);
+    if (this.dataService.getLeasingModel() === null || this.dataService.getLeasingModel() === undefined) {
+      document.getElementById('submitButton').hidden = true;
+    }
     if (this.isCustomerPrivate()) {
       this.formLabels = new CustomerInfoLabels().privateInfoLabels;
       if (this.dataService.getPrivateInfo() != null) {
