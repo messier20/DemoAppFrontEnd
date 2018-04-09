@@ -119,17 +119,17 @@
   /*background-image: -o-linear-gradient(top, #d5d5d5, #aaaaaa);*/
   /*background-image: linear-gradient(to bottom, #d5d5d5, #aaaaaa);  width: auto;*/
   position: center;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 mat-card{
 
   /*margin: 1em 2.5% 0 2.5%;*/
   margin-top: 1em;
-  min-width: 20em;
-  width: 45%;
-  max-height: 40em;
+  /*min-width: 25em;*/
+  width: 40em;
+  max-height: 30em;
   /*height: 100%;*/
   height: auto;
   overflow-y: auto ;
@@ -141,10 +141,10 @@ mat-card{
 .card-container {
   /*max-width: 1400px;*/
   width: 100%;
-  height: 100%;
+  height: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   /*position: absolute;*/
 
@@ -195,7 +195,7 @@ button {
 
 mat-form-field {
   margin: 0.1em 0.4em;
-  max-width: 15em;
+  max-width: 15.8em;
   width: 240px;
 }
 
@@ -205,4 +205,19 @@ mat-form-field {
   display: inline-flex;
   flex-wrap: wrap;
   align-content: center;
+}
+
+#top-space {
+  height: 50px;
+}
+
+h5 {
+  font-family: 'Roboto', sans-serif;
+}
+.text-color {
+  color: #3f51b5;
+}
+mat-card-header {
+  text-align: center;
+  justify-content: center;
 }
