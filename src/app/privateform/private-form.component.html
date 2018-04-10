@@ -5,9 +5,9 @@
     </mat-card-header>
     <mat-card-content id="inputCardContent">
       <form [formGroup]="leasingForm" (ngSubmit)="submitForm()">
-        <mat-form-field class="inline-form">
+        <mat-form-field >
           <mat-select placeholder="{{leasingFormLabels.CUSTOMER_TYPE}}"
-                      class="form-control" id="customerType"
+                      id="customerType"
                       name="customerTypeField" formControlName="customerType"
                       required
                       (change)="updateMinValues()">
@@ -22,7 +22,7 @@
         <div>
 
           <mat-form-field>
-            <mat-select placeholder="{{leasingFormLabels.ASSET_TYPE}}" class="form-control" id="assetType"
+            <mat-select placeholder="{{leasingFormLabels.ASSET_TYPE}}" id="assetType"
                         required name="assetTypeField" value="Vehicle">
               <mat-option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</mat-option>
               <mat-error *ngIf="leasingForm.get('assetType').invalid">
@@ -36,7 +36,7 @@
         <div>
 
           <mat-form-field>
-            <input class="form-control" type="text" placeholder="{{leasingFormLabels.CAR_BRAND}}"
+            <input type="text" placeholder="{{leasingFormLabels.CAR_BRAND}}"
                    matInput #input required
                    formControlName="carBrand" [matAutocomplete]="carBrand"
                    aria-label="carBrand"
@@ -61,7 +61,7 @@
         <div>
 
           <mat-form-field>
-            <input class="form-control" type="text" placeholder="{{leasingFormLabels.CAR_MODEL}}"
+            <input  type="text" placeholder="{{leasingFormLabels.CAR_MODEL}}"
                    matInput #input disabled
                    formControlName="carModel"
                    aria-label="carModel"
@@ -85,7 +85,7 @@
         <div>
 
           <mat-form-field>
-            <input type="date" matInput placeholder="{{leasingFormLabels.MANUFACTURED_DATE}}" class="form-control"
+            <input type="date" matInput placeholder="{{leasingFormLabels.MANUFACTURED_DATE}}"
                    id="manufacturedDate" required
                    formControlName="manufacturedDate"
                    name="manufacturedDateForm">
@@ -100,7 +100,7 @@
         <div>
 
           <mat-form-field class="example-full-width">
-            <input type="number" matInput placeholder="{{leasingFormLabels.ENGINE_POWER}}" class="form-control"
+            <input type="number" matInput placeholder="{{leasingFormLabels.ENGINE_POWER}}"
                    id="enginePower" required
                    formControlName="enginePower"
                    name="enginePowerForm" min="1" max="9999"
@@ -127,7 +127,7 @@
         <div>
 
           <mat-form-field>
-            <input type="number" matInput placeholder="{{leasingFormLabels.ASSET_PRICE}}" class="form-control"
+            <input type="number" matInput placeholder="{{leasingFormLabels.ASSET_PRICE}}"
                    id="assetPrice" required
                    formControlName="assetPrice"
                    name="assetPriceField"
@@ -159,7 +159,7 @@
 
           <mat-form-field>
             <input type="number" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_PERCENTAGE}}"
-                   class="form-control" id="advancePaymentPercentage"
+                   id="advancePaymentPercentage"
                    formControlName="advancePaymentPercentage"
                    name="advancePaymentPercentageField"
                    min="10" max="100"
@@ -192,7 +192,7 @@
         <div>
 
           <mat-form-field>
-            <input type="text" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}" class="form-control"
+            <input type="text" matInput placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}"
                    id="advancePaymentAmount" name="advancePaymentAmountField"
                    formControlName="advancePaymentAmount"
                    min="500" max="9999999"
@@ -222,7 +222,7 @@
         <div>
 
           <mat-form-field>
-            <input type="text" matInput placeholder="{{leasingFormLabels.CONTRACT_FEE}}" class="form-control"
+            <input type="text" matInput placeholder="{{leasingFormLabels.CONTRACT_FEE}}"
                    id="contractFee" name="contractFeeField"
                    formControlName="contractFee">
           </mat-form-field>
@@ -234,7 +234,7 @@
 
           <mat-form-field>
             <input type="number" matInput placeholder="{{leasingFormLabels.MARGIN}}"
-                   class="form-control" id="margin" required
+                    id="margin" required
                    formControlName="margin" name="margin" step="0.1" min="3.2" max="100"
                    [errorStateMatcher]="leasingFormErrorMatcher">
 
@@ -262,7 +262,7 @@
         <div>
 
           <mat-form-field>
-            <mat-select placeholder="{{leasingFormLabels.LEASING_PERIOD}}" class="form-control" id="leasePeriodInMonths"
+            <mat-select placeholder="{{leasingFormLabels.LEASING_PERIOD}}"  id="leasePeriodInMonths"
                         required name="leasePeriodInMonthsField"
                         formControlName="leasePeriodInMonths">
               <mat-option *ngFor="let type of leasePeriods" [value]="type">{{type}}</mat-option>
@@ -278,7 +278,7 @@
         <div>
 
           <mat-form-field style="align-content: left">
-            <mat-select placeholder="{{leasingFormLabels.PAYMENT_DAY}}" class="form-control" id="paymentDay"
+            <mat-select placeholder="{{leasingFormLabels.PAYMENT_DAY}}"  id="paymentDay"
                         name="paymentDateField" formControlName="paymentDate"
                         required>
               <mat-option *ngFor="let currentDay of availableDays" [value]="currentDay">{{currentDay}}</mat-option>

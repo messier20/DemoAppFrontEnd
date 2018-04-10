@@ -51,7 +51,7 @@ export class DialogFormComponent {
 
   sendFormToBackend() {
     this.backendService.sendCompletedForm().then(returnedId => {
-      this.dataService.deleteAllLeasingData();
+
 
       const returnedUserIdObject: any = returnedId;
       this.receivedUserId = returnedUserIdObject.id;
@@ -60,7 +60,10 @@ export class DialogFormComponent {
           this.showingUserId = false;
           this.openSnackBar('Woops! Something went wrong. Please check your data and try again.', 'Close');
 
-        }else this.showingUserId = true;
+        }else {
+          this.showingUserId = true;
+          this.dataService.deleteAllLeasingData();
+        }
     },
       error=> {
       this.showingUserId = false;

@@ -1,13 +1,13 @@
 @import '~@angular/material/theming';
 
-@mixin app-check-leasing-status-theme($theme) {
+@mixin app-officer-login-theme($theme) {
   $primary: map_get($theme, primary);
   $accent: map_get($theme, accent);
   $warn: map_get($theme, warn);
   $foreground: map_get($theme, foreground);
   $background: map_get($theme, background);
 
-  app-check-leasing-status {
+  app-officer-login {
     .background {
       background-color: mat-color($background, app-bar);
     }

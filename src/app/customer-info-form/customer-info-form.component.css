@@ -177,7 +177,6 @@ mat-card{
 }
 
 form {
-  margin: 2em ;
   width: 100%;
   display: inline-flex;
   flex-wrap: wrap;

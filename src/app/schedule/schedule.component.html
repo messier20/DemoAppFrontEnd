@@ -12,7 +12,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="remainingAmountToRepay">
       <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[1]}} </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.remainingAmountToRepay}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.remainingAmountToRepay.toFixed(2)}} </mat-cell>
     </ng-container>
 
     <!--'repaymentDate',-->
@@ -27,19 +27,19 @@
 
     <ng-container matColumnDef="assetValuePaymentAmount" >
       <mat-header-cell *matHeaderCellDef  matTooltip="Contract fee included" [matTooltipPosition]="position"> {{leasingCalculatorLabels[2]}}*</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.assetValuePaymentAmount}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.assetValuePaymentAmount.toFixed(2)}} </mat-cell>
     </ng-container>
     <!--</div>-->
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="interestPaymentAmount">
       <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[3]}} </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.interestPaymentAmount}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.interestPaymentAmount.toFixed(2)}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="totalPaymentAmount">
       <mat-header-cell *matHeaderCellDef> {{leasingCalculatorLabels[4]}} </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.totalPaymentAmount}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.totalPaymentAmount.toFixed(2)}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -48,8 +48,8 @@
   </mat-table>
 
   <mat-paginator #paginator
-                 [pageSize]="5"
-                 [pageSizeOptions]="[7, 10, 20]"
+                 [pageSize]="7"
+                 [pageSizeOptions]="[7, 14, 21]"
                  [showFirstLastButtons]="true">
   </mat-paginator>
 </div>

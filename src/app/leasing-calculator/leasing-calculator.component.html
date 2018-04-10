@@ -56,7 +56,7 @@
         <div>
           <!--<label> {{leasingFormLabels.ADVANCE_PAYMENT_PERCENTAGE}} </label>-->
           <mat-form-field>
-            <input matInput #input type="number" class="form-control" id="advancePaymentPercentage"
+            <input matInput #input type="number" required class="form-control" id="advancePaymentPercentage"
                    formControlName="advancePaymentPercentage" placeholder="Advance payment percentage"
                    name="advancePaymentPercentageField"
                    min="10" max="100"
@@ -88,7 +88,7 @@
                    placeholder="Advance payment amount"
                    name="advancePaymentAmountField"
                    formControlName="advancePaymentAmount"
-                   min="500" max="9999999"
+                   min="500" max="9999999" required
                    (keyup)="calcAdvancePaymentPercentage()"
                    (change)="calcAdvancePaymentPercentage()"
                    [errorStateMatcher]="leasingCalculatorErrorMatcher">
@@ -113,7 +113,7 @@
         <div>
           <!--<label for="contractFee">{{leasingFormLabels.CONTRACT_FEE}}</label>-->
           <mat-form-field>
-            <input matInput #input type="text" class="form-control" id="contractFee" name="contractFeeField"
+            <input matInput #input type="text" class="form-control" required id="contractFee" name="contractFeeField"
                    formControlName="contractFee"
                    placeholder="Contract fee" disabled>
           </mat-form-field>
@@ -169,7 +169,7 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <button mat-raised-button type="submit" id="calculate-btn" (click)="isVisible()">Calculate</button>
+        <button mat-raised-button type="submit" id="calculate-btn" class="button-calculate" (click)="isVisible()">Calculate</button>
         <button mat-raised-button type="button" color="accent" (click)="setLeasingCalculator()">Apply Now</button>
 
       </form>

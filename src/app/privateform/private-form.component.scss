@@ -16,5 +16,9 @@
       background-color: mat-color($primary, A100);
     }
 
+    .background {
+      background-color: mat-color($background, app-bar) !important;
+    }
+
   }
 }
