@@ -6,14 +6,17 @@ import {LeasingCalculatorComponent} from './leasing-calculator/leasing-calculato
 import {CheckLeasingStatusComponent} from './check-leasing-status/check-leasing-status.component';
 import {OfficerViewComponent} from './officer-view/officer-view.component';
 import {ApplicationStepperComponent} from './application-stepper/application-stepper.component';
+import {OfficerLoginComponent} from './officer-login/officer-login.component';
+import {AuthGuardService} from './services/auth-guard.service';
 
 const routes: Routes = [
   {path: 'privateForm', component: PrivateFormComponent},
   {path: 'customerInfoForm', component: CustomerInfoFormComponent},
   {path: 'leasingCalculatorForm', component: LeasingCalculatorComponent},
-  {path: 'officerView', component: OfficerViewComponent},
-  {path: 'checkLeasingStatus', component: CheckLeasingStatusComponent},
   {path: 'stepper', component: ApplicationStepperComponent}
+  {path: 'officerLogin', component: OfficerLoginComponent},
+  {path: 'officerView', component: OfficerViewComponent, canActivate: [AuthGuardService]},
+  {path: 'checkLeasingStatus', component: CheckLeasingStatusComponent}
 ];
 
 @NgModule({

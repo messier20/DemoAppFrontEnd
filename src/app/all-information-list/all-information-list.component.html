@@ -2,17 +2,29 @@
   <div class="form-group col-md-6">
     <div class="container">
       <div class="panel panel-info">
-        <div class="panel-body" id="label"><b>Leasing Information</b></div>
-        <div class="panel-body" *ngFor="let element of leasingModelArray"><i>{{element.heading}}: </i>{{element.value}}
-        </div>
+        <div class="panel-body" id="label"><b>Vehicle Information</b></div>
+        <div>{{leasingLabels[2]}}: <b class="markup"> {{leasingModel.carBrand}}</b></div>
+        <div>{{leasingLabels[3]}}: <b class="markup"> {{leasingModel.carModel}}</b></div>
+        <div>{{leasingLabels[4]}}: <b class="markup">{{leasingModel.manufacturedDate}}</b></div>
+        <div>{{leasingLabels[5]}}: <b class="markup">{{leasingModel.enginePower}}</b></div>
+        <div class="panel-body" id="label"><b>Payment Information</b></div>
+        <div>{{leasingLabels[6]}}: <b class="markup"> {{leasingModel.assetPrice}}</b></div>
+        <div>{{leasingLabels[7]}}: <b class="markup"> {{leasingModel.advancePaymentPercentage}}</b></div>
+        <div>{{leasingLabels[8]}}: <b class="markup"> {{leasingModel.advancePaymentAmount}}</b></div>
+        <div>{{leasingLabels[9]}}: <b class="markup"> {{leasingModel.contractFee}}</b></div>
+        <div>{{leasingLabels[10]}}: <b class="markup"> {{leasingModel.margin}}</b></div>
+        <div>{{leasingLabels[11]}}: <b class="markup"> {{leasingModel.leasePeriodInMonths}}</b></div>
+        <div>{{leasingLabels[12]}}: <b class="markup"> {{leasingModel.paymentDate}}</b></div>
       </div>
     </div>
   </div>
   <div class="form-group col-md-6">
     <div class="container">
       <div class="panel panel-info">
-        <div class="panel-body" id="labelis"><b>{{customerInfoLabels[0]}}</b></div>
-        <div class="panel-body" *ngFor="let element of customerInfoArray"><i>{{element.heading}}: </i>{{element.value}}
+        <div class="panel-body" id="labelis"><b color="primary">{{customerInfoLabels[0]}}</b></div>
+        <div>{{leasingLabels[0]}}: <b class="markup">{{leasingModel.customerType}} </b></div>
+        <div class="panel-body" *ngFor="let element of customerInfoArray">{{element.heading}}:<b class="markup">
+          {{element.value}}</b>
         </div>
       </div>
     </div>

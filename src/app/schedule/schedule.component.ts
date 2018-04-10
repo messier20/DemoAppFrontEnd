@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from "@angular/material";
 import {Repayments} from "../models/Repayments";
+import {LeasingFormLabels} from "../constants/LeasingFormLabels";
 
 @Component({
   selector: 'app-schedule',
@@ -11,6 +12,7 @@ export class ScheduleComponent implements OnInit {
 
   @Input() dataStream;
   @Input() random;
+  position = 'above';
   // displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -30,6 +32,8 @@ export class ScheduleComponent implements OnInit {
   }
 
   // displayedColumns = ['position', 'name', 'weight', 'symbol'];
+  leasingFormLabels = new LeasingFormLabels();
+  leasingCalculatorLabels = this.leasingFormLabels.leasingCalculatorLabels;
   displayedColumns = [
     'repaymentDate',
     'remainingAmountToRepay',

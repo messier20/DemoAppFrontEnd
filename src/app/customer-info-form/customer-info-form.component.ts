@@ -57,9 +57,9 @@ export class CustomerInfoFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    // if (this.dataService.getLeasingModel() === null || this.dataService.getLeasingModel() === undefined) {
-    //   document.getElementById('submitButton').hidden = true;
-    // }
+    if (this.dataService.getLeasingModel() === null || this.dataService.getLeasingModel() === undefined) {
+      document.getElementById('submitButton').hidden = true;
+    }
     if (this.isCustomerPrivate()) {
       this.formLabels = new CustomerInfoLabels().privateInfoLabels;
       if (this.dataService.getPrivateInfo() != null) {

@@ -4,6 +4,9 @@ import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
 import {LeasingCalculator} from '../models/LeasingCalculator';
 import {Repayment} from '../models/Repayment';
+import {OfficerLoginModel} from '../models/OfficerLoginModel';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class DataStorageService {
@@ -14,6 +17,8 @@ export class DataStorageService {
   private leasingCalculator: LeasingCalculator;
   private repaymentPlan: Repayment[];
   private customerId: string;
+  private _officerLoginModel: OfficerLoginModel;
+  private _wrongLoginCredentials = false;
 
   // static refactorCustomerType(form) {
   //   if (form.customerType === 'Private') {
@@ -89,5 +94,21 @@ export class DataStorageService {
 
   getCustomerId() {
     return this.customerId;
+  }
+
+  get officerLoginModel(): OfficerLoginModel {
+    return this._officerLoginModel;
+  }
+
+  set officerLoginModel(value: OfficerLoginModel) {
+    this._officerLoginModel = value;
+  }
+
+  get wrongLoginCredentials(): boolean {
+    return this._wrongLoginCredentials;
+  }
+
+  set wrongLoginCredentials(value: boolean) {
+    this._wrongLoginCredentials = value;
   }
 }

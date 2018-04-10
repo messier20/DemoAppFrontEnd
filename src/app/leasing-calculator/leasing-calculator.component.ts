@@ -89,6 +89,14 @@ export class LeasingCalculatorComponent implements OnInit {
       this.fillFieldsWithLeasingFormInput();
     }
 
+    if(this.leasingCalculatorForm.enabled){
+      console.log("on init enabled", this.leasingCalculatorForm.enabled);
+    }
+    if(this.leasingCalculatorForm.disabled){
+      console.log("on init disabled", this.leasingCalculatorForm.disabled);
+    }
+    // this.onChanges();
+
     (<HTMLInputElement>document.getElementById('matcard2')).hidden = true;
   }
 
@@ -113,7 +121,7 @@ export class LeasingCalculatorComponent implements OnInit {
 
 
   setMinAssetPrice() {
-    if (this.leasingCalculatorForm.get('customerType').value === 'Business') {
+    if (this.leasingCalculatorForm.get('customerType').value === 'BUSINESS') {
       this.minAssetPrice = PaymentSize.MIN_ASSET_PRICE_BUSINESS;
       this.leasingCalculatorForm.get('assetPrice').setValidators(CustomValidators.assetPriceBusinessValidator);
     } else {
@@ -176,26 +184,32 @@ export class LeasingCalculatorComponent implements OnInit {
       });
     } else {
       this.leasingCalculator = this.leasingCalculatorForm.value;
-      this.flag = false;
-      this.backendService.getRepaymentShedule(this.leasingCalculator).then((receivedData: any) => {
 
-          this.repaymentSchedule = receivedData.repaymentSchedule;
+      // if (!this.flag) {
+        // this.leasingCalculatorForm.valueChanges.subscribe(val => {
+        //   console.log("in sub", val);
+        this.backendService.getRepaymentShedule(this.leasingCalculator).then((receivedData: any) => {
 
-
-          // const pag = new MatTableDataSource(this.repaymentSchedule);
-          // pag.paginator = this.paginator;
-          // this.repaymentScheduleDataStream.next(pag);
-        console.log("schedule", this.repaymentSchedule);
-        this.repaymentScheduleDataStream.next(this.repaymentSchedule);
-          this.flag = true;
+            this.repaymentSchedule = receivedData.repaymentSchedule;
 
 
-        },
-        error => {
-          console.log('Error: ' + error);
-        }
-      );
-    }
+            // const pag = new MatTableDataSource(this.repaymentSchedule);
+            // pag.paginator = this.paginator;
+            // this.repaymentScheduleDataStream.next(pag);
+            console.log("schedule", this.repaymentSchedule);
+            this.repaymentScheduleDataStream.next(this.repaymentSchedule);
+            this.flag = true;
+            this.flag2 = false;
+
+
+          },
+          error => {
+            console.log('Error: ' + error);
+          }
+        );
+
+    };
+
     return this.repaymentSchedule;
 
 
@@ -244,6 +258,48 @@ export class LeasingCalculatorComponent implements OnInit {
     this.visible = true;
     console.log('true', this.visible);
     // (<HTMLInputElement>document.getElementById('matcard2')).disabled = true;
-    (<HTMLInputElement>document.getElementById('matcard2')).hidden = false;
+    if(this.leasingCalculatorForm.valid) {
+      (<HTMLInputElement>document.getElementById('matcard2')).hidden = false;
+      this.onChanges();
+    }
+  }
+
+  // sendToBack() {
+  //   this.backendService.getRepaymentShedule(this.leasingCalculator).then((receivedData: any) => {
+  //
+  //
+  //       this.repaymentSchedule = receivedData.repaymentSchedule;
+  //
+  //       // const pag = new MatTableDataSource(this.repaymentSchedule);
+  //       // pag.paginator = this.paginator;
+  //       // this.repaymentScheduleDataStream.next(pag);
+  //       console.log("schedule", this.repaymentSchedule);
+  //       this.repaymentScheduleDataStream.next(this.repaymentSchedule);
+  //       this.flag = false;
+  //       this.flag2 = false;
+  //
+  //
+  //     },
+  //     error => {
+  //       console.log('Error: ' + error);
+  //     }
+  //   );
+  // }
+
+  onChanges() {
+    if(this.leasingCalculatorForm.valid) {
+
+      this.leasingCalculatorForm.valueChanges.subscribe(val => {
+        {
+          // (<HTMLInputElement>document.getElementById('calculate-btn')).hidden = true;
+          this.flag = false;
+          this.submitForm();
+        }
+        // this.submitForm();
+
+      });
+    }
+    // else (<HTMLInputElement>document.getElementById('calculate-btn')).hidden = false;
+    console.log("onChanges", this.flag);
   }
 }

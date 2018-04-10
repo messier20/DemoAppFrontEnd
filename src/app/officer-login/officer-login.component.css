@@ -96,6 +96,7 @@ mat-form-field {
   width: 19em;
 }
 
-button {
-  margin: 0.5em;
+#loginButton {
+  margin-left: 25%;
+  margin-right: 25%;
 }

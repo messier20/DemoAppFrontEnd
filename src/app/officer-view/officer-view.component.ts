@@ -66,81 +66,81 @@ export class OfficerViewComponent implements OnInit {
   //   if(lease.privateCustomerInfo )
   // }
 
-  refresh() {
-    this.leases = [];
-    this.combined = [];
-    this.id = [];
-    this.leasesInfoOfBusiness = [];
-    this.leasesInfoOfPrivate = [];
-    this.pending = [];
-    this.approved = [];
-    this.denied = [];
-    this.names = [];
-
-    this.backendService.getAllPrivateUserApplications()
-      .then(data => {
-          this.leases = data;
-          console.log("data", data);
-          this.leases.forEach(lease => {
-            console.log("lease", lease)
-            // lease.leasing = DataStorageService.refactorCustomerType(lease.leasing);
-            this.id.push(lease.idHex);
-            this.leasesInfoOfPrivate.push(new LeaseInfoOfPrivate(lease));
-          });
-
-          this.getBusiness();
-        }
-      );
-  }
-
-
-  getBusiness() {
-
-
-    this.backendService.getAllBusinessUserApplications()
-      .then(data => {
-
-        this.leases = data;
-        this.leases.forEach(lease => {
-          lease.id.date = (lease.id.date).substr(0, 10);
-          // lease.leasing = DataStorageService.refactorCustomerType(lease.leasing);
-          this.id.push(lease.idHex);
-
-          this.leasesInfoOfBusiness.push(new LeaseInfoOfBusiness(lease));
-
-        });
-        let a: any = this.leasesInfoOfPrivate;
-        let b: any = this.leasesInfoOfBusiness;
-
-        this.leasesInfoOfPrivate.forEach(data => {
-          // this.names.push(data.privateCustomerInfo.name);
-          data.date = (data.date).substr(0, 10);
-        });
-
-        this.leasesInfoOfBusiness.forEach(data => {
-          data.date = (data.date).substr(0, 10);
-          // this.names.push(data.businessCustomerInfo.name);
-        });
-
-        this.combined = [];
-        this.pending = [];
-
-        this.combined = a.concat(b);
-        this.combined.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-        this.combined.forEach(comb => {
-
-          if (comb.status === 'PENDING') {
-            this.pending.push(comb);
-          }
-          else if (comb.status === 'APPROVED') {
-            this.approved.push(comb);
-          }
-          else if (comb.status === 'DENIED') {
-            this.denied.push(comb);
-          }
-        })
-      });
-  }
+  // refresh() {
+  //   this.leases = [];
+  //   this.combined = [];
+  //   this.id = [];
+  //   this.leasesInfoOfBusiness = [];
+  //   this.leasesInfoOfPrivate = [];
+  //   this.pending = [];
+  //   this.approved = [];
+  //   this.denied = [];
+  //   this.names = [];
+  //
+  //   this.backendService.getAllPrivateUserApplications()
+  //     .then(data => {
+  //         this.leases = data;
+  //         console.log("data", data);
+  //         this.leases.forEach(lease => {
+  //           console.log("lease", lease)
+  //           // lease.leasing = DataStorageService.refactorCustomerType(lease.leasing);
+  //           this.id.push(lease.idHex);
+  //           this.leasesInfoOfPrivate.push(new LeaseInfoOfPrivate(lease));
+  //         });
+  //
+  //         this.getBusiness();
+  //       }
+  //     );
+  // }
+  //
+  //
+  // getBusiness() {
+  //
+  //
+  //   this.backendService.getAllBusinessUserApplications()
+  //     .then(data => {
+  //
+  //       this.leases = data;
+  //       this.leases.forEach(lease => {
+  //         lease.id.date = (lease.id.date).substr(0, 10);
+  //         // lease.leasing = DataStorageService.refactorCustomerType(lease.leasing);
+  //         this.id.push(lease.idHex);
+  //
+  //         this.leasesInfoOfBusiness.push(new LeaseInfoOfBusiness(lease));
+  //
+  //       });
+  //       let a: any = this.leasesInfoOfPrivate;
+  //       let b: any = this.leasesInfoOfBusiness;
+  //
+  //       this.leasesInfoOfPrivate.forEach(data => {
+  //         // this.names.push(data.privateCustomerInfo.name);
+  //         data.date = (data.date).substr(0, 10);
+  //       });
+  //
+  //       this.leasesInfoOfBusiness.forEach(data => {
+  //         data.date = (data.date).substr(0, 10);
+  //         // this.names.push(data.businessCustomerInfo.name);
+  //       });
+  //
+  //       this.combined = [];
+  //       this.pending = [];
+  //
+  //       this.combined = a.concat(b);
+  //       this.combined.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  //       this.combined.forEach(comb => {
+  //
+  //         if (comb.status === 'PENDING') {
+  //           this.pending.push(comb);
+  //         }
+  //         else if (comb.status === 'APPROVED') {
+  //           this.approved.push(comb);
+  //         }
+  //         else if (comb.status === 'DENIED') {
+  //           this.denied.push(comb);
+  //         }
+  //       })
+  //     });
+  // }
 
   step11;
   step12;
