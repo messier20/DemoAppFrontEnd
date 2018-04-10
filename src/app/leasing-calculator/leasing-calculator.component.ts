@@ -34,6 +34,7 @@ export class LeasingCalculatorComponent implements OnInit {
   leasingCalculatorLabels = this.leasingFormLabels.leasingCalculatorLabels;
   leasingFormInput: LeasingModel;
   availableCustomerTypes = ['Private', 'Business'];
+  leasingCalculatorFormBackup;
 
   leasePeriods;
   availableDays = [15, 30];
@@ -253,38 +254,25 @@ export class LeasingCalculatorComponent implements OnInit {
   tile1 = {text: 'Leasing Calculator', cols: 2, rows: 5.5, color: 'linear-gradient(#ADD8E6, white)'};
   tile2 = {text: 'Calculate', cols: 2, rows: 5.5, color: 'linear-gradient(#b4c3c7, white)'};
 
-  isVisible(){
+  isVisible() {
     console.log('false', this.visible);
     this.visible = true;
     console.log('true', this.visible);
     // (<HTMLInputElement>document.getElementById('matcard2')).disabled = true;
-    if(this.leasingCalculatorForm.valid) {
-      (<HTMLInputElement>document.getElementById('matcard2')).hidden = false;
-      this.onChanges();
+    if (this.leasingCalculatorFormBackup != this.leasingCalculatorForm.value) {
+      console.log("in if", this.leasingCalculatorFormBackup);
+
+      this.leasingCalculatorFormBackup = this.leasingCalculatorForm.value;
+      if (this.leasingCalculatorForm.valid) {
+        (<HTMLInputElement>document.getElementById('matcard2')).hidden = false;
+
+        this.flag = false;
+        this.submitForm();
+      }
     }
   }
 
-  // sendToBack() {
-  //   this.backendService.getRepaymentShedule(this.leasingCalculator).then((receivedData: any) => {
-  //
-  //
-  //       this.repaymentSchedule = receivedData.repaymentSchedule;
-  //
-  //       // const pag = new MatTableDataSource(this.repaymentSchedule);
-  //       // pag.paginator = this.paginator;
-  //       // this.repaymentScheduleDataStream.next(pag);
-  //       console.log("schedule", this.repaymentSchedule);
-  //       this.repaymentScheduleDataStream.next(this.repaymentSchedule);
-  //       this.flag = false;
-  //       this.flag2 = false;
-  //
-  //
-  //     },
-  //     error => {
-  //       console.log('Error: ' + error);
-  //     }
-  //   );
-  // }
+
 
   onChanges() {
     if(this.leasingCalculatorForm.valid) {
@@ -300,6 +288,6 @@ export class LeasingCalculatorComponent implements OnInit {
       });
     }
     // else (<HTMLInputElement>document.getElementById('calculate-btn')).hidden = false;
-    console.log("onChanges", this.flag);
+
   }
 }

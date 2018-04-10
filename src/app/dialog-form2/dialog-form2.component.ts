@@ -34,6 +34,7 @@ export class DialogForm2Component implements OnInit {
   returnYes() {
 
       this.dialogRef.close(this.status);
+
   }
 
 

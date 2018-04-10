@@ -1,0 +1,24 @@
+@import '~@angular/material/theming';
+
+@mixin app-officer-view-theme($theme) {
+  $primary: map_get($theme, primary);
+  $accent: map_get($theme, accent);
+  $warn: map_get($theme, warn);
+  $foreground: map_get($theme, foreground);
+  $background: map_get($theme, background);
+
+  app-officer-view {
+    .text-color {
+      color:  mat-color($primary);
+    }
+
+    .button-calculate {
+      background-color: mat-color($primary, A100);
+    }
+
+    .background {
+      background-color: mat-color($background, app-bar) !important;
+    }
+
+  }
+}

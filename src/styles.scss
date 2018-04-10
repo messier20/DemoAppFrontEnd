@@ -5,6 +5,7 @@
 @import 'app/side-nav/side-nav.component.scss';
 @import 'app/check-leasing-status/check-leasing-status.component.scss';
 @import 'app/officer-login/officer-login.component';
+@import 'app/officer-view/officer-view.component';
 
 @include mat-core();
 
@@ -26,6 +27,7 @@ $blue-theme: mat-light-theme($blue-theme-primary, $blue-theme-accent, $blue-them
   @include app-side-nav-theme($theme);
   @include app-check-leasing-status-theme($theme);
   @include app-officer-login-theme($theme);
+  @include app-officer-view-theme($theme);
 }
  //Here goes themes mixins
  @include angular-material-theme($blue-theme);
