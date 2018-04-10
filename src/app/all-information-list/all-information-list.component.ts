@@ -12,6 +12,7 @@ export class AllInformationListComponent implements OnInit {
   @Input() leasingModel;
   @Input() privateCustomerInfo;
   @Input() businessCustomerInfo;
+  @Input() customerType;
 
   leasingLabels;
   customerInfoLabels: string[];
@@ -24,12 +25,12 @@ export class AllInformationListComponent implements OnInit {
   }
 
   ngOnInit() {
-    const labels = new CustomerInfoLabels();
     this.leasingLabels = new LeasingFormLabels().leasingFormLabels;
+  }
 
-    this.isCustomerPrivate();
-
-    if (this.privateCustomer) {
+  setupArrays() {
+    const labels = new CustomerInfoLabels();
+    if (this.isCustomerPrivate()) {
       this.customerInfoLabels = labels.privateInfoLabels;
       this.setupPrivateCustomerInfoArray();
 
@@ -42,9 +43,10 @@ export class AllInformationListComponent implements OnInit {
   }
 
   private isCustomerPrivate() {
-    console.log("t", this.leasingModel.customerType);
-    this.privateCustomer = this.leasingModel.customerType === 'PRIVATE';
-
+    if (this.customerType !== null && this.customerType !== undefined) {
+      this.setupArrays();
+    }
+    return this.customerType === 'PRIVATE';
   }
 
   private setupPrivateCustomerInfoArray() {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LeasingModel} from '../models/LeasingModel';
 import {CarList} from '../models/CarList';
 import {Router} from '@angular/router';
@@ -42,6 +42,9 @@ export class PrivateFormComponent implements OnInit {
   PRIVATE = 'PRIVATE';
   BUSINESS = 'BUSINESS';
   leasingFormErrorMatcher = new InputFormsErrorStateMatcher();
+
+  @Output()
+  formSubmitted = new EventEmitter<Object>();
 
   constructor(private router: Router,
               private dataService: DataStorageService, private formBuilder: FormBuilder) {
@@ -193,7 +196,10 @@ export class PrivateFormComponent implements OnInit {
         control.markAsTouched({onlySelf: true});
       });
     } else {
-      this.router.navigate(['/customerInfoForm']);
+      this.leasingModel = this.leasingForm.value;
+      this.dataService.setLeasingModel(this.leasingModel);
+      this.formSubmitted.emit();
+      // this.router.navigate(['/customerInfoForm']);
     }
     this.leasingModel = this.leasingForm.value;
     this.dataService.setLeasingModel(this.leasingModel);

@@ -1,0 +1,26 @@
+<mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
+  <mat-step completed="stepOneComplete">
+    <ng-template matStepLabel>Leasing Info</ng-template>
+    <app-privateform (formSubmitted)="toSecondStep()">
+    </app-privateform>
+    <button mat-button matStepperNext id="toSecondStep" hidden>Next</button>
+
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Customer Info</ng-template>
+    <app-customer-info-form (formGoBack)="backToFirstStep()"
+                            (formSubmitted)="toThirdStep()"
+                            [customerType]="customerType">
+    </app-customer-info-form>
+    <button mat-button matStepperPrevious id="toFirstStep" hidden>Back</button>
+    <button mat-button matStepperNext id="toThirdStep" hidden>Next</button>
+  </mat-step>
+
+  <mat-step>
+    <app-all-information-list [leasingModel]="leasingModel"
+                              [privateCustomerInfo]="privateCustomerInfo"
+                              [businessCustomerInfo]="businessCustomerInfo"
+                              [customerType]="customerType">
+    </app-all-information-list>
+  </mat-step>
+</mat-horizontal-stepper>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
@@ -27,6 +27,14 @@ export class CustomerInfoFormComponent implements OnInit {
   errorMatcher = new InputFormsErrorStateMatcher();
   validationAmounts = ValidationAmounts;
 
+  @Input()
+  customerType;
+
+  @Output()
+  formGoBack = new EventEmitter<Object>();
+  @Output()
+  formSubmitted = new EventEmitter<Object>();
+
   constructor(private router: Router,
               private dataService: DataStorageService,
               private formBuilder: FormBuilder,
@@ -39,7 +47,13 @@ export class CustomerInfoFormComponent implements OnInit {
     if (this.dataService.getLeasingModel() === null || this.dataService.getLeasingModel() === undefined) {
       return true;
     }
-    return this.dataService.getLeasingModel().customerType === 'PRIVATE';
+    if (this.customerType === 'PRIVATE') {
+      this.formLabels = new CustomerInfoLabels().privateInfoLabels;
+      return true;
+    } else {
+      this.formLabels = new CustomerInfoLabels().businessInfoLabels;
+      return false;
+    }
   }
 
   ngOnInit() {
@@ -89,20 +103,21 @@ export class CustomerInfoFormComponent implements OnInit {
         control.markAsTouched({onlySelf: true});
       });
     } else {
-      this.dialog.open(DialogFormComponent, {
-        data: {
-          leasingModel: this.dataService.getLeasingModel(),
-          privateInfo: this.privateCustomerInfo,
-          businessInfo: this.businessCustomerInfo,
-          checkingLeasingStatus: false
-        }
-      });
+      // this.dialog.open(DialogFormComponent, {
+      //   data: {
+      //     leasingModel: this.dataService.getLeasingModel(),
+      //     privateInfo: this.privateCustomerInfo,
+      //     businessInfo: this.businessCustomerInfo,
+      //     checkingLeasingStatus: false
+      //   }
+      // });
+      this.formSubmitted.emit();
     }
   }
 
   goBack() {
     this.setCustomerInfo();
-    this.router.navigate(['/privateForm']);
+    this.formGoBack.emit();
   }
 
   private createValidForm() {

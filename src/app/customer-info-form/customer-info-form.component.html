@@ -25,7 +25,8 @@
           <mat-form-field *ngIf="isCustomerPrivate()">
             <input type="text" matInput placeholder="{{formLabels[2]}}" class="form-control"
                    id="lastName" required
-                   formControlName="lastName" name="lastName">
+                   formControlName="lastName" name="lastName"
+                   [errorStateMatcher]="errorMatcher">
             <mat-error *ngIf="infoForm.get('lastName').hasError('maxlength')
       && !infoForm.get('lastName').hasError('required')">
               {{formLabels[2]}} can be up to <strong>{{validationAmounts.NAME_LAST_LENGTH_MAX}}</strong> characters long
@@ -43,7 +44,8 @@
           <mat-form-field>
             <input type="text" #message matInput placeholder="{{formLabels[3]}}" class="form-control"
                    id="code" required
-                   formControlName="code" name="code">
+                   formControlName="code" name="code"
+                   [errorStateMatcher]="errorMatcher">
             <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
             <mat-error *ngIf="(infoForm.get('code').hasError('maxlength') || infoForm.get('code').hasError('minlength'))
       && !infoForm.get('code').hasError('required')">
@@ -87,7 +89,7 @@
 
           <mat-form-field>
             <input type="text" matInput placeholder="{{formLabels[5]}}" class="form-control"
-                   id="phoneNumber" required
+                   id="phoneNumber" required [errorStateMatcher]="errorMatcher"
                    formControlName="phoneNumber" name="phoneNumber" (keypress)="_keyPress($event)">
             <span matPrefix>+&nbsp;</span>
             <mat-error *ngIf="infoForm.get('phoneNumber').hasError('maxlength')
@@ -112,7 +114,7 @@
 
           <mat-form-field>
             <input type="text" matInput placeholder="{{formLabels[6]}}" class="form-control"
-                   id="address" required
+                   id="address" required [errorStateMatcher]="errorMatcher"
                    formControlName="address" name="address">
             <mat-error *ngIf="infoForm.get('address').hasError('maxlength')">
               {{formLabels[6]}} must be up to <strong>{{validationAmounts.ADDRESS_LENGTH_MAX}}</strong> characters long
@@ -124,7 +126,7 @@
 
         </div>
 
-        <button mat-raised-button type="submit" (click)="goBack()">Back</button>
+        <button mat-raised-button type="button" (click)="goBack()">Back</button>
         <button mat-raised-button type="submit" color="accent" id="submitButton" (click)="setCustomerInfo()">Submit form
         </button>
       </form>

@@ -9,16 +9,25 @@ import {PrivateFormComponent} from './privateform/private-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatAutocompleteModule,
+  MatButtonModule,
   MatCardModule,
+  MatCheckboxModule,
   MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatNativeDateModule,
-  // MatDatepickerModule, MatDialogModule, MatExpansionPanel, MatFormFieldModule, MatGridListModule, MatIconModule,
   MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule
   MatSelectModule, MatTabLabel, MatPaginatorModule, MatTableModule,
   MatTabsModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatSnackBarModule,
   MatTooltipModule
@@ -43,11 +52,11 @@ import {AuthGuardService} from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {FlexLayoutModule} from '@angular/flex-layout';
 // import { SideNavComponent } from './side-nav/side-nav.component';
-import {MediaMatcher} from "@angular/cdk/layout";
-import { MatThemingComponent } from './mat-theming/mat-theming.component';
-import { ScheduleComponent } from './schedule/schedule.component';
-import {SideNavComponent} from "./side-nav/side-nav.component";
-
+import {MediaMatcher} from '@angular/cdk/layout';
+import {MatThemingComponent} from './mat-theming/mat-theming.component';
+import {ScheduleComponent} from './schedule/schedule.component';
+import {SideNavComponent} from './side-nav/side-nav.component';
+import {ApplicationStepperComponent} from './application-stepper/application-stepper.component';
 
 
 @NgModule({
@@ -66,6 +75,7 @@ import {SideNavComponent} from "./side-nav/side-nav.component";
     DialogForm2Component,
     SideNavComponent,
     MatThemingComponent,
+    ApplicationStepperComponent
     OfficerLoginComponent,
     ScheduleComponent
   ],
@@ -103,6 +113,7 @@ import {SideNavComponent} from "./side-nav/side-nav.component";
     MatGridListModule,
     MatSelectModule,
     FlexLayoutModule,
+    MatStepperModule,
 
     NgbModule.forRoot()
   ],

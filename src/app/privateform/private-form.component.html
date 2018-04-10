@@ -1,7 +1,7 @@
 <div class="card-container background ">
   <mat-card id="inputFormCard">
     <mat-card-header>
-      <mat-card-title ><h2 class="text-color">Leasing Application</h2></mat-card-title>
+      <mat-card-title><h2 class="text-color">Leasing Application</h2></mat-card-title>
     </mat-card-header>
     <mat-card-content id="inputCardContent">
       <form [formGroup]="leasingForm" (ngSubmit)="submitForm()">
@@ -10,7 +10,8 @@
                       id="customerType"
                       name="customerTypeField" formControlName="customerType"
                       required
-                      (change)="updateMinValues()">
+                      (change)="updateMinValues()"
+                      [errorStateMatcher]="leasingFormErrorMatcher">
             <mat-option [value]="PRIVATE">Private</mat-option>
             <mat-option [value]="BUSINESS">Business</mat-option>
           </mat-select>
@@ -22,8 +23,8 @@
         <div>
 
           <mat-form-field>
-            <mat-select placeholder="{{leasingFormLabels.ASSET_TYPE}}" id="assetType"
-                        required name="assetTypeField" value="Vehicle">
+            <mat-select placeholder="{{leasingFormLabels.ASSET_TYPE}}" class="form-control" id="assetType"
+                        required name="assetTypeField" value="Vehicle" [errorStateMatcher]="leasingFormErrorMatcher">
               <mat-option *ngFor="let type of availableAssetTypes" [value]="type">{{type}}</mat-option>
               <mat-error *ngIf="leasingForm.get('assetType').invalid">
                 Asset Type is <strong>required</strong>
@@ -42,6 +43,7 @@
                    aria-label="carBrand"
                    (change)="selectBrandHandler()"
                    (keyup)="selectBrandHandler()"
+                   [errorStateMatcher]="leasingFormErrorMatcher"
             >
             <mat-error *ngIf="leasingForm.get('carBrand').invalid">
               Car Brand is <strong>required</strong>
@@ -65,7 +67,8 @@
                    matInput #input disabled
                    formControlName="carModel"
                    aria-label="carModel"
-                   [matAutocomplete]="carModel">
+                   [matAutocomplete]="carModel"
+                   [errorStateMatcher]="leasingFormErrorMatcher">
 
             <mat-error *ngIf="leasingForm.get('carModel').invalid">
               Car Model is <strong>required</strong>
@@ -81,14 +84,14 @@
         </div>
 
 
-
         <div>
 
           <mat-form-field>
             <input type="date" matInput placeholder="{{leasingFormLabels.MANUFACTURED_DATE}}"
                    id="manufacturedDate" required
                    formControlName="manufacturedDate"
-                   name="manufacturedDateForm">
+                   name="manufacturedDateForm"
+                   [errorStateMatcher]="leasingFormErrorMatcher">
             <mat-error *ngIf="leasingForm.get('manufacturedDate').invalid">
               Manufactured Date is <strong>required</strong>
             </mat-error>
@@ -121,7 +124,6 @@
           </mat-form-field>
 
         </div>
-
 
 
         <div>
@@ -224,7 +226,7 @@
           <mat-form-field>
             <input type="text" matInput placeholder="{{leasingFormLabels.CONTRACT_FEE}}"
                    id="contractFee" name="contractFeeField"
-                   formControlName="contractFee">
+                   formControlName="contractFee" [errorStateMatcher]="leasingFormErrorMatcher">
           </mat-form-field>
 
         </div>
@@ -264,7 +266,8 @@
           <mat-form-field>
             <mat-select placeholder="{{leasingFormLabels.LEASING_PERIOD}}"  id="leasePeriodInMonths"
                         required name="leasePeriodInMonthsField"
-                        formControlName="leasePeriodInMonths">
+                        formControlName="leasePeriodInMonths"
+                        [errorStateMatcher]="leasingFormErrorMatcher">
               <mat-option *ngFor="let type of leasePeriods" [value]="type">{{type}}</mat-option>
             </mat-select>
             <mat-error *ngIf="leasingForm.get('leasePeriodInMonths').invalid">
@@ -280,7 +283,7 @@
           <mat-form-field style="align-content: left">
             <mat-select placeholder="{{leasingFormLabels.PAYMENT_DAY}}"  id="paymentDay"
                         name="paymentDateField" formControlName="paymentDate"
-                        required>
+                        required [errorStateMatcher]="leasingFormErrorMatcher">
               <mat-option *ngFor="let currentDay of availableDays" [value]="currentDay">{{currentDay}}</mat-option>
             </mat-select>
             <mat-error *ngIf="leasingForm.get('paymentDate').invalid">
