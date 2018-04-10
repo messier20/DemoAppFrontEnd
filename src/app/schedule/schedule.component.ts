@@ -17,12 +17,10 @@ export class ScheduleComponent implements OnInit {
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor() {
-    console.log("constructor", this.random);
   }
 
   ngOnInit() {
     if(this.dataStream) {
-      console.log("stream", this.dataStream);
 
       // this.displayForm();
 
@@ -58,7 +56,6 @@ export class ScheduleComponent implements OnInit {
   // isDataStreamReturned(){
   //   this.promise.then(data => {
   //     this.displayForm();
-  //     console.log("get data", data);
   //   })
   // }
 
@@ -76,7 +73,6 @@ export interface Element {
 
 }
 
-// console.log("random ne constr", this.random);
 // const ELEMENT_DATA: Element[] = this.random;
 //   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
 //   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},

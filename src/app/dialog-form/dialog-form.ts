@@ -55,7 +55,6 @@ export class DialogFormComponent {
 
       const returnedUserIdObject: any = returnedId;
       this.receivedUserId = returnedUserIdObject.id;
-      console.log("id", this.receivedUserId);
         if(this.receivedUserId===null) {
           this.showingUserId = false;
           this.openSnackBar('Woops! Something went wrong. Please check your data and try again.', 'Close');

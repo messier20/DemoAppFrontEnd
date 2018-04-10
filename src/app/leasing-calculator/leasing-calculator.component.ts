@@ -91,10 +91,8 @@ export class LeasingCalculatorComponent implements OnInit {
     }
 
     if(this.leasingCalculatorForm.enabled){
-      console.log("on init enabled", this.leasingCalculatorForm.enabled);
     }
     if(this.leasingCalculatorForm.disabled){
-      console.log("on init disabled", this.leasingCalculatorForm.disabled);
     }
     // this.onChanges();
 
@@ -188,7 +186,6 @@ export class LeasingCalculatorComponent implements OnInit {
 
       // if (!this.flag) {
         // this.leasingCalculatorForm.valueChanges.subscribe(val => {
-        //   console.log("in sub", val);
         this.backendService.getRepaymentShedule(this.leasingCalculator).then((receivedData: any) => {
 
             this.repaymentSchedule = receivedData.repaymentSchedule;
@@ -197,7 +194,6 @@ export class LeasingCalculatorComponent implements OnInit {
             // const pag = new MatTableDataSource(this.repaymentSchedule);
             // pag.paginator = this.paginator;
             // this.repaymentScheduleDataStream.next(pag);
-            console.log("schedule", this.repaymentSchedule);
             this.repaymentScheduleDataStream.next(this.repaymentSchedule);
             this.flag = true;
             this.flag2 = false;
@@ -205,7 +201,6 @@ export class LeasingCalculatorComponent implements OnInit {
 
           },
           error => {
-            console.log('Error: ' + error);
           }
         );
 
@@ -234,7 +229,6 @@ export class LeasingCalculatorComponent implements OnInit {
   setLeasingCalculator() {
     this.leasingCalculator = this.leasingCalculatorForm.value;
     this.dataService.setLeasingCalculator(this.leasingCalculator);
-    console.log(this.dataService.getLeasingCalculator().assetPrice);
     this.router.navigate(['/privateForm']);
   }
 
@@ -255,12 +249,9 @@ export class LeasingCalculatorComponent implements OnInit {
   tile2 = {text: 'Calculate', cols: 2, rows: 5.5, color: 'linear-gradient(#b4c3c7, white)'};
 
   isVisible() {
-    console.log('false', this.visible);
     this.visible = true;
-    console.log('true', this.visible);
     // (<HTMLInputElement>document.getElementById('matcard2')).disabled = true;
     if (this.leasingCalculatorFormBackup != this.leasingCalculatorForm.value) {
-      console.log("in if", this.leasingCalculatorFormBackup);
 
       this.leasingCalculatorFormBackup = this.leasingCalculatorForm.value;
       if (this.leasingCalculatorForm.valid) {

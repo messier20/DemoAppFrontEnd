@@ -120,7 +120,6 @@ export class CheckLeasingStatusComponent implements OnInit {
       },
       error => {
         this.noLeasingFound = true;
-        console.log("err", error);
         this.openSnackBar('No leasing with this ID found. Please check your customer type or ID', 'Close');
 
       }

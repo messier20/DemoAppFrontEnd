@@ -220,7 +220,6 @@ export class PrivateFormComponent implements OnInit {
       this.leasingForm.get('carBrand').setValue(this.dataService.getLeasingModel().carBrand);
       this.selectBrandHandler();
       this.leasingForm.get('carModel').setValue(this.dataService.getLeasingModel().carModel);
-      console.log(this.leasingForm.get('carModel').value);
       this.leasingForm.get('manufacturedDate').setValue(this.dataService.getLeasingModel().manufacturedDate);
       this.leasingForm.get('enginePower').setValue(this.dataService.getLeasingModel().enginePower);
     }

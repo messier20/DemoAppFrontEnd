@@ -42,7 +42,6 @@ export class AllInformationListComponent implements OnInit {
   }
 
   private isCustomerPrivate() {
-    console.log("t", this.leasingModel.customerType);
     this.privateCustomer = this.leasingModel.customerType === 'PRIVATE';
 
   }

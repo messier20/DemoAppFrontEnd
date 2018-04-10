@@ -57,11 +57,9 @@ export class CustomerInfoFormComponent implements OnInit {
       }
     } else {
       this.formLabels = new CustomerInfoLabels().businessInfoLabels;
-      console.log('should create form labels');
 
 
       if (this.dataService.getBusinessInfo() != null) {
-        console.log('data service not empty');
         this.infoForm.get('lastName').disable();
 
         this.infoForm.get('name').setValue(this.dataService.getBusinessInfo().name);
@@ -70,13 +68,11 @@ export class CustomerInfoFormComponent implements OnInit {
         this.infoForm.get('address').setValue(this.dataService.getBusinessInfo().address);
         this.infoForm.get('phoneNumber').setValue(this.infoForm.get('phoneNumber').value.substring(1));        // this.infoForm.setValue(this.dataService.getBusinessInfo());
 
-        console.log('info form', this.infoForm);
 
       } else {
         this.businessCustomerInfo = new BusinessCustomerInfo();
         this.infoForm.get('lastName').disable();
 
-        console.log('info form empty');
       }
     }
 
