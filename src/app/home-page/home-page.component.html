@@ -3,30 +3,23 @@
 <div class="div1">
   <div class="container">
     <div class="main1">
-      <h1>Car Leasing</h1>
-      <h4>We are happy to help you purchase the car of your dreams.</h4>
-      <a class="btn-main" href=''>Get Started</a>
-    </div>
-  </div>
-</div>
-
-<div class="div2">
-  <div class="container">
-    <div class="main2">
       <img class="image" src="assets/images/HomePage/car-side.png">
-      <h3>Any car, anytime, anywhere!</h3>
-      <a class="btn-main" href=''>Get Started</a>
+      <h1>Blue Leasing</h1>
+      <!--<h4>We are happy to help you purchase the car of your dreams.</h4>-->
+      <a class="btn-main" (click)="routeToApplicationForm()">Get Started</a>
     </div>
   </div>
 </div>
 
-<div class="div3">
-  <div class="container">
-    <div class="main1">
-      <h5>Mūsų žinios – vertė jums</h5>
-    </div>
-  </div>
-</div>
+<!--<div class="div2">-->
+  <!--<div class="container">-->
+    <!--<div class="main2">-->
+      <!--<img class="image" src="assets/images/HomePage/car-side.png">-->
+      <!--<h3>Any car, anytime, anywhere!</h3>-->
+      <!--<a class="btn-main" href=''>Get Started</a>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 
 <div class="div4">
   <div class="container">
@@ -43,7 +36,7 @@
         <li class="ChatLog__entry">
           <img class="ChatLog__avatar" src="assets/images/HomePage/c1.jpg"/>
           <p class="ChatLog__message">
-            What is blue leasing?
+            What is leasing?
             <time class="ChatLog__timestamp">5 minutes ago</time>
           </p>
         </li>
@@ -64,9 +57,9 @@
         <li class="ChatLog__entry ChatLog__entry_mine">
           <img class="ChatLog__avatar" src="assets/images/HomePage/c2.jpg"/>
           <p class="ChatLog__message">
-            A Blue Leasing is a personal loan which are used to purchase an vehicle. More specifically a lender loans
-            the borrower (you) the cash it takes to purchase a vehice. In return the borrower agrees to pay back the
-            lender the amount of the leas plus interest, usually in mont payments, until amount is fully paid off.
+            Blue Leasing is a personal loan which is used to purchase a vehicle. More specifically a lender loans
+            the borrower (you) the cash it takes to purchase a vehicle. In return the borrower agrees to pay back the
+            lender the amount of the lease plus interest, usually in monthly payments, until amount is fully paid off.
             <time class="ChatLog__timestamp">2 minutes ago</time>
           </p>
         </li>
@@ -111,33 +104,30 @@
   </div>
 </div>
 
-<!--<div class="supporting">-->
-<!--<div class="container">-->
-<!--<div class="col">-->
-<!--<img src="https://s3.amazonaws.com/codecademy-content/projects/broadway/design.svg">-->
-<!--<h2>What is leasing?</h2>-->
-<!--<p>A car lease lets you drive a new vehicle without paying a large sum of cash.</p>-->
-<!--<a href='' class="dft-btn">Learn More</a>-->
-<!--</div>-->
-<!--<div class="col">-->
-<!--<img src="https://s3.amazonaws.com/codecademy-content/projects/broadway/develop.svg">-->
-<!--<h2>Develop</h2>-->
-<!--<p>Use modern tools to turn your design into a web site</p>-->
-<!--<a href='' class="dft-btn">Learn More</a>-->
-<!--</div>-->
-<!--<div class="col">-->
-<!--<img src="https://s3.amazonaws.com/codecademy-content/projects/broadway/deploy.svg">-->
-<!--<h2>Deploy</h2>-->
-<!--<p>Use modern tools to turn your design into a web site</p>-->
-<!--<a href='' class="dft-btn">Learn More</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="clearfix"></div>-->
-<!--</div>-->
+<div class="supporting">
+  <div class="container">
+    <div class="col">
+      <h2>Calculator</h2>
+      <p>To see how money you will need to pay per month</p>
+      <a (click)="routeToCalculator()" class="dft-btn">Learn More</a>
+    </div>
+    <div class="col">
+      <h2>Apply</h2>
+      <p>Fill in the application and apply for leasing</p>
+      <a (click)="routeToApplicationForm()" class="dft-btn">Learn More</a>
+    </div>
+    <div class="col">
+      <h2>Check</h2>
+      <p>Check your application leasing status</p>
+      <a (click)="routeToCheckStatus()" class="dft-btn">Learn More</a>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
 
 <div class="footer">
   <div class="container">
-    <p>&copy; Broadway 2015</p>
+    <p>&copy; Blue Leasing 2018</p>
   </div>
 </div>
 
