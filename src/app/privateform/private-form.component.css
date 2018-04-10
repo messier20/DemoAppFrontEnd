@@ -224,3 +224,7 @@ mat-card-header {
   text-align: center;
   justify-content: center;
 }
+
+#contractFee {
+  color: black;
+}
