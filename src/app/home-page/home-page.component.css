@@ -20,7 +20,7 @@ html, body {
 }
 
 .div3 {
-  height: 500px;
+  height: 550px;
   background-color: #ffffff;
 }
 
@@ -152,6 +152,8 @@ html, body {
   padding: 16px 40px;
   text-decoration: none;
   text-transform: uppercase;
+  max-width: 350px;
+  max-height: 80px;
 }
 
 @media (max-width: 500px) {
@@ -355,4 +357,9 @@ a {
 
 a:hover {
   cursor:pointer;
+}
+
+.profilePic {
+  width: 400px;
+  height: 250px;
 }
