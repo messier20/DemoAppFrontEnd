@@ -20,4 +20,5 @@ export class ValidationAmounts {
   static readonly PHONE_NUMBER_LENGTH_MIN = 10;
   static readonly PHONE_NUMBER_LENGTH_MAX = 15;
   static readonly ADDRESS_LENGTH_MAX = 80;
+  static readonly ID_LENGTH_MAX = 24;
 }

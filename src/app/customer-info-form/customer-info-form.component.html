@@ -10,6 +10,7 @@
                  id="name" required formControlName="name" name="name"
                  [errorStateMatcher]="errorMatcher">
 
+
           <mat-error *ngIf="infoForm.get('name').hasError('maxlength')">
             {{formLabels[1]}} must be up to <strong>{{validationAmounts.NAME_LENGTH_MAX}}</strong> characters long
           </mat-error>
