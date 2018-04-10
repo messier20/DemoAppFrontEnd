@@ -34,7 +34,7 @@ export class ApplicationInfoComponent implements OnInit {
   @Input() stepIndex;
 
 
-  @Output() updates: EventEmitter<Object> =
+  @Output() updates: EventEmitter<string> =
     new EventEmitter();
 
   choice = 'no';
@@ -122,7 +122,7 @@ export class ApplicationInfoComponent implements OnInit {
 
     this.backendService.updatePrivateCustomerStatus(this.lease.id, postBody)
       .then(data => {
-        this.updates.emit(data);
+        this.updates.emit(this.lease.id);
       });
     this.openSnackBar("The application moved to " + postBody.status.toLowerCase() + " applications", "close");
   }
@@ -141,7 +141,7 @@ export class ApplicationInfoComponent implements OnInit {
 
     this.backendService.updateBusinessCustomerStatus(this.lease.id, postBody)
       .then(data => {
-        this.updates.emit(data);
+        this.updates.emit(this.lease.id);
       });
     this.openSnackBar("The application moved to " + postBody.status.toLowerCase() + " part", "close");
 
@@ -149,7 +149,7 @@ export class ApplicationInfoComponent implements OnInit {
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
-      duration: 3000
+      duration: 5000
     });
   }
 
