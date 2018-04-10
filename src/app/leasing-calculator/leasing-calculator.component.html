@@ -1,15 +1,13 @@
-
-
 <div class="card-container background ">
   <mat-card id="inputFormCard">
 
     <mat-card-header>
-      <mat-card-title ><h2 class="text-color">Leasing Calculator</h2></mat-card-title>
+      <mat-card-title><h2 class="text-color">Leasing Calculator</h2></mat-card-title>
     </mat-card-header>
     <mat-card-content id="inputCardContent">
       <form [formGroup]="leasingCalculatorForm" (ngSubmit)="submitForm()" class="forform">
         <mat-form-field class="inline-form">
-          <mat-select id="customerType" required name="customerTypeField" placeholder="Customer type"
+          <mat-select id="customerType" required name="customerTypeField" placeholder="{{leasingFormLabels.CUSTOMER_TYPE}}"
                       formControlName="customerType" (change)="updateMinValues()">
 
             <mat-option [value]="PRIVATE">Private</mat-option>
@@ -22,7 +20,6 @@
 
 
         <div>
-          <!--<label>{{leasingFormLabels.ASSET_PRICE}}</label>-->
           <mat-form-field>
             <input matInput #input type="number" class="form-control" id="assetPrice" required
                    formControlName="assetPrice" placeholder='{{leasingFormLabels.ASSET_PRICE}}'
@@ -44,20 +41,14 @@
             <mat-error *ngIf="leasingCalculatorForm.get('assetPrice').hasError('required')">
               Asset Price is <strong>required</strong>
             </mat-error>
-            <!--<mat-error-->
-            <!--*ngIf="leasingCalculatorForm.get('assetPrice').valid || leasingCalculatorForm.get('assetPrice').untouched"-->
-            <!--class="alert alert-danger">-->
-            <!--Asset price must be between {{this.minAssetPrice.toFixed(2)}}€ and 9999999.00€-->
-            <!--</mat-error>-->
+
           </mat-form-field>
         </div>
-        <!--</div>-->
 
         <div>
-          <!--<label> {{leasingFormLabels.ADVANCE_PAYMENT_PERCENTAGE}} </label>-->
           <mat-form-field>
             <input matInput #input type="number" required class="form-control" id="advancePaymentPercentage"
-                   formControlName="advancePaymentPercentage" placeholder="Advance payment percentage"
+                   formControlName="advancePaymentPercentage" placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_PERCENTAGE}}"
                    name="advancePaymentPercentageField"
                    min="10" max="100"
                    (keyup)="calcAdvancePaymentAmount()"
@@ -80,12 +71,11 @@
           </mat-form-field>
         </div>
 
-        <!--</div>-->
 
         <div class="form-row">
           <mat-form-field>
             <input matInput #input type="number" class="form-control" id="advancePaymentAmount"
-                   placeholder="Advance payment amount"
+                   placeholder="{{leasingFormLabels.ADVANCE_PAYMENT_AMOUNT}}"
                    name="advancePaymentAmountField"
                    formControlName="advancePaymentAmount"
                    min="500" max="9999999" required
@@ -111,19 +101,17 @@
         <!--</div>-->
 
         <div>
-          <!--<label for="contractFee">{{leasingFormLabels.CONTRACT_FEE}}</label>-->
           <mat-form-field>
-            <input matInput #input type="text" class="form-control" required id="contractFee" name="contractFeeField"
-                   formControlName="contractFee"
-                   placeholder="Contract fee" disabled>
+            <input matInput id="contractFee" name="contractFeeField"
+                   placeholder="{{leasingFormLabels.CONTRACT_FEE}}" disabled
+                   [value]="leasingCalculatorForm.get('contractFee').value">
           </mat-form-field>
         </div>
 
 
         <div>
-          <!--<label for="margin">{{leasingFormLabels.MARGIN}}</label>-->
           <mat-form-field>
-            <input matInput #input type="number" class="form-control" placeholder="Margin" id="margin" required
+            <input matInput #input type="number" class="form-control" placeholder="{{leasingFormLabels.MARGIN}}" id="margin" required
                    formControlName="margin" name="margin" step="0.1" min="3.2" max="100"
                    [errorStateMatcher]="leasingCalculatorErrorMatcher">
             <mat-error *ngIf="leasingCalculatorForm.get('margin').hasError('min')
@@ -146,9 +134,8 @@
         <!--</div>-->
 
         <div>
-          <!--<label>{{leasingFormLabels.LEASING_PERIOD}}</label>-->
           <mat-form-field>
-            <mat-select formControlName="leasePeriodInMonths" placeholder="Leasing period">
+            <mat-select formControlName="leasePeriodInMonths" placeholder="{{leasingFormLabels.LEASING_PERIOD}}">
               <mat-option *ngFor="let type of leasePeriods" required [value]="type">{{type}}</mat-option>
             </mat-select>
             <mat-error *ngIf="leasingCalculatorForm.get('leasePeriodInMonths').invalid">
@@ -158,9 +145,8 @@
         </div>
 
         <div>
-          <!--<label>{{leasingFormLabels.PAYMENT_DAY}}</label>-->
           <mat-form-field>
-            <mat-select formControlName="paymentDate" placeholder="Payment day">
+            <mat-select formControlName="paymentDate" placeholder="{{leasingFormLabels.PAYMENT_DAY}}">
               <mat-option *ngFor="let currentDay of availableDays" required [value]="currentDay"> {{currentDay}}
               </mat-option>
             </mat-select>
@@ -169,7 +155,9 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <button mat-raised-button type="submit" id="calculate-btn" class="button-calculate" (click)="isVisible()">Calculate</button>
+        <button mat-raised-button type="submit" id="calculate-btn" class="button-calculate" (click)="isVisible()">
+          Calculate
+        </button>
         <button mat-raised-button type="button" color="accent" (click)="setLeasingCalculator()">Apply Now</button>
 
       </form>
@@ -188,29 +176,29 @@
     <mat-card-content>
 
 
-        <!--<mat-paginator #paginator [length]="(repaymentScheduleDataStream | async)?.length"-->
-        <!--[pageSize]="pageSize"-->
-        <!--[pageSizeOptions]="pageSizeOptions"-->
-        <!--(page)="pageEvent = $event">-->
-        <!--</mat-paginator>-->
-        <!--<div *ngIf="pageEvent">-->
-        <!--<h5>Page Change Event Properties</h5>-->
-        <!--<div>List length: {{pageEvent.length}}</div>-->
-        <!--<div>Page size: {{pageEvent.pageSize}}</div>-->
-        <!--<div>Page index: {{pageEvent.pageIndex}}</div>-->
-        <!--</div>-->
+      <!--<mat-paginator #paginator [length]="(repaymentScheduleDataStream | async)?.length"-->
+      <!--[pageSize]="pageSize"-->
+      <!--[pageSizeOptions]="pageSizeOptions"-->
+      <!--(page)="pageEvent = $event">-->
+      <!--</mat-paginator>-->
+      <!--<div *ngIf="pageEvent">-->
+      <!--<h5>Page Change Event Properties</h5>-->
+      <!--<div>List length: {{pageEvent.length}}</div>-->
+      <!--<div>Page size: {{pageEvent.pageSize}}</div>-->
+      <!--<div>Page index: {{pageEvent.pageIndex}}</div>-->
+      <!--</div>-->
 
-        <!--<div *ngIf="pageEvent">-->
-        <!--<h5>Page Change Event Properties</h5>-->
-        <!--<div>List length: {{pageEvent.length}}</div>-->
-        <!--<div>Page size: {{pageEvent.pageSize}}</div>-->
-        <!--<div>Page index: {{pageEvent.pageIndex}}</div>-->
-        <!--</div>-->
+      <!--<div *ngIf="pageEvent">-->
+      <!--<h5>Page Change Event Properties</h5>-->
+      <!--<div>List length: {{pageEvent.length}}</div>-->
+      <!--<div>Page size: {{pageEvent.pageSize}}</div>-->
+      <!--<div>Page index: {{pageEvent.pageIndex}}</div>-->
+      <!--</div>-->
 
       <div *ngIf="flag">
-      <app-schedule [dataStream]="repaymentSchedule" >
+        <app-schedule [dataStream]="repaymentSchedule">
 
-      </app-schedule>
+        </app-schedule>
       </div>
     </mat-card-content>
 
