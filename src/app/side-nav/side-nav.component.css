@@ -32,7 +32,10 @@ h1.example-app-name {
   flex: 1 0 auto;
 }
 
-
+#blueLeasingLogo {
+  height: 80px;
+  width: 132px;
+}
 /*.background-color {*/
   /*!*background-color: #FFFF00;*!*/
   /*background-color: #3F51B5;*/

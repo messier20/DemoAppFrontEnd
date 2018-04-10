@@ -1,17 +1,18 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="example-container">
   <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="snav.toggle()" >
+    <button mat-icon-button (click)="snav.toggle()">
       <mat-icon aria-hidden="true">menu</mat-icon>
     </button>
-    <h1 class="example-app-name">Blue Leasing</h1>
+    <h1 class="example-app-name">
+      <img src="./assets/images/BLUE_LEASING_LOGO.png" id="blueLeasingLogo"/>
+    </h1>
   </mat-toolbar>
 
-  <mat-sidenav-container  #cont class="example-sidenav-container addition"
-                        >
+  <mat-sidenav-container #cont class="example-sidenav-container addition"
+  >
     <mat-sidenav class="light-text" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches"  class="background-color" >
-
+                 [fixedInViewport]="mobileQuery.matches" class="background-color">
 
 
       <mat-nav-list>
@@ -26,7 +27,7 @@
 
 
     <mat-sidenav-content>
-    <!--<p *ngFor="let content of fillerContent">{{content}}</p>-->
+      <!--<p *ngFor="let content of fillerContent">{{content}}</p>-->
 
       <!--<router-outlet></router-outlet>-->
       <router-outlet></router-outlet>
