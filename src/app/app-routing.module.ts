@@ -16,7 +16,8 @@ const routes: Routes = [
   {path: 'officerLogin', component: OfficerLoginComponent},
   {path: 'officerView', component: OfficerViewComponent, canActivate: [AuthGuardService]},
   {path: 'checkLeasingStatus', component: CheckLeasingStatusComponent},
-  {path: 'homepage', component: HomePageComponent}
+  {path: 'homepage', component: HomePageComponent},
+  {path: '', redirectTo: 'homepage', pathMatch: 'full'}
 ];
 
 @NgModule({
