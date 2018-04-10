@@ -5,7 +5,7 @@ import {BusinessCustomerInfo} from '../models/BusinessCustomerInfo';
 import {PrivateCustomerInfo} from '../models/PrivateCustomerInfo';
 import {CustomerInfoLabels} from '../constants/CustomerInfoLabels';
 import {LeasingFormLabels} from '../constants/LeasingFormLabels';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DataStorageService} from '../services/data-storage-service.service';
 import {Router} from "@angular/router";
 
@@ -31,7 +31,8 @@ export class DialogFormComponent {
               public dialogRef: MatDialogRef<DialogFormComponent>,
               private backendService: BackendService,
               private dataService: DataStorageService,
-              private router: Router
+              private router: Router,
+              public snackBar: MatSnackBar
   ) {
 
     this.showingUserId = false;
@@ -54,9 +55,17 @@ export class DialogFormComponent {
 
       const returnedUserIdObject: any = returnedId;
       this.receivedUserId = returnedUserIdObject.id;
+      console.log("id", this.receivedUserId);
+        if(this.receivedUserId===null) {
+          this.showingUserId = false;
+          this.openSnackBar('Woops! Something went wrong. Please check your data and try again.', 'Close');
 
-      this.showingUserId = true;
-    });
+        }else this.showingUserId = true;
+    },
+      error=> {
+      this.showingUserId = false;
+        this.openSnackBar('Woops! Something went wrong. Please check your data and try again.', 'Close');
+      });
   }
 
   private isCustomerPrivate() {
@@ -67,4 +76,11 @@ export class DialogFormComponent {
   goBack() {
     this.router.navigate(['/customerInfoForm']);
   }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 4000
+    });
+  }
+
 }
