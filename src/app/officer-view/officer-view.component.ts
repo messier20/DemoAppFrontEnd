@@ -20,6 +20,7 @@ export class OfficerViewComponent implements OnInit {
 
   leases;
   leases2;
+  checkId;
 
   leasesInfoOfPrivate: LeaseInfoOfPrivate[] = [];
   leasesInfoOfBusiness: LeaseInfoOfBusiness[] = [];
@@ -50,7 +51,15 @@ export class OfficerViewComponent implements OnInit {
   }
 
 
+
+  updates(data: string) {
+    console.log("in updates");
+    console.log("data", data);
+    this.checkId = data;
+  }
+
   refresh2() {
+
     this.backendService.getAllCustomer().then(data => {
       this.leases2 = data;
       this.leases2.forEach(lease => {
