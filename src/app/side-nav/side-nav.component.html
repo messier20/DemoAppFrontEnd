@@ -17,10 +17,14 @@
 
       <mat-nav-list>
         <!--<a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>-->
-        <a mat-list-item (click)="snav.toggle()" routerLink="leasingCalculatorForm">Leasing Calculator</a>
-        <a mat-list-item (click)="snav.toggle()" routerLink="privateForm">Leasing Application</a>
-        <a mat-list-item (click)="snav.toggle()" routerLink="checkLeasingStatus">Check Leasing Status</a>
-        <a mat-list-item (click)="snav.toggle()" routerLink="officerView">All Applications</a>
+        <a mat-list-item (click)="snav.toggle()" routerLink="leasingCalculatorForm">
+          <img src="./assets/images/calculator.png"/> Leasing Calculator</a>
+        <a mat-list-item (click)="snav.toggle()" routerLink="privateForm">
+          <img src="./assets/images/text-documents.png"/>Leasing Application</a>
+        <a mat-list-item (click)="snav.toggle()" routerLink="checkLeasingStatus">
+          <img src="./assets/images/magnifying-glass.png"/> Check Leasing Status</a>
+        <a mat-list-item (click)="snav.toggle()" routerLink="officerView">
+          <img src="./assets/images/list.png"/> All Applications</a>
 
       </mat-nav-list>
     </mat-sidenav>
