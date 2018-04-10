@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'officerLogin', component: OfficerLoginComponent},
   {path: 'officerView', component: OfficerViewComponent, canActivate: [AuthGuardService]},
   {path: 'checkLeasingStatus', component: CheckLeasingStatusComponent},
-  {path: 'homePage', component: HomePageComponent}
+  {path: 'homepage', component: HomePageComponent}
 ];
 
 @NgModule({
