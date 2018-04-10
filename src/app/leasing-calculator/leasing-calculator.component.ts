@@ -258,8 +258,10 @@ export class LeasingCalculatorComponent implements OnInit {
     this.visible = true;
     console.log('true', this.visible);
     // (<HTMLInputElement>document.getElementById('matcard2')).disabled = true;
-    (<HTMLInputElement>document.getElementById('matcard2')).hidden = false;
-    this.onChanges();
+    if(this.leasingCalculatorForm.valid) {
+      (<HTMLInputElement>document.getElementById('matcard2')).hidden = false;
+      this.onChanges();
+    }
   }
 
   // sendToBack() {

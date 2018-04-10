@@ -39,6 +39,7 @@ export class DialogFormComponent {
     this.checkingLeasingStatus = this.data.checkingLeasingStatus;
     this.leasingStatus = this.data.leasingStatus;
     this.isCustomerPrivate();
+    this.dialogRef.disableClose = true;
 
     if (this.privateCustomer) {
       this.privateCustomerInfo = this.data.privateInfo;
